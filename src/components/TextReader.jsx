@@ -23,15 +23,16 @@ const Test = () => {
       setError("Selecione um arquivo de texto (.txt)");
       return;
     }
-    // Cria um FileReader para ler o arquivo
+
+    // Cria um FileReader (API nativa do JavaScript) para ler o arquivo
     const reader = new FileReader();
-    reader.readAsText(file); // Lê o arquivo como texto
+    reader.readAsText(file);
 
     // Quando a leitura for concluída (onload), atualiza os estados
     reader.onload = () => {
       setFileName(file.name);
       setFileContent(reader.result);
-      setError(""); // Reseta o erro
+      setError("");
     };
 
     // Se ocorrer um erro na leitura, atualiza o estado de erro
@@ -56,7 +57,6 @@ const Test = () => {
 
       {/* Exibe o conteudo do arquivo */}
       <TextDisplay fileContent={fileContent} />
-      {/* <Hyphen fileContent={fileContent} /> */}
     </>
   );
 };

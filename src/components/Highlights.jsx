@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { hyphenate } from "hyphen/pt";
 
-const Highlights = ({ paragraph }) => {
+const Highlights = ({ paragraph, onFinish }) => {
   const [marckedIndex, setMarckedIndex] = useState(null);
 
   // Divide o conteúdo do parágrafo em elementos
@@ -15,25 +15,26 @@ const Highlights = ({ paragraph }) => {
     const wordIndexs = elements
       .map((e, i) => (isWord(e) ? i : null))
       .filter((i) => i !== null);
-    let index = 0;
 
     const nextWord = async () => {
-      if (index < wordIndexs.length) {
-        setMarckedIndex(wordIndexs[index]);
-
+      for (const index of wordIndexs) {
+        setMarckedIndex(index);
         // Divide a palavra em sílabas e calcula o seu tempo de destaque
-        const hyphenatedText = await hyphenate(elements[wordIndexs[index]], {
+        const hyphenatedText = await hyphenate(elements[index], {
           hyphenChar: "-",
         });
         const syllablesCount = hyphenatedText.split("-").length;
         let wordTime = syllablesCount * 0.2 * 1000;
-        setTimeout(nextWord, wordTime);
-        console.log(wordTime);
 
-        index++;
-      } else {
-        setMarckedIndex(null); // Reseta quando terminar
+        // Pausa a execução do código enquanto espera o wordTime
+        await new Promise((resolve) => setTimeout(resolve, wordTime));
       }
+
+      // Depois que passa por todas as palavras, limpa o destaque
+      setMarckedIndex(null);
+
+      // Caso tenha terminado o parágrafo, avisa
+      if (onFinish) onFinish();
     };
 
     nextWord();

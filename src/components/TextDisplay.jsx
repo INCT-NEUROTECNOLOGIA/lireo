@@ -1,16 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Highlights from "./Highlights";
 
 const TextDisplay = ({ fileContent }) => {
   // Divide o conteúdo do arquivo em parágrafos
   const paragraphs = fileContent.split("\n");
 
+  const [paragraphIndex, setParagraphIndex] = useState(0);
+
   // Obtem o titulo, o autor e o link do texto e remove do array
   const title = paragraphs.shift();
   const author = paragraphs.shift();
   const link = paragraphs.pop();
 
-  // Retorna o componente
+  const nextParagraph = () => {
+    if (paragraphIndex < paragraphs.length - 1) {
+      // Obs: O estado anterior (prevIndex) é passado automaticamente pelo React
+      setParagraphIndex((prevIndex) => prevIndex + 1);
+    } else {
+      setParagraphIndex(null);
+    }
+  };
+
   return (
     /* Exibe o conteúdo do arquivo se houver */
     fileContent && (
@@ -56,8 +66,11 @@ const TextDisplay = ({ fileContent }) => {
               wordWrap: "break-word", // Quebra palavras longas
             }}
           >
-            <Highlights paragraph={paragraph} />
-            {/* {paragraph} */}
+            {index === paragraphIndex ? (
+              <Highlights paragraph={paragraph} onFinish={nextParagraph} />
+            ) : (
+              paragraph
+            )}
           </p>
         ))}
 
