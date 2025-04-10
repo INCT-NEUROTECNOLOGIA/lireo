@@ -1,0 +1,36 @@
+.text-container {
+  background-color: #f4f4f4;
+  color: #333;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  height: 500px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  overflow: auto;
+}
+
+.text-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.text-author {
+  font-size: 0.8em;
+  text-align: right;
+}
+
+.text-paragraph {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-align: justify;
+  text-indent: 4em;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin: 12px 0;
+}
+
+.text-font {
+  font-size: 0.8em;
+  text-align: right;
+}

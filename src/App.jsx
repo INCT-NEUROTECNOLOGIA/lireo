@@ -1,5 +1,4 @@
-import "./index.css";
-import TextReader from "./components/TextReader.jsx";
+import TextReader from "./features/lireFlow/components/TextReader.jsx";
 
 function App() {
   return (
