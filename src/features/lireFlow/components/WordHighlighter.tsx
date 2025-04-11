@@ -16,8 +16,8 @@ const Highlights = ({
 
   useEffect((): void => {
     const wordIndexs: number[] = elements
-      .map((element: string, index: number) => (isWord(element) ? index : null))
-      .filter((index) => index !== null);
+      .map((element: string, index: number): number | null => (isWord(element) ? index : null))
+      .filter((index): index is number => index !== null);
 
     const calculateWordTime = async (word: string): Promise<number> => {
       const hyphenatedText: string = await hyphenate(word, { hyphenChar: "-" });

@@ -1,4 +1,4 @@
-import "../../../layout/lireFlow/textStyle.css";
+import "../layout/textStyle.css";
 import React, { useState } from "react";
 import WordHighlighter from "./WordHighlighter";
 
