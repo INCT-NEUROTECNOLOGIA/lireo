@@ -82,7 +82,7 @@ const TextReader = () => {
                 step="0.1"
                 defaultValue="1"
                 value={speed}
-                onChange={(e) => setSpeed(parseFloat(e.target.value))}
+                onChange = {(event) => setSpeed (parseFloat(event.target.value))}
                 className="textReaderContainer__controls__speedSlider__input"
               />
               <span className="textReaderContainer__controls__speedSlider__value">
