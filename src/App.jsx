@@ -1,8 +1,10 @@
-import TextReader from "./features/lireFlow/components/TextReader.jsx";
-
+import TextReader from "./features/lireFlow/components/TextReader.tsx";
+import "./features/generalUi/layout/pageStyle.css"
+import Header from "./features/generalUi/components/header.tsx"
 function App() {
   return (
     <>
+      <Header/>
       <TextReader />
     </>
   );
