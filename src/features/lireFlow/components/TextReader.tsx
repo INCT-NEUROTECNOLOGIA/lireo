@@ -6,6 +6,8 @@ const TextReader = () => {
   const [fileContent, setFileContent] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [speed, setSpeed] = useState<number>(1);
+  
+  const textReaderText={ uploadText: "Arraste o arquivo", uploadText2: ".txt", uploadText3: "até aqui ou ", lectureSpeed: "Velocidade de leitura" }
 
   const selectedFile = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFileName("");
@@ -41,18 +43,19 @@ const TextReader = () => {
     };
   };
   const startButton = () => {
-    //Start button logic
+    //Todo: Create logic for start button
   };
 
   const pauseButton = () => {
-    //Pause button logic
+    //Todo: create logic for pause button  
+
   };
 
   return (
     <>
       <div className="textReaderContainer">
-        <div className="textReaderContainer__fileUploader" style={{ marginBottom: "20px" }}> 
-          Arraste o arquivo <strong>.txt</strong> até aqui ou  
+        <div className="textReaderContainer__fileUploader" > 
+          {textReaderText.uploadText} <strong>{textReaderText.uploadText2}</strong> {textReaderText.uploadText3} 
           <label htmlFor="upload-file" 
                  className="textReaderContainer__fileUploader__label"><strong>Selecionar arquivo</strong></label>
           <input id="upload-file" 
@@ -61,7 +64,7 @@ const TextReader = () => {
                  className="textReaderContainer__fileUploader__input"/>
         </div>
 
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && <p className="textReaderContainer__errorMessage" >{error}</p>}
 
         {fileName && (
           <p className="textReaderContainer__fileName">
@@ -74,7 +77,7 @@ const TextReader = () => {
         {fileName && (
         <div className="textReaderContainer__controls">
           <div className="textReaderContainer__controls__speedSlider">
-            <p>Velocidade de leitura:</p>
+            <p>{textReaderText.lectureSpeed}</p>
             <input
                 type="range"
                 min="0.1"

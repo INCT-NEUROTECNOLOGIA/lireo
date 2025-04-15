@@ -1,6 +1,9 @@
 import React from 'react';
 import '../layout/header.css';
 const Header: React.FC = () => {
+
+    const headerText={ initalPage: "Página Inicial", aboutUs: "Sobre nós" }
+
     return (
         <header>
             <div className='header__logoContainer'>
@@ -8,8 +11,8 @@ const Header: React.FC = () => {
                 <h1 className='header__logoContainer__siteName'>LIRE-O</h1 >
             </div>
             <nav>
-                <a href="/"> Página Inicial </a>
-                <a href="/sobre-nos">Sobre Nós </a>
+                <a href="/"> {headerText.initalPage} </a>
+                <a href="/sobre-nos">{headerText.aboutUs} </a>
             </nav>
         </header>
     );
