@@ -1,133 +1,63 @@
 .textReaderContainer {
-    width: 70%;
-    background-color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 5vh auto;
-    border-radius: 15px;
-    padding: 4svh 6svh;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0), 0 6px 20px 0 rgba(0, 0, 0, 0.08);
+  width: 80%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 5vh auto;
+  border-radius: 15px;
+  padding: 4svh 6svh;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0), 0 6px 20px 0 rgba(0, 0, 0, 0.08);
 }
 
-.textReaderContainer__controls{
-    display: flex; 
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-    width: 100%;
-}
-.textReaderContainer__fileUploader{
-    border: 2px dashed #ccc;
-    border-radius: 12px;
-    padding: 20px;
-    width: 90%;
-    max-width: 900px;
-    text-align: center;
-    background-color: #ebfcf9;
-    margin-bottom: 20px;
+.textReaderContainer__fileUploader {
+  border: 2px dashed #ccc;
+  border-radius: 12px;
+  padding: 20px;
+  width: 90%;
+  max-width: 900px;
+  text-align: center;
+  background-color: #ebfcf9;
+  margin-bottom: 10px;
 }
 .textReaderContainer__fileUploader__input {
-    display: none; 
+  display: none;
 }
 
 .textReaderContainer__fileUploader__label {
-    display: inline-block;
-    padding: 10px 10px;
-    font-size: 1rem;
-    color: #fff;
-    background-color: #34d6c1;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    text-align: center;
-    transition: background-color 0.3s ease;
-    margin-left:10px;
-}
-.textReaderContainer__errorMessage{
-    color:red;
-}
-.textReaderContainer__fileName{
-    max-height: 500px;
-    max-width: 900px;
-    width: 90%;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-.textReaderContainer__controls__speedSlider{
-    flex: 1;
-    margin-right: 15px;
-    max-width: 60%;
-    width: 25%;
-    flex-direction: row;
-    display: flex;
-    align-items: center;
-    
-}
-.textReaderContainer__controls__speedSlider__input{
-    height: 8px;
-    border-radius: 5px;
-    cursor:pointer;
-    accent-color: #34d6c1;
-    background-color: #ddd;
-    border: none;
-    outline:none;
-    
-}
-.textReaderContainer__controls__speedSlider__input::-webkit-slider-thumb{
-    -webkit-appearance: none;
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: #34d6c1;
-    cursor: pointer;
-    border: none;
-}
-.textReaderContainer__controls__speedSlider__input::-moz-range-thumb{
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: #34d6c1;
-    cursor: pointer;
-    border: none;
+  display: inline-block;
+  padding: 10px 10px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #34d6c1;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  margin-left: 10px;
 }
 
-.textReaderContainer__controls__buttons{
-    display: flex;
-    gap: 15px;
-}
-.textReaderContainer__controls__buttons__pauseButton,
-.textReaderContainer__controls__buttons__startButton{
-    padding: 10px 20px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 8px;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    background-color: #34d6c1;
-    margin-right: 10px;
-}
-.textReaderContainer__controls__buttons__pauseButton:hover,
-.textReaderContainer__controls__buttons__startButton:hover{
-    background-color: #2bb3a3;
+.textReaderContainer__fileName {
+  max-height: 500px;
+  max-width: 900px;
+  width: 90%;
 }
 
-@media (max-width:697px){
-    .textReaderContainer__controls{
-        flex-direction: column;
-        gap:15px;
-    }
-    .textReaderContainer__controls__speedSlider{
-        width: 100%;
-        max-width: none;
-        margin-right: 0;
-    }
-    .textReaderContainer__controls__buttons{
-        justify-content: center;
-        width: 100%;
-        flex-direction: column;
-    }
+@media (max-width: 930px) {
+  .textReaderContainer {
+    width: 95%;
+  }
+}
+
+@media (max-width: 700px) {
+  .textReaderContainer__fileUploader__label {
+    margin-top: 10px;
+  }
+
+  .textReaderContainer {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
 }
