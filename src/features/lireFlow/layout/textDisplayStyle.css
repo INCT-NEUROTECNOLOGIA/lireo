@@ -1,0 +1,45 @@
+.textContainer {
+  background-color: #f7f7f7;
+  border-radius: 12px;
+  padding: 20px;
+  overflow: auto; 
+  margin-bottom: 20px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.05);
+  max-height: 500px; 
+  max-width: 900px;
+  width: 90%;
+}
+
+.textContainer__textTitle {
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.textContainer__textAuthor {
+  font-size: 0.8em;
+  text-align: right;
+}
+
+.textContainer__text-paragraph {
+  font-family: Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
+  text-align: justify;
+  text-indent: 4em;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin: 12px 0;
+}
+
+.textContainer__textSource {
+  font-size: 0.8em;
+  text-align: right;
+}
+
+mark {
+  background-color: #34d6c1; 
+  border-radius: 5px;       
+  padding: 0 0 0.2em;    
+  
+}

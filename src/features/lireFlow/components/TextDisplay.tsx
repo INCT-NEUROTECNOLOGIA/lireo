@@ -1,4 +1,4 @@
-import "../layout/textStyle.css";
+import "../layout/textDisplayStyle.css";
 import React, { useState } from "react";
 import WordHighlighter from "./WordHighlighter";
 
@@ -9,7 +9,7 @@ const TextDisplay = ({ fileContent }: { fileContent: string }) => {
 
   const title: string | undefined = paragraphs.shift();
   const author: string | undefined = paragraphs.shift();
-  const font: string | undefined = paragraphs.pop();
+  const source: string | undefined = paragraphs.pop();
 
   const nextParagraph = (): void => {
     if (paragraphIndex < paragraphs.length - 1) {
@@ -21,13 +21,13 @@ const TextDisplay = ({ fileContent }: { fileContent: string }) => {
 
   return (
     fileContent && (
-      <div className="text-container">
-        {title && <h2 className="text-title">{title}</h2>}
+      <div className="textContainer">
+        {title && <h2 className="textContainer__textTitle">{title}</h2>}
 
-        {author && <p className="text-author">{author}</p>}
+        {author && <p className="textContainer__textAuthor">{author}</p>}
 
         {paragraphs.map((paragraph, index) => (
-          <p className="text-paragraph" key={index}>
+          <p className="textContainer__text-paragraph" key={index}>
             {index === paragraphIndex ? (
               <WordHighlighter paragraph={paragraph} onFinish={nextParagraph} />
             ) : (
@@ -36,7 +36,7 @@ const TextDisplay = ({ fileContent }: { fileContent: string }) => {
           </p>
         ))}
 
-        {font && <p className="text-font">{font}</p>}
+        {source && <p className="textContainer__textSource">{source}</p>}
       </div>
     )
   );
