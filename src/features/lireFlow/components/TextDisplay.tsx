@@ -1,14 +1,16 @@
 import "../layout/textDisplayStyle.css";
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import WordHighlighter from "./WordHighlighter";
 import TextControls from "./TextControls";
 
 const TextDisplay = ({ fileContent }: { fileContent: string }) => {
   const [speed, setSpeed] = useState<number>(1);
-  const paragraphs: string[] = fileContent
-    .split("\n")
-    .filter((paragraph: string) => paragraph.trim() !== "")
-    .map((paragraph: string) => paragraph.trim());
+  const paragraphs: string[] = useMemo(() => {
+    return fileContent
+      .split("\n")
+      .map((paragraph: string) => paragraph.trim())
+      .filter((trimmedParagraph: string) => trimmedParagraph);
+  }, [fileContent]);
 
   const [paragraphIndex, setParagraphIndex] = useState<number>(0);
   const [isReading, setIsReading] = useState<boolean>(false);

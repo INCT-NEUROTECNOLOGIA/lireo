@@ -11,7 +11,8 @@ const TextReader = () => {
     uploadText: "Arraste o arquivo",
     uploadText2: ".txt",
     uploadText3: "até aqui ou ",
-    lectureSpeed: "Velocidade de leitura",
+    uploadText4: "Selecionar arquivo",
+    fileText: "Arquivo:",
   };
 
   const selectedFile = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,7 +59,7 @@ const TextReader = () => {
           htmlFor="upload-file"
           className="textReaderContainer__fileUploader__label"
         >
-          <strong>Selecionar arquivo</strong>
+          <strong>{textReaderText.uploadText4}</strong>
         </label>
         <input
           id="upload-file"
@@ -72,7 +73,7 @@ const TextReader = () => {
 
       {fileName && (
         <p className="textReaderContainer__fileName">
-          <strong>Arquivo:</strong> {fileName}
+          <strong>{textReaderText.fileText}:</strong> {fileName}
         </p>
       )}
 
