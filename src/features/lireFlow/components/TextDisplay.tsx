@@ -5,19 +5,20 @@ import TextControls from "./TextControls";
 
 const TextDisplay = ({ fileContent }: { fileContent: string }) => {
   const [speed, setSpeed] = useState<number>(1);
-  const paragraphs: string[] = useMemo(() => {
+  const [paragraphIndex, setParagraphIndex] = useState<number>(0);
+  const [isReading, setIsReading] = useState<boolean>(false);
+
+  const allParagraphs = useMemo(() => {
     return fileContent
       .split("\n")
       .map((paragraph: string) => paragraph.trim())
       .filter((trimmedParagraph: string) => trimmedParagraph);
   }, [fileContent]);
 
-  const [paragraphIndex, setParagraphIndex] = useState<number>(0);
-  const [isReading, setIsReading] = useState<boolean>(false);
-
-  const title: string | undefined = paragraphs.shift();
-  const author: string | undefined = paragraphs.shift();
-  const source: string | undefined = paragraphs.pop();
+  const title = allParagraphs[0];
+  const author = allParagraphs[1];
+  const source = allParagraphs[allParagraphs.length - 1];
+  const paragraphs = allParagraphs.slice(2, -1);
 
   const nextParagraph = (): void => {
     if (paragraphIndex < paragraphs.length - 1) {
