@@ -73,7 +73,8 @@ const TextReader = () => {
 
       {fileName && (
         <p className="textReaderContainer__fileName">
-          <strong>{textReaderText.fileText}:</strong> {fileName}
+          <strong>{textReaderText.fileText}</strong> {fileName}
+
         </p>
       )}
 
