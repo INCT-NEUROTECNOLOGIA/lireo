@@ -2,12 +2,12 @@
   background-color: #f7f7f7;
   border-radius: 12px;
   padding: 20px;
-  overflow: auto; 
+  overflow: auto;
   margin-bottom: 20px;
-  box-shadow: 0 0 5px rgba(0,0,0,0.05);
-  max-height: 500px; 
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+  max-height: 500px;
   max-width: 900px;
-  width: 90%;
+  width: 100%;
 }
 
 .textContainer__textTitle {
@@ -38,8 +38,7 @@
 }
 
 mark {
-  background-color: #34d6c1; 
-  border-radius: 5px;       
-  padding: 0 0 0.2em;    
-  
+  background-color: #34d6c1;
+  border-radius: 5px;
+  padding: 0 0 0.2em;
 }

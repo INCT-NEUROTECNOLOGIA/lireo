@@ -1,15 +1,24 @@
 import "../layout/textDisplayStyle.css";
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import WordHighlighter from "./WordHighlighter";
+import TextControls from "./TextControls";
 
 const TextDisplay = ({ fileContent }: { fileContent: string }) => {
-  const paragraphs: string[] = fileContent.split("\n");
-
+  const [speed, setSpeed] = useState<number>(1);
   const [paragraphIndex, setParagraphIndex] = useState<number>(0);
+  const [isReading, setIsReading] = useState<boolean>(false);
 
-  const title: string | undefined = paragraphs.shift();
-  const author: string | undefined = paragraphs.shift();
-  const source: string | undefined = paragraphs.pop();
+  const allParagraphs = useMemo(() => {
+    return fileContent
+      .split("\n")
+      .map((paragraph: string) => paragraph.trim())
+      .filter((trimmedParagraph: string) => trimmedParagraph);
+  }, [fileContent]);
+
+  const title = allParagraphs[0];
+  const author = allParagraphs[1];
+  const source = allParagraphs[allParagraphs.length - 1];
+  const paragraphs = allParagraphs.slice(2, -1);
 
   const nextParagraph = (): void => {
     if (paragraphIndex < paragraphs.length - 1) {
@@ -19,25 +28,46 @@ const TextDisplay = ({ fileContent }: { fileContent: string }) => {
     }
   };
 
+  const startButton = (): void => {
+    setIsReading(true);
+  };
+
+  const pauseButton = (): void => {
+    setIsReading(false);
+  };
+
   return (
     fileContent && (
-      <div className="textContainer">
-        {title && <h2 className="textContainer__textTitle">{title}</h2>}
+      <>
+        <TextControls
+          speed={speed}
+          setSpeed={setSpeed}
+          startButton={startButton}
+          pauseButton={pauseButton}
+        />
 
-        {author && <p className="textContainer__textAuthor">{author}</p>}
+        <div className="textContainer">
+          {title && <h2 className="textContainer__textTitle">{title}</h2>}
 
-        {paragraphs.map((paragraph, index) => (
-          <p className="textContainer__text-paragraph" key={index}>
-            {index === paragraphIndex ? (
-              <WordHighlighter paragraph={paragraph} onFinish={nextParagraph} />
-            ) : (
-              paragraph
-            )}
-          </p>
-        ))}
+          {author && <p className="textContainer__textAuthor">{author}</p>}
 
-        {source && <p className="textContainer__textSource">{source}</p>}
-      </div>
+          {paragraphs.map((paragraph, index) => (
+            <p className="textContainer__text-paragraph" key={index}>
+              {index === paragraphIndex ? (
+                <WordHighlighter
+                  paragraph={paragraph}
+                  onFinish={nextParagraph}
+                  isReading={isReading}
+                />
+              ) : (
+                paragraph
+              )}
+            </p>
+          ))}
+
+          {source && <p className="textContainer__textSource">{source}</p>}
+        </div>
+      </>
     )
   );
 };

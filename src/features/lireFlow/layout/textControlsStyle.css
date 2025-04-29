@@ -1,0 +1,82 @@
+.textControls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin-bottom: 10px;
+}
+.textControls__speedSlider {
+  flex: 1;
+  margin-right: 15px;
+  max-width: 60%;
+  width: 25%;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+}
+.textControls__speedSlider__input {
+  height: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  accent-color: #34d6c1;
+  background-color: #ddd;
+  border: none;
+  outline: none;
+}
+.textControls__speedSlider__input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #34d6c1;
+  cursor: pointer;
+  border: none;
+}
+.textControls__speedSlider__input::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #34d6c1;
+  cursor: pointer;
+  border: none;
+}
+
+.textControls__buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.textControls__buttons__pauseButton,
+.textControls__buttons__startButton {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: #34d6c1;
+}
+
+.textControls__buttons__pauseButton:hover,
+.textControls__buttons__startButton:hover {
+  background-color: #2bb3a3;
+}
+
+@media (max-width: 610px) {
+  .textControls {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .textControls__speedSlider {
+    width: 100%;
+    max-width: none;
+    margin-right: 0;
+  }
+  .textControls__buttons {
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+  }
+}

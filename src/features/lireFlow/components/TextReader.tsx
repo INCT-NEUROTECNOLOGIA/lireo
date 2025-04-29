@@ -6,8 +6,14 @@ const TextReader = () => {
   const [fileContent, setFileContent] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [speed, setSpeed] = useState<number>(1);
-  
-  const textReaderText={ uploadText: "Arraste o arquivo", uploadText2: ".txt", uploadText3: "até aqui ou ", lectureSpeed: "Velocidade de leitura" }
+
+  const textReaderText = {
+    uploadText: "Arraste o arquivo",
+    uploadText2: ".txt",
+    uploadText3: "até aqui ou ",
+    uploadText4: "Selecionar arquivo",
+    fileText: "Arquivo:",
+  };
 
   const selectedFile = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFileName("");
@@ -42,64 +48,38 @@ const TextReader = () => {
       setError("Erro ao ler o arquivo");
     };
   };
-  const startButton = () => {
-    //Todo: Create logic for start button
-  };
-
-  const pauseButton = () => {
-    //Todo: create logic for pause button  
-
-  };
 
   return (
-    <>
-      <div className="textReaderContainer">
-        <div className="textReaderContainer__fileUploader" > 
-          {textReaderText.uploadText} <strong>{textReaderText.uploadText2}</strong> {textReaderText.uploadText3} 
-          <label htmlFor="upload-file" 
-                 className="textReaderContainer__fileUploader__label"><strong>Selecionar arquivo</strong></label>
-          <input id="upload-file" 
-                 type="file" 
-                 onChange={selectedFile} 
-                 className="textReaderContainer__fileUploader__input"/>
-        </div>
-
-        {error && <p className="textReaderContainer__errorMessage" >{error}</p>}
-
-        {fileName && (
-          <p className="textReaderContainer__fileName">
-            <strong>Arquivo:</strong> {fileName}
-          </p>
-        )}
-
-        <TextDisplay fileContent={fileContent} /> 
-
-        {fileName && (
-        <div className="textReaderContainer__controls">
-          <div className="textReaderContainer__controls__speedSlider">
-            <p>{textReaderText.lectureSpeed}</p>
-            <input
-                type="range"
-                min="0.1"
-                max="3"
-                step="0.1"
-                defaultValue="1"
-                value={speed}
-                onChange = {(event) => setSpeed (parseFloat(event.target.value))}
-                className="textReaderContainer__controls__speedSlider__input"
-              />
-              <span className="textReaderContainer__controls__speedSlider__value">
-                {speed.toFixed(1)}x
-              </span>
-            </div>
-          <div className="textReaderContainer__controls__buttons">
-            <button className="textReaderContainer__controls__buttons__startButton" onClick={startButton}>Start</button>
-            <button className="textReaderContainer__controls__buttons__pauseButton" onClick={pauseButton}>Pause</button>
-          </div>
-        </div>
-        )}
+    <div className="textReaderContainer">
+      <div className="textReaderContainer__fileUploader">
+        {textReaderText.uploadText}{" "}
+        <strong>{textReaderText.uploadText2}</strong>{" "}
+        {textReaderText.uploadText3}
+        <label
+          htmlFor="upload-file"
+          className="textReaderContainer__fileUploader__label"
+        >
+          <strong>{textReaderText.uploadText4}</strong>
+        </label>
+        <input
+          id="upload-file"
+          type="file"
+          onChange={selectedFile}
+          className="textReaderContainer__fileUploader__input"
+        />
       </div>
-    </>
+
+      {error && <p className="textReaderContainer__errorMessage">{error}</p>}
+
+      {fileName && (
+        <p className="textReaderContainer__fileName">
+          <strong>{textReaderText.fileText}</strong> {fileName}
+
+        </p>
+      )}
+
+      <TextDisplay fileContent={fileContent} />
+    </div>
   );
 };
 
