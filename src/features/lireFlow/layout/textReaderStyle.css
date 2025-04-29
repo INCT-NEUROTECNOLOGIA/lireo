@@ -27,7 +27,7 @@
 
 .textReaderContainer__fileUploader__label {
   display: inline-block;
-  padding: 10px 10px;
+  padding: 10px;
   font-size: 1rem;
   color: #fff;
   background-color: #34d6c1;
@@ -36,7 +36,34 @@
   cursor: pointer;
   text-align: center;
   transition: background-color 0.3s ease;
-  margin-left: 10px;
+  margin: 12px;
+  width: 30%;
+}
+
+.textReaderContainer__fileUploader__selectText {
+  padding: 10px 15px;
+  padding-right: 35px;
+  font-size: 1rem;
+  font-family: inherit;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  background-color: #34d6c1;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg fill='white' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 20px;
+  margin: 12px;
+  width: 30%;
+}
+
+.textReaderContainer select:hover,
+label:hover {
+  background-color: #2bb3a3;
 }
 
 .textReaderContainer__fileName {
@@ -59,5 +86,17 @@
   .textReaderContainer {
     padding-left: 5px;
     padding-right: 5px;
+  }
+
+  .textReaderContainer__fileUploader__inputSelectGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .textReaderContainer__fileUploader__label,
+  .textReaderContainer__fileUploader__selectText {
+    width: 90%;
   }
 }
