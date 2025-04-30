@@ -1,17 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import TextDisplay from "./TextDisplay.jsx";
 import "../layout/textReaderStyle.css";
+
 const TextReader = () => {
   const [fileName, setFileName] = useState<string>("");
   const [fileContent, setFileContent] = useState<string>("");
   const [error, setError] = useState<string>("");
-  const [speed, setSpeed] = useState<number>(1);
+  const resetSelectText = useRef<HTMLSelectElement>(null);
 
   const textReaderText = {
     uploadText: "Arraste o arquivo",
     uploadText2: ".txt",
     uploadText3: "até aqui ou ",
     uploadText4: "Selecionar arquivo",
+    uploadText5: " ou ",
+    placeholderSelectText: "Selecionar um dos textos",
+    texts: [
+      "A Cartomante",
+      "Conto ou não conto",
+      "No Reino das Letras Felizes",
+      "O Ratinho Rói-Rói",
+    ],
     fileText: "Arquivo:",
   };
 
@@ -49,32 +58,72 @@ const TextReader = () => {
     };
   };
 
+  const selectedText = async (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setFileName(event.target.value);
+    setError("");
+
+    try {
+      const response = await fetch(`/texts/${event.target.value}.txt`);
+      const text = await response.text();
+      setFileContent(text);
+      if (resetSelectText.current) resetSelectText.current.value = "";
+    } catch (error) {
+      setError("Erro ao carregar o arquivo");
+    }
+  };
+
+  const resetSelectFile = (event: React.MouseEvent<HTMLInputElement>) => {
+    event.currentTarget.value = "";
+  };
+
   return (
     <div className="textReaderContainer">
       <div className="textReaderContainer__fileUploader">
-        {textReaderText.uploadText}{" "}
-        <strong>{textReaderText.uploadText2}</strong>{" "}
-        {textReaderText.uploadText3}
-        <label
-          htmlFor="upload-file"
-          className="textReaderContainer__fileUploader__label"
-        >
-          <strong>{textReaderText.uploadText4}</strong>
-        </label>
-        <input
-          id="upload-file"
-          type="file"
-          onChange={selectedFile}
-          className="textReaderContainer__fileUploader__input"
-        />
+        <div className="textReaderContainer__fileUploader__text">
+          {textReaderText.uploadText}{" "}
+          <strong>{textReaderText.uploadText2}</strong>{" "}
+          {textReaderText.uploadText3}
+        </div>
+        <div className="textReaderContainer__fileUploader__inputSelectGroup">
+          <label
+            htmlFor="upload-file"
+            className="textReaderContainer__fileUploader__label"
+          >
+            <strong>{textReaderText.uploadText4}</strong>
+          </label>
+          <input
+            id="upload-file"
+            type="file"
+            onClick={resetSelectFile}
+            onChange={selectedFile}
+            className="textReaderContainer__fileUploader__input"
+          />
+          {textReaderText.uploadText5}
+          <select
+            className="textReaderContainer__fileUploader__selectText"
+            name="texts"
+            id="texts"
+            defaultValue=""
+            onChange={selectedText}
+            ref={resetSelectText}
+          >
+            <option value="" disabled>
+              {textReaderText.placeholderSelectText}
+            </option>
+            {textReaderText.texts.map((text, index) => (
+              <option key={index} value={text}>
+                {text}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
-      {error && <p className="textReaderContainer__errorMessage">{error}</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
 
       {fileName && (
         <p className="textReaderContainer__fileName">
           <strong>{textReaderText.fileText}</strong> {fileName}
-
         </p>
       )}
 

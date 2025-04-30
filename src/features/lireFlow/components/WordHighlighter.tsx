@@ -1,14 +1,19 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, RefObject } from "react";
 import { hyphenate } from "hyphen/pt";
+import { averageSyllableTimeByGrade } from "./ReadingParameters";
 
 const WordHighlighter = ({
   paragraph,
   onFinish,
   isReading,
+  gradeRef,
+  speedRef,
 }: {
   paragraph: string;
   onFinish?: () => void;
   isReading: boolean;
+  gradeRef: RefObject<number>;
+  speedRef: RefObject<number>;
 }) => {
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
   const wordIndexs = useRef<number[]>([]);
@@ -37,7 +42,10 @@ const WordHighlighter = ({
     const calculateWordTime = async (word: string): Promise<number> => {
       const hyphenatedText: string = await hyphenate(word, { hyphenChar: "-" });
       const syllablesCount: number = hyphenatedText.split("-").length;
-      return syllablesCount * 0.2 * 1000;
+      return Math.round(
+        (syllablesCount * averageSyllableTimeByGrade(gradeRef.current)) /
+          speedRef.current
+      );
     };
 
     const highlightFlow = async (): Promise<void> => {
@@ -58,7 +66,12 @@ const WordHighlighter = ({
       }
 
       setCurrentIndex(null);
-      onFinish?.();
+      if (onFinish) {
+        await new Promise(
+          (resolve) => (timeoutRef.current = setTimeout(resolve, 500))
+        );
+        onFinish();
+      }
     };
 
     highlightFlow();
