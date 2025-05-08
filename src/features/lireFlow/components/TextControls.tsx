@@ -1,5 +1,12 @@
-import React, { RefObject } from "react";
+import React, { useState, useEffect, RefObject } from "react";
 import "../layout/textControlsStyle.css";
+import { classifyPerformance } from "./ReadingParameters";
+
+interface Results {
+  elapsedTime: number;
+  totalWords: number;
+  performance: string;
+}
 
 const TextControls = ({
   speed,
@@ -18,6 +25,80 @@ const TextControls = ({
   pauseButton: () => void;
   restartButton: () => void;
 }) => {
+  const [elapsedTime, setElapsedTime] = useState<number>(0);
+  const [isRunning, setIsRunning] = useState<boolean>(false);
+  const [results, setResults] = useState<Results | null>(null);
+
+  useEffect(() => {
+    let timer: number | undefined;
+    if (isRunning) {
+      timer = window.setInterval(() => {
+        setElapsedTime((prevTime) => prevTime + 1);
+      }, 1000);
+    } else if (timer !== undefined) {
+      window.clearInterval(timer);
+    }
+    return () => {
+      if (timer !== undefined) {
+        window.clearInterval(timer);
+      }
+    };
+  }, [isRunning]);
+
+  const handleStart = () => {
+    setIsRunning(true);
+    startButton();
+  };
+
+  const handlePause = () => {
+    setIsRunning(false);
+    const wordsReadPerMinute = calculateWordsPerMinute();
+    const grade = gradeRef.current || 0;
+    const performance = classifyPerformance(wordsReadPerMinute, grade) || "Desempenho não disponível";
+    console.log("Performance:", performance);
+    pauseButton();
+  };
+
+  const handleRestart = () => {
+    setIsRunning(false);
+    const wordsReadPerMinute = calculateWordsPerMinute();
+    const grade = gradeRef.current || 0;
+    const performance = classifyPerformance(wordsReadPerMinute, grade) || "Desempenho não disponível";
+    console.log("Performance:", performance);
+    setElapsedTime(0);
+    setTimeout(() => setIsRunning(true), 0);
+    restartButton();
+  };
+
+  const handleTextEnd = () => {
+    setIsRunning(false);
+    const wordsReadPerMinute = calculateWordsPerMinute();
+    const grade = gradeRef.current || 0;
+    const performance = classifyPerformance(wordsReadPerMinute, grade) || "Desempenho não disponível";
+    const totalWords = document.querySelectorAll(".textContainer__text-paragraph span, .textContainer__text-paragraph mark").length;
+    setResults({
+      elapsedTime,
+      totalWords,
+      performance,
+    });
+  };
+
+  const calculateWordsPerMinute = () => {
+    const totalWords = document.querySelectorAll(".textContainer__text-paragraph span, .textContainer__text-paragraph mark").length;
+    return elapsedTime > 0 ? (totalWords / elapsedTime) * 60 : 0;
+  };
+
+  useEffect(() => {
+    const paragraphs = document.querySelectorAll(".textContainer__text-paragraph");
+    const allTextRead = Array.from(paragraphs).every((paragraph) => {
+      return paragraph.textContent?.trim() === "";
+    });
+
+    if (allTextRead) {
+      handleTextEnd();
+    }
+  }, [elapsedTime]);
+
   const textControlsText = {
     placeholderSelectGrade: "Selecione o ano escolar",
     grades: [
@@ -78,23 +159,35 @@ const TextControls = ({
       <div className="textControls__buttons">
         <button
           className="textControls__buttons__startButton"
-          onClick={startButton}
+          onClick={handleStart}
         >
           {textControlsText.start}
         </button>
         <button
           className="textControls__buttons__pauseButton"
-          onClick={pauseButton}
+          onClick={handlePause}
         >
           {textControlsText.pause}
         </button>
         <button
           className="textControls__buttons__restartButton"
-          onClick={restartButton}
+          onClick={handleRestart}
         >
           <i className="bi bi-arrow-clockwise"></i>
         </button>
       </div>
+
+      <div className="textControls__timer">
+        <p>Tempo decorrido: {elapsedTime}s</p>
+      </div>
+
+      {results && (
+        <div className="textControls__results">
+          <p>Tempo total: {results.elapsedTime}s</p>
+          <p>Quantidade de palavras: {results.totalWords}</p>
+          <p>Resultado: {results.performance}</p>
+        </div>
+      )}
     </div>
   );
 };
