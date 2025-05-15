@@ -1,0 +1,121 @@
+.textControls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  width: 90%;
+  max-width: 900px;
+  margin-bottom: 30px;
+}
+.textControls__speedSlider {
+  flex: 1 1 300px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+.textControls__speedSlider__input {
+  flex: 1;
+  height: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  accent-color: #34d6c1;
+  background-color: #ddd;
+  border: none;
+}
+.textControls__speedSlider__input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #34d6c1;
+  cursor: pointer;
+  border: none;
+}
+.textControls__speedSlider__input::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #34d6c1;
+  cursor: pointer;
+  border: none;
+}
+
+.textControls__buttons {
+  flex: 1 1 200px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.textControls__buttons__pauseButton,
+.textControls__buttons__startButton,
+.textControls__buttons__restartButton {
+  flex: 1;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: #34d6c1;
+}
+
+.textControls__buttons__pauseButton:hover,
+.textControls__buttons__startButton:hover,
+.textControls__buttons__restartButton:hover {
+  background-color: #2bb3a3;
+}
+
+.textControls__selectGrade {
+  flex: 1 1 200px;
+}
+
+.textControls__selectGrade__select {
+  width: 100%;
+  padding: 10px 15px;
+  padding-right: 35px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  background-color: #34d6c1;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg fill='white' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 20px;
+}
+
+.textControls__selectGrade select:hover {
+  background-color: #2bb3a3;
+}
+
+@media (max-width: 730px) {
+  .textControls {
+    flex-direction: column;
+    max-height: 250px;
+    gap: 10px;
+  }
+
+  .textControls__speedSlider {
+    width: 100%;
+  }
+
+  .textControls__buttons {
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .textControls__selectGrade {
+    width: 100%;
+  }
+}
