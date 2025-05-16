@@ -19,8 +19,10 @@
   max-width: 900px;
   text-align: center;
   background-color: #ebfcf9;
+  transition: background-color 0.3s ease;
   margin-bottom: 10px;
 }
+
 .textReaderContainer__fileUploader__input {
   display: none;
 }
@@ -70,6 +72,31 @@ label:hover {
   max-height: 500px;
   max-width: 900px;
   width: 90%;
+}
+
+.loadingSpinner-container {
+  display: flex;
+  margin: 10px;
+  align-items: center;
+  gap: 8px;
+}
+
+.loadingSpinner {
+  border: 4px solid #ebfcf9;
+  border-top: 4px solid #2bb3a3;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @media (max-width: 930px) {

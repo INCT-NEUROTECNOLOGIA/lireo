@@ -6,33 +6,29 @@ const TextReader = () => {
   const [fileName, setFileName] = useState<string>("");
   const [fileContent, setFileContent] = useState<string>("");
   const [error, setError] = useState<string>("");
+  const [isDragging, setIsDragging] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const resetSelectText = useRef<HTMLSelectElement>(null);
 
   const textReaderText = {
     uploadText: "Arraste o arquivo",
     uploadText2: ".txt",
     uploadText3: "até aqui ou ",
-    uploadText4: "Selecionar arquivo",
+    uploadText4: "Selecione arquivo",
     uploadText5: " ou ",
-    placeholderSelectText: "Selecionar um dos textos",
+    placeholderSelectText: "Selecione um dos textos",
     texts: [
-      "A Cartomante",
-      "Conto ou não conto",
-      "No Reino das Letras Felizes",
-      "O Ratinho Rói-Rói",
+      "No Reino das Letras Felizes (Leitura fácil)",
+      "O Ratinho Rói-Rói (Leitura fácil)",
+      "Conto ou não conto (Leitura média)",
+      "A Cartomante (Leitura avançada)",
     ],
     fileText: "Arquivo:",
   };
 
-  const selectedFile = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFileName("");
-    setFileContent("");
-    setError("");
-
-    if (!event.target.files) return;
-
-    const file: File = event.target.files[0];
+  const readFile = (file: File) => {
     const isTxtFile = (fileType: string): boolean => fileType === "text/plain";
+
     if (!file) return;
 
     if (!isTxtFile(file.type)) {
@@ -44,6 +40,7 @@ const TextReader = () => {
     reader.readAsText(file);
 
     reader.onload = (): void => {
+      setIsLoading(false);
       if (typeof reader.result === "string") {
         setFileName(file.name);
         setFileContent(reader.result);
@@ -54,19 +51,32 @@ const TextReader = () => {
     };
 
     reader.onerror = (): void => {
+      setIsLoading(false);
       setError("Erro ao ler o arquivo");
     };
+  };
+
+  const selectedFile = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFileName("");
+    setFileContent("");
+    setError("");
+
+    if (!event.target.files) return;
+    setIsLoading(true);
+    readFile(event.target.files[0]);
   };
 
   const selectedText = async (event: React.ChangeEvent<HTMLSelectElement>) => {
     setFileName(event.target.value);
     setError("");
+    setIsLoading(true);
 
     try {
       const response = await fetch(`/texts/${event.target.value}.txt`);
       const text = await response.text();
       setFileContent(text);
       if (resetSelectText.current) resetSelectText.current.value = "";
+      setIsLoading(false);
     } catch (error) {
       setError("Erro ao carregar o arquivo");
     }
@@ -76,9 +86,37 @@ const TextReader = () => {
     event.currentTarget.value = "";
   };
 
+  const dropFile = (event: React.DragEvent<HTMLDivElement>) => {
+    setFileName("");
+    setFileContent("");
+    setError("");
+    setIsLoading(true);
+    setIsDragging(false);
+
+    event.preventDefault();
+    if (!event.dataTransfer.files.length) return;
+    readFile(event.dataTransfer.files[0]);
+  };
+
+  const dragFile = (event: React.DragEvent<HTMLDivElement>) => {
+    setIsDragging(true);
+    event.preventDefault();
+  };
+
+  const dragLeave = (event: React.DragEvent<HTMLDivElement>) => {
+    setIsDragging(false);
+    event.preventDefault();
+  };
+
   return (
     <div className="textReaderContainer">
-      <div className="textReaderContainer__fileUploader">
+      <div
+        className="textReaderContainer__fileUploader"
+        onDrop={dropFile}
+        onDragOver={dragFile}
+        onDragLeave={dragLeave}
+        style={{ backgroundColor: isDragging ? "#c7fff8" : "#ebfcf9" }}
+      >
         <div className="textReaderContainer__fileUploader__text">
           {textReaderText.uploadText}{" "}
           <strong>{textReaderText.uploadText2}</strong>{" "}
@@ -127,7 +165,14 @@ const TextReader = () => {
         </p>
       )}
 
-      <TextDisplay fileContent={fileContent} />
+      {isLoading ? (
+        <div className="loadingSpinner-container">
+          <div className="loadingSpinner" />
+          <span>Carregando...</span>
+        </div>
+      ) : (
+        <TextDisplay fileContent={fileContent} />
+      )}
     </div>
   );
 };
