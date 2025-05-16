@@ -1,0 +1,66 @@
+.aboutUsContainer {
+  padding: 20px;
+  max-width: 1000px; 
+  margin: 0 auto;
+  text-align: center;
+}
+  
+  .aboutUsContainer__title {
+    font-size: 2.5rem;
+    color: #097954;
+    margin-bottom: 20px;
+  }
+  
+  .aboutUsContainer__description {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #555;
+  }
+  
+  .aboutUsContainer__team {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  @media (min-width: 800px) {
+    .aboutUsContainer__team {
+      grid-template-columns: repeat(4, 1fr); 
+    }
+  }
+  
+  .aboutUsContainer__teamMember {
+    
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    text-align: center;
+  }
+  .aboutUsContainer__teamMemberName{
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+  .aboutUsContainer__teamMemberPhoto {
+    width: 100%;
+    aspect-ratio: 9 / 11; 
+    object-fit: cover; 
+    object-position: top;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+  }
+  .aboutUsContainer__teamMemberTexts{
+    padding: 10px;
+  }
+  .aboutUsContainer__teamMember h2 {
+    font-size: 1.5rem;
+    color: #097954;
+    margin-bottom: 10px;
+  }
+  
+  .aboutUsContainer__teamMemberParagraph {
+    font-size: 1rem;
+    color: #555;
+    margin-top:5px;
+    margin-bottom: 5px;
+  }
