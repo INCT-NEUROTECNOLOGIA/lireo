@@ -42,6 +42,7 @@ const TextDisplay = ({ fileContent }: { fileContent: string }) => {
           restartButton={(): void => {
             setParagraphIndex(0);
             setHighlightKey((prevKey) => prevKey + 1);
+            setIsReading(false);
           }}
         />
 
