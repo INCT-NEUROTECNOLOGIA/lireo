@@ -14,7 +14,7 @@ const TextReader = () => {
     uploadText: "Arraste o arquivo",
     uploadText2: ".txt",
     uploadText3: "até aqui ou ",
-    uploadText4: "Selecione arquivo",
+    uploadText4: "Selecione um arquivo",
     uploadText5: " ou ",
     placeholderSelectText: "Selecione um dos textos",
     texts: [
@@ -126,6 +126,7 @@ const TextReader = () => {
           <label
             htmlFor="upload-file"
             className="textReaderContainer__fileUploader__label"
+            title={textReaderText.uploadText4}
           >
             <strong>{textReaderText.uploadText4}</strong>
           </label>
@@ -144,6 +145,7 @@ const TextReader = () => {
             defaultValue=""
             onChange={selectedText}
             ref={resetSelectText}
+            title={textReaderText.placeholderSelectText}
           >
             <option value="" disabled>
               {textReaderText.placeholderSelectText}

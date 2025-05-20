@@ -99,7 +99,7 @@ label:hover {
   }
 }
 
-@media (max-width: 930px) {
+@media (max-width: 1075px) {
   .textReaderContainer {
     width: 95%;
   }
@@ -125,5 +125,10 @@ label:hover {
   .textReaderContainer__fileUploader__label,
   .textReaderContainer__fileUploader__selectText {
     width: 90%;
+    margin: 8px;
+  }
+
+  .textReaderContainer__fileUploader__text {
+    margin-bottom: 10px;
   }
 }

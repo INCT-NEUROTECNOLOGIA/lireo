@@ -1,19 +1,36 @@
 .textControls {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   gap: 15px;
   width: 90%;
-  max-width: 900px;
   margin-bottom: 30px;
 }
-.textControls__speedSlider {
-  flex: 1 1 300px;
+
+.textControls__speedControls {
+  flex: 1 1 550px;
   display: flex;
-  flex-direction: row;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
+  justify-content: center;
 }
+
+.textControls__speedSlider {
+  flex: 1 1 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.textControls__speedSlider__inputContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.textControls__speedSlider p {
+  margin: 5px 0px;
+}
+
 .textControls__speedSlider__input {
   flex: 1;
   height: 8px;
@@ -23,6 +40,7 @@
   background-color: #ddd;
   border: none;
 }
+
 .textControls__speedSlider__input::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
@@ -33,6 +51,7 @@
   cursor: pointer;
   border: none;
 }
+
 .textControls__speedSlider__input::-moz-range-thumb {
   width: 20px;
   height: 20px;
@@ -70,12 +89,8 @@
   background-color: #2bb3a3;
 }
 
-.textControls__selectGrade {
+.textControls__selectLevel {
   flex: 1 1 200px;
-}
-
-.textControls__selectGrade__select {
-  width: 100%;
   padding: 10px 15px;
   padding-right: 35px;
   font-size: 1rem;
@@ -93,29 +108,51 @@
   background-size: 20px;
 }
 
-.textControls__selectGrade select:hover {
+.textControls__selectLevel select:hover {
   background-color: #2bb3a3;
 }
 
-@media (max-width: 730px) {
+.textControls__wordsPerMinute {
+  flex: 1 1 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bi-clock {
+  color: #2bb3a3;
+  margin-right: 5px;
+}
+
+@media (max-width: 930px) {
   .textControls {
     flex-direction: column;
     max-height: 250px;
-    gap: 10px;
   }
 
-  .textControls__speedSlider {
+  .textControls__speedControls {
     width: 100%;
+    flex: 1;
+  }
+
+  .textControls__buttons {
+    width: 100%;
+    flex: 1;
+  }
+}
+
+@media (max-width: 500px) {
+  .textControls {
+    gap: 10px;
   }
 
   .textControls__buttons {
     justify-content: center;
-    width: 100%;
     flex-direction: column;
     gap: 12px;
   }
 
-  .textControls__selectGrade {
+  .textControls__selectLevel {
     width: 100%;
   }
 }

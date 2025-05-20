@@ -5,7 +5,7 @@ const TextControls = ({
   speed,
   setSpeed,
   speedRef,
-  gradeRef,
+  levelRef,
   startButton,
   pauseButton,
   restartButton,
@@ -13,14 +13,26 @@ const TextControls = ({
   speed: number;
   setSpeed: (number) => void;
   speedRef: RefObject<number>;
-  gradeRef: RefObject<number>;
+  levelRef: RefObject<number>;
   startButton: () => void;
   pauseButton: () => void;
   restartButton: () => void;
 }) => {
   const textControlsText = {
-    placeholderSelectGrade: "Selecione o ano escolar",
-    grades: [
+    placeholderSelectLevel: "Escolha um nível",
+    levels: [
+      "Nenhum",
+      "Nível 1",
+      "Nível 2",
+      "Nível 3",
+      "Nível 4",
+      "Nível 5",
+      "Nível 6",
+      "Nível 7",
+      "Nível 8",
+    ],
+    levelLegend: [
+      "Nenhum",
       "2º ano",
       "3º ano",
       "4º ano",
@@ -33,64 +45,86 @@ const TextControls = ({
     lectureSpeed: "Velocidade de leitura:",
     start: "Iniciar",
     pause: "Pausar",
+    restart: "Reiniciar",
+    wordPerMinute: " ppm",
+    wordPerMinuteLegend: "Palavras por minuto",
   };
 
   return (
     <div className="textControls">
-      <div className="textControls__selectGrade">
+      <div className="textControls__speedControls">
         <select
-          className="textControls__selectGrade__select"
-          name="grades"
-          id="grades"
+          className="textControls__selectLevel"
+          name="levels"
+          id="levels"
           defaultValue=""
-          onChange={(event) => (gradeRef.current = Number(event.target.value))}
+          onChange={(event) => (levelRef.current = Number(event.target.value))}
+          title={textControlsText.placeholderSelectLevel}
         >
           <option value="" disabled>
-            {textControlsText.placeholderSelectGrade}
+            {textControlsText.placeholderSelectLevel}
           </option>
-          {textControlsText.grades.map((grade, index) => (
-            <option key={index} value={index + 2}>
-              {grade}
+          {textControlsText.levels.map((level, index) => (
+            <option
+              key={index}
+              value={index}
+              title={textControlsText.levelLegend[index]}
+            >
+              {level}
             </option>
           ))}
         </select>
-      </div>
 
-      <div className="textControls__speedSlider">
-        <p>{textControlsText.lectureSpeed}</p>
-        <input
-          type="range"
-          min="0.1"
-          max="3"
-          step="0.1"
-          value={speed}
-          onChange={(event) => {
-            setSpeed(parseFloat(event.target.value));
-            speedRef.current = parseFloat(event.target.value);
-          }}
-          className="textControls__speedSlider__input"
-        />
-        <span className="textControls__speedSlider__value">
-          {speed.toFixed(1)}x
-        </span>
+        <div className="textControls__speedSlider">
+          <p>{textControlsText.lectureSpeed}</p>
+          <div className="textControls__speedSlider__inputContainer">
+            <input
+              type="range"
+              min="0.1"
+              max="3"
+              step="0.1"
+              value={speed}
+              onChange={(event) => {
+                setSpeed(parseFloat(event.target.value));
+                speedRef.current = parseFloat(event.target.value);
+              }}
+              className="textControls__speedSlider__input"
+            />
+            <span className="textControls__speedSlider__value">
+              {speed.toFixed(1)}x
+            </span>
+          </div>
+        </div>
+
+        <div
+          className="textControls__wordsPerMinute"
+          title={textControlsText.wordPerMinuteLegend}
+        >
+          <i className="bi bi-clock"></i>
+          100
+          {textControlsText.wordPerMinute}
+        </div>
       </div>
 
       <div className="textControls__buttons">
         <button
           className="textControls__buttons__startButton"
           onClick={startButton}
+          title={textControlsText.start}
         >
           {textControlsText.start}
         </button>
         <button
           className="textControls__buttons__pauseButton"
           onClick={pauseButton}
+          title={textControlsText.pause}
         >
           {textControlsText.pause}
         </button>
         <button
           className="textControls__buttons__restartButton"
           onClick={restartButton}
+          title={textControlsText.restart}
         >
           <i className="bi bi-arrow-clockwise"></i>
         </button>

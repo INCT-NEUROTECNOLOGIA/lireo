@@ -1,18 +1,18 @@
 import React, { useEffect, useState, useRef, RefObject } from "react";
 import { hyphenate } from "hyphen/pt";
-import { averageSyllableTimeByGrade } from "./ReadingParameters";
+import { averageSyllableTimeByLevel } from "./ReadingParameters";
 
 const WordHighlighter = ({
   paragraph,
   onFinish,
   isReading,
-  gradeRef,
+  levelRef,
   speedRef,
 }: {
   paragraph: string;
   onFinish?: () => void;
   isReading: boolean;
-  gradeRef: RefObject<number>;
+  levelRef: RefObject<number>;
   speedRef: RefObject<number>;
 }) => {
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
@@ -43,7 +43,7 @@ const WordHighlighter = ({
       const hyphenatedText: string = await hyphenate(word, { hyphenChar: "-" });
       const syllablesCount: number = hyphenatedText.split("-").length;
       return Math.round(
-        (syllablesCount * averageSyllableTimeByGrade(gradeRef.current)) /
+        (syllablesCount * averageSyllableTimeByLevel(levelRef.current)) /
           speedRef.current
       );
     };
