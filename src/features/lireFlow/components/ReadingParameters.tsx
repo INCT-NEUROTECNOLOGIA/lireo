@@ -24,6 +24,13 @@ export const averageSyllableTimeByLevel = (level: number): number => {
   }
 };
 
+export const wordsPerMinuteBySpeed = (speed: number, level: number): number => {
+  const currentSyllableTime = averageSyllableTimeByLevel(level) / speed;
+  const syllablesPerMinute = minute / currentSyllableTime;
+  const wordsPerMinute = syllablesPerMinute / averageSyllablesPerWord;
+  return Math.round(wordsPerMinute);
+};
+
 export const classifyPerformance = (
   wordsReadPerMinute: number,
   level: number

@@ -1,5 +1,6 @@
-import React, { RefObject } from "react";
+import React, { RefObject, useState } from "react";
 import "../layout/textControlsStyle.css";
+import { wordsPerMinuteBySpeed } from "./ReadingParameters";
 
 const TextControls = ({
   speed,
@@ -18,6 +19,9 @@ const TextControls = ({
   pauseButton: () => void;
   restartButton: () => void;
 }) => {
+  const [wordsPerMinute, setWordsPerMinute] = useState<number>(
+    wordsPerMinuteBySpeed(speedRef.current ?? 1, levelRef.current ?? 0)
+  );
   const textControlsText = {
     placeholderSelectLevel: "Escolha um nível",
     levels: [
@@ -58,7 +62,12 @@ const TextControls = ({
           name="levels"
           id="levels"
           defaultValue=""
-          onChange={(event) => (levelRef.current = Number(event.target.value))}
+          onChange={(event) => {
+            levelRef.current = Number(event.target.value);
+            setWordsPerMinute(
+              wordsPerMinuteBySpeed(speedRef.current, levelRef.current)
+            );
+          }}
           title={textControlsText.placeholderSelectLevel}
         >
           <option value="" disabled>
@@ -87,6 +96,9 @@ const TextControls = ({
               onChange={(event) => {
                 setSpeed(parseFloat(event.target.value));
                 speedRef.current = parseFloat(event.target.value);
+                setWordsPerMinute(
+                  wordsPerMinuteBySpeed(speedRef.current, levelRef.current)
+                );
               }}
               className="textControls__speedSlider__input"
             />
@@ -101,7 +113,7 @@ const TextControls = ({
           title={textControlsText.wordPerMinuteLegend}
         >
           <i className="bi bi-clock"></i>
-          100
+          {wordsPerMinute}
           {textControlsText.wordPerMinute}
         </div>
       </div>
