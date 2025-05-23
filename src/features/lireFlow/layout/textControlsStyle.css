@@ -1,7 +1,7 @@
 .textControls {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 20px;
   width: 90%;
   margin-bottom: 30px;
   color: var(--color-text);
@@ -11,7 +11,14 @@
   flex: 1 1 550px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
+  justify-content: center;
+}
+
+.textControls__inputContainer {
+  display: inherit;
+  gap: inherit;
+  align-items: center;
   justify-content: center;
 }
 
@@ -120,7 +127,7 @@
 }
 
 .textControls__wordsPerMinute__input {
-  width: 50px;
+  width: 55px;
   height: 30px;
   border: none;
   text-align: center;
@@ -129,10 +136,9 @@
 
 .bi-clock {
   color: var(--color-primary-hover);
-  margin-right: 5px;
 }
 
-@media (max-width: 930px) {
+@media (max-width: 980px) {
   .textControls {
     flex-direction: column;
     max-height: 250px;
@@ -149,7 +155,7 @@
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 580px) {
   .textControls {
     gap: 10px;
   }
@@ -162,5 +168,20 @@
 
   .textControls__selectLevel {
     width: 100%;
+  }
+}
+
+@media (max-width: 430px) {
+  .textControls__speedControls {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .textControls__selectLevel {
+    flex: 1;
+  }
+
+  .textControls__inputContainer {
+    gap: 5vw;
   }
 }

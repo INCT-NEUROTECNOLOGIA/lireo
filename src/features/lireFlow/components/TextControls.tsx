@@ -75,9 +75,14 @@ const TextControls = ({
   };
 
   const wordsPerMinuteInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const input = parseInt(event.target.value);
-    setWordsPerMinute(input);
-    wordsPerMinuteRef.current = input;
+    const input = event.target.value;
+    const wpm = parseInt(input);
+
+    setWordsPerMinute(input === "" ? 0 : wpm);
+
+    if (!isNaN(wpm)) {
+      wordsPerMinuteRef.current = wpm;
+    }
   };
 
   return (
@@ -105,38 +110,37 @@ const TextControls = ({
           ))}
         </select>
 
-        <div className="textControls__speedSlider">
-          <p>{textControlsText.lectureSpeed}</p>
-          <div className="textControls__speedSlider__inputContainer">
-            <input
-              type="range"
-              min="0.1"
-              max="3"
-              step="0.1"
-              value={speed}
-              onChange={speedChange}
-              className="textControls__speedSlider__input"
-            />
-            <span className="textControls__speedSlider__value">
-              {speed.toFixed(1)}x
-            </span>
+        <div className="textControls__inputContainer">
+          <div className="textControls__speedSlider">
+            <p>{textControlsText.lectureSpeed}</p>
+            <div className="textControls__speedSlider__inputContainer">
+              <input
+                type="range"
+                min="0.1"
+                max="3"
+                step="0.1"
+                value={speed}
+                onChange={speedChange}
+                className="textControls__speedSlider__input"
+              />
+              <span className="textControls__speedSlider__value">
+                {speed.toFixed(1)}x
+              </span>
+            </div>
           </div>
-        </div>
 
-        <div
-          className="textControls__wordsPerMinute"
-          title={textControlsText.wordPerMinuteLegend}
-        >
-          <i className="bi bi-clock"></i>
-          <input
-            className="textControls__wordsPerMinute__input"
-            type="number"
-            min="1"
-            value={wordsPerMinute}
-            onChange={wordsPerMinuteInput}
-          ></input>
-          {wordsPerMinute}
-          {textControlsText.wordPerMinute}
+          <div
+            className="textControls__wordsPerMinute"
+            title={textControlsText.wordPerMinuteLegend}
+          >
+            <i className="bi bi-clock"></i>
+            <input
+              className="textControls__wordsPerMinute__input"
+              value={wordsPerMinute}
+              onChange={wordsPerMinuteInput}
+            ></input>
+            {textControlsText.wordPerMinute}
+          </div>
         </div>
       </div>
 
