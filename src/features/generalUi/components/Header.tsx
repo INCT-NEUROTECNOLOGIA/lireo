@@ -1,10 +1,12 @@
 import React from "react";
 import "../layout/header.css";
+
 const Header: React.FC = () => {
   const headerText = {
     siteName: "LIRE-O",
     initalPage: "Página Inicial",
     aboutUs: "Sobre Nós",
+    userGuide: "Guia do Usuário",
   };
 
   return (
@@ -18,6 +20,7 @@ const Header: React.FC = () => {
       <nav>
         <a href="/"> {headerText.initalPage} </a>
         <a href="/sobre-nos">{headerText.aboutUs} </a>
+        <a href="/guia-user">{headerText.userGuide} </a>
       </nav>
     </header>
   );
