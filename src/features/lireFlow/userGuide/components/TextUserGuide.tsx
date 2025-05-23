@@ -1,5 +1,5 @@
 export const userGuideText = {
-  title: "Como usar o LIRE-O",
+  title: "Como usar o LIRE-FLOW",
   description:
     "Este guia apresenta as principais funcionalidades da plataforma:",
   homePage: "Página Inicial",
