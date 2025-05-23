@@ -1,12 +1,14 @@
 import React, { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import TextDisplay from "./TextDisplay.jsx";
 import "../layout/textReaderStyle.css";
 
-const TextReader = () => {
+const TextReader: React.FC = () => {
   const [fileName, setFileName] = useState<string>("");
   const [fileContent, setFileContent] = useState<string>("");
   const [error, setError] = useState<string>("");
   const resetSelectText = useRef<HTMLSelectElement>(null);
+  const navigate = useNavigate();
 
   const textReaderText = {
     uploadText: "Arraste o arquivo",
@@ -22,6 +24,7 @@ const TextReader = () => {
       "A Cartomante (Leitura avançada)",
     ],
     fileText: "Arquivo:",
+    instructionsButton: "Ver Instruções",
   };
 
   const selectedFile = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -78,6 +81,16 @@ const TextReader = () => {
 
   return (
     <div className="textReaderContainer">
+      
+      <div className="textReaderContainer__instructionsButtonContainer">
+        <button
+          className="textReaderContainer__instructionsButton"
+          onClick={() => navigate("/instrucoes")}
+          >
+          {textReaderText.instructionsButton}
+        </button>
+      </div>
+
       <div className="textReaderContainer__fileUploader">
         <div className="textReaderContainer__fileUploader__text">
           {textReaderText.uploadText}{" "}
@@ -128,6 +141,9 @@ const TextReader = () => {
       )}
 
       <TextDisplay fileContent={fileContent} />
+
+      
+
     </div>
   );
 };

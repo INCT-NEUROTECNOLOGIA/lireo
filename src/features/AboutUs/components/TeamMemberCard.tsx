@@ -10,11 +10,12 @@ interface TeamMemberCardProps {
 }
 
 const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ name, paragraph1, paragraph2, paragraph3, photo }) => {
+  const AltText = `Foto de ${name}`;
   return (
     <div className="aboutUsContainer__teamMember">
       <img
         src={photo}
-        alt={`Foto de ${name}`}
+        alt={AltText}
         className="aboutUsContainer__teamMemberPhoto"
         onError={(e) => {
             (e.target as HTMLImageElement).src = "/images/placeholder.jpg"; 

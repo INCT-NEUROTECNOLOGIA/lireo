@@ -1,0 +1,46 @@
+.instructionsContainer {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.08);
+  }
+  
+  .instructionsContainer__title {
+    font-size: 2rem;
+    color: #097954;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .instructionsContainer__list {
+    list-style-type: decimal;
+    padding-left: 20px;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #555;
+  }
+  
+  .instructionsContainer__list li {
+    margin-bottom: 10px;
+  }
+  
+  .instructionsContainer__list li::marker {
+    color: #34d6c1;
+    font-weight: bold;
+  }
+  
+  @media (max-width: 600px) {
+    .instructionsContainer {
+      padding: 15px;
+    }
+  
+    .instructionsContainer__title {
+      font-size: 1.8rem;
+    }
+  
+    .instructionsContainer__list {
+      font-size: 1rem;
+    }
+  }

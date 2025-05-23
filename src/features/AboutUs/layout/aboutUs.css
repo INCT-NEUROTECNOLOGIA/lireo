@@ -37,6 +37,10 @@
     background-color: #f9f9f9;
     text-align: center;
   }
+
+  .aboutUsContainer__teamMember:hover {
+    transform: scale(1.01);
+  }
   .aboutUsContainer__teamMemberName{
     margin-top: 0;
     margin-bottom: 5px;
@@ -63,4 +67,29 @@
     color: #555;
     margin-top:5px;
     margin-bottom: 5px;
+  }
+  .aboutUsContainer__logos {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+    align-items: center;
+    gap: 30px; 
+    margin-top: 30px;
+  }
+  
+  .aboutUsContainer__logo {
+    width: 100%;
+    max-width: 400px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+  }
+  
+  .aboutUsContainer__logo:hover {
+    transform: scale(1.01); 
+  }
+  
+  @media (max-width: 600px) {
+    .aboutUsContainer__logos {
+      flex-direction: column;
+    }
   }

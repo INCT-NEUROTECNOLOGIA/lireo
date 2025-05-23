@@ -100,3 +100,28 @@ label:hover {
     width: 90%;
   }
 }
+
+.textReaderContainer__instructionsButtonContainer{
+  display: flex;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 100px;
+
+}
+.textReaderContainer__instructionsButton {
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #2bb3a3;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: inherit;
+  font-weight: bold;
+}
+
+.textReaderContainer__instructionsButton:hover {
+  background-color: #309185;
+}
