@@ -4,6 +4,7 @@
   gap: 15px;
   width: 90%;
   margin-bottom: 30px;
+  color: var(--color-text);
 }
 
 .textControls__speedControls {
@@ -36,8 +37,7 @@
   height: 8px;
   border-radius: 5px;
   cursor: pointer;
-  accent-color: #34d6c1;
-  background-color: #ddd;
+  accent-color: var(--color-primary);
   border: none;
 }
 
@@ -47,7 +47,7 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: #34d6c1;
+  background-color: var(--color-primary);
   cursor: pointer;
   border: none;
 }
@@ -56,7 +56,7 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: #34d6c1;
+  background-color: var(--color-primary);
   cursor: pointer;
   border: none;
 }
@@ -77,16 +77,16 @@
   font-weight: bold;
   border: none;
   border-radius: 8px;
-  color: #fff;
+  color: var(--color-white);
   cursor: pointer;
   transition: background-color 0.3s ease;
-  background-color: #34d6c1;
+  background-color: var(--color-primary);
 }
 
 .textControls__buttons__pauseButton:hover,
 .textControls__buttons__startButton:hover,
 .textControls__buttons__restartButton:hover {
-  background-color: #2bb3a3;
+  background-color: var(--color-primary-hover);
 }
 
 .textControls__selectLevel {
@@ -97,8 +97,8 @@
   font-weight: bold;
   border: none;
   border-radius: 8px;
-  background-color: #34d6c1;
-  color: #fff;
+  background-color: var(--color-primary);
+  color: var(--color-white);
   cursor: pointer;
   transition: background-color 0.3s ease;
   appearance: none;
@@ -109,7 +109,7 @@
 }
 
 .textControls__selectLevel select:hover {
-  background-color: #2bb3a3;
+  background-color: var(--color-primary-hover);
 }
 
 .textControls__wordsPerMinute {
@@ -120,7 +120,7 @@
 }
 
 .bi-clock {
-  color: #2bb3a3;
+  color: var(--color-primary-hover);
   margin-right: 5px;
 }
 

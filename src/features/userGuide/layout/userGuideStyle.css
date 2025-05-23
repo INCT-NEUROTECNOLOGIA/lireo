@@ -1,0 +1,86 @@
+.userGuide-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 3svh;
+}
+
+.container {
+  width: 80%;
+  background-color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 2.5vh auto;
+  border-radius: 15px;
+  padding: 3svh 6svh;
+  box-shadow: 0 4px 8px 0 var(--color-shadow-transparent),
+    0 6px 20px 0 rgba(0, 0, 0, 0.08);
+}
+
+.userGuide-container h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: auto;
+  color: var(--color-title);
+}
+
+.userGuide-container h4 {
+  font-size: 1.3rem;
+  margin: 1vh auto 2vh auto;
+  font-weight: 400;
+}
+
+.userGuide-container h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 1vh 0;
+  color: var(--color-title);
+}
+
+.userGuide-container p {
+  font-size: 1.05rem;
+  margin: 1vh 0;
+  text-align: justify;
+}
+
+.userGuide-container ul {
+  font-size: 1.05rem;
+  margin: 1vh 0;
+}
+
+.userGuide-container ul li {
+  margin: 0.5vh 0;
+}
+
+.userGuide-container ul li::marker {
+  font-size: 1.2rem;
+  color: var(--color-primary-hover);
+}
+
+.userGuide-container h3 {
+  font-size: 1.2rem;
+  margin: 1vh 0;
+  margin-top: 2vh;
+  font-weight: 500;
+  color: var(--color-title);
+}
+
+.obs {
+  font-size: 1.05rem;
+  margin-right: 1vh;
+  font-style: italic;
+  color: var(--color-title);
+  font-weight: bold;
+}
+
+.userGuide-container img {
+  width: 100%;
+  margin: 2vh auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 var(--color-shadow-transparent),
+    0 6px 20px 0 rgba(0, 0, 0, 0.06);
+}
