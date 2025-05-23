@@ -119,6 +119,14 @@
   justify-content: center;
 }
 
+.textControls__wordsPerMinute__input {
+  width: 50px;
+  height: 30px;
+  border: none;
+  text-align: center;
+  font-size: 1rem;
+}
+
 .bi-clock {
   color: var(--color-primary-hover);
   margin-right: 5px;

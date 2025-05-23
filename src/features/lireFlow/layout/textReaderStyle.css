@@ -10,7 +10,7 @@
   border-radius: 15px;
   padding: 4svh 6svh;
   box-shadow: 0 4px 8px 0 var(--color-shadow-transparent),
-    0 6px 20px 0 rgba(0, 0, 0, 0.08);
+    0 6px 20px 0 var(--color-shadow);
 }
 
 .textReaderContainer__fileUploader {

@@ -9,7 +9,7 @@ const TextDisplay = ({ fileContent }: { fileContent: string }) => {
   const [isReading, setIsReading] = useState<boolean>(false);
   const [speed, setSpeed] = useState<number>(1);
   const speedRef = useRef<number>(1);
-  const levelRef = useRef<number>(0);
+  const wordsPerMinuteRef = useRef<number>(0);
 
   const allParagraphs = useMemo(() => {
     return fileContent
@@ -35,8 +35,8 @@ const TextDisplay = ({ fileContent }: { fileContent: string }) => {
         <TextControls
           speed={speed}
           setSpeed={setSpeed}
-          levelRef={levelRef}
           speedRef={speedRef}
+          wordsPerMinuteRef={wordsPerMinuteRef}
           startButton={(): void => setIsReading(true)}
           pauseButton={(): void => setIsReading(false)}
           restartButton={(): void => {
@@ -57,8 +57,8 @@ const TextDisplay = ({ fileContent }: { fileContent: string }) => {
                   paragraph={paragraph}
                   onFinish={nextParagraph}
                   isReading={isReading}
-                  levelRef={levelRef}
                   speedRef={speedRef}
+                  wordsPerMinuteRef={wordsPerMinuteRef}
                 />
               ) : (
                 paragraph

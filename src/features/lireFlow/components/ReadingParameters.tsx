@@ -1,34 +1,15 @@
 const averageSyllablesPerWord = 2.5;
 const minute = 60000;
 
-export const averageSyllableTimeByLevel = (level: number): number => {
-  switch (level) {
-    case 1:
-      return minute / (44 * averageSyllablesPerWord);
-    case 2:
-      return minute / (72 * averageSyllablesPerWord);
-    case 3:
-      return minute / (80 * averageSyllablesPerWord);
-    case 4:
-      return minute / (99 * averageSyllablesPerWord);
-    case 5:
-      return minute / (114 * averageSyllablesPerWord);
-    case 6:
-      return minute / (120 * averageSyllablesPerWord);
-    case 7:
-      return minute / (121 * averageSyllablesPerWord);
-    case 8:
-      return minute / (129 * averageSyllablesPerWord);
-    default:
-      return 200;
-  }
-};
-
-export const wordsPerMinuteBySpeed = (speed: number, level: number): number => {
-  const currentSyllableTime = averageSyllableTimeByLevel(level) / speed;
+export const calculateWordsPerMinute = (wpm: number, speed: number): number => {
+  const currentSyllableTime = averageSyllableTime(wpm) / speed;
   const syllablesPerMinute = minute / currentSyllableTime;
   const wordsPerMinute = syllablesPerMinute / averageSyllablesPerWord;
   return Math.round(wordsPerMinute);
+};
+
+export const averageSyllableTime = (wpm: number): number => {
+  return minute / (wpm * averageSyllablesPerWord);
 };
 
 export const classifyPerformance = (

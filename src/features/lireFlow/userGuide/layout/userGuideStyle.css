@@ -18,7 +18,7 @@
   border-radius: 15px;
   padding: 3svh 6svh;
   box-shadow: 0 4px 8px 0 var(--color-shadow-transparent),
-    0 6px 20px 0 rgba(0, 0, 0, 0.08);
+    0 6px 20px 0 var(--color-shadow);
 }
 
 .userGuide-container h1 {
@@ -26,12 +26,14 @@
   font-weight: bold;
   margin: auto;
   color: var(--color-title);
+  text-align: center;
 }
 
 .userGuide-container h4 {
   font-size: 1.3rem;
   margin: 1vh auto 2vh auto;
   font-weight: 400;
+  text-align: center;
 }
 
 .userGuide-container h2 {
@@ -82,5 +84,38 @@
   margin: 2vh auto;
   border-radius: 10px;
   box-shadow: 0 4px 8px 0 var(--color-shadow-transparent),
-    0 6px 20px 0 rgba(0, 0, 0, 0.06);
+    0 6px 20px 0 var(--color-shadow);
+  border: 1px solid var(--color-border);
+}
+
+@media screen and (max-width: 850px) {
+  .container {
+    width: 98%;
+    padding: 3svh 4svh;
+  }
+
+  .userGuide-container h1 {
+    font-size: 2rem;
+  }
+
+  .userGuide-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .userGuide-container h3 {
+    font-size: 1.2rem;
+  }
+
+  .userGuide-container h4 {
+    font-size: 1.2rem;
+  }
+
+  .userGuide-container p,
+  .userGuide-container ul {
+    font-size: 1rem;
+  }
+
+  .userGuide-container ul {
+    padding-left: 4.5vh;
+  }
 }
