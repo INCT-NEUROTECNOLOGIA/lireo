@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import TextDisplay from "./TextDisplay.jsx";
 import "../layout/textReaderStyle.css";
+import { getPublicAssetUrl } from "../../../utils/pathUtils.ts";
 
 const TextReader = () => {
   const [fileName, setFileName] = useState<string>("");
@@ -63,7 +64,9 @@ const TextReader = () => {
     setError("");
 
     try {
-      const response = await fetch(`/texts/${event.target.value}.txt`);
+      let basePath = getPublicAssetUrl("texts/");
+      const filePath = `${basePath}${event.target.value}.txt`;
+      const response = await fetch(filePath);
       const text = await response.text();
       setFileContent(text);
       if (resetSelectText.current) resetSelectText.current.value = "";
