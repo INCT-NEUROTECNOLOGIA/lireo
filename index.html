@@ -10,27 +10,20 @@
 
   <script type="text/javascript">
     (function () {
-      console.log('[SPA Redirect - index.html] Verificando sessionStorage.redirect...');
       const redirectData = sessionStorage.redirect;
-      console.log('[SPA Redirect - index.html] Valor bruto de sessionStorage.redirect:', redirectData);
 
       if (redirectData) {
-        console.log('[SPA Redirect - index.html] Dado "redirect" encontrado:', redirectData);
         delete sessionStorage.redirect;
-        console.log('[SPA Redirect - index.html] sessionStorage.redirect deletado.');
 
         const currentPathname = window.location.pathname;
-        console.log('[SPA Redirect - index.html] window.location.pathname ATUAL:', currentPathname);
 
-        const appBaseUrl = "/lireo/"; // Seu basename conhecido
+        const appBaseUrl = "/lireo/";
         const appSpecificPath = redirectData.startsWith('/') ? redirectData.substring(1) : redirectData;
         const newFullPath = appBaseUrl + appSpecificPath;
-        console.log('[SPA Redirect - index.html] Novo caminho completo calculado:', newFullPath);
 
         if (newFullPath !== currentPathname) {
           console.log(`[SPA Redirect - index.html] Tentando history.replaceState para: ${newFullPath}`);
           history.replaceState(null, '', newFullPath);
-          console.log('[SPA Redirect - index.html] history.replaceState chamado. Novo window.location.pathname DEVERIA SER:', window.location.pathname);
         } else {
           console.log('[SPA Redirect - index.html] Novo caminho é o mesmo que o atual.');
         }
