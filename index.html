@@ -1,17 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/src/assets/lirio.png" />
-        <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lire Flow</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/src/assets/lirio.png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lire Flow</title>
+
+  <script type="text/javascript">
+    (function () {
+      const redirectData = sessionStorage.redirect;
+
+      if (redirectData) {
+        delete sessionStorage.redirect;
+
+        const currentPathname = window.location.pathname;
+
+        const appBaseUrl = "/lireo/";
+        const appSpecificPath = redirectData.startsWith('/') ? redirectData.substring(1) : redirectData;
+        const newFullPath = appBaseUrl + appSpecificPath;
+
+        if (newFullPath !== currentPathname) {
+          console.log(`[SPA Redirect - index.html] Tentando history.replaceState para: ${newFullPath}`);
+          history.replaceState(null, '', newFullPath);
+        } else {
+          console.log('[SPA Redirect - index.html] Novo caminho é o mesmo que o atual.');
+        }
+      } else {
+        console.log('[SPA Redirect - index.html] Nenhum dado "redirect" no sessionStorage.');
+      }
+    })();
+  </script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
 </html>
