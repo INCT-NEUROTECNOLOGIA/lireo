@@ -1,5 +1,6 @@
 import React from "react";
 import "../layout/header.css";
+import { ROUTE_PATHS } from "../../../config/routes";
 const Header: React.FC = () => {
   const headerText = {
     siteName: "LIRE-O",
@@ -16,8 +17,8 @@ const Header: React.FC = () => {
         </h1>
       </div>
       <nav>
-        <a href="/"> {headerText.initalPage} </a>
-        <a href="/sobre-nos">{headerText.aboutUs} </a>
+        <a href={ROUTE_PATHS.HOME}> {headerText.initalPage} </a>
+        <a href={ROUTE_PATHS.ABOUT_US}>{headerText.aboutUs} </a>
       </nav>
     </header>
   );

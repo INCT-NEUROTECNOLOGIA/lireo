@@ -1,9 +1,10 @@
 import React from "react";
 import TeamMemberCard from "./TeamMemberCard";
+import { getPublicAssetUrl } from "../../../utils/pathUtils";
 
 interface SectionProps {
   title: string;
-  members: { name: string; paragraph1: string; paragraph2:string; paragraph3:string; photo: string }[];
+  members: { name: string; paragraph1: string; paragraph2: string; paragraph3: string; photo: string }[];
 }
 
 const Section: React.FC<SectionProps> = ({ title, members }) => {
@@ -18,7 +19,7 @@ const Section: React.FC<SectionProps> = ({ title, members }) => {
             paragraph1={member.paragraph1}
             paragraph2={member.paragraph2}
             paragraph3={member.paragraph3}
-            photo={member.photo}
+            photo={getPublicAssetUrl(member.photo)}
           />
         ))}
       </div>
