@@ -11,7 +11,7 @@ const Header: React.FC = () => {
   return (
     <header>
       <div className="header__logoContainer">
-        <img className="header__logoContainer__logo" src="/logo.png" />
+        {/* <img className="header__logoContainer__logo" src="/logo.png" /> */}
         <h1 className="header__logoContainer__siteName">
           {headerText.siteName}
         </h1>
