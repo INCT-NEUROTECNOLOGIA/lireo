@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/src/assets/lirio.png" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lire Flow</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <script type="text/javascript">
+        // Single Page Apps for GitHub Pages
+        // Adaptação de https://github.com/rafgraph/spa-github-pages
+
+        const segmentCount = 1; // Para "/lireo/" (1 segmento no base path)
+
+        const l = window.location;
+        // Recria o base path, ex: /lireo
+        const basePath = l.pathname.split('/').slice(0, 1 + segmentCount).join('/');
+        // Pega o que vem depois do base path, ex: sobre-nos ou /sobre-nos, e remove a barra inicial se existir
+        const appSpecificPath = l.pathname.substring(basePath.length).replace(/^\//, '');
+
+        sessionStorage.redirect = appSpecificPath + l.search + l.hash;
+
+        // Redireciona para a raiz da aplicação DENTRO do base path (onde está o index.html)
+        // ex: https://host/lireo/
+        l.replace(l.protocol + '//' + l.host + basePath + (basePath.endsWith('/') ? '' : '/'));
+    </script>
+</body>
+
+</html>
