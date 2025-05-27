@@ -1,5 +1,6 @@
 import React from "react";
 import "../layout/aboutUs.css";
+import { getPublicAssetUrl } from "../../../utils/pathUtils";
 
 interface TeamMemberCardProps {
   name: string;
@@ -17,8 +18,8 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ name, paragraph1, parag
         alt={`Foto de ${name}`}
         className="aboutUsContainer__teamMemberPhoto"
         onError={(e) => {
-            (e.target as HTMLImageElement).src = "/images/placeholder.jpg"; 
-          }}
+          (e.target as HTMLImageElement).src = getPublicAssetUrl("/images/placeholder.jpg");
+        }}
       />
       <div className="aboutUsContainer__teamMemberTexts">
         <h3 className="aboutUsContainer__teamMemberName">{name}</h3>
