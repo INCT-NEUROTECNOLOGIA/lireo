@@ -41,6 +41,7 @@
   text-align: center;
   transition: background-color 0.3s ease;
   margin: 12px;
+  width: 30%;
 }
 
 .textReaderContainer__fileUploader__selectText {
@@ -103,6 +104,12 @@ label:hover {
 @media (max-width: 1150px) {
   .textReaderContainer {
     width: 95%;
+  }
+}
+
+@media (max-width: 840px) {
+  .textReaderContainer__fileUploader__label {
+    width: auto;
   }
 }
 

@@ -4,11 +4,11 @@ import { userGuideText } from "./TextUserGuide";
 
 const UserGuide = () => {
   return (
-    <div className="userGuide-container">
+    <div className="userGuide__container">
       <h1>{userGuideText.title}</h1>
       <h4>{userGuideText.description}</h4>
 
-      <div className="container">
+      <div className="userGuide__innerContainer">
         <h2>{userGuideText.homePage}</h2>
         <p>{userGuideText.homePageDescription}</p>
         <ul>
@@ -27,7 +27,7 @@ const UserGuide = () => {
         </ul>
       </div>
 
-      <div className="container">
+      <div className="userGuide__innerContainer">
         <h2>{userGuideText.textReader}</h2>
         <p>{userGuideText.textReaderTextDescription}</p>
         <h3>{userGuideText.textReaderUploadText[0]}</h3>
@@ -59,7 +59,7 @@ const UserGuide = () => {
         />
       </div>
 
-      <div className="container">
+      <div className="userGuide__innerContainer">
         <h2>{userGuideText.readingControls}</h2>
         <p>{userGuideText.readingControlsDescription}</p>
         <ul>
@@ -113,7 +113,7 @@ const UserGuide = () => {
         </ul>
       </div>
 
-      <div className="container">
+      <div className="userGuide__innerContainer">
         <h2>{userGuideText.highlightedReading}</h2>
         <p>{userGuideText.highlightedReadingDescription}</p>
         <img
@@ -122,7 +122,7 @@ const UserGuide = () => {
         />
       </div>
 
-      <div className="container">
+      <div className="userGuide__innerContainer">
         <h2>{userGuideText.tips}</h2>
         <ul>
           {userGuideText.tipsList.map((item, index) => (
@@ -131,7 +131,7 @@ const UserGuide = () => {
         </ul>
       </div>
 
-      <div className="container">
+      <div className="userGuide__innerContainer">
         <h2>{userGuideText.support}</h2>
         <p>
           {userGuideText.supportDescription[0]}

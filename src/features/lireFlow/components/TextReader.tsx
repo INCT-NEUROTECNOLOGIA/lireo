@@ -115,7 +115,11 @@ const TextReader = () => {
         onDrop={dropFile}
         onDragOver={dragFile}
         onDragLeave={dragLeave}
-        style={{ backgroundColor: isDragging ? "#c7fff8" : "#ebfcf9" }}
+        style={{
+          backgroundColor: isDragging
+            ? "var(--color-accent-hover)"
+            : "var(--color-accent)",
+        }}
       >
         <div className="textReaderContainer__fileUploader__text">
           {textReaderText.uploadText}{" "}

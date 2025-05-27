@@ -1,4 +1,4 @@
-.userGuide-container {
+.userGuide__container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,7 +8,7 @@
   padding: 3svh;
 }
 
-.container {
+.userGuide__innerContainer {
   width: 80%;
   background-color: var(--color-white);
   display: flex;
@@ -21,7 +21,7 @@
     0 6px 20px 0 var(--color-shadow);
 }
 
-.userGuide-container h1 {
+.userGuide__container h1 {
   font-size: 2.5rem;
   font-weight: bold;
   margin: auto;
@@ -29,41 +29,41 @@
   text-align: center;
 }
 
-.userGuide-container h4 {
+.userGuide__container h4 {
   font-size: 1.3rem;
   margin: 1vh auto 2vh auto;
   font-weight: 400;
   text-align: center;
 }
 
-.userGuide-container h2 {
+.userGuide__container h2 {
   font-size: 1.8rem;
   font-weight: bold;
   margin: 1vh 0;
   color: var(--color-title);
 }
 
-.userGuide-container p {
+.userGuide__container p {
   font-size: 1.05rem;
   margin: 1vh 0;
   text-align: justify;
 }
 
-.userGuide-container ul {
+.userGuide__container ul {
   font-size: 1.05rem;
   margin: 1vh 0;
 }
 
-.userGuide-container ul li {
+.userGuide__container ul li {
   margin: 0.5vh 0;
 }
 
-.userGuide-container ul li::marker {
+.userGuide__container ul li::marker {
   font-size: 1.2rem;
   color: var(--color-primary-hover);
 }
 
-.userGuide-container h3 {
+.userGuide__container h3 {
   font-size: 1.2rem;
   margin: 1vh 0;
   margin-top: 2vh;
@@ -79,7 +79,7 @@
   font-weight: bold;
 }
 
-.userGuide-container img {
+.userGuide__container img {
   width: 100%;
   margin: 2vh auto;
   border-radius: 10px;
@@ -94,28 +94,28 @@
     padding: 3svh 4svh;
   }
 
-  .userGuide-container h1 {
+  .userGuide__container h1 {
     font-size: 2rem;
   }
 
-  .userGuide-container h2 {
+  .userGuide__container h2 {
     font-size: 1.5rem;
   }
 
-  .userGuide-container h3 {
+  .userGuide__container h3 {
     font-size: 1.2rem;
   }
 
-  .userGuide-container h4 {
+  .userGuide__container h4 {
     font-size: 1.2rem;
   }
 
-  .userGuide-container p,
-  .userGuide-container ul {
+  .userGuide__container p,
+  .userGuide__container ul {
     font-size: 1rem;
   }
 
-  .userGuide-container ul {
+  .userGuide__container ul {
     padding-left: 4.5vh;
   }
 }
