@@ -20,6 +20,7 @@ const Header: React.FC = () => {
       </div>
       <nav>
         <a href={ROUTE_PATHS.HOME}> {headerText.initalPage} </a>
+        <a href={ROUTE_PATHS.USER_GUIDE}>{headerText.userGuide} </a>
         <a href={ROUTE_PATHS.ABOUT_US}>{headerText.aboutUs} </a>
       </nav>
     </header>

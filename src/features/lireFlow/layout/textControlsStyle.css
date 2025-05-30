@@ -136,6 +136,7 @@
 
 .bi-clock {
   color: var(--color-primary-hover);
+  margin-right: 2px;
 }
 
 @media (max-width: 980px) {

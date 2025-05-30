@@ -9,6 +9,7 @@
   max-width: 900px;
   width: 100%;
   color: black;
+  position: relative;
 }
 
 .textContainer__textTitle {
@@ -42,4 +43,11 @@ mark {
   background-color: var(--color-primary);
   border-radius: 5px;
   padding: 0 0 0.2em;
+}
+
+.hightlightedLine {
+  background-color: rgba(255, 230, 150, 0.3);
+  transition: top 0.2s ease;
+  position: absolute;
+  z-index: 0;
 }

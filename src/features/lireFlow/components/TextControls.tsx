@@ -12,20 +12,13 @@ const TextControls = ({
   restartButton,
 }: {
   speed: number;
-  setSpeed: (number) => void;
+  setSpeed: (arg: number) => void;
   speedRef: RefObject<number>;
   wordsPerMinuteRef: RefObject<number>;
   startButton: () => void;
   pauseButton: () => void;
   restartButton: () => void;
 }) => {
-  const [wordsPerMinute, setWordsPerMinute] = useState<number>(
-    calculateWordsPerMinute(
-      wordsPerMinuteRef.current ?? 0,
-      speedRef.current ?? 1
-    )
-  );
-
   const textControlsText = {
     placeholderSelectLevel: "Escolha um nível",
     levels: [
@@ -59,19 +52,25 @@ const TextControls = ({
     wordPerMinuteLegend: "Palavras por minuto",
   };
 
-  const selectedLevel = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    wordsPerMinuteRef.current = Number(event.target.value);
+  const [wordsPerMinute, setWordsPerMinute] = useState<number>(
+    calculateWordsPerMinute(wordsPerMinuteRef.current, speedRef.current)
+  );
+
+  const updateWordsPerMinute = () => {
     setWordsPerMinute(
       calculateWordsPerMinute(wordsPerMinuteRef.current, speedRef.current)
     );
   };
 
+  const selectedLevel = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    wordsPerMinuteRef.current = Number(event.target.value);
+    updateWordsPerMinute();
+  };
+
   const speedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSpeed(parseFloat(event.target.value));
     speedRef.current = parseFloat(event.target.value);
-    setWordsPerMinute(
-      calculateWordsPerMinute(wordsPerMinuteRef.current, speedRef.current)
-    );
+    updateWordsPerMinute();
   };
 
   const wordsPerMinuteInput = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -80,7 +79,7 @@ const TextControls = ({
 
     setWordsPerMinute(input === "" ? 0 : wpm);
 
-    if (!isNaN(wpm)) {
+    if (!isNaN(wpm) && wpm > 0) {
       wordsPerMinuteRef.current = wpm;
     }
   };
@@ -111,7 +110,10 @@ const TextControls = ({
         </select>
 
         <div className="textControls__inputContainer">
-          <div className="textControls__speedSlider">
+          <div
+            className="textControls__speedSlider"
+            title={textControlsText.lectureSpeed}
+          >
             <p>{textControlsText.lectureSpeed}</p>
             <div className="textControls__speedSlider__inputContainer">
               <input

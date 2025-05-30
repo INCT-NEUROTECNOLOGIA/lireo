@@ -1,6 +1,7 @@
-import React, { useEffect, useState, useRef, RefObject } from "react";
+import { useEffect, useState, useRef, RefObject } from "react";
 import { hyphenate } from "hyphen/pt";
 import { averageSyllableTime } from "./ReadingParameters";
+import { punctuationMarksTime } from "./ReadingParameters";
 
 const WordHighlighter = ({
   paragraph,
@@ -16,7 +17,7 @@ const WordHighlighter = ({
   wordsPerMinuteRef: RefObject<number>;
 }) => {
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
-  const wordIndexs = useRef<number[]>([]);
+  const elementIndexs = useRef<number[]>([]);
   const indexRef = useRef<number>(0);
   const isReadingRef = useRef<boolean>(isReading);
   const timeoutRef = useRef<number | null>(null);
@@ -24,11 +25,13 @@ const WordHighlighter = ({
   const elements: string[] = paragraph.split(/(\s+|[^\wÀ-ÖØ-öø-ÿ])/);
 
   const isWord = (element: string): boolean => /^[\wÀ-ÖØ-öø-ÿ]+$/.test(element);
+  const isPunctuation = (element: string): boolean =>
+    /^[.,!?;:"()]+$/.test(element);
 
   useEffect((): void => {
-    wordIndexs.current = elements
+    elementIndexs.current = elements
       .map((element: string, index: number): number | null =>
-        isWord(element) ? index : null
+        isWord(element) || isPunctuation(element) ? index : null
       )
       .filter((index): index is number => index !== null);
 
@@ -49,17 +52,25 @@ const WordHighlighter = ({
     };
 
     const highlightFlow = async (): Promise<void> => {
-      while (indexRef.current < wordIndexs.current.length) {
+      while (indexRef.current < elementIndexs.current.length) {
         if (!isReadingRef.current) return;
 
-        setCurrentIndex(wordIndexs.current[indexRef.current]);
+        const element: string =
+          elements[elementIndexs.current[indexRef.current]];
 
-        const wordTime: number = await calculateWordTime(
-          elements[wordIndexs.current[indexRef.current]]
-        );
+        let waitTime: number = 0;
+
+        if (isWord(element)) {
+          setCurrentIndex(elementIndexs.current[indexRef.current]);
+          waitTime = await calculateWordTime(element);
+        } else {
+          waitTime =
+            punctuationMarksTime.find((mark) => mark.mark === element)?.time ||
+            150;
+        }
 
         await new Promise(
-          (resolve) => (timeoutRef.current = setTimeout(resolve, wordTime))
+          (resolve) => (timeoutRef.current = setTimeout(resolve, waitTime))
         );
 
         indexRef.current++;

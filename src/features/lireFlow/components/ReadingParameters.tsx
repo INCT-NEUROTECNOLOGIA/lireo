@@ -1,6 +1,16 @@
 const averageSyllablesPerWord = 2.5;
 const minute = 60000;
 
+export const punctuationMarksTime = [
+  { mark: ".", time: 400 },
+  { mark: ",", time: 200 },
+  { mark: ";", time: 400 },
+  { mark: "!", time: 500 },
+  { mark: "?", time: 500 },
+  { mark: ":", time: 400 },
+  { mark: "-", time: 200 },
+];
+
 export const calculateWordsPerMinute = (wpm: number, speed: number): number => {
   const currentSyllableTime = averageSyllableTime(wpm) / speed;
   const syllablesPerMinute = minute / currentSyllableTime;
