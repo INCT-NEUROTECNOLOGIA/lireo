@@ -56,7 +56,7 @@ const SectionUserGuide: React.FC<SectionUserGuideProps> = ({
 
                     {subItem.content.map((contentItem, contentIndex) => {
                       switch (contentItem.type) {
-                        case "description":
+                        case "text":
                           return <p key={contentIndex}>{contentItem.text}</p>;
 
                         case "list":

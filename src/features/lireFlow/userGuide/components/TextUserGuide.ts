@@ -56,10 +56,6 @@ export const userGuideText = {
                     },
                     {
                       text: "Selecionar um arquivo diretamente do dispositivo, clicando no botão “Selecione um arquivo”.",
-                      image: {
-                        src: "/userGuideImgs/select_texts_defaults.png",
-                        alt: "Selecionar Textos Padrões",
-                      },
                     },
                     {
                       text: "Escolher um texto pronto na lista suspensa ao lado.",
@@ -158,6 +154,22 @@ export const userGuideText = {
         {
           type: "subsection",
           subsection: [
+            {
+              title: "Ajuste Manual da Velocidade de Leitura",
+              content: [
+                {
+                  type: "text",
+                  text: "Além do controle deslizante para ajustar a velocidade da leitura, é possível alterar manualmente o número de palavras por minuto (ppm) através do campo numérico ao lado: basta clicar e digitar o valor desejado.",
+                },
+                {
+                  type: "image",
+                  image: {
+                    src: "/userGuideImgs/words_per_minute_input.png",
+                    alt: "Campo para ajuste manual de palavras por minuto",
+                  },
+                },
+              ],
+            },
             {
               title: "Botões de controle:",
               content: [
