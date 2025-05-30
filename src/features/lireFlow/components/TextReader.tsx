@@ -1,4 +1,4 @@
-import React, { useState, useRef, useReducer } from "react";
+import React, { useRef, useReducer } from "react";
 import TextDisplay from "./TextDisplay.jsx";
 import Loading from "../../../utils/components/Loading.tsx";
 import { getPublicAssetUrl } from "../../../utils/pathUtils.ts";

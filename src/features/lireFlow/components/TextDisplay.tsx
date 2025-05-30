@@ -1,5 +1,5 @@
 import "../layout/textDisplayStyle.css";
-import React, { useState, useRef, useMemo } from "react";
+import { useState, useRef, useMemo } from "react";
 import WordHighlighter from "./WordHighlighter";
 import TextControls from "./TextControls";
 
