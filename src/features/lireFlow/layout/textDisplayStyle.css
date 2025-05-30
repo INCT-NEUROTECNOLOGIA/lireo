@@ -1,13 +1,15 @@
 .textContainer {
-  background-color: #f7f7f7;
+  background-color: var(--color-bg-light);
   border-radius: 12px;
   padding: 20px;
   overflow: auto;
   margin-bottom: 20px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 5px var(--color-shadow);
   max-height: 500px;
   max-width: 900px;
   width: 100%;
+  color: black;
+  position: relative;
 }
 
 .textContainer__textTitle {
@@ -38,7 +40,14 @@
 }
 
 mark {
-  background-color: #34d6c1;
+  background-color: var(--color-primary);
   border-radius: 5px;
   padding: 0 0 0.2em;
+}
+
+.hightlightedLine {
+  background-color: rgba(255, 230, 150, 0.3);
+  transition: top 0.2s ease;
+  position: absolute;
+  z-index: 0;
 }

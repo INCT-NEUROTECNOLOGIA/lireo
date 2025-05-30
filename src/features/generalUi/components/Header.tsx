@@ -1,11 +1,13 @@
 import React from "react";
 import "../layout/header.css";
 import { ROUTE_PATHS } from "../../../config/routes";
+
 const Header: React.FC = () => {
   const headerText = {
     siteName: "LIRE-O",
     initalPage: "Página Inicial",
     aboutUs: "Sobre Nós",
+    userGuide: "Guia do Usuário",
   };
 
   return (
@@ -18,6 +20,7 @@ const Header: React.FC = () => {
       </div>
       <nav>
         <a href={ROUTE_PATHS.HOME}> {headerText.initalPage} </a>
+        <a href={ROUTE_PATHS.USER_GUIDE}>{headerText.userGuide} </a>
         <a href={ROUTE_PATHS.ABOUT_US}>{headerText.aboutUs} </a>
       </nav>
     </header>

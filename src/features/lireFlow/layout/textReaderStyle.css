@@ -1,6 +1,7 @@
 .textReaderContainer {
   width: 80%;
-  background-color: #ffffff;
+  height: auto;
+  background-color: var(--color-white);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,19 +9,22 @@
   margin: 5vh auto;
   border-radius: 15px;
   padding: 4svh 6svh;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0), 0 6px 20px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 8px 0 var(--color-shadow-transparent),
+    0 6px 20px 0 var(--color-shadow);
 }
 
 .textReaderContainer__fileUploader {
-  border: 2px dashed #ccc;
+  border: 2px dashed var(--color-border-light);
   border-radius: 12px;
   padding: 20px;
   width: 90%;
   max-width: 900px;
   text-align: center;
-  background-color: #ebfcf9;
+  background-color: var(--color-accent);
+  transition: background-color 0.3s ease;
   margin-bottom: 10px;
 }
+
 .textReaderContainer__fileUploader__input {
   display: none;
 }
@@ -29,8 +33,8 @@
   display: inline-block;
   padding: 10px;
   font-size: 1rem;
-  color: #fff;
-  background-color: #34d6c1;
+  color: var(--color-white);
+  background-color: var(--color-primary);
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -38,6 +42,11 @@
   transition: background-color 0.3s ease;
   margin: 12px;
   width: 30%;
+}
+
+.textReaderContainer select:hover,
+label:hover {
+  background-color: var(--color-primary-hover);
 }
 
 .textReaderContainer__fileUploader__selectText {
@@ -48,8 +57,8 @@
   font-weight: bold;
   border: none;
   border-radius: 8px;
-  background-color: #34d6c1;
-  color: #fff;
+  background-color: var(--color-primary);
+  color: var(--color-white);
   cursor: pointer;
   transition: background-color 0.3s ease;
   appearance: none;
@@ -61,20 +70,21 @@
   width: 30%;
 }
 
-.textReaderContainer select:hover,
-label:hover {
-  background-color: #2bb3a3;
-}
-
 .textReaderContainer__fileName {
   max-height: 500px;
   max-width: 900px;
   width: 90%;
 }
 
-@media (max-width: 930px) {
+@media (max-width: 1150px) {
   .textReaderContainer {
     width: 95%;
+  }
+}
+
+@media (max-width: 840px) {
+  .textReaderContainer__fileUploader__label {
+    width: auto;
   }
 }
 
@@ -98,5 +108,10 @@ label:hover {
   .textReaderContainer__fileUploader__label,
   .textReaderContainer__fileUploader__selectText {
     width: 90%;
+    margin: 8px;
+  }
+
+  .textReaderContainer__fileUploader__text {
+    margin-bottom: 10px;
   }
 }

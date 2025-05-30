@@ -1,43 +1,69 @@
 .textControls {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 15px;
+  gap: 20px;
   width: 90%;
-  max-width: 900px;
   margin-bottom: 30px;
+  color: var(--color-text);
 }
-.textControls__speedSlider {
-  flex: 1 1 300px;
+
+.textControls__speedControls {
+  flex: 1 1 550px;
   display: flex;
-  flex-direction: row;
   align-items: center;
-  gap: 5px;
+  gap: 20px;
+  justify-content: center;
 }
+
+.textControls__inputContainer {
+  display: inherit;
+  gap: inherit;
+  align-items: center;
+  justify-content: center;
+}
+
+.textControls__speedSlider {
+  flex: 1 1 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.textControls__speedSlider__inputContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.textControls__speedSlider p {
+  margin: 5px 0px;
+}
+
 .textControls__speedSlider__input {
   flex: 1;
   height: 8px;
   border-radius: 5px;
   cursor: pointer;
-  accent-color: #34d6c1;
-  background-color: #ddd;
+  accent-color: var(--color-primary);
   border: none;
 }
+
 .textControls__speedSlider__input::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: #34d6c1;
+  background-color: var(--color-primary);
   cursor: pointer;
   border: none;
 }
+
 .textControls__speedSlider__input::-moz-range-thumb {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: #34d6c1;
+  background-color: var(--color-primary);
   cursor: pointer;
   border: none;
 }
@@ -58,32 +84,28 @@
   font-weight: bold;
   border: none;
   border-radius: 8px;
-  color: #fff;
+  color: var(--color-white);
   cursor: pointer;
   transition: background-color 0.3s ease;
-  background-color: #34d6c1;
+  background-color: var(--color-primary);
 }
 
 .textControls__buttons__pauseButton:hover,
 .textControls__buttons__startButton:hover,
 .textControls__buttons__restartButton:hover {
-  background-color: #2bb3a3;
+  background-color: var(--color-primary-hover);
 }
 
-.textControls__selectGrade {
+.textControls__selectLevel {
   flex: 1 1 200px;
-}
-
-.textControls__selectGrade__select {
-  width: 100%;
   padding: 10px 15px;
   padding-right: 35px;
   font-size: 1rem;
   font-weight: bold;
   border: none;
   border-radius: 8px;
-  background-color: #34d6c1;
-  color: #fff;
+  background-color: var(--color-primary);
+  color: var(--color-white);
   cursor: pointer;
   transition: background-color 0.3s ease;
   appearance: none;
@@ -93,29 +115,74 @@
   background-size: 20px;
 }
 
-.textControls__selectGrade select:hover {
-  background-color: #2bb3a3;
+.textControls__selectLevel select:hover {
+  background-color: var(--color-primary-hover);
 }
 
-@media (max-width: 730px) {
+.textControls__wordsPerMinute {
+  flex: 1 1 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.textControls__wordsPerMinute__input {
+  width: 55px;
+  height: 30px;
+  border: none;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.bi-clock {
+  color: var(--color-primary-hover);
+  margin-right: 2px;
+}
+
+@media (max-width: 980px) {
   .textControls {
     flex-direction: column;
     max-height: 250px;
-    gap: 10px;
   }
 
-  .textControls__speedSlider {
+  .textControls__speedControls {
     width: 100%;
+    flex: 1;
+  }
+
+  .textControls__buttons {
+    width: 100%;
+    flex: 1;
+  }
+}
+
+@media (max-width: 580px) {
+  .textControls {
+    gap: 10px;
   }
 
   .textControls__buttons {
     justify-content: center;
-    width: 100%;
     flex-direction: column;
     gap: 12px;
   }
 
-  .textControls__selectGrade {
+  .textControls__selectLevel {
     width: 100%;
+  }
+}
+
+@media (max-width: 430px) {
+  .textControls__speedControls {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .textControls__selectLevel {
+    flex: 1;
+  }
+
+  .textControls__inputContainer {
+    gap: 5vw;
   }
 }

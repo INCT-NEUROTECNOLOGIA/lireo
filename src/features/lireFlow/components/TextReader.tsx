@@ -1,19 +1,77 @@
-import React, { useState, useRef } from "react";
+import React, { useRef, useReducer } from "react";
 import TextDisplay from "./TextDisplay.jsx";
-import "../layout/textReaderStyle.css";
+import Loading from "../../../utils/components/Loading.tsx";
 import { getPublicAssetUrl } from "../../../utils/pathUtils.ts";
+import "../layout/textReaderStyle.css";
 
 const TextReader = () => {
-  const [fileName, setFileName] = useState<string>("");
-  const [fileContent, setFileContent] = useState<string>("");
-  const [error, setError] = useState<string>("");
+  type State = {
+    fileName: string;
+    fileContent: string;
+    error: string;
+    isDragging: boolean;
+    isLoading: boolean;
+  };
+
+  const initialState: State = {
+    fileName: "",
+    fileContent: "",
+    error: "",
+    isDragging: false,
+    isLoading: false,
+  };
+
+  type Action =
+    | { type: "SET_FILE"; payload: { name: string; content: string } }
+    | { type: "SET_ERROR"; payload: string }
+    | { type: "RESET" }
+    | { type: "SET_LOADING"; payload: boolean }
+    | { type: "SET_DRAGGING"; payload: boolean };
+
+  const readerReducer = (state: State, action: Action): State => {
+    switch (action.type) {
+      case "SET_FILE":
+        return {
+          ...state,
+          fileName: action.payload.name,
+          fileContent: action.payload.content,
+          error: "",
+          isLoading: false,
+        };
+      case "SET_ERROR":
+        return {
+          ...state,
+          error: action.payload,
+          isLoading: false,
+        };
+      case "RESET":
+        return {
+          ...initialState,
+          isLoading: true,
+        };
+      case "SET_LOADING":
+        return {
+          ...state,
+          isLoading: action.payload,
+        };
+      case "SET_DRAGGING":
+        return {
+          ...state,
+          isDragging: action.payload,
+        };
+      default:
+        return state;
+    }
+  };
+
+  const [state, dispatch] = useReducer(readerReducer, initialState);
   const resetSelectText = useRef<HTMLSelectElement>(null);
 
   const textReaderText = {
     uploadText: "Arraste o arquivo",
     uploadText2: ".txt",
     uploadText3: "até aqui ou ",
-    uploadText4: "Selecione arquivo",
+    uploadText4: "Selecione um arquivo",
     uploadText5: " ou ",
     placeholderSelectText: "Selecione um dos textos",
     texts: [
@@ -25,19 +83,16 @@ const TextReader = () => {
     fileText: "Arquivo:",
   };
 
-  const selectedFile = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFileName("");
-    setFileContent("");
-    setError("");
-
-    if (!event.target.files) return;
-
-    const file: File = event.target.files[0];
+  const readFile = (file: File) => {
     const isTxtFile = (fileType: string): boolean => fileType === "text/plain";
+
     if (!file) return;
 
     if (!isTxtFile(file.type)) {
-      setError("Selecione um arquivo de texto (.txt)");
+      dispatch({
+        type: "SET_ERROR",
+        payload: "Selecione um arquivo de texto (.txt)",
+      });
       return;
     }
 
@@ -46,32 +101,42 @@ const TextReader = () => {
 
     reader.onload = (): void => {
       if (typeof reader.result === "string") {
-        setFileName(file.name);
-        setFileContent(reader.result);
-        setError("");
+        dispatch({
+          type: "SET_FILE",
+          payload: { name: file.name, content: reader.result },
+        });
       } else {
-        setError("Erro ao ler o arquivo");
+        dispatch({ type: "SET_ERROR", payload: "Erro ao ler o arquivo" });
       }
     };
 
     reader.onerror = (): void => {
-      setError("Erro ao ler o arquivo");
+      dispatch({ type: "SET_ERROR", payload: "Erro ao ler o arquivo" });
     };
   };
 
+  const selectedFile = (event: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch({ type: "RESET" });
+
+    if (!event.target.files) return;
+    readFile(event.target.files[0]);
+  };
+
   const selectedText = async (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setFileName(event.target.value);
-    setError("");
+    dispatch({ type: "RESET" });
 
     try {
       let basePath = getPublicAssetUrl("texts/");
       const filePath = `${basePath}${event.target.value}.txt`;
       const response = await fetch(filePath);
       const text = await response.text();
-      setFileContent(text);
+      dispatch({
+        type: "SET_FILE",
+        payload: { name: event.target.value, content: text },
+      });
       if (resetSelectText.current) resetSelectText.current.value = "";
     } catch (error) {
-      setError("Erro ao carregar o arquivo");
+      dispatch({ type: "SET_ERROR", payload: "Erro ao carregar o arquivo" });
     }
   };
 
@@ -79,9 +144,37 @@ const TextReader = () => {
     event.currentTarget.value = "";
   };
 
+  const dropFile = (event: React.DragEvent<HTMLDivElement>) => {
+    dispatch({ type: "RESET" });
+
+    event.preventDefault();
+    if (!event.dataTransfer.files.length) return;
+    readFile(event.dataTransfer.files[0]);
+  };
+
+  const dragFile = (event: React.DragEvent<HTMLDivElement>) => {
+    dispatch({ type: "SET_DRAGGING", payload: true });
+    event.preventDefault();
+  };
+
+  const dragLeave = (event: React.DragEvent<HTMLDivElement>) => {
+    dispatch({ type: "SET_DRAGGING", payload: false });
+    event.preventDefault();
+  };
+
   return (
     <div className="textReaderContainer">
-      <div className="textReaderContainer__fileUploader">
+      <div
+        className="textReaderContainer__fileUploader"
+        onDrop={dropFile}
+        onDragOver={dragFile}
+        onDragLeave={dragLeave}
+        style={{
+          backgroundColor: state.isDragging
+            ? "var(--color-accent-hover)"
+            : "var(--color-accent)",
+        }}
+      >
         <div className="textReaderContainer__fileUploader__text">
           {textReaderText.uploadText}{" "}
           <strong>{textReaderText.uploadText2}</strong>{" "}
@@ -91,6 +184,7 @@ const TextReader = () => {
           <label
             htmlFor="upload-file"
             className="textReaderContainer__fileUploader__label"
+            title={textReaderText.uploadText4}
           >
             <strong>{textReaderText.uploadText4}</strong>
           </label>
@@ -109,12 +203,13 @@ const TextReader = () => {
             defaultValue=""
             onChange={selectedText}
             ref={resetSelectText}
+            title={textReaderText.placeholderSelectText}
           >
             <option value="" disabled>
               {textReaderText.placeholderSelectText}
             </option>
             {textReaderText.texts.map((text, index) => (
-              <option key={index} value={text}>
+              <option key={index} value={text} title={text}>
                 {text}
               </option>
             ))}
@@ -122,15 +217,19 @@ const TextReader = () => {
         </div>
       </div>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {state.error && <p style={{ color: "red" }}>{state.error}</p>}
 
-      {fileName && (
+      {state.fileName && (
         <p className="textReaderContainer__fileName">
-          <strong>{textReaderText.fileText}</strong> {fileName}
+          <strong>{textReaderText.fileText}</strong> {state.fileName}
         </p>
       )}
 
-      <TextDisplay fileContent={fileContent} />
+      {state.isLoading ? (
+        <Loading />
+      ) : (
+        <TextDisplay fileContent={state.fileContent} />
+      )}
     </div>
   );
 };

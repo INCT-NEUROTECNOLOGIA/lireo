@@ -1,5 +1,5 @@
 import "../layout/textDisplayStyle.css";
-import React, { useState, useRef, useMemo } from "react";
+import { useState, useRef, useMemo } from "react";
 import WordHighlighter from "./WordHighlighter";
 import TextControls from "./TextControls";
 
@@ -9,7 +9,7 @@ const TextDisplay = ({ fileContent }: { fileContent: string }) => {
   const [isReading, setIsReading] = useState<boolean>(false);
   const [speed, setSpeed] = useState<number>(1);
   const speedRef = useRef<number>(1);
-  const gradeRef = useRef<number>(0);
+  const wordsPerMinuteRef = useRef<number>(120);
 
   const allParagraphs = useMemo(() => {
     return fileContent
@@ -35,8 +35,8 @@ const TextDisplay = ({ fileContent }: { fileContent: string }) => {
         <TextControls
           speed={speed}
           setSpeed={setSpeed}
-          gradeRef={gradeRef}
           speedRef={speedRef}
+          wordsPerMinuteRef={wordsPerMinuteRef}
           startButton={(): void => setIsReading(true)}
           pauseButton={(): void => setIsReading(false)}
           restartButton={(): void => {
@@ -57,8 +57,8 @@ const TextDisplay = ({ fileContent }: { fileContent: string }) => {
                   paragraph={paragraph}
                   onFinish={nextParagraph}
                   isReading={isReading}
-                  gradeRef={gradeRef}
                   speedRef={speedRef}
+                  wordsPerMinuteRef={wordsPerMinuteRef}
                 />
               ) : (
                 paragraph

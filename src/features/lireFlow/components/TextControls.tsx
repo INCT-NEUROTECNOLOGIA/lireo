@@ -1,26 +1,39 @@
-import React, { RefObject } from "react";
+import React, { RefObject, useState } from "react";
 import "../layout/textControlsStyle.css";
+import { calculateWordsPerMinute } from "./ReadingParameters";
 
 const TextControls = ({
   speed,
   setSpeed,
   speedRef,
-  gradeRef,
+  wordsPerMinuteRef,
   startButton,
   pauseButton,
   restartButton,
 }: {
   speed: number;
-  setSpeed: (number) => void;
+  setSpeed: (arg: number) => void;
   speedRef: RefObject<number>;
-  gradeRef: RefObject<number>;
+  wordsPerMinuteRef: RefObject<number>;
   startButton: () => void;
   pauseButton: () => void;
   restartButton: () => void;
 }) => {
   const textControlsText = {
-    placeholderSelectGrade: "Selecione o ano escolar",
-    grades: [
+    placeholderSelectLevel: "Escolha um nível",
+    levels: [
+      "Nenhum",
+      "Nível 1",
+      "Nível 2",
+      "Nível 3",
+      "Nível 4",
+      "Nível 5",
+      "Nível 6",
+      "Nível 7",
+      "Nível 8",
+    ],
+    levelLegend: [
+      "Nenhum",
       "2º ano",
       "3º ano",
       "4º ano",
@@ -30,67 +43,128 @@ const TextControls = ({
       "8º ano",
       "9º ano",
     ],
+    levelValue: [120, 44, 72, 80, 99, 114, 120, 121, 129],
     lectureSpeed: "Velocidade de leitura:",
     start: "Iniciar",
     pause: "Pausar",
+    restart: "Reiniciar",
+    wordPerMinute: " ppm",
+    wordPerMinuteLegend: "Palavras por minuto",
+  };
+
+  const [wordsPerMinute, setWordsPerMinute] = useState<number>(
+    calculateWordsPerMinute(wordsPerMinuteRef.current, speedRef.current)
+  );
+
+  const updateWordsPerMinute = () => {
+    setWordsPerMinute(
+      calculateWordsPerMinute(wordsPerMinuteRef.current, speedRef.current)
+    );
+  };
+
+  const selectedLevel = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    wordsPerMinuteRef.current = Number(event.target.value);
+    updateWordsPerMinute();
+  };
+
+  const speedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSpeed(parseFloat(event.target.value));
+    speedRef.current = parseFloat(event.target.value);
+    updateWordsPerMinute();
+  };
+
+  const wordsPerMinuteInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const input = event.target.value;
+    const wpm = parseInt(input);
+
+    setWordsPerMinute(input === "" ? 0 : wpm);
+
+    if (!isNaN(wpm) && wpm > 0) {
+      wordsPerMinuteRef.current = wpm;
+    }
   };
 
   return (
     <div className="textControls">
-      <div className="textControls__selectGrade">
+      <div className="textControls__speedControls">
         <select
-          className="textControls__selectGrade__select"
-          name="grades"
-          id="grades"
+          className="textControls__selectLevel"
+          name="levels"
+          id="levels"
           defaultValue=""
-          onChange={(event) => (gradeRef.current = Number(event.target.value))}
+          onChange={selectedLevel}
+          title={textControlsText.placeholderSelectLevel}
         >
           <option value="" disabled>
-            {textControlsText.placeholderSelectGrade}
+            {textControlsText.placeholderSelectLevel}
           </option>
-          {textControlsText.grades.map((grade, index) => (
-            <option key={index} value={index + 2}>
-              {grade}
+          {textControlsText.levels.map((level, index) => (
+            <option
+              key={index}
+              value={textControlsText.levelValue[index]}
+              title={textControlsText.levelLegend[index]}
+            >
+              {level}
             </option>
           ))}
         </select>
-      </div>
 
-      <div className="textControls__speedSlider">
-        <p>{textControlsText.lectureSpeed}</p>
-        <input
-          type="range"
-          min="0.1"
-          max="3"
-          step="0.1"
-          value={speed}
-          onChange={(event) => {
-            setSpeed(parseFloat(event.target.value));
-            speedRef.current = parseFloat(event.target.value);
-          }}
-          className="textControls__speedSlider__input"
-        />
-        <span className="textControls__speedSlider__value">
-          {speed.toFixed(1)}x
-        </span>
+        <div className="textControls__inputContainer">
+          <div
+            className="textControls__speedSlider"
+            title={textControlsText.lectureSpeed}
+          >
+            <p>{textControlsText.lectureSpeed}</p>
+            <div className="textControls__speedSlider__inputContainer">
+              <input
+                type="range"
+                min="0.1"
+                max="3"
+                step="0.1"
+                value={speed}
+                onChange={speedChange}
+                className="textControls__speedSlider__input"
+              />
+              <span className="textControls__speedSlider__value">
+                {speed.toFixed(1)}x
+              </span>
+            </div>
+          </div>
+
+          <div
+            className="textControls__wordsPerMinute"
+            title={textControlsText.wordPerMinuteLegend}
+          >
+            <i className="bi bi-clock"></i>
+            <input
+              className="textControls__wordsPerMinute__input"
+              value={wordsPerMinute}
+              onChange={wordsPerMinuteInput}
+            ></input>
+            {textControlsText.wordPerMinute}
+          </div>
+        </div>
       </div>
 
       <div className="textControls__buttons">
         <button
           className="textControls__buttons__startButton"
           onClick={startButton}
+          title={textControlsText.start}
         >
           {textControlsText.start}
         </button>
         <button
           className="textControls__buttons__pauseButton"
           onClick={pauseButton}
+          title={textControlsText.pause}
         >
           {textControlsText.pause}
         </button>
         <button
           className="textControls__buttons__restartButton"
           onClick={restartButton}
+          title={textControlsText.restart}
         >
           <i className="bi bi-arrow-clockwise"></i>
         </button>
