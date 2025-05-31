@@ -1,4 +1,3 @@
-import React from "react";
 import "../layout/loadingStyle.css";
 
 const Loading = () => {
