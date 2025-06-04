@@ -54,15 +54,6 @@
   margin: 1vh 0;
 }
 
-.userGuide__container ul li {
-  margin: 0.5vh 0;
-}
-
-.userGuide__container ul li::marker {
-  font-size: 1.2rem;
-  color: var(--color-primary-hover);
-}
-
 .userGuide__container h3 {
   font-size: 1.2rem;
   margin: 1vh 0;

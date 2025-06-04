@@ -11,19 +11,39 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header>
-      <div className="header__logoContainer">
-        {/* <img className="header__logoContainer__logo" src="/logo.png" /> */}
-        <h1 className="header__logoContainer__siteName">
-          {headerText.siteName}
-        </h1>
+    <>
+      <header>
+        <div className="header__logoContainer">
+          {/* <img className="header__logoContainer__logo" src="/logo.png" /> */}
+          <h1 className="header__logoContainer__siteName">
+            {headerText.siteName}
+          </h1>
+        </div>
+        <nav>
+          <div className="menu__desktop">
+            <a href={ROUTE_PATHS.HOME}> {headerText.initalPage} </a>
+            <a href={ROUTE_PATHS.USER_GUIDE}>{headerText.userGuide} </a>
+            <a href={ROUTE_PATHS.ABOUT_US}>{headerText.aboutUs} </a>
+          </div>
+          <button className="menu__toggle__mobile">
+            <i className="bi bi-list"></i>
+          </button>
+        </nav>
+      </header>
+      <div className="menu__toggle__mobile__content">
+        <ul>
+          <li>
+            <a href={ROUTE_PATHS.HOME}> {headerText.initalPage} </a>
+          </li>
+          <li>
+            <a href={ROUTE_PATHS.USER_GUIDE}>{headerText.userGuide} </a>
+          </li>
+          <li>
+            <a href={ROUTE_PATHS.ABOUT_US}>{headerText.aboutUs} </a>
+          </li>
+        </ul>
       </div>
-      <nav>
-        <a href={ROUTE_PATHS.HOME}> {headerText.initalPage} </a>
-        <a href={ROUTE_PATHS.USER_GUIDE}>{headerText.userGuide} </a>
-        <a href={ROUTE_PATHS.ABOUT_US}>{headerText.aboutUs} </a>
-      </nav>
-    </header>
+    </>
   );
 };
 
