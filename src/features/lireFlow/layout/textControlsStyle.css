@@ -126,8 +126,8 @@
 }
 
 .textControls__wordsPerMinute__input {
-  width: 55px;
-  height: 30px;
+  width: 3.4rem;
+  height: 1.9rem;
   border: none;
   text-align: center;
   font-size: 1rem;
@@ -141,7 +141,6 @@
 @media (max-width: 980px) {
   .textControls {
     flex-direction: column;
-    max-height: 250px;
   }
 
   .textControls__speedControls {
@@ -157,13 +156,7 @@
 
 @media (max-width: 580px) {
   .textControls {
-    gap: 10px;
-  }
-
-  .textControls__buttons {
-    justify-content: center;
-    flex-direction: column;
-    gap: 12px;
+    gap: 1.2rem;
   }
 
   .textControls__selectLevel {
@@ -174,7 +167,7 @@
 @media (max-width: 430px) {
   .textControls__speedControls {
     flex-direction: column;
-    gap: 5px;
+    gap: 0.6rem;
   }
 
   .textControls__selectLevel {
@@ -182,6 +175,6 @@
   }
 
   .textControls__inputContainer {
-    gap: 5vw;
+    width: 100%;
   }
 }

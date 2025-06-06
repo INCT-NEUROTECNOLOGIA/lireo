@@ -39,17 +39,9 @@ const Header: React.FC = () => {
           "menu__toggle__mobile__content" + (menuMobileOpen ? " active" : "")
         }
       >
-        <ul>
-          <li>
-            <a href={ROUTE_PATHS.HOME}> {headerText.initalPage} </a>
-          </li>
-          <li>
-            <a href={ROUTE_PATHS.USER_GUIDE}>{headerText.userGuide} </a>
-          </li>
-          <li>
-            <a href={ROUTE_PATHS.ABOUT_US}>{headerText.aboutUs} </a>
-          </li>
-        </ul>
+        <a href={ROUTE_PATHS.HOME}> {headerText.initalPage} </a>
+        <a href={ROUTE_PATHS.USER_GUIDE}>{headerText.userGuide} </a>
+        <a href={ROUTE_PATHS.ABOUT_US}>{headerText.aboutUs} </a>
       </div>
     </>
   );
