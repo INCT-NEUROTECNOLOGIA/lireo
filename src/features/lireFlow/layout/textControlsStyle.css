@@ -1,14 +1,15 @@
 .textControls {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 1.2rem;
-  width: 90%;
+  width: inherit;
   margin-bottom: 1.9rem;
   color: var(--color-text);
 }
 
 .textControls__speedControls {
-  flex: 1 1 35vw;
+  flex: 1;
   display: flex;
   align-items: center;
   gap: 1.2rem;
@@ -23,7 +24,7 @@
 }
 
 .textControls__speedSlider {
-  flex: 1 1 15vw;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -69,7 +70,7 @@
 }
 
 .textControls__buttons {
-  flex: 1 1 31vw;
+  flex: 1;
   display: flex;
   justify-content: flex-end;
   gap: 1.2rem;
@@ -97,7 +98,7 @@
 }
 
 .textControls__selectLevel {
-  flex: 1 1 18vw;
+  flex: 1;
   padding: 0.6rem 0.9rem;
   padding-right: 2.2rem;
   font-size: 1rem;
@@ -119,7 +120,7 @@
 }
 
 .textControls__wordsPerMinute {
-  flex: 1 1 10vw;
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -138,40 +139,14 @@
   margin-right: 0.12rem;
 }
 
-@media (max-width: 980px) {
-  .textControls {
-    flex-direction: column;
-  }
-
-  .textControls__speedControls {
-    width: 100%;
-    flex: 1;
-  }
-
-  .textControls__buttons {
-    width: 100%;
-    flex: 1;
-  }
-}
-
 @media (max-width: 580px) {
-  .textControls {
-    gap: 1.2rem;
-  }
-
-  .textControls__selectLevel {
-    width: 100%;
-  }
-}
-
-@media (max-width: 430px) {
   .textControls__speedControls {
     flex-direction: column;
     gap: 0.6rem;
   }
 
   .textControls__selectLevel {
-    flex: 1;
+    width: 100%;
   }
 
   .textControls__inputContainer {

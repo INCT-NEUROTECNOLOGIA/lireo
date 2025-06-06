@@ -1,5 +1,5 @@
 .textReaderContainer {
-  width: 80%;
+  width: 90%;
   height: auto;
   background-color: var(--color-white);
   display: flex;
@@ -22,7 +22,7 @@
   border: 2px dashed var(--color-border-light);
   border-radius: 0.75rem;
   padding: 1.2rem;
-  width: 90%;
+  width: inherit;
   text-align: center;
   background-color: var(--color-accent);
   transition: background-color 0.3s ease;
@@ -74,19 +74,47 @@ label:hover {
   width: 30%;
 }
 
-.textReaderContainer__fileName {
-  width: 90%;
-  white-space: pre-wrap;
-  word-wrap: break-word;
+.textReaderContainer__header {
+  display: flex;
+  width: inherit;
+  text-align: left;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+  gap: 0.6rem;
 }
 
-@media (max-width: 1150px) {
+.textReaderContainer__fileName {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 70%;
+  margin: 0.7rem 0;
+}
+
+.textReaderContainer__button {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  color: var(--color-white);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: var(--color-primary);
+  white-space: nowrap;
+}
+
+.textReaderContainer__button:hover {
+  background-color: var(--color-primary-hover);
+}
+@media (max-width: 1115px) {
   .textReaderContainer {
     width: 95%;
   }
 }
 
-@media (max-width: 855px) {
+@media (max-width: 900px) {
   .textReaderContainer {
     margin-top: 1.9rem;
   }
@@ -96,7 +124,7 @@ label:hover {
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 720px) {
   .textReaderContainer__fileUploader__label {
     margin-top: 0.6rem;
   }
@@ -121,5 +149,15 @@ label:hover {
 
   .textReaderContainer__fileUploader__text {
     margin-bottom: 0.6rem;
+  }
+}
+
+@media (max-width: 580px) {
+  .textReaderContainer__header {
+    flex-direction: column-reverse;
+  }
+
+  .textReaderContainer__fileName {
+    max-width: 100%;
   }
 }

@@ -176,14 +176,6 @@ const TextReader = () => {
 
   return (
     <div className="textReaderContainer">
-      {state.fileContent && (
-        <button
-          className="textReaderContainer__fileUploader__label"
-          onClick={handleFileUploader}
-        >
-          Escolher um novo texto
-        </button>
-      )}
       <div
         className={
           "textReaderContainer__fileUploader" +
@@ -243,9 +235,20 @@ const TextReader = () => {
       {state.error && <p style={{ color: "red" }}>{state.error}</p>}
 
       {state.fileName && (
-        <p className="textReaderContainer__fileName">
-          <strong>{textReaderText.fileText}</strong> {state.fileName}
-        </p>
+        <div className="textReaderContainer__header">
+          <p className="textReaderContainer__fileName" title={state.fileName}>
+            <strong>{textReaderText.fileText}</strong> {state.fileName}
+          </p>
+
+          {state.fileUploaderClose && (
+            <button
+              className="textReaderContainer__button"
+              onClick={handleFileUploader}
+            >
+              Escolher um novo texto
+            </button>
+          )}
+        </div>
       )}
 
       {state.isLoading ? (
