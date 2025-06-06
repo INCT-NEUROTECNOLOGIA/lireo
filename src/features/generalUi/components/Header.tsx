@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../layout/header.css";
 import { ROUTE_PATHS } from "../../../config/routes";
 
@@ -9,6 +9,10 @@ const Header: React.FC = () => {
     aboutUs: "Sobre Nós",
     userGuide: "Guia do Usuário",
   };
+
+  const [menuMobileOpen, setMenuMobileOpen] = useState<boolean>(false);
+
+  const handleMenuMobile = () => setMenuMobileOpen(!menuMobileOpen);
 
   return (
     <>
@@ -25,12 +29,16 @@ const Header: React.FC = () => {
             <a href={ROUTE_PATHS.USER_GUIDE}>{headerText.userGuide} </a>
             <a href={ROUTE_PATHS.ABOUT_US}>{headerText.aboutUs} </a>
           </div>
-          <button className="menu__toggle__mobile">
+          <button className="menu__toggle__mobile" onClick={handleMenuMobile}>
             <i className="bi bi-list"></i>
           </button>
         </nav>
       </header>
-      <div className="menu__toggle__mobile__content">
+      <div
+        className={
+          "menu__toggle__mobile__content" + (menuMobileOpen ? " active" : "")
+        }
+      >
         <ul>
           <li>
             <a href={ROUTE_PATHS.HOME}> {headerText.initalPage} </a>

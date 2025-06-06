@@ -7,22 +7,21 @@
   align-items: center;
   justify-content: center;
   margin: 5vh auto;
-  border-radius: 15px;
+  border-radius: 0.9rem;
   padding: 4svh 6svh;
   box-shadow: 0 4px 8px 0 var(--color-shadow-transparent),
-    0 6px 20px 0 var(--color-shadow);
+    0 6px 1.2rem 0 var(--color-shadow);
 }
 
 .textReaderContainer__fileUploader {
   border: 2px dashed var(--color-border-light);
-  border-radius: 12px;
-  padding: 20px;
+  border-radius: 0.75rem;
+  padding: 1.2rem;
   width: 90%;
-  max-width: 900px;
   text-align: center;
   background-color: var(--color-accent);
   transition: background-color 0.3s ease;
-  margin-bottom: 10px;
+  margin-bottom: 0.6rem;
 }
 
 .textReaderContainer__fileUploader__input {
@@ -31,7 +30,7 @@
 
 .textReaderContainer__fileUploader__label {
   display: inline-block;
-  padding: 10px;
+  padding: 0.6rem;
   font-size: 1rem;
   color: var(--color-white);
   background-color: var(--color-primary);
@@ -40,7 +39,7 @@
   cursor: pointer;
   text-align: center;
   transition: background-color 0.3s ease;
-  margin: 12px;
+  margin: 0.75rem;
   width: 30%;
 }
 
@@ -50,8 +49,8 @@ label:hover {
 }
 
 .textReaderContainer__fileUploader__selectText {
-  padding: 10px 15px;
-  padding-right: 35px;
+  padding: 0.6rem 0.9rem;
+  padding-right: 2.2rem;
   font-size: 1rem;
   font-family: inherit;
   font-weight: bold;
@@ -64,16 +63,16 @@ label:hover {
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg fill='white' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 10px center;
-  background-size: 20px;
-  margin: 12px;
+  background-position: right 0.6rem center;
+  background-size: 1.2rem;
+  margin: 0.75rem;
   width: 30%;
 }
 
 .textReaderContainer__fileName {
-  max-height: 500px;
-  max-width: 900px;
   width: 90%;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 @media (max-width: 1150px) {
@@ -82,7 +81,7 @@ label:hover {
   }
 }
 
-@media (max-width: 840px) {
+@media (max-width: 855px) {
   .textReaderContainer__fileUploader__label {
     width: auto;
   }
@@ -90,12 +89,12 @@ label:hover {
 
 @media (max-width: 700px) {
   .textReaderContainer__fileUploader__label {
-    margin-top: 10px;
+    margin-top: 0.6rem;
   }
 
   .textReaderContainer {
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
   }
 
   .textReaderContainer__fileUploader__inputSelectGroup {
@@ -108,10 +107,10 @@ label:hover {
   .textReaderContainer__fileUploader__label,
   .textReaderContainer__fileUploader__selectText {
     width: 90%;
-    margin: 8px;
+    margin: 0.5rem;
   }
 
   .textReaderContainer__fileUploader__text {
-    margin-bottom: 10px;
+    margin-bottom: 0.6rem;
   }
 }
