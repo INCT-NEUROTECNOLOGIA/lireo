@@ -46,6 +46,7 @@
   transition: background-color 0.3s ease;
   margin: 0.75rem;
   width: 30%;
+  max-width: 20rem;
 }
 
 .textReaderContainer select:hover,
@@ -72,6 +73,7 @@ label:hover {
   background-size: 1.2rem;
   margin: 0.75rem;
   width: 30%;
+  max-width: 20rem;
 }
 
 .textReaderContainer__header {
@@ -89,7 +91,7 @@ label:hover {
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 70%;
-  margin: 0.7rem 0;
+  margin: 0.6rem 0;
 }
 
 .textReaderContainer__button {
@@ -108,6 +110,7 @@ label:hover {
 .textReaderContainer__button:hover {
   background-color: var(--color-primary-hover);
 }
+
 @media (max-width: 1115px) {
   .textReaderContainer {
     width: 95%;
@@ -130,8 +133,7 @@ label:hover {
   }
 
   .textReaderContainer {
-    padding-left: 0.3rem;
-    padding-right: 0.3rem;
+    padding: 1.2rem 0.6rem;
   }
 
   .textReaderContainer__fileUploader__inputSelectGroup {
@@ -154,7 +156,7 @@ label:hover {
 
 @media (max-width: 580px) {
   .textReaderContainer__header {
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
 
   .textReaderContainer__fileName {

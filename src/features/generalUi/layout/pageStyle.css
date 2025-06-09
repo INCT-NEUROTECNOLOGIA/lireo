@@ -11,7 +11,8 @@
   --color-accent-hover: #c7fff8;
   --color-title: #097954;
   --color-white: #fff;
-  --color-text: #333;
+  --color-text-primary: #333;
+  --color-text-primary-secondary: #555;
 }
 
 * {
@@ -22,7 +23,7 @@ body {
   font-family: Segoe UI, Verdana, Arial, sans-serif;
   background-color: var(--color-bg);
   margin: 0;
-  color: var(--color-text);
+  color: var(--color-text-primary);
 }
 
 ul li {
