@@ -152,6 +152,7 @@ const TextControls = ({
           onClick={startButton}
           title={textControlsText.start}
         >
+          <i className="bi bi-play"></i>
           {textControlsText.start}
         </button>
         <button
@@ -159,6 +160,7 @@ const TextControls = ({
           onClick={pauseButton}
           title={textControlsText.pause}
         >
+          <i className="bi bi-pause"></i>
           {textControlsText.pause}
         </button>
         <button
@@ -167,6 +169,7 @@ const TextControls = ({
           title={textControlsText.restart}
         >
           <i className="bi bi-arrow-clockwise"></i>
+          {textControlsText.restart}
         </button>
       </div>
     </div>

@@ -15,11 +15,16 @@
 
 .textReaderContainer__fileUploader {
   display: none;
+  color: var(--color-tertiary);
+}
+
+.bi-cloud-upload {
+  font-size: 3rem;
 }
 
 .textReaderContainer__fileUploader.active {
   display: block;
-  border: 2px dashed var(--color-border-light);
+  border: 2px dashed var(--color-primary-hover);
   border-radius: 0.75rem;
   padding: 1.2rem;
   width: inherit;
@@ -38,7 +43,7 @@
   padding: 0.6rem;
   font-size: 1rem;
   color: var(--color-white);
-  background-color: var(--color-primary);
+  background-color: var(--color-tertiary);
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -48,9 +53,9 @@
   width: 30%;
 }
 
-.textReaderContainer select:hover,
-label:hover {
-  background-color: var(--color-primary-hover);
+.textReaderContainer__fileUploader__selectText:hover,
+.textReaderContainer__fileUploader__label:hover {
+  background-color: var(--color-secondary);
 }
 
 .textReaderContainer__fileUploader__selectText {
@@ -61,7 +66,7 @@ label:hover {
   font-weight: bold;
   border: none;
   border-radius: 8px;
-  background-color: var(--color-primary);
+  background-color: var(--color-tertiary);
   color: var(--color-white);
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -72,6 +77,10 @@ label:hover {
   background-size: 1.2rem;
   margin: 0.75rem;
   width: 30%;
+}
+
+select option {
+  padding: 0.6rem;
 }
 
 .textReaderContainer__header {
@@ -90,24 +99,27 @@ label:hover {
   text-overflow: ellipsis;
   max-width: 70%;
   margin: 0.7rem 0;
+  color: var(--color-text-primary);
 }
 
 .textReaderContainer__button {
   padding: 0.6rem 1.2rem;
   font-size: 1rem;
   font-weight: bold;
-  border: none;
+  border: 2px solid var(--color-tertiary);
   border-radius: 8px;
-  color: var(--color-white);
+  color: var(--color-tertiary);
   cursor: pointer;
   transition: background-color 0.3s ease;
-  background-color: var(--color-primary);
+  background-color: var(--color-white);
   white-space: nowrap;
 }
 
 .textReaderContainer__button:hover {
-  background-color: var(--color-primary-hover);
+  background-color: var(--color-tertiary);
+  color: var(--color-white);
 }
+
 @media (max-width: 1115px) {
   .textReaderContainer {
     width: 95%;

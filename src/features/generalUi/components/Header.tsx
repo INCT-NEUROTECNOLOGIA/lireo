@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import "../layout/header.css";
 import { ROUTE_PATHS } from "../../../config/routes";
+import { getPublicAssetUrl } from "../../../utils/pathUtils";
 
 const Header: React.FC = () => {
   const headerText = {
-    siteName: "LIRE-O",
-    initalPage: "Página Inicial",
+    initalPage: "Início",
     aboutUs: "Sobre Nós",
-    userGuide: "Guia do Usuário",
+    userGuide: "Como usar",
   };
 
   const [menuMobileOpen, setMenuMobileOpen] = useState<boolean>(false);
@@ -18,16 +18,25 @@ const Header: React.FC = () => {
     <>
       <header>
         <div className="header__logoContainer">
-          {/* <img className="header__logoContainer__logo" src="/logo.png" /> */}
-          <h1 className="header__logoContainer__siteName">
-            {headerText.siteName}
-          </h1>
+          <img
+            className="header__logoContainer__logo"
+            src={getPublicAssetUrl("/images/logo-lireo-white.png")}
+          />
         </div>
         <nav>
           <div className="menu__desktop">
-            <a href={ROUTE_PATHS.HOME}> {headerText.initalPage} </a>
-            <a href={ROUTE_PATHS.USER_GUIDE}>{headerText.userGuide} </a>
-            <a href={ROUTE_PATHS.ABOUT_US}>{headerText.aboutUs} </a>
+            <a href={ROUTE_PATHS.HOME}>
+              <i className="bi bi-house"></i>
+              {headerText.initalPage}{" "}
+            </a>
+            <a href={ROUTE_PATHS.USER_GUIDE}>
+              <i className="bi bi-book"></i>
+              {headerText.userGuide}{" "}
+            </a>
+            <a href={ROUTE_PATHS.ABOUT_US}>
+              <i className="bi bi-people"></i>
+              {headerText.aboutUs}{" "}
+            </a>
           </div>
           <button className="menu__toggle__mobile" onClick={handleMenuMobile}>
             <i className="bi bi-list"></i>

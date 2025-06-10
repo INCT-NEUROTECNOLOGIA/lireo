@@ -190,6 +190,7 @@ const TextReader = () => {
             : "var(--color-accent)",
         }}
       >
+        <i className="bi bi-cloud-upload"></i>
         <div className="textReaderContainer__fileUploader__text">
           {textReaderText.uploadText}{" "}
           <strong>{textReaderText.uploadText2}</strong>{" "}

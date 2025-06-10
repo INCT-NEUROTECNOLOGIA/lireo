@@ -1,17 +1,23 @@
 :root {
-  --color-primary: #34d6c1;
-  --color-primary-hover: #2bb3a3;
-  --color-bg: #dfe9e9;
+  --color-primary: #0a85b8;
+  --color-primary-hover: #0c9edd;
+  --color-secondary: #70db6a;
+  --color-secondary-hover: #88f84e;
+  --color-tertiary: #33aa96;
+  --color-tertiary-hover: #44ddc4;
+  --color-bg: #eefffc;
   --color-bg-light: #f7f7f7;
   --color-shadow: rgba(0, 0, 0, 0.08);
   --color-shadow-transparent: rgba(0, 0, 0, 0);
-  --color-border-light: #ccc;
   --color-border: #ddd;
-  --color-accent: #ebfcf9;
-  --color-accent-hover: #c7fff8;
+  --color-accent: #e3fbf7;
+  --color-accent-hover: #c6fff6;
   --color-title: #097954;
   --color-white: #fff;
   --color-text: #333;
+  --color-text-primary: #062e3f;
+  --color-text-secondary: #235721;
+  --color-text-tertiary: #1d6357;
 }
 
 * {
@@ -22,6 +28,7 @@ body {
   font-family: Segoe UI, Verdana, Arial, sans-serif;
   background-color: var(--color-bg);
   margin: 0;
+  margin-top: 8.8rem;
   color: var(--color-text);
 }
 
@@ -31,4 +38,14 @@ ul li {
 
 li::marker {
   color: var(--color-primary-hover);
+}
+
+.bi {
+  margin-right: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  body {
+    margin-top: 6.6rem;
+  }
 }
