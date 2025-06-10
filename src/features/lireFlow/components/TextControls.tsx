@@ -20,7 +20,7 @@ const TextControls = ({
   restartButton: () => void;
 }) => {
   const textControlsText = {
-    placeholderSelectLevel: "Escolha um nível",
+    placeholderSelectLevel: "Escolha um nível de leitura",
     levels: [
       "Nenhum",
       "Nível 1",

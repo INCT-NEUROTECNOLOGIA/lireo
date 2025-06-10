@@ -28,8 +28,7 @@ body {
   font-family: Segoe UI, Verdana, Arial, sans-serif;
   background-color: var(--color-bg);
   margin: 0;
-  margin-top: 8.8rem;
-  color: var(--color-text);
+  color: var(--color-text-primary);
 }
 
 ul li {

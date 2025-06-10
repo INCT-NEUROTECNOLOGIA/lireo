@@ -51,6 +51,7 @@
   transition: background-color 0.3s ease;
   margin: 0.75rem;
   width: 30%;
+  max-width: 20rem;
 }
 
 .textReaderContainer__fileUploader__selectText:hover,
@@ -77,6 +78,7 @@
   background-size: 1.2rem;
   margin: 0.75rem;
   width: 30%;
+  max-width: 20rem;
 }
 
 select option {
@@ -142,8 +144,7 @@ select option {
   }
 
   .textReaderContainer {
-    padding-left: 0.3rem;
-    padding-right: 0.3rem;
+    padding: 1.2rem 0.6rem;
   }
 
   .textReaderContainer__fileUploader__inputSelectGroup {
@@ -166,7 +167,7 @@ select option {
 
 @media (max-width: 580px) {
   .textReaderContainer__header {
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
 
   .textReaderContainer__fileName {
