@@ -17,6 +17,7 @@
 }
 
 .textControls__inputContainer {
+  flex: 1;
   display: inherit;
   gap: inherit;
   align-items: center;
@@ -34,6 +35,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 0.3rem;
+  width: 100%;
 }
 
 .textControls__speedSlider p {
@@ -42,11 +45,20 @@
 
 .textControls__speedSlider__input {
   flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
   height: 8px;
   border-radius: 5px;
+  background: linear-gradient(
+        to right,
+        var(--color-secondary-hover),
+        var(--color-primary-hover)
+      )
+      0% 0% / var(--progress, 50%) 100% no-repeat,
+    #e5f6fa;
   cursor: pointer;
-  accent-color: var(--color-primary);
-  border: none;
+  border: 1px solid var(--color-border);
+  --progress: 31%;
 }
 
 .textControls__speedSlider__input::-webkit-slider-thumb {
@@ -55,7 +67,7 @@
   width: 1.2rem;
   height: 1.2rem;
   border-radius: 50%;
-  background-color: var(--color-primary);
+  background-color: var(--color-primary-hover);
   cursor: pointer;
   border: none;
 }
@@ -64,7 +76,7 @@
   width: 1.2rem;
   height: 1.2rem;
   border-radius: 50%;
-  background-color: var(--color-primary);
+  background-color: var(--color-primary-hover);
   cursor: pointer;
   border: none;
 }
@@ -84,7 +96,7 @@
 .textControls__buttons__startButton,
 .textControls__buttons__restartButton {
   flex: 1;
-  padding: 0.4rem 1rem;
+  padding: 0.3rem 1rem;
   font-size: 1rem;
   font-weight: bold;
   border: none;
@@ -123,7 +135,7 @@
 
 .textControls__selectLevel {
   flex: 1;
-  padding: 0.6rem 0.9rem;
+  padding: 0.7rem 0.9rem;
   padding-right: 2.2rem;
   font-size: 1rem;
   font-weight: bold;
@@ -144,7 +156,6 @@
 }
 
 .textControls__wordsPerMinute {
-  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -156,6 +167,8 @@
   border: none;
   text-align: center;
   font-size: 1rem;
+  color: var(--color-text-primary);
+  font-weight: 600;
 }
 
 .textControls__wordsPerMinute .bi {
@@ -171,10 +184,19 @@
   margin-right: 0.12rem;
 }
 
-@media (max-width: 580px) {
+@media (max-width: 720px) {
+  .textControls {
+    flex-direction: column;
+  }
+
   .textControls__speedControls {
     flex-direction: column;
+    width: 100%;
     gap: 0.6rem;
+  }
+
+  .textControls__buttons {
+    width: 100%;
   }
 
   .textControls__selectLevel {
@@ -183,5 +205,14 @@
 
   .textControls__inputContainer {
     width: 100%;
+    gap: 2.5rem;
+  }
+
+  .textControls__buttonText {
+    display: none;
+  }
+
+  .textControls__buttons .bi {
+    margin: 0;
   }
 }

@@ -68,9 +68,15 @@ const TextControls = ({
   };
 
   const speedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSpeed(parseFloat(event.target.value));
-    speedRef.current = parseFloat(event.target.value);
+    const value = parseFloat(event.target.value);
+    setSpeed(value);
+    speedRef.current = value;
     updateWordsPerMinute();
+
+    const min = parseFloat(event.target.min);
+    const max = parseFloat(event.target.max);
+    const percent = ((value - min) / (max - min)) * 100;
+    event.target.style.setProperty("--progress", `${percent}%`);
   };
 
   const wordsPerMinuteInput = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -153,7 +159,9 @@ const TextControls = ({
           title={textControlsText.start}
         >
           <i className="bi bi-play"></i>
-          {textControlsText.start}
+          <span className="textControls__buttonText">
+            {textControlsText.start}
+          </span>
         </button>
         <button
           className="textControls__buttons__pauseButton"
@@ -161,7 +169,9 @@ const TextControls = ({
           title={textControlsText.pause}
         >
           <i className="bi bi-pause"></i>
-          {textControlsText.pause}
+          <span className="textControls__buttonText">
+            {textControlsText.pause}
+          </span>
         </button>
         <button
           className="textControls__buttons__restartButton"
@@ -169,7 +179,9 @@ const TextControls = ({
           title={textControlsText.restart}
         >
           <i className="bi bi-arrow-clockwise"></i>
-          {textControlsText.restart}
+          <span className="textControls__buttonText">
+            {textControlsText.restart}
+          </span>
         </button>
       </div>
     </div>
