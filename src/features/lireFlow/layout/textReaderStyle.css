@@ -24,7 +24,7 @@
 
 .textReaderContainer__fileUploader.active {
   display: block;
-  border: 2px dashed var(--color-primary-hover);
+  border: 2px dashed var(--color-tertiary);
   border-radius: 0.75rem;
   padding: 1.2rem;
   width: inherit;
