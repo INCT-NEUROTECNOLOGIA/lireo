@@ -1,5 +1,5 @@
 .textContainer {
-  background-color: var(--color-bg-light);
+  background-color: var(--color-bg-text);
   border-radius: 12px;
   padding: 1.2rem;
   overflow: auto;
@@ -35,9 +35,9 @@
 }
 
 mark {
-  background-color: var(--color-primary);
+  background-color: var(--color-secondary-hover);
   border-radius: 5px;
-  padding: 0 0 0.2rem;
+  padding: 0.1rem 0 0.2rem;
 }
 
 /* .hightlightedLine {

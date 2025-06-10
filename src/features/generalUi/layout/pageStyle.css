@@ -5,8 +5,8 @@
   --color-secondary-hover: #88f84e;
   --color-tertiary: #33aa96;
   --color-tertiary-hover: #44ddc4;
-  --color-bg: #f6fffd;
-  --color-bg-light: #f7f7f7;
+  --color-bg: #f4fffd;
+  --color-bg-text: #f7f7f7;
   --color-shadow: rgba(0, 0, 0, 0.08);
   --color-shadow-transparent: rgba(0, 0, 0, 0);
   --color-border: #ddd;
@@ -28,7 +28,7 @@ body {
   font-family: Segoe UI, Verdana, Arial, sans-serif;
   background-color: var(--color-bg);
   margin: 0;
-  margin-top: 8.8rem;
+  margin-top: 6.6rem;
   color: var(--color-text-primary);
 }
 
@@ -42,10 +42,4 @@ li::marker {
 
 .bi {
   margin-right: 0.5rem;
-}
-
-@media (max-width: 600px) {
-  body {
-    margin-top: 6.6rem;
-  }
 }
