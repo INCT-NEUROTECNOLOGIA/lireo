@@ -4,15 +4,44 @@ import Section from "./Section";
 
 const AboutUs: React.FC = () => {
   const projectCreators = [
-    { name: "Profa. Dra. Luciana Mendonça Alves", paragraph1: "Departamento de Fonoaudiologia da Faculdade de Medicina", paragraph2: "UFMG", paragraph3: "CRFa 6-1319", photo: "/images/DraLucianaMendonca_TeamMemberPicture.jpeg" },
-    { name: "Ramiro", paragraph1: "Desenvolvedor", paragraph2:"", paragraph3:"", photo: "/images/ramiro.jpg" },
-    { name: "Ana Julia Ferreira Garcia", paragraph1: "Bolsista de Iniciação Científica", paragraph2:"Curso Técnico em Desenvolvimento de Sistemas", paragraph3:" COLTEC/UFMG", photo: "/images/AnaJulia_TeamMemberPicture.jpeg" },
-    { name: "Raphael Inácio Bicalho de Carvalho", paragraph1: "Bolsista de Iniciação Científica", paragraph2:"Curso Técnico em Desenvolvimento de Sistemas", paragraph3:" COLTEC/UFMG", photo: "/images/raphael.jpg" },
+    {
+      name: "Profa. Dra. Luciana Mendonça Alves",
+      paragraph1: "Departamento de Fonoaudiologia da Faculdade de Medicina",
+      paragraph2: "UFMG",
+      paragraph3: "CRFa 6-1319",
+      photo: "/images/DraLucianaMendonca_TeamMemberPicture.jpeg",
+    },
+    {
+      name: "Ramiro",
+      paragraph1: "Desenvolvedor",
+      paragraph2: "",
+      paragraph3: "",
+      photo: "/images/ramiro.jpg",
+    },
+    {
+      name: "Ana Julia Ferreira Garcia",
+      paragraph1: "Bolsista de Iniciação Científica",
+      paragraph2: "Curso Técnico em Desenvolvimento de Sistemas",
+      paragraph3: " COLTEC/UFMG",
+      photo: "/images/AnaJulia_TeamMemberPicture.jpeg",
+    },
+    {
+      name: "Raphael Inácio Bicalho de Carvalho",
+      paragraph1: "Bolsista de Iniciação Científica",
+      paragraph2: "Curso Técnico em Desenvolvimento de Sistemas",
+      paragraph3: " COLTEC/UFMG",
+      photo: "/images/raphael.jpg",
+    },
   ];
 
   const collaborators = [
-    { name: "example name", paragraph1: "example", paragraph2:"", paragraph3:"", photo: "/images/exampleName.jpg" },
-
+    {
+      name: "example name",
+      paragraph1: "example",
+      paragraph2: "",
+      paragraph3: "",
+      photo: "/images/exampleName.jpg",
+    },
   ];
 
   const aboutUsText = {
@@ -25,12 +54,19 @@ const AboutUs: React.FC = () => {
 
   return (
     <div className="aboutUsContainer">
-      <h1 className="aboutUsContainer__title">{aboutUsText.title}</h1>
-      <p className="aboutUsContainer__description">{aboutUsText.description}</p>
+      <div className="aboutUsContainer__summary">
+        <h1 className="aboutUsContainer__title">{aboutUsText.title}</h1>
+        <p className="aboutUsContainer__description">
+          {aboutUsText.description}
+        </p>
+      </div>
 
       <Section title={aboutUsText.creatorsSection} members={projectCreators} />
 
-      <Section title={aboutUsText.collaboratorsSection} members={collaborators} />
+      <Section
+        title={aboutUsText.collaboratorsSection}
+        members={collaborators}
+      />
     </div>
   );
 };

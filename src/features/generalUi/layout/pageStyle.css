@@ -1,10 +1,13 @@
 :root {
   --color-primary: #0a85b8;
   --color-primary-hover: #0c9edd;
+  --color-primary-light: #baeaff;
   --color-secondary: #70db6a;
   --color-secondary-hover: #88f84e;
+  --color-secondary-light: #e0fad2;
   --color-tertiary: #33aa96;
   --color-tertiary-hover: #44ddc4;
+  --color-tertiary-light: #a4f8ea;
   --color-bg: #f4fffd;
   --color-bg-text: #f7f7f7;
   --color-shadow: rgba(0, 0, 0, 0.08);
@@ -28,7 +31,7 @@ body {
   font-family: Segoe UI, Verdana, Arial, sans-serif;
   background-color: var(--color-bg);
   margin: 0;
-  margin-top: 6.6rem;
+  margin-top: 4.4rem;
   color: var(--color-text-primary);
 }
 

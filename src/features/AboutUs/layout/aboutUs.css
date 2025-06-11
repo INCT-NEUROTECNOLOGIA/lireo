@@ -3,8 +3,6 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 1.2rem;
-  max-width: 70%;
   margin: 0 auto;
 }
 
@@ -12,16 +10,26 @@
   max-width: 75%;
 }
 
+.aboutUsContainer__summary {
+  background: linear-gradient(
+    to right,
+    var(--color-secondary-light),
+    var(--color-primary-light)
+  );
+  width: 100%;
+  padding: 1.2rem;
+}
+
 .aboutUsContainer__title {
   font-size: 2.5rem;
   color: var(--color-title);
-  margin-bottom: 1.2rem;
+  margin: 0;
 }
 
 .aboutUsContainer__description {
   font-size: 1.2rem;
-  margin-bottom: 1.9rem;
   color: var(--color-text-secondary);
+  margin: 0;
 }
 
 .aboutUsContainer__team {

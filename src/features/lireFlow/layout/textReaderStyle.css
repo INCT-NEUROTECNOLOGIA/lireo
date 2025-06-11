@@ -7,6 +7,7 @@
   align-items: center;
   justify-content: center;
   margin: 5vh auto;
+  margin-top: 6.6rem;
   border-radius: 0.9rem;
   padding: 4svh 6svh;
   box-shadow: 0 4px 8px 0 var(--color-shadow-transparent),
@@ -129,10 +130,6 @@ select option {
 }
 
 @media (max-width: 900px) {
-  .textReaderContainer {
-    margin-top: 1.9rem;
-  }
-
   .textReaderContainer__fileUploader__label {
     width: auto;
   }
