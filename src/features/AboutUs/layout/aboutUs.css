@@ -7,70 +7,117 @@
 }
 
 .aboutUsContainer__section {
-  max-width: 75%;
+  padding: 0 0.6rem;
 }
 
 .aboutUsContainer__summary {
+  display: flex;
+  flex-direction: column;
   background: linear-gradient(
     to right,
     var(--color-secondary-light),
     var(--color-primary-light)
   );
   width: 100%;
-  padding: 1.2rem;
-}
-
-.aboutUsContainer__title {
-  font-size: 2.5rem;
+  padding: 6.6rem 12rem;
+  gap: 0.6rem;
   color: var(--color-title);
+}
+
+.aboutUsContainer__summary h1 {
+  font-size: 2.5rem;
   margin: 0;
 }
 
-.aboutUsContainer__description {
+.aboutUsContainer__summary p {
   font-size: 1.2rem;
-  color: var(--color-text-secondary);
   margin: 0;
+}
+
+.aboutUsContainer__ourStory {
+  padding: 6.6rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+}
+
+.aboutUsContainer__ourStory__text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.aboutUsContainer__ourStory__text h1 {
+  margin: 0;
+  margin-bottom: 2rem;
+}
+
+.aboutUsContainer__ourStory__text p {
+  font-size: 1.05rem;
+  margin: 0;
+  margin-bottom: 1.5rem;
+}
+
+.aboutUsContainer__ourStory img {
+  height: 20rem;
 }
 
 .aboutUsContainer__team {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
-  gap: 1.2rem;
-  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  justify-items: center;
 }
 
 .aboutUsContainer__teamMember {
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  background-color: var(--color-bg-light);
+  background-color: var(--color-bg-text);
+  border-radius: 12px;
+  box-shadow: 0 4px 24px var(--color-shadow);
   text-align: center;
-}
-.aboutUsContainer__teamMemberName {
-  margin-top: 0;
-  margin-bottom: 0.3rem;
-}
-.aboutUsContainer__teamMemberPhoto {
+  padding: 2rem 1.5rem;
+  /* max-width: 300px; */
   width: 100%;
-  aspect-ratio: 9 / 11;
-  object-fit: cover;
-  object-position: top;
-  border-top-right-radius: 8px;
-  border-top-left-radius: 8px;
-}
-.aboutUsContainer__teamMemberTexts {
-  padding: 0.6rem;
-}
-.aboutUsContainer__teamMember h2 {
-  font-size: 1.5rem;
-  color: var(--color-title);
-  margin-bottom: 0.6rem;
 }
 
-.aboutUsContainer__teamMemberParagraph {
-  font-size: 1rem;
-  color: var(--color-text-secondary);
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+.aboutUsContainer__teamMemberPhoto {
+  width: 9rem;
+  height: 9rem;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 1rem auto;
+}
+
+.aboutUsContainer__teamMemberName {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.aboutUsContainer__teamMemberTexts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 0.6rem;
+  white-space: calc();
+}
+
+.aboutUsContainer__teamMemberTexts p {
+  margin: 0;
+}
+
+.aboutUsContainer__teamMemberParagraph--main {
+  color: var(--color-primary-hover);
+}
+
+.aboutUsContainer__teamMemberParagraph--secondary,
+.aboutUsContainer__teamMemberParagraph--education,
+.aboutUsContainer__teamMemberParagraph--footer {
+  color: var(--color-text-primary);
 }
 
 @media (min-width: 800px) {

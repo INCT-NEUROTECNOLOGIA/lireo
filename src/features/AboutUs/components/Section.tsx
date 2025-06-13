@@ -9,6 +9,7 @@ interface SectionProps {
     paragraph1: string;
     paragraph2: string;
     paragraph3: string;
+    paragraph4: string;
     photo: string;
   }[];
 }
@@ -25,6 +26,7 @@ const Section: React.FC<SectionProps> = ({ title, members }) => {
             paragraph1={member.paragraph1}
             paragraph2={member.paragraph2}
             paragraph3={member.paragraph3}
+            paragraph4={member.paragraph4}
             photo={getPublicAssetUrl(member.photo)}
           />
         ))}

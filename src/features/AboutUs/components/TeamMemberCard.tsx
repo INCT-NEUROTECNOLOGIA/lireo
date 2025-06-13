@@ -7,10 +7,18 @@ interface TeamMemberCardProps {
   paragraph1: string;
   paragraph2: string;
   paragraph3: string;
+  paragraph4: string;
   photo: string;
 }
 
-const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ name, paragraph1, paragraph2, paragraph3, photo }) => {
+const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
+  name,
+  paragraph1,
+  paragraph2,
+  paragraph3,
+  paragraph4,
+  photo,
+}) => {
   return (
     <div className="aboutUsContainer__teamMember">
       <img
@@ -18,16 +26,26 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ name, paragraph1, parag
         alt={`Foto de ${name}`}
         className="aboutUsContainer__teamMemberPhoto"
         onError={(e) => {
-          (e.target as HTMLImageElement).src = getPublicAssetUrl("/images/placeholder.jpg");
+          (e.target as HTMLImageElement).src = getPublicAssetUrl(
+            "/images/placeholder.jpg"
+          );
         }}
       />
       <div className="aboutUsContainer__teamMemberTexts">
         <h3 className="aboutUsContainer__teamMemberName">{name}</h3>
-        <p className="aboutUsContainer__teamMemberParagraph">{paragraph1}</p>
-        <p className="aboutUsContainer__teamMemberParagraph">{paragraph2}</p>
-        <p className="aboutUsContainer__teamMemberParagraph">{paragraph3}</p>
+        <p className="aboutUsContainer__teamMemberParagraph--main">
+          {paragraph1}
+        </p>
+        <p className="aboutUsContainer__teamMemberParagraph--secondary">
+          {paragraph2}
+        </p>
+        <p className="aboutUsContainer__teamMemberParagraph--education">
+          {paragraph3}
+        </p>
+        <p className="aboutUsContainer__teamMemberParagraph--footer">
+          {paragraph4}
+        </p>
       </div>
-
     </div>
   );
 };
