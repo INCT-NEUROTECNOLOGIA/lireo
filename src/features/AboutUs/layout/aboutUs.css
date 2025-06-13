@@ -7,7 +7,13 @@
 }
 
 .aboutUsContainer__section {
-  padding: 0 0.6rem;
+  padding: 2.5rem 1rem;
+  background-color: var(--color-bg-text);
+  width: 100%;
+}
+
+.aboutUsContainer__sectionTitle {
+  margin: 0;
 }
 
 .aboutUsContainer__summary {
@@ -37,31 +43,63 @@
 .aboutUsContainer__ourStory {
   padding: 6.6rem;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 5rem;
+  text-align: justify;
 }
 
-.aboutUsContainer__ourStory__text {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-}
-
-.aboutUsContainer__ourStory__text h1 {
-  margin: 0;
-  margin-bottom: 2rem;
-}
-
-.aboutUsContainer__ourStory__text p {
-  font-size: 1.05rem;
+.aboutUsContainer__ourStory h1 {
   margin: 0;
   margin-bottom: 1.5rem;
 }
 
+.aboutUsContainer__ourStory__title {
+  text-align: center;
+}
+
+.aboutUsContainer__ourStory p {
+  font-size: 1.05rem;
+  margin: 0;
+  margin-bottom: 1.5rem;
+  text-indent: 2em;
+}
+
+.aboutUsContainer__ourStory__originBrandContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+  margin-top: 5rem;
+}
+
+.aboutUsContainer__ourStory__originBrandText {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+.aboutUsContainer__ourStory__originBrandText p {
+  text-indent: 0;
+}
+
 .aboutUsContainer__ourStory img {
   height: 20rem;
+}
+
+.quote {
+  font-style: italic;
+  color: var(--color-primary);
+  border-left: 4px solid var(--color-primary);
+  padding-left: 1rem;
+  line-height: 1.6;
+}
+
+.quote span {
+  display: block;
+  font-style: normal;
+  font-size: 1rem;
+  margin-top: 0.5rem;
 }
 
 .aboutUsContainer__team {
@@ -73,28 +111,25 @@
 }
 
 .aboutUsContainer__teamMember {
-  background-color: var(--color-bg-text);
-  border-radius: 12px;
-  box-shadow: 0 4px 24px var(--color-shadow);
   text-align: center;
-  padding: 2rem 1.5rem;
-  /* max-width: 300px; */
+  padding: 1rem;
   width: 100%;
 }
 
 .aboutUsContainer__teamMemberPhoto {
-  width: 9rem;
-  height: 9rem;
+  width: 8rem;
+  height: 8rem;
   border-radius: 50%;
   object-fit: cover;
   margin: 0 auto 1rem auto;
 }
 
 .aboutUsContainer__teamMemberName {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--color-text-primary);
   margin: 0;
+  margin-bottom: 0.3rem;
 }
 
 .aboutUsContainer__teamMemberTexts {
@@ -102,8 +137,8 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  gap: 0.6rem;
-  white-space: calc();
+  gap: 0.3rem;
+  font-size: 0.9rem;
 }
 
 .aboutUsContainer__teamMemberTexts p {
@@ -112,6 +147,8 @@
 
 .aboutUsContainer__teamMemberParagraph--main {
   color: var(--color-primary-hover);
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .aboutUsContainer__teamMemberParagraph--secondary,
