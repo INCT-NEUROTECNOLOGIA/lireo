@@ -10,11 +10,13 @@ function App() {
   return (
     <>
       <Header />
-      <Routes>
-        <Route path="/" element={<TextReader />} />
-        <Route path="/guia-do-usuario" element={<UserGuide />} />
-        <Route path="/sobre-nos" element={<AboutUs />} />
-      </Routes>
+      <div className="pageContent">
+        <Routes>
+          <Route path="/" element={<TextReader />} />
+          <Route path="/guia-do-usuario" element={<UserGuide />} />
+          <Route path="/sobre-nos" element={<AboutUs />} />
+        </Routes>
+      </div>
       <Footer />
     </>
   );

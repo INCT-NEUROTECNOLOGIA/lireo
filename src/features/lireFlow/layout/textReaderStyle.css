@@ -7,9 +7,9 @@
   align-items: center;
   justify-content: center;
   margin: 5vh auto;
-  margin-top: 6.6rem;
+  margin-top: 2.2rem;
   border-radius: 0.9rem;
-  padding: 4svh 6svh;
+  padding: 4vh 6vh;
   box-shadow: 0 4px 8px 0 var(--color-shadow-transparent),
     0 6px 1.2rem 0 var(--color-shadow);
 }

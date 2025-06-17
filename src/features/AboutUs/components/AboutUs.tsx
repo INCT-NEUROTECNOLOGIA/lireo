@@ -2,6 +2,7 @@ import React from "react";
 import "../layout/aboutUs.css";
 import Section from "./Section";
 import { getPublicAssetUrl } from "../../../utils/pathUtils";
+import FadeIn from "../../../utils/components/FadeIn";
 
 const AboutUs: React.FC = () => {
   const projectCreators = [
@@ -91,28 +92,34 @@ const AboutUs: React.FC = () => {
         <p>{aboutUsText.summary.description}</p>
       </div>
 
-      <div className="aboutUsContainer__ourStory">
-        <h1 className="aboutUsContainer__ourStory__title">
-          {aboutUsText.ourStory.section[0].title}
-        </h1>
-        {aboutUsText.ourStory.section[0].description.map((paragraph, index) => (
-          <p key={index}>{paragraph}</p>
-        ))}
-        <div className="aboutUsContainer__ourStory__originBrandContainer">
-          <div className="aboutUsContainer__ourStory__originBrandText">
-            <h1>{aboutUsText.ourStory.section[1].title}</h1>
-            {aboutUsText.ourStory.section[1].description.map(
-              (paragraph, index) => (
-                <p key={index}>{paragraph}</p>
-              )
-            )}
-            <p className="quote">
-              {aboutUsText.ourStory.section[1].quote?.text}
-              <span>{aboutUsText.ourStory.section[1].quote?.origin}</span>
-            </p>
+      <div className="aboutUsContainer__ourStory ">
+        <FadeIn>
+          <h1 className="aboutUsContainer__ourStory__title">
+            {aboutUsText.ourStory.section[0].title}
+          </h1>
+          {aboutUsText.ourStory.section[0].description.map(
+            (paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            )
+          )}
+        </FadeIn>
+        <FadeIn>
+          <div className="aboutUsContainer__ourStory__originBrandContainer">
+            <div className="aboutUsContainer__ourStory__originBrandText">
+              <h1>{aboutUsText.ourStory.section[1].title}</h1>
+              {aboutUsText.ourStory.section[1].description.map(
+                (paragraph, index) => (
+                  <p key={index}>{paragraph}</p>
+                )
+              )}
+              <p className="quote">
+                {aboutUsText.ourStory.section[1].quote?.text}
+                <span>{aboutUsText.ourStory.section[1].quote?.origin}</span>
+              </p>
+            </div>
+            <img src={getPublicAssetUrl("/images/icone-lireo.png")} />
           </div>
-          <img src={getPublicAssetUrl("/images/icone-lireo.png")} />
-        </div>
+        </FadeIn>
       </div>
 
       <Section title={aboutUsText.creatorsSection} members={projectCreators} />
