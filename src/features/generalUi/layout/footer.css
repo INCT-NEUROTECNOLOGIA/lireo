@@ -6,8 +6,8 @@ footer {
   );
   color: var(--color-white);
   font-size: 0.9rem;
-  margin-top: 2.5rem;
-  min-height: 200px;
+  margin-top: auto;
+  min-height: 12.5rem;
 }
 
 .footer__content {

@@ -25,7 +25,7 @@
     var(--color-primary-light)
   );
   width: 100%;
-  padding: 5rem 12rem;
+  padding: 5rem 2rem;
   gap: 0.6rem;
   color: var(--color-text-secondary);
 }
@@ -41,7 +41,7 @@
 }
 
 .aboutUsContainer__ourStory {
-  padding: 6.6rem;
+  /* padding: 6.6rem; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -72,6 +72,7 @@
   align-items: center;
   gap: 5rem;
   margin-top: 5rem;
+  flex-wrap: wrap;
 }
 
 .aboutUsContainer__ourStory__originBrandText {
@@ -104,7 +105,7 @@
 
 .aboutUsContainer__team {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
   gap: 2rem;
   padding: 2rem;
   justify-items: center;
@@ -158,13 +159,7 @@
 }
 
 @media (min-width: 800px) {
-  .aboutUsContainer__team {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media (max-width: 800px) {
-  .aboutUsContainer__team {
-    grid-template-columns: repeat(4, 1fr);
+  .aboutUsContainer__summary {
+    padding: 5rem 12rem;
   }
 }
