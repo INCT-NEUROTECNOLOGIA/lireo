@@ -7,10 +7,6 @@
 }
 
 .aboutUsContainer__section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   padding: 2.5rem 0;
   background-color: var(--color-bg-light);
   width: 100%;
@@ -108,7 +104,7 @@
 
 .aboutUsContainer__team {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
   gap: 2rem;
   padding: 2rem;
   justify-items: center;
@@ -116,7 +112,7 @@
 
 .aboutUsContainer__teamMember {
   text-align: center;
-  margin: 2rem 0;
+  margin: 2rem;
 }
 
 .aboutUsContainer__teamMemberPhoto {
@@ -147,7 +143,7 @@
 }
 
 .aboutUsContainer__teamMemberTexts p {
-  margin: 0;
+  margin: 0 auto;
 }
 
 .aboutUsContainer__teamMemberTexts.role {
@@ -206,5 +202,10 @@
 
   .aboutUsContainer__ourStory__originBrandText p {
     text-align: justify;
+  }
+
+  .aboutUsContainer__teamMemberTexts {
+    margin: 0 auto;
+    max-width: 15rem;
   }
 }

@@ -33,6 +33,7 @@ body {
   margin-top: 4.4rem;
   color: var(--color-text-primary);
   height: 100%;
+  overflow-x: hidden;
 }
 
 .pageContent {
