@@ -1,0 +1,68 @@
+.aboutUsContainer__teamCarousel {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  max-width: 80%;
+}
+
+.aboutUsContainer__teamCarousel__track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.aboutUsContainer__teamCarousel__item {
+  flex: 0 0 100%;
+}
+
+.aboutUsContainer__teamCarousel__controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.aboutUsContainer__teamCarousel__button {
+  background: var(--color-primary-hover);
+  color: var(--color-white);
+  border: none;
+  font-size: 1rem;
+  padding: 0.8rem;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.aboutUsContainer__teamCarousel__button:hover {
+  opacity: 1;
+}
+
+.aboutUsContainer__teamCarousel__indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.aboutUsContainer__teamCarousel__indicators__dot {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--color-tertiary-light);
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.aboutUsContainer__teamCarousel__indicators__dot.active {
+  background-color: var(--color-primary-hover);
+  opacity: 1;
+}
+
+@media (max-width: 980px) {
+  .aboutUsContainer__teamCarousel {
+    display: flex;
+  }
+}

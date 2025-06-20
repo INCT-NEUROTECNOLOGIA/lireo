@@ -92,9 +92,7 @@
   font-size: 1.5rem;
 }
 
-.textControls__buttons__pauseButton,
-.textControls__buttons__startButton,
-.textControls__buttons__restartButton {
+.textControls__button {
   flex: 1;
   padding: 0.3rem 1rem;
   font-size: 1rem;
@@ -109,27 +107,27 @@
   justify-content: center;
 }
 
-.textControls__buttons__startButton {
+.textControls__button.start {
   background-color: var(--color-secondary);
 }
 
-.textControls__buttons__startButton:hover {
+.textControls__button.start:hover {
   background-color: var(--color-secondary-hover);
 }
 
-.textControls__buttons__pauseButton {
+.textControls__button.pause {
   background-color: var(--color-tertiary);
 }
 
-.textControls__buttons__pauseButton:hover {
+.textControls__button.pause:hover {
   background-color: var(--color-tertiary-hover);
 }
 
-.textControls__buttons__restartButton {
+.textControls__button.restart {
   background-color: var(--color-primary);
 }
 
-.textControls__buttons__restartButton:hover {
+.textControls__button.restart:hover {
   background-color: var(--color-primary-hover);
 }
 

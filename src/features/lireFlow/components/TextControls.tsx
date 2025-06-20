@@ -154,7 +154,7 @@ const TextControls = ({
 
       <div className="textControls__buttons">
         <button
-          className="textControls__buttons__startButton"
+          className="textControls__button start"
           onClick={startButton}
           title={textControlsText.start}
         >
@@ -164,7 +164,7 @@ const TextControls = ({
           </span>
         </button>
         <button
-          className="textControls__buttons__pauseButton"
+          className="textControls__button pause"
           onClick={pauseButton}
           title={textControlsText.pause}
         >
@@ -174,7 +174,7 @@ const TextControls = ({
           </span>
         </button>
         <button
-          className="textControls__buttons__restartButton"
+          className="textControls__button restart"
           onClick={restartButton}
           title={textControlsText.restart}
         >

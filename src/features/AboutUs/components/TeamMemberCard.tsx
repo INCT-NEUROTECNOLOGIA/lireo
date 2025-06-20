@@ -2,7 +2,7 @@ import React from "react";
 import "../layout/aboutUs.css";
 import { getPublicAssetUrl } from "../../../utils/pathUtils";
 
-interface TeamMemberCardProps {
+export interface TeamMemberCardProps {
   name: string;
   paragraph1: string;
   paragraph2: string;
@@ -33,18 +33,10 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
       />
       <div className="aboutUsContainer__teamMemberTexts">
         <h3 className="aboutUsContainer__teamMemberName">{name}</h3>
-        <p className="aboutUsContainer__teamMemberParagraph--main">
-          {paragraph1}
-        </p>
-        <p className="aboutUsContainer__teamMemberParagraph--secondary">
-          {paragraph2}
-        </p>
-        <p className="aboutUsContainer__teamMemberParagraph--education">
-          {paragraph3}
-        </p>
-        <p className="aboutUsContainer__teamMemberParagraph--footer">
-          {paragraph4}
-        </p>
+        <p className="aboutUsContainer__teamMemberTexts role">{paragraph1}</p>
+        <p>{paragraph2}</p>
+        <p>{paragraph3}</p>
+        <p>{paragraph4}</p>
       </div>
     </div>
   );

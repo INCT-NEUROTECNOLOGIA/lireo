@@ -1,6 +1,7 @@
 import React from "react";
 import TeamMemberCard from "./TeamMemberCard";
 import { getPublicAssetUrl } from "../../../utils/pathUtils";
+import TeamCarousel from "./TeamCarousel";
 
 interface SectionProps {
   title: string;
@@ -31,6 +32,7 @@ const Section: React.FC<SectionProps> = ({ title, members }) => {
           />
         ))}
       </div>
+      <TeamCarousel members={members} />
     </div>
   );
 };

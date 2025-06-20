@@ -60,7 +60,7 @@ footer {
   border-bottom: 1px solid var(--color-primary-light);
   width: 100%;
   margin: 0;
-  padding: 0.9rem;
+  padding: 0.9rem 1.5rem;
 }
 
 .footer__quote span {
