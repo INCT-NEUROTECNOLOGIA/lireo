@@ -63,8 +63,8 @@ const SectionUserGuide: React.FC<SectionUserGuideProps> = ({
                           return (
                             <ul key={contentIndex}>
                               {contentItem.items?.map((listItem, listIndex) => (
-                                <>
-                                  <li key={listIndex}>
+                                <div key={listIndex}>
+                                  <li>
                                     {listItem.bold && (
                                       <strong>{listItem.bold}</strong>
                                     )}
@@ -78,7 +78,7 @@ const SectionUserGuide: React.FC<SectionUserGuideProps> = ({
                                       alt={listItem.image.alt}
                                     />
                                   )}
-                                </>
+                                </div>
                               ))}
                             </ul>
                           );
