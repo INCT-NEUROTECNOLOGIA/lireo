@@ -1,33 +1,10 @@
 export const userGuideText = {
   title: "Como usar o LIRE-FLOW",
-  text: "Este guia apresenta as principais funcionalidades da plataforma:",
+  text: "Este guia apresenta as principais funcionalidades da plataforma.",
   sections: [
     {
-      title: "Página Inicial",
-      content: [
-        {
-          type: "text",
-          text: "Ao acessar o site, é exibido o cabeçalho com o nome Lire-O e as seguintes opções:",
-        },
-        {
-          type: "list",
-          items: [
-            { bold: "Página Inicial", text: ": retorna à tela principal." },
-            {
-              bold: "Sobre Nós",
-              text: ": apresenta informações sobre o projeto e a equipe envolvida.",
-            },
-            {
-              bold: "Guia do Usuário",
-              text: ": reúne instruções sobre como utilizar o site.",
-            },
-          ],
-        },
-      ],
-    },
-
-    {
       title: "Leitor de Texto",
+      icon: "bi-book",
       content: [
         {
           type: "text",
@@ -92,6 +69,7 @@ export const userGuideText = {
 
     {
       title: "Controles de Leitura",
+      icon: "bi-stopwatch",
       content: [
         {
           type: "text",
@@ -198,7 +176,14 @@ export const userGuideText = {
     },
 
     {
+      title: "Níveis de Leitura",
+      icon: "bi-list-ul",
+      content: [],
+    },
+
+    {
       title: "Leitura com Destaque",
+      icon: "bi-highlighter",
       content: [
         {
           type: "text",
@@ -216,6 +201,7 @@ export const userGuideText = {
 
     {
       title: "Dicas Úteis",
+      icon: "bi-lightbulb",
       content: [
         {
           type: "list",
@@ -232,6 +218,12 @@ export const userGuideText = {
           ],
         },
       ],
+    },
+
+    {
+      title: "Suporte",
+      icon: "bi-question-circle",
+      content: [],
     },
   ],
 };

@@ -16,30 +16,6 @@
   margin: 0;
 }
 
-.aboutUsContainer__summary {
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(
-    to right,
-    var(--color-secondary-light),
-    var(--color-primary-light)
-  );
-  width: 100%;
-  padding: 5rem 12rem;
-  gap: 0.6rem;
-  color: var(--color-text-secondary);
-}
-
-.aboutUsContainer__summary h1 {
-  font-size: 2.5rem;
-  margin: 0;
-}
-
-.aboutUsContainer__summary p {
-  font-size: 1.2rem;
-  margin: 0;
-}
-
 .aboutUsContainer__ourStory {
   padding: 6.6rem;
   display: flex;
@@ -153,10 +129,6 @@
 }
 
 @media (max-width: 980px) {
-  .aboutUsContainer__summary {
-    padding: 5rem 2rem;
-  }
-
   .aboutUsContainer__ourStory {
     padding: 4rem 2rem;
   }
@@ -171,14 +143,6 @@
 }
 
 @media (max-width: 720px) {
-  .aboutUsContainer__summary h1 {
-    font-size: 2.3rem;
-  }
-
-  .aboutUsContainer__summary p {
-    font-size: 1rem;
-  }
-
   .aboutUsContainer__ourStory p {
     font-size: 1rem;
   }

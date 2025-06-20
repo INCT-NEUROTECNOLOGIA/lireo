@@ -53,3 +53,44 @@ li::marker {
 .bi {
   margin-right: 0.5rem;
 }
+
+.pageSummary {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(
+    to right,
+    var(--color-secondary-light),
+    var(--color-primary-light)
+  );
+  width: 100%;
+  padding: 5rem 12rem;
+  gap: 0.6rem;
+  color: var(--color-text-secondary);
+}
+
+.pageSummary h1 {
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+.pageSummary p {
+  font-size: 1.2rem;
+  margin: 0;
+  text-align: center;
+}
+
+@media (max-width: 980px) {
+  .pageSummary {
+    padding: 5rem 2rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .pageSummary h1 {
+    font-size: 2.3rem;
+  }
+
+  .pageSummary p {
+    font-size: 1rem;
+  }
+}

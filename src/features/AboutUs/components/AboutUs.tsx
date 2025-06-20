@@ -87,7 +87,7 @@ const AboutUs: React.FC = () => {
 
   return (
     <div className="aboutUsContainer">
-      <div className="aboutUsContainer__summary">
+      <div className="pageSummary">
         <h1>{aboutUsText.summary.title}</h1>
         <p>{aboutUsText.summary.description}</p>
       </div>
