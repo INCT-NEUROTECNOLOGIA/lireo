@@ -39,7 +39,7 @@ const Header: React.FC = () => {
             </a>
           </div>
           <button className="menu__toggle__mobile" onClick={handleMenuMobile}>
-            <i className="bi bi-list"></i>
+            <i className={menuMobileOpen ? "bi bi-x-lg" : "bi bi-list"}></i>
           </button>
         </nav>
       </header>
