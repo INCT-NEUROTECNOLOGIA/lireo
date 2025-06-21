@@ -1,6 +1,7 @@
 import "../layout/userGuideStyle.css";
 import { userGuideText } from "./TextUserGuide";
 import SectionUserGuide from "./SectionUserGuide";
+import FadeIn from "../../../../utils/components/FadeIn";
 
 const UserGuide = () => {
   return (
@@ -21,47 +22,16 @@ const UserGuide = () => {
         </div>
 
         <div className="userGuide__sections">
-          <SectionUserGuide
-            title={userGuideText.sections.loadText.title}
-            id={userGuideText.sections.loadText.id}
-            className={userGuideText.sections.loadText.className}
-            content={userGuideText.sections.loadText.content}
-          />
-
-          <SectionUserGuide
-            title={userGuideText.sections.readingControls.title}
-            id={userGuideText.sections.readingControls.id}
-            className={userGuideText.sections.readingControls.className}
-            content={userGuideText.sections.readingControls.content}
-          />
-
-          <SectionUserGuide
-            title={userGuideText.sections.readingLevels.title}
-            id={userGuideText.sections.readingLevels.id}
-            className={userGuideText.sections.readingLevels.className}
-            content={userGuideText.sections.readingLevels.content}
-          />
-
-          <SectionUserGuide
-            title={userGuideText.sections.manualReadingControls.title}
-            id={userGuideText.sections.manualReadingControls.id}
-            className={userGuideText.sections.manualReadingControls.className}
-            content={userGuideText.sections.manualReadingControls.content}
-          />
-
-          <SectionUserGuide
-            title={userGuideText.sections.tips.title}
-            id={userGuideText.sections.tips.id}
-            className={userGuideText.sections.tips.className}
-            content={userGuideText.sections.tips.content}
-          />
-
-          <SectionUserGuide
-            title={userGuideText.sections.support.title}
-            id={userGuideText.sections.support.id}
-            className={userGuideText.sections.support.className}
-            content={userGuideText.sections.support.content}
-          />
+          {Object.values(userGuideText.sections).map((section, index) => (
+            <FadeIn key={index}>
+              <SectionUserGuide
+                title={section.title}
+                id={section.id}
+                className={section.className}
+                content={section.content}
+              />
+            </FadeIn>
+          ))}
         </div>
       </div>
     </div>

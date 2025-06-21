@@ -82,13 +82,13 @@ li::marker {
 
 @media (max-width: 980px) {
   .pageSummary {
-    padding: 5rem 2rem;
+    padding: 4rem 1rem;
   }
 }
 
 @media (max-width: 720px) {
   .pageSummary h1 {
-    font-size: 2.3rem;
+    font-size: 2.2rem;
   }
 
   .pageSummary p {

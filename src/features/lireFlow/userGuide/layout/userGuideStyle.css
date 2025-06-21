@@ -107,3 +107,24 @@
 .userGuide__section .img-small {
   max-width: 25rem;
 }
+
+@media (max-width: 720px) {
+  .userGuide__content {
+    flex-direction: column;
+    padding: 0.6rem;
+    gap: 0.6rem;
+  }
+
+  .userGuide__section p {
+    font-size: 1rem;
+  }
+
+  .userGuide__section ul {
+    padding-left: 1.2rem;
+  }
+
+  .userGuide__sections {
+    width: 100%;
+    max-height: fit-content;
+  }
+}
