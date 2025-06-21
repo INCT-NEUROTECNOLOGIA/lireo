@@ -41,8 +41,9 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 1.2rem 2.5rem;
+  padding: 1.2rem 1.5rem;
   margin-bottom: 1.2rem;
+  scroll-margin-top: 4.4rem;
 }
 
 .userGuide__section h2 {
@@ -50,14 +51,6 @@
   font-weight: bold;
   margin: 0;
   margin-bottom: 0.8rem;
-  color: var(--color-tertiary);
-}
-
-.userGuide__section h3 {
-  font-size: 1.3rem;
-  margin: 0;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
   color: var(--color-tertiary);
 }
 
@@ -73,21 +66,35 @@
   margin: 0;
 }
 
-.userGuide__section.loadText {
+.loadText,
+.tips {
   background-color: var(--color-accent);
   border-radius: 15px;
 }
 
-.userGuide__section.readControls ul {
+.list {
+  margin: 0.3rem;
+}
+
+.bi-check-circle-fill {
+  color: var(--color-secondary);
+}
+
+.readingControls ul {
   margin: 0.9rem 0;
 }
 
-.obs {
-  font-size: 1.05rem;
-  margin-right: 0.6rem;
-  font-style: italic;
+.readingLevels .bi-chevron-right {
   color: var(--color-secondary);
+}
+
+.support a {
+  color: var(--color-tertiary);
   font-weight: bold;
+}
+
+.support a:hover {
+  color: var(--color-secondary);
 }
 
 .userGuide__section img {
@@ -97,34 +104,6 @@
   border-radius: 10px;
 }
 
-@media (max-width: 850px) {
-  .container {
-    width: 98%;
-    padding: 1.2rem;
-  }
-
-  .userGuide__container h1 {
-    font-size: 2rem;
-  }
-
-  .userGuide__container h2 {
-    font-size: 1.5rem;
-  }
-
-  .userGuide__container h3 {
-    font-size: 1.2rem;
-  }
-
-  .userGuide__container h4 {
-    font-size: 1.2rem;
-  }
-
-  .userGuide__container p,
-  .userGuide__container ul {
-    font-size: 1rem;
-  }
-
-  .userGuide__container ul {
-    padding-left: 2.5rem;
-  }
+.userGuide__section .img-small {
+  max-width: 25rem;
 }
