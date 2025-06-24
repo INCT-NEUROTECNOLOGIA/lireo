@@ -98,7 +98,7 @@ export const userGuideText = {
         },
         {
           type: "text",
-          text: "Essa classNameificação foi pensada para adaptar a experiência de leitura ao estágio de desenvolvimento do leitor, ajustando automaticamente a estimativa de fluência esperada para cada faixa escolar, baseada na tabela a seguir:",
+          text: "Essa classificação foi pensada para adaptar a experiência de leitura ao estágio de desenvolvimento do leitor, ajustando automaticamente a estimativa de fluência esperada para cada faixa escolar, baseada na tabela a seguir:",
         },
         {
           type: "image",

@@ -8,6 +8,7 @@ const Header: React.FC = () => {
     initalPage: "Início",
     aboutUs: "Sobre Nós",
     userGuide: "Como usar",
+    logo: "logotipo LIRE-O",
   };
 
   const [menuMobileOpen, setMenuMobileOpen] = useState<boolean>(false);
@@ -21,21 +22,22 @@ const Header: React.FC = () => {
           <img
             className="header__logoContainer__logo"
             src={getPublicAssetUrl("/images/logo-lireo-white.png")}
+            alt={headerText.logo}
           />
         </div>
         <nav>
           <div className="menu__desktop">
             <a href={ROUTE_PATHS.HOME}>
               <i className="bi bi-house"></i>
-              {headerText.initalPage}{" "}
+              {headerText.initalPage}
             </a>
             <a href={ROUTE_PATHS.USER_GUIDE}>
               <i className="bi bi-book"></i>
-              {headerText.userGuide}{" "}
+              {headerText.userGuide}
             </a>
             <a href={ROUTE_PATHS.ABOUT_US}>
               <i className="bi bi-people"></i>
-              {headerText.aboutUs}{" "}
+              {headerText.aboutUs}
             </a>
           </div>
           <button className="menu__toggle__mobile" onClick={handleMenuMobile}>

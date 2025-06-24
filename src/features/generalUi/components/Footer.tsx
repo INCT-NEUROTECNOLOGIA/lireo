@@ -1,7 +1,6 @@
 import React from "react";
 import "../layout/footer.css";
 import { getPublicAssetUrl } from "../../../utils/pathUtils";
-import { ROUTE_PATHS } from "../../../config/routes";
 
 const Footer: React.FC = () => {
   const footerText = {
@@ -14,6 +13,7 @@ const Footer: React.FC = () => {
       origin: "Lucas 12:27",
     },
     copyright: "© 2024 LIRE-O. Todos os direitos reservados.",
+    logo: "logotipo LIRE-O",
   };
 
   return (
@@ -23,6 +23,7 @@ const Footer: React.FC = () => {
           <img
             className="footer__img"
             src={getPublicAssetUrl("/images/logo-lireo-white.png")}
+            alt={footerText.logo}
           />
           <p className="footer__text">{footerText.catchphrase[0]}</p>
           <p className="footer__text">{footerText.catchphrase[1]}</p>

@@ -40,6 +40,10 @@
   opacity: 1;
 }
 
+.aboutUsContainer__teamCarousel__button .bi {
+  margin: 0;
+}
+
 .aboutUsContainer__teamCarousel__indicators {
   display: flex;
   justify-content: center;

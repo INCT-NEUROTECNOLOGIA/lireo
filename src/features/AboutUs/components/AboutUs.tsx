@@ -1,55 +1,46 @@
 import React from "react";
 import "../layout/aboutUs.css";
-import Section from "./Section";
+import Section, { Member } from "./Section";
 import { getPublicAssetUrl } from "../../../utils/pathUtils";
 import FadeIn from "../../../utils/components/FadeIn";
 
 const AboutUs: React.FC = () => {
-  const projectCreators = [
+  const projectCreators: Member[] = [
     {
       name: "Profa. Dra. Luciana Mendonça Alves",
-      paragraph1: "Coordenadora do projeto",
-      paragraph2: "Departamento de Fonoaudiologia da Faculdade de Medicina",
-      paragraph3: "UFMG",
-      paragraph4: "CRFa 6-1319",
+      role: "Coordenadora do projeto",
+      position: "Departamento de Fonoaudiologia da Faculdade de Medicina",
+      education: "UFMG",
+      affiliation: "CRFa 6-1319",
       photo: "/images/DraLucianaMendonca_TeamMemberPicture.jpeg",
     },
     {
       name: "Ramiro",
-      paragraph1: "Desenvolvedor",
-      paragraph2: "",
-      paragraph3: "",
-      paragraph4: "",
+      role: "Desenvolvedor",
+      position: "",
+      education: "",
+      affiliation: "",
       photo: "/images/ramiro.jpg",
     },
     {
       name: "Ana Julia Ferreira Garcia",
-      paragraph1: "Desenvolvedora",
-      paragraph2: "Bolsista de Iniciação Científica",
-      paragraph3: "Curso Técnico em Desenvolvimento de Sistemas",
-      paragraph4: " COLTEC/UFMG",
+      role: "Desenvolvedora",
+      position: "Bolsista de Iniciação Científica",
+      education: "Curso Técnico em Desenvolvimento de Sistemas",
+      affiliation: " COLTEC/UFMG",
       photo: "/images/AnaJulia_TeamMemberPicture.jpeg",
     },
     {
       name: "Raphael Inácio Bicalho de Carvalho",
-      paragraph1: "Desenvolvedor",
-      paragraph2: "Bolsista de Iniciação Científica",
-      paragraph3: "Curso Técnico em Desenvolvimento de Sistemas",
-      paragraph4: " COLTEC/UFMG",
+      role: "Desenvolvedor",
+      position: "Bolsista de Iniciação Científica",
+      education: "Curso Técnico em Desenvolvimento de Sistemas",
+      affiliation: " COLTEC/UFMG",
       photo: "/images/raphael.jpg",
     },
   ];
 
-  const collaborators = [
-    {
-      name: "example name",
-      paragraph1: "example",
-      paragraph2: "",
-      paragraph3: "",
-      paragraph4: "",
-      photo: "/images/exampleName.jpg",
-    },
-  ];
+  const collaborators: Member[] = [];
 
   const aboutUsText = {
     summary: {

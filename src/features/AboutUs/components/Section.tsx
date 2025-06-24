@@ -5,14 +5,16 @@ import TeamCarousel from "./TeamCarousel";
 
 interface SectionProps {
   title: string;
-  members: {
-    name: string;
-    paragraph1: string;
-    paragraph2: string;
-    paragraph3: string;
-    paragraph4: string;
-    photo: string;
-  }[];
+  members?: Member[];
+}
+
+export interface Member {
+  name: string;
+  role: string;
+  position: string;
+  education: string;
+  affiliation: string;
+  photo: string;
 }
 
 const Section: React.FC<SectionProps> = ({ title, members }) => {
@@ -20,14 +22,14 @@ const Section: React.FC<SectionProps> = ({ title, members }) => {
     <div className="aboutUsContainer__section">
       <h2 className="aboutUsContainer__sectionTitle">{title}</h2>
       <div className="aboutUsContainer__team">
-        {members.map((member, index) => (
+        {members?.map((member, index) => (
           <TeamMemberCard
             key={index}
             name={member.name}
-            paragraph1={member.paragraph1}
-            paragraph2={member.paragraph2}
-            paragraph3={member.paragraph3}
-            paragraph4={member.paragraph4}
+            role={member.role}
+            position={member.position}
+            education={member.education}
+            affiliation={member.affiliation}
             photo={getPublicAssetUrl(member.photo)}
           />
         ))}

@@ -40,13 +40,6 @@ mark {
   padding: 0.1rem 0 0.2rem;
 }
 
-/* .hightlightedLine {
-  background-color: rgba(255, 230, 150, 0.3);
-  transition: top 0.2s ease;
-  position: absolute;
-  z-index: 0;
-} */
-
 @media (max-width: 720px) {
   .textContainer {
     max-width: 98%;
