@@ -126,5 +126,6 @@
   .userGuide__sections {
     width: 100%;
     max-height: fit-content;
+    overflow-y: hidden;
   }
 }

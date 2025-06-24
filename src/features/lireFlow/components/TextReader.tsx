@@ -84,7 +84,6 @@ const TextReader = () => {
     uploadText5: " ou ",
     placeholderSelectText: "Selecione um dos textos",
     texts: [
-      "No Reino das Letras Felizes (Leitura fácil)",
       "O Ratinho Rói-Rói (Leitura fácil)",
       "Conto ou não conto (Leitura média)",
       "A Cartomante (Leitura avançada)",

@@ -60,6 +60,10 @@
   background-color: var(--color-secondary);
 }
 
+.textReaderContainer__fileUploader__selectText:hover option {
+  color: var(--color-text-secondary);
+}
+
 .textReaderContainer__fileUploader__selectText {
   padding: 0.6rem 0.9rem;
   padding-right: 2.2rem;
