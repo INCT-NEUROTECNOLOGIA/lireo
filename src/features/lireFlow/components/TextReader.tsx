@@ -11,6 +11,7 @@ const TextReader = () => {
     error: string;
     isDragging: boolean;
     isLoading: boolean;
+    fileUploaderClose: boolean;
   };
 
   const initialState: State = {
@@ -19,6 +20,7 @@ const TextReader = () => {
     error: "",
     isDragging: false,
     isLoading: false,
+    fileUploaderClose: false,
   };
 
   type Action =
@@ -26,7 +28,8 @@ const TextReader = () => {
     | { type: "SET_ERROR"; payload: string }
     | { type: "RESET" }
     | { type: "SET_LOADING"; payload: boolean }
-    | { type: "SET_DRAGGING"; payload: boolean };
+    | { type: "SET_DRAGGING"; payload: boolean }
+    | { type: "SET_FILE_UPLOADER_CLOSE" };
 
   const readerReducer = (state: State, action: Action): State => {
     switch (action.type) {
@@ -37,6 +40,7 @@ const TextReader = () => {
           fileContent: action.payload.content,
           error: "",
           isLoading: false,
+          fileUploaderClose: true,
         };
       case "SET_ERROR":
         return {
@@ -58,6 +62,11 @@ const TextReader = () => {
         return {
           ...state,
           isDragging: action.payload,
+        };
+      case "SET_FILE_UPLOADER_CLOSE":
+        return {
+          ...state,
+          fileUploaderClose: !state.fileUploaderClose,
         };
       default:
         return state;
@@ -162,10 +171,16 @@ const TextReader = () => {
     event.preventDefault();
   };
 
+  const handleFileUploader = () =>
+    dispatch({ type: "SET_FILE_UPLOADER_CLOSE" });
+
   return (
     <div className="textReaderContainer">
       <div
-        className="textReaderContainer__fileUploader"
+        className={
+          "textReaderContainer__fileUploader" +
+          (state.fileUploaderClose ? "" : " active")
+        }
         onDrop={dropFile}
         onDragOver={dragFile}
         onDragLeave={dragLeave}
@@ -175,6 +190,7 @@ const TextReader = () => {
             : "var(--color-accent)",
         }}
       >
+        <i className="bi bi-cloud-upload"></i>
         <div className="textReaderContainer__fileUploader__text">
           {textReaderText.uploadText}{" "}
           <strong>{textReaderText.uploadText2}</strong>{" "}
@@ -220,9 +236,20 @@ const TextReader = () => {
       {state.error && <p style={{ color: "red" }}>{state.error}</p>}
 
       {state.fileName && (
-        <p className="textReaderContainer__fileName">
-          <strong>{textReaderText.fileText}</strong> {state.fileName}
-        </p>
+        <div className="textReaderContainer__header">
+          <p className="textReaderContainer__fileName" title={state.fileName}>
+            <strong>{textReaderText.fileText}</strong> {state.fileName}
+          </p>
+
+          {state.fileUploaderClose && (
+            <button
+              className="textReaderContainer__button"
+              onClick={handleFileUploader}
+            >
+              Escolher um novo texto
+            </button>
+          )}
+        </div>
       )}
 
       {state.isLoading ? (

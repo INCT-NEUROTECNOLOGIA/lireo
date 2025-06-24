@@ -1,30 +1,25 @@
-export interface SectionContent {
+export interface SectionUserGuideProps {
+  title: string;
+  id: string;
+  className: string;
+  content: SectionContent[];
+}
+
+interface SectionContent {
   type: string;
   text?: string;
   items?: ListItem[];
-  subsection?: Subsection[];
   image?: Image;
-  obs?: string;
+  href?: string;
 }
 
-export interface ListItem {
+interface ListItem {
   bold?: string;
   text?: string;
   image?: Image;
-  obs?: string;
 }
 
-export interface Image {
+interface Image {
   src: string;
   alt: string;
-}
-
-export interface Subsection {
-  title: string;
-  content: SectionContent[];
-}
-
-export interface SectionUserGuideProps {
-  title: string;
-  content: SectionContent[];
 }

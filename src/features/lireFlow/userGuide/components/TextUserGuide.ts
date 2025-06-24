@@ -1,107 +1,62 @@
 export const userGuideText = {
   title: "Como usar o LIRE-FLOW",
-  text: "Este guia apresenta as principais funcionalidades da plataforma:",
-  sections: [
-    {
-      title: "Página Inicial",
+  text: "Este guia apresenta as principais funcionalidades da plataforma.",
+  sections: {
+    loadText: {
+      title: "Carregar um texto",
+      icon: "bi bi-book",
+      id: "loadText",
+      className: "loadText",
       content: [
         {
           type: "text",
-          text: "Ao acessar o site, é exibido o cabeçalho com o nome Lire-O e as seguintes opções:",
+          text: "Formas de inserir um texto:",
         },
         {
-          type: "list",
+          type: "listCheck",
           items: [
-            { bold: "Página Inicial", text: ": retorna à tela principal." },
             {
-              bold: "Sobre Nós",
-              text: ": apresenta informações sobre o projeto e a equipe envolvida.",
+              bold: "Arraste e solte um arquivo .txt",
+              text: " na área de upload.",
             },
             {
-              bold: "Guia do Usuário",
-              text: ": reúne instruções sobre como utilizar o site.",
+              bold: "Clique em “Selecione um arquivo”",
+              text: " para escolher um .txt do seu dispositivo.",
+            },
+            {
+              bold: "Escolha um texto pronto",
+              text: " na lista ao lado.",
             },
           ],
         },
-      ],
-    },
-
-    {
-      title: "Leitor de Texto",
-      content: [
         {
           type: "text",
-          text: "Espaço destinado à prática de leitura. Funcionamento descrito a seguir:",
-        },
-        {
-          type: "subsection",
-          subsection: [
-            {
-              title: "a) Carregar um texto",
-              content: [
-                {
-                  type: "text",
-                  text: "Há diferentes formas de inserção:",
-                },
-                {
-                  type: "list",
-                  items: [
-                    {
-                      bold: ".txt",
-                      text: ", o formato suportado: arraste e solte o arquivo nessa área.",
-                      image: {
-                        src: "/userGuideImgs/drag_and_drop_upload.png",
-                        alt: "Arrastar e Soltar Upload",
-                      },
-                    },
-                    {
-                      text: "Selecionar um arquivo diretamente do dispositivo, clicando no botão “Selecione um arquivo”.",
-                    },
-                    {
-                      text: "Escolher um texto pronto na lista suspensa ao lado.",
-                      image: {
-                        src: "/userGuideImgs/select_texts_defaults.png",
-                        alt: "Selecionar Textos Padrões",
-                      },
-                    },
-                  ],
-                  text: "Após o carregamento, o nome do arquivo será exibido e o conteúdo aparecerá na tela.",
-                },
-              ],
-            },
-            {
-              title: "b) Visualização do texto",
-              content: [
-                {
-                  type: "text",
-                  text: "O conteúdo carregado é exibido de forma centralizada, com o título em destaque, seguido pelos parágrafos formatados para facilitar a leitura.",
-                },
-                {
-                  type: "image",
-                  image: {
-                    src: "/userGuideImgs/text_preview.png",
-                    alt: "Visualização do Texto",
-                  },
-                },
-              ],
-            },
-          ],
+          text: "Após o carregamento, o nome do arquivo será exibido e o conteúdo aparecerá na tela.",
         },
       ],
     },
 
-    {
+    readingControls: {
       title: "Controles de Leitura",
+      icon: "bi bi-stopwatch",
+      id: "readingControls",
+      className: "readingControls",
       content: [
         {
           type: "text",
           text: "Acima do texto estão os controles que permitem personalizar a experiência:",
         },
         {
+          type: "image",
+          image: {
+            src: "/userGuideImgs/reading_controls.png",
+            alt: "Controles de Leitura",
+          },
+        },
+        {
           type: "list",
           items: [
             {
-              obs: "*",
               bold: "Escolha um nível: ",
               text: "permite selecionar o nível de leitura.",
             },
@@ -115,20 +70,21 @@ export const userGuideText = {
             },
           ],
         },
+      ],
+    },
+
+    readingLevels: {
+      title: "Níveis de Leitura",
+      icon: "bi bi-list-ul",
+      id: "readingLevels",
+      className: "readingLevels",
+      content: [
         {
-          type: "image",
-          image: {
-            src: "/userGuideImgs/reading_controls.png",
-            alt: "Controles de Leitura",
-          },
-        },
-        {
-          type: "observation",
-          obs: "*",
+          type: "text",
           text: "Os níveis exibidos na página representam os anos do ensino fundamental. Cada nível corresponde a um ano escolar, seguindo esta equivalência:",
         },
         {
-          type: "list",
+          type: "listChevron",
           items: [
             { text: "Nível 1 representa o 2º ano" },
             { text: "Nível 2 representa o 3º ano" },
@@ -151,74 +107,41 @@ export const userGuideText = {
             alt: "Tabela de Fluência Leitora",
           },
         },
-        {
-          type: "subsection",
-          subsection: [
-            {
-              title: "Ajuste Manual da Velocidade de Leitura",
-              content: [
-                {
-                  type: "text",
-                  text: "Além do controle deslizante para ajustar a velocidade da leitura, é possível alterar manualmente o número de palavras por minuto (ppm) através do campo numérico ao lado: basta clicar e digitar o valor desejado.",
-                },
-                {
-                  type: "image",
-                  image: {
-                    src: "/userGuideImgs/words_per_minute_input.png",
-                    alt: "Campo para ajuste manual de palavras por minuto",
-                  },
-                },
-              ],
-            },
-            {
-              title: "Botões de controle:",
-              content: [
-                {
-                  type: "list",
-                  items: [
-                    {
-                      bold: "Iniciar: ",
-                      text: "inicia a leitura com destaque progressivo das palavras.",
-                    },
-                    {
-                      bold: "Pausar: ",
-                      text: "interrompe temporariamente a leitura.",
-                    },
-                    {
-                      bold: "Reiniciar: ",
-                      text: "retorna ao início do texto.",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
       ],
     },
 
-    {
-      title: "Leitura com Destaque",
+    manualReadingControls: {
+      title: "Controles Manuais de Leitura",
+      icon: "bi bi-sliders",
+      id: "manualReadingControls",
+      className: "manualReadingControls",
       content: [
         {
           type: "text",
-          text: "Durante a leitura, as palavras são automaticamente destacadas uma a uma, auxiliando o acompanhamento visual e promovendo atenção, ritmo e fluência.",
+          text: "Além do controle deslizante para ajustar a velocidade da leitura, é possível alterar manualmente o número de palavras por minuto (ppm) através do campo numérico ao lado:",
         },
         {
-          type: "image",
+          type: "text",
+          bold: " basta clicar e digitar o valor desejado.",
+        },
+        {
+          type: "imageSmall",
           image: {
-            src: "/userGuideImgs/highlighted_reading.png",
-            alt: "Leitura com Destaque",
+            src: "/userGuideImgs/words_per_minute_input.png",
+            alt: "Campo para ajuste manual de palavras por minuto",
           },
         },
       ],
     },
 
-    {
+    tips: {
       title: "Dicas Úteis",
+      icon: "bi bi-lightbulb",
+      id: "tips",
+      className: "tips",
       content: [
         {
-          type: "list",
+          type: "listCheck",
           items: [
             {
               text: "Arquivos simples no formato .txt garantem melhor compatibilidade.",
@@ -233,5 +156,23 @@ export const userGuideText = {
         },
       ],
     },
-  ],
+
+    support: {
+      title: "Suporte",
+      icon: "bi bi-question-circle",
+      id: "support",
+      className: "support",
+      content: [
+        {
+          type: "text",
+          text: "Em caso de dúvidas, dificuldades ou sugestões, consulte a seção destinada às informações de contato: ",
+        },
+        {
+          type: "link",
+          text: "Sobre Nós",
+          href: "/lireo/sobre-nos",
+        },
+      ],
+    },
+  },
 };

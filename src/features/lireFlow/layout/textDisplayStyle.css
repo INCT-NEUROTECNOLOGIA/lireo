@@ -1,13 +1,12 @@
 .textContainer {
   background-color: var(--color-bg-light);
   border-radius: 12px;
-  padding: 20px;
+  padding: 1.2rem;
   overflow: auto;
-  margin-bottom: 20px;
+  margin-bottom: 1.2rem;
   box-shadow: 0 0 5px var(--color-shadow);
-  max-height: 500px;
-  max-width: 900px;
-  width: 100%;
+  max-height: 75vh;
+  max-width: 90%;
   color: black;
   position: relative;
 }
@@ -16,7 +15,7 @@
   font-size: 2em;
   font-weight: bold;
   text-align: center;
-  margin: 10px 0;
+  margin: 0.6rem 0;
 }
 
 .textContainer__textAuthor {
@@ -25,29 +24,24 @@
 }
 
 .textContainer__text-paragraph {
-  font-family: Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
   text-align: justify;
   text-indent: 4em;
-  line-height: 1.5;
+  line-height: 1.5rem;
+  word-spacing: 0.15rem;
   white-space: pre-wrap;
   word-wrap: break-word;
-  margin: 12px 0;
-}
-
-.textContainer__textSource {
-  font-size: 0.8em;
-  text-align: right;
+  margin: 0.75rem 0;
 }
 
 mark {
-  background-color: var(--color-primary);
+  background-color: var(--color-secondary-hover);
   border-radius: 5px;
-  padding: 0 0 0.2em;
+  padding: 0.1rem 0 0.2rem;
 }
 
-.hightlightedLine {
-  background-color: rgba(255, 230, 150, 0.3);
-  transition: top 0.2s ease;
-  position: absolute;
-  z-index: 0;
+@media (max-width: 720px) {
+  .textContainer {
+    max-width: 98%;
+  }
 }

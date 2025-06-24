@@ -4,10 +4,12 @@ import { getPublicAssetUrl } from "../../../../utils/pathUtils";
 
 const SectionUserGuide: React.FC<SectionUserGuideProps> = ({
   title,
+  id,
+  className,
   content,
 }) => {
   return (
-    <div className="userGuide__section">
+    <section id={id} className={`userGuide__section ${className}`}>
       <h2>{title}</h2>
 
       {content.map((item, index) => {
@@ -20,14 +22,37 @@ const SectionUserGuide: React.FC<SectionUserGuideProps> = ({
               <ul key={index}>
                 {item.items?.map((listItem, listIndex) => (
                   <li key={listIndex}>
-                    {listItem.obs && (
-                      <span className="obs">{listItem.obs}</span>
-                    )}
                     {listItem.bold && <strong>{listItem.bold}</strong>}
                     {listItem.text}
                   </li>
                 ))}
               </ul>
+            );
+
+          case "listChevron":
+            return (
+              <div className="list" key={index}>
+                {item.items?.map((listItem, listIndex) => (
+                  <p key={listIndex}>
+                    <i className="bi bi-chevron-right"></i>
+                    {listItem.bold && <strong>{listItem.bold}</strong>}
+                    {listItem.text}
+                  </p>
+                ))}
+              </div>
+            );
+
+          case "listCheck":
+            return (
+              <div className="list" key={index}>
+                {item.items?.map((listItem, listIndex) => (
+                  <p key={listIndex}>
+                    <i className="bi bi-check-circle-fill"></i>
+                    {listItem.bold && <strong>{listItem.bold}</strong>}
+                    {listItem.text}
+                  </p>
+                ))}
+              </div>
             );
 
           case "image":
@@ -39,72 +64,28 @@ const SectionUserGuide: React.FC<SectionUserGuideProps> = ({
               />
             );
 
-          case "observation":
+          case "imageSmall":
             return (
-              <p key={index}>
-                <span className="obs">{item.obs}</span>
+              <img
+                className="img-small"
+                key={index}
+                src={getPublicAssetUrl(item.image?.src)}
+                alt={item.image?.alt}
+              />
+            );
+
+          case "link":
+            return (
+              <a key={index} href={item.href}>
                 {item.text}
-              </p>
+              </a>
             );
 
-          case "subsection":
-            return (
-              <div key={index}>
-                {item.subsection?.map((subItem, subIndex) => (
-                  <div key={subIndex}>
-                    <h3>{subItem.title}</h3>
-
-                    {subItem.content.map((contentItem, contentIndex) => {
-                      switch (contentItem.type) {
-                        case "text":
-                          return <p key={contentIndex}>{contentItem.text}</p>;
-
-                        case "list":
-                          return (
-                            <ul key={contentIndex}>
-                              {contentItem.items?.map((listItem, listIndex) => (
-                                <>
-                                  <li key={listIndex}>
-                                    {listItem.bold && (
-                                      <strong>{listItem.bold}</strong>
-                                    )}
-                                    {listItem.text}
-                                  </li>
-                                  {listItem.image && (
-                                    <img
-                                      src={getPublicAssetUrl(
-                                        listItem.image.src
-                                      )}
-                                      alt={listItem.image.alt}
-                                    />
-                                  )}
-                                </>
-                              ))}
-                            </ul>
-                          );
-
-                        case "image":
-                          return (
-                            <img
-                              key={contentIndex}
-                              src={getPublicAssetUrl(contentItem.image?.src)}
-                              alt={contentItem.image?.alt}
-                            />
-                          );
-
-                        default:
-                          return null;
-                      }
-                    })}
-                  </div>
-                ))}
-              </div>
-            );
           default:
             return null;
         }
       })}
-    </div>
+    </section>
   );
 };
 

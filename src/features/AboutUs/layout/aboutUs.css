@@ -1,66 +1,175 @@
 .aboutUsContainer {
-  padding: 20px;
-  max-width: 1000px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   margin: 0 auto;
+}
+
+.aboutUsContainer__section {
+  padding: 2.5rem 0;
+  background-color: var(--color-bg-light);
+  width: 100%;
+}
+
+.aboutUsContainer__sectionTitle {
+  margin: 0;
+}
+
+.aboutUsContainer__ourStory {
+  padding: 6.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: justify;
+}
+
+.aboutUsContainer__ourStory h1 {
+  margin: 0;
+  margin-bottom: 1.5rem;
+}
+
+.aboutUsContainer__ourStory__title {
   text-align: center;
 }
-  
-  .aboutUsContainer__title {
-    font-size: 2.5rem;
-    color: #097954;
-    margin-bottom: 20px;
+
+.aboutUsContainer__ourStory p {
+  font-size: 1.05rem;
+  margin: 0;
+  margin-bottom: 1.5rem;
+  text-indent: 2em;
+}
+
+.aboutUsContainer__ourStory__originBrandContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+  margin-top: 5rem;
+}
+
+.aboutUsContainer__ourStory__originBrandText {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+.aboutUsContainer__ourStory__originBrandText p {
+  text-indent: 0;
+}
+
+.aboutUsContainer__ourStory img {
+  height: 20rem;
+}
+
+.quote {
+  font-style: italic;
+  color: var(--color-primary);
+  border-left: 4px solid var(--color-primary);
+  padding-left: 1rem;
+  line-height: 1.6;
+}
+
+.quote span {
+  display: block;
+  font-style: normal;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.aboutUsContainer__team {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  justify-items: center;
+}
+
+.aboutUsContainer__teamMember {
+  text-align: center;
+  margin: 2rem;
+}
+
+.aboutUsContainer__teamMemberPhoto {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+.aboutUsContainer__teamMemberName {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0;
+  margin-bottom: 0.3rem;
+}
+
+.aboutUsContainer__teamMemberTexts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 0.3rem;
+  font-size: 0.9rem;
+  color: var(--color-text-primary);
+}
+
+.aboutUsContainer__teamMemberTexts p {
+  margin: 0 auto;
+}
+
+.aboutUsContainer__teamMemberTexts.role {
+  color: var(--color-primary-hover);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+@media (max-width: 980px) {
+  .aboutUsContainer__ourStory {
+    padding: 4rem 2rem;
   }
-  
-  .aboutUsContainer__description {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-    color: #555;
-  }
-  
+
   .aboutUsContainer__team {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    justify-content: center;
+    display: none;
   }
-  
-  @media (min-width: 800px) {
-    .aboutUsContainer__team {
-      grid-template-columns: repeat(4, 1fr); 
-    }
+
+  .aboutUsContainer__ourStory__originBrandContainer img {
+    height: 12rem;
   }
-  
-  .aboutUsContainer__teamMember {
-    
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
+}
+
+@media (max-width: 720px) {
+  .aboutUsContainer__ourStory p {
+    font-size: 1rem;
+  }
+
+  .aboutUsContainer__ourStory__originBrandContainer {
+    flex-direction: column-reverse;
+  }
+
+  .aboutUsContainer__ourStory img {
+    height: 8rem;
+  }
+
+  .aboutUsContainer__ourStory__originBrandContainer {
+    gap: 2rem;
+    margin-top: 1.5rem;
+  }
+
+  .aboutUsContainer__ourStory__originBrandText {
     text-align: center;
   }
-  .aboutUsContainer__teamMemberName{
-    margin-top: 0;
-    margin-bottom: 5px;
+
+  .aboutUsContainer__ourStory__originBrandText p {
+    text-align: justify;
   }
-  .aboutUsContainer__teamMemberPhoto {
-    width: 100%;
-    aspect-ratio: 9 / 11; 
-    object-fit: cover; 
-    object-position: top;
-    border-top-right-radius: 8px;
-    border-top-left-radius: 8px;
+
+  .aboutUsContainer__teamMemberTexts {
+    margin: 0 auto;
+    max-width: 15rem;
   }
-  .aboutUsContainer__teamMemberTexts{
-    padding: 10px;
-  }
-  .aboutUsContainer__teamMember h2 {
-    font-size: 1.5rem;
-    color: #097954;
-    margin-bottom: 10px;
-  }
-  
-  .aboutUsContainer__teamMemberParagraph {
-    font-size: 1rem;
-    color: #555;
-    margin-top:5px;
-    margin-bottom: 5px;
-  }
+}

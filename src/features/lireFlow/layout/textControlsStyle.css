@@ -1,21 +1,23 @@
 .textControls {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 20px;
-  width: 90%;
-  margin-bottom: 30px;
-  color: var(--color-text);
+  gap: 1.2rem;
+  width: inherit;
+  margin-bottom: 1.9rem;
+  color: var(--color-text-primary);
 }
 
 .textControls__speedControls {
-  flex: 1 1 550px;
+  flex: 1;
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 1.2rem;
   justify-content: center;
 }
 
 .textControls__inputContainer {
+  flex: 1;
   display: inherit;
   gap: inherit;
   align-items: center;
@@ -23,7 +25,7 @@
 }
 
 .textControls__speedSlider {
-  flex: 1 1 150px;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,53 +35,66 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 0.3rem;
+  width: 100%;
 }
 
 .textControls__speedSlider p {
-  margin: 5px 0px;
+  margin: 0.3rem 0;
 }
 
 .textControls__speedSlider__input {
   flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
   height: 8px;
   border-radius: 5px;
+  background: linear-gradient(
+        to right,
+        var(--color-secondary-hover),
+        var(--color-primary-hover)
+      )
+      0% 0% / var(--progress, 50%) 100% no-repeat,
+    #e5f6fa;
   cursor: pointer;
-  accent-color: var(--color-primary);
-  border: none;
+  border: 1px solid var(--color-border);
+  --progress: 31%;
 }
 
 .textControls__speedSlider__input::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 20px;
-  height: 20px;
+  width: 1.2rem;
+  height: 1.2rem;
   border-radius: 50%;
-  background-color: var(--color-primary);
+  background-color: var(--color-primary-hover);
   cursor: pointer;
   border: none;
 }
 
 .textControls__speedSlider__input::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
+  width: 1.2rem;
+  height: 1.2rem;
   border-radius: 50%;
-  background-color: var(--color-primary);
+  background-color: var(--color-primary-hover);
   cursor: pointer;
   border: none;
 }
 
 .textControls__buttons {
-  flex: 1 1 200px;
+  flex: 1;
   display: flex;
   justify-content: flex-end;
-  gap: 20px;
+  gap: 1.2rem;
 }
 
-.textControls__buttons__pauseButton,
-.textControls__buttons__startButton,
-.textControls__buttons__restartButton {
+.textControls__buttons .bi {
+  font-size: 1.5rem;
+}
+
+.textControls__button {
   flex: 1;
-  padding: 10px 20px;
+  padding: 0.3rem 1rem;
   font-size: 1rem;
   font-weight: bold;
   border: none;
@@ -87,19 +102,39 @@
   color: var(--color-white);
   cursor: pointer;
   transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.textControls__button.start {
+  background-color: var(--color-secondary);
+}
+
+.textControls__button.start:hover {
+  background-color: var(--color-secondary-hover);
+}
+
+.textControls__button.pause {
+  background-color: var(--color-tertiary);
+}
+
+.textControls__button.pause:hover {
+  background-color: var(--color-tertiary-hover);
+}
+
+.textControls__button.restart {
   background-color: var(--color-primary);
 }
 
-.textControls__buttons__pauseButton:hover,
-.textControls__buttons__startButton:hover,
-.textControls__buttons__restartButton:hover {
+.textControls__button.restart:hover {
   background-color: var(--color-primary-hover);
 }
 
 .textControls__selectLevel {
-  flex: 1 1 200px;
-  padding: 10px 15px;
-  padding-right: 35px;
+  flex: 1;
+  padding: 0.7rem 0.9rem;
+  padding-right: 2.2rem;
   font-size: 1rem;
   font-weight: bold;
   border: none;
@@ -111,78 +146,71 @@
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg fill='white' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 10px center;
-  background-size: 20px;
+  background-position: right 0.6rem center;
 }
 
-.textControls__selectLevel select:hover {
+.textControls__selectLevel:hover {
   background-color: var(--color-primary-hover);
 }
 
 .textControls__wordsPerMinute {
-  flex: 1 1 50px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .textControls__wordsPerMinute__input {
-  width: 55px;
-  height: 30px;
+  width: 3.4rem;
+  height: 1.9rem;
   border: none;
   text-align: center;
   font-size: 1rem;
+  color: var(--color-text-primary);
+  font-weight: 600;
 }
 
-.bi-clock {
-  color: var(--color-primary-hover);
-  margin-right: 2px;
+.textControls__wordsPerMinute .bi {
+  background: linear-gradient(
+    to right,
+    var(--color-secondary),
+    var(--color-primary)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  margin-right: 0.12rem;
 }
 
-@media (max-width: 980px) {
+@media (max-width: 720px) {
   .textControls {
     flex-direction: column;
-    max-height: 250px;
   }
 
   .textControls__speedControls {
+    flex-direction: column;
     width: 100%;
-    flex: 1;
+    gap: 0.6rem;
   }
 
   .textControls__buttons {
     width: 100%;
-    flex: 1;
-  }
-}
-
-@media (max-width: 580px) {
-  .textControls {
-    gap: 10px;
-  }
-
-  .textControls__buttons {
-    justify-content: center;
-    flex-direction: column;
-    gap: 12px;
   }
 
   .textControls__selectLevel {
     width: 100%;
-  }
-}
-
-@media (max-width: 430px) {
-  .textControls__speedControls {
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  .textControls__selectLevel {
-    flex: 1;
   }
 
   .textControls__inputContainer {
-    gap: 5vw;
+    width: 100%;
+    gap: 2.5rem;
+  }
+
+  .textControls__buttonText {
+    display: none;
+  }
+
+  .textControls__buttons .bi {
+    margin: 0;
   }
 }
