@@ -42,14 +42,15 @@ footer {
   margin: 0.2rem 0;
 }
 
-.footer__links {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.footer__email {
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: var(--color-secondary-hover);
+  font-weight: 500;
 }
 
-.footer__links a {
-  font-size: 1rem;
+.footer__email:hover {
+  color: var(--color-text-secondary);
 }
 
 .footer__quote {

@@ -200,7 +200,11 @@ const TextReader = () => {
           ))}
           <li>
             {textReaderText.summary.linkText}
-            <a href={textReaderText.summary.linkRef}>
+            <a
+              href={textReaderText.summary.linkRef}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {textReaderText.summary.link}
             </a>
           </li>
