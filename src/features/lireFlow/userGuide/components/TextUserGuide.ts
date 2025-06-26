@@ -1,3 +1,5 @@
+import { ROUTE_PATHS } from "../../../../config/routes";
+
 export const userGuideText = {
   title: "Como usar o LIRE-FLOW",
   text: "Este guia apresenta as principais funcionalidades da plataforma.",
@@ -170,7 +172,7 @@ export const userGuideText = {
         {
           type: "link",
           text: "Sobre Nós",
-          href: "/lireo/sobre-nos",
+          href: ROUTE_PATHS.ABOUT_US,
         },
       ],
     },
