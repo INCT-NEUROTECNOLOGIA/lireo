@@ -6,7 +6,6 @@
   margin-bottom: 1.2rem;
   box-shadow: 0 0 5px var(--color-shadow);
   max-height: 75vh;
-  max-width: 65vw;
   color: black;
   position: relative;
 }
@@ -34,10 +33,23 @@
   margin: 0.75rem 0;
 }
 
-mark {
+.wordElement {
+  font-size: inherit;
+  line-height: inherit;
+  word-spacing: inherit;
+  border-radius: 3px;
+  transition: background-color 0.05s ease, box-shadow 0.05s ease;
+}
+
+.wordElement.highlighted {
   background-color: var(--color-secondary-hover);
-  border-radius: 5px;
-  padding: 0.1rem 0 0.2rem;
+  box-shadow: 0 0 0 0.2rem var(--color-secondary-hover);
+}
+
+@media (min-width: 1000px) {
+  .textContainer {
+    max-width: 70vw;
+  }
 }
 
 @media (max-width: 720px) {

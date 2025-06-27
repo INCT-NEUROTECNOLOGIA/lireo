@@ -94,13 +94,14 @@ const WordHighlighter = ({
     };
   }, [isReading]);
 
-  return elements.map((element: string, index: number) => {
-    return index === currentIndex ? (
-      <mark key={index}>{element}</mark>
-    ) : (
-      <span key={index}>{element}</span>
-    );
-  });
+  return elements.map((element: string, index: number) => (
+    <span
+      key={index}
+      className={`wordElement ${index === currentIndex ? "highlighted" : ""}`}
+    >
+      {element}
+    </span>
+  ));
 };
 
 export default WordHighlighter;

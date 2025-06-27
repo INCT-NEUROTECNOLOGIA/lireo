@@ -4,7 +4,6 @@ import Loading from "../../../utils/components/Loading.tsx";
 import { getPublicAssetUrl } from "../../../utils/pathUtils.ts";
 import "../layout/textReaderStyle.css";
 import { ROUTE_PATHS } from "../../../config/routes.ts";
-import FadeIn from "../../../utils/components/FadeIn.tsx";
 
 const TextReader = () => {
   type State = {
@@ -194,24 +193,22 @@ const TextReader = () => {
           "textReaderSummary" + (state.fileUploaderClose ? " hidden" : "")
         }
       >
-        <FadeIn>
-          <h1>{textReaderText.summary.title}</h1>
-          <ul>
-            {textReaderText.summary.texts.map((text, index) => (
-              <li key={index}>{text}</li>
-            ))}
-            <li>
-              {textReaderText.summary.linkText}
-              <a
-                href={textReaderText.summary.linkRef}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {textReaderText.summary.link}
-              </a>
-            </li>
-          </ul>
-        </FadeIn>
+        <h1>{textReaderText.summary.title}</h1>
+        <ul>
+          {textReaderText.summary.texts.map((text, index) => (
+            <li key={index}>{text}</li>
+          ))}
+          <li>
+            {textReaderText.summary.linkText}
+            <a
+              href={textReaderText.summary.linkRef}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {textReaderText.summary.link}
+            </a>
+          </li>
+        </ul>
       </div>
 
       <div className="textReaderContainer">
