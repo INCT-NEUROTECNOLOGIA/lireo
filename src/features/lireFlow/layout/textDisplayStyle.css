@@ -6,6 +6,7 @@
   margin-bottom: 1.2rem;
   box-shadow: 0 0 5px var(--color-shadow);
   max-height: 75vh;
+  width: inherit;
   color: black;
   position: relative;
 }
@@ -18,6 +19,11 @@
 }
 
 .textContainer__textAuthor {
+  font-size: 0.9em;
+  text-align: right;
+}
+
+.textContainer__textSource {
   font-size: 0.8em;
   text-align: right;
 }
@@ -38,15 +44,15 @@
   line-height: inherit;
   word-spacing: inherit;
   border-radius: 3px;
-  transition: background-color 0.05s ease, box-shadow 0.05s ease;
+  transition: background-color 0.08s ease, box-shadow 0.08s ease;
 }
 
 .wordElement.highlighted {
-  background-color: var(--color-secondary-hover);
-  box-shadow: 0 0 0 0.2rem var(--color-secondary-hover);
+  background-color: var(--color-hightlight);
+  box-shadow: 0 0 0 0.2rem var(--color-hightlight);
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 1115px) {
   .textContainer {
     max-width: 70vw;
   }

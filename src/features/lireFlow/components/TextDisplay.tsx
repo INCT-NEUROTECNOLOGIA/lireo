@@ -11,21 +11,58 @@ const TextDisplay = ({ fileContent }: { fileContent: string }) => {
   const speedRef = useRef<number>(1);
   const wordsPerMinuteRef = useRef<number>(120);
 
-  const allParagraphs = useMemo(() => {
-    return fileContent
+  const isTitle = (line: string): boolean => {
+    const wordCount = line.split(/\s+/).length;
+    return wordCount <= 10;
+  };
+
+  const isAuthor = (line: string): boolean => {
+    const wordCount = line.split(/\s+/).length;
+    const endsWithPunctuation = /[.!?]$/.test(line);
+    return wordCount <= 6 && !endsWithPunctuation;
+  };
+
+  const isSource = (line: string): boolean => {
+    return (
+      /^(fonte|refer(ê|e)ncia|extra[ií]do|dispon[ií]vel)/i.test(line) ||
+      /(http|www\.)/.test(line)
+    );
+  };
+
+  const processedText = useMemo(() => {
+    const allParagraphs = fileContent
       .split("\n")
       .map((paragraph: string) => paragraph.trim())
       .filter((trimmedParagraph: string) => trimmedParagraph);
+
+    let paragraphs = allParagraphs;
+    let title = "";
+    let author = "";
+    let source = "";
+
+    if (allParagraphs.length > 0 && isTitle(allParagraphs[0])) {
+      title = allParagraphs[0];
+      paragraphs = paragraphs.slice(1);
+    }
+
+    if (paragraphs.length > 0 && isAuthor(paragraphs[0])) {
+      author = paragraphs[0];
+      paragraphs = paragraphs.slice(1);
+    }
+
+    if (paragraphs.length > 1 && isSource(paragraphs[paragraphs.length - 1])) {
+      source = paragraphs[paragraphs.length - 1];
+      paragraphs = paragraphs.slice(0, -1);
+    }
+
+    return { paragraphs, title, author, source };
   }, [fileContent]);
 
-  const title = allParagraphs[0];
-  const paragraphs = allParagraphs.slice(1);
-
   const nextParagraph = (): void => {
-    if (paragraphIndex < paragraphs.length - 1) {
+    if (paragraphIndex < processedText.paragraphs.length - 1) {
       setParagraphIndex((prevIndex) => prevIndex + 1);
     } else {
-      setParagraphIndex(paragraphs.length);
+      setParagraphIndex(processedText.paragraphs.length);
     }
   };
 
@@ -47,9 +84,15 @@ const TextDisplay = ({ fileContent }: { fileContent: string }) => {
         />
 
         <div className="textContainer">
-          {title && <h2 className="textContainer__textTitle">{title}</h2>}
+          {processedText.title && (
+            <h2 className="textContainer__textTitle">{processedText.title}</h2>
+          )}
 
-          {paragraphs.map((paragraph, index) => (
+          {processedText.author && (
+            <p className="textContainer__textAuthor">{processedText.author}</p>
+          )}
+
+          {processedText.paragraphs.map((paragraph, index) => (
             <p className="textContainer__text-paragraph" key={index}>
               {index === paragraphIndex ? (
                 <WordHighlighter
@@ -65,6 +108,10 @@ const TextDisplay = ({ fileContent }: { fileContent: string }) => {
               )}
             </p>
           ))}
+
+          {processedText.source && (
+            <p className="textContainer__textSource">{processedText.source}</p>
+          )}
         </div>
       </>
     )

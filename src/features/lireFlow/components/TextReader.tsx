@@ -288,7 +288,7 @@ const TextReader = () => {
           </div>
         )}
 
-        {state.isLoading ? (
+        {state.isLoading && !state.fileContent ? (
           <Loading />
         ) : (
           <TextDisplay fileContent={state.fileContent} />
