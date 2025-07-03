@@ -9,6 +9,7 @@
   width: inherit;
   color: black;
   position: relative;
+  scrollbar-color: var(--color-border) var(--color-bg-light);
 }
 
 .textContainer__textTitle {
@@ -24,8 +25,15 @@
 }
 
 .textContainer__textSource {
+  display: block;
   font-size: 0.8em;
+  color: var(--color-primary);
   text-align: right;
+  cursor: pointer;
+}
+
+.textContainer__textSource:hover {
+  color: var(--color-text-primary);
 }
 
 .textContainer__text-paragraph {

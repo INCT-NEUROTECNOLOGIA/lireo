@@ -28,18 +28,6 @@ header {
   margin-top: 0.6rem;
 }
 
-a {
-  text-decoration: none;
-  color: var(--color-white);
-  font-size: 1.05rem;
-  transition: color 0.5s ease;
-  margin-bottom: 0.5rem;
-}
-
-a:hover {
-  color: var(--color-secondary-hover);
-}
-
 .menu__desktop {
   display: flex;
   gap: clamp(1.5rem, 2vw, 2rem);

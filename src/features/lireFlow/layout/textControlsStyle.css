@@ -153,6 +153,14 @@
   background-color: var(--color-primary-hover);
 }
 
+.textControls__selectLevel option:disabled {
+  color: var(--color-text-primary);
+}
+
+.textControls__selectLevel:hover option:disabled {
+  color: var(--color-primary-light);
+}
+
 .textControls__wordsPerMinute {
   display: flex;
   align-items: center;

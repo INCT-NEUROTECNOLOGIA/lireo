@@ -22,11 +22,11 @@ const TextDisplay = ({ fileContent }: { fileContent: string }) => {
     return wordCount <= 6 && !endsWithPunctuation;
   };
 
-  const isSource = (line: string): boolean => {
-    return (
-      /^(fonte|refer(ê|e)ncia|extra[ií]do|dispon[ií]vel)/i.test(line) ||
-      /(http|www\.)/.test(line)
-    );
+  const isSource = (line: string): string | null => {
+    const regex =
+      /^(?:\s*(?:fonte|refer(?:ê|e)ncia|extra[ií]do|dispon[ií]vel)[\s:,-]*)?(https?:\/\/\S+|www\.\S+)/i;
+    const match = line.match(regex);
+    return match ? match[1] : null;
   };
 
   const processedText = useMemo(() => {
@@ -38,7 +38,7 @@ const TextDisplay = ({ fileContent }: { fileContent: string }) => {
     let paragraphs = allParagraphs;
     let title = "";
     let author = "";
-    let source = "";
+    let source: string | null = null;
 
     if (allParagraphs.length > 0 && isTitle(allParagraphs[0])) {
       title = allParagraphs[0];
@@ -51,8 +51,8 @@ const TextDisplay = ({ fileContent }: { fileContent: string }) => {
       paragraphs = paragraphs.slice(1);
     }
 
-    if (paragraphs.length > 1 && isSource(paragraphs[paragraphs.length - 1])) {
-      source = paragraphs[paragraphs.length - 1];
+    if (paragraphs.length > 1) {
+      source = isSource(paragraphs[paragraphs.length - 1]);
       paragraphs = paragraphs.slice(0, -1);
     }
 
@@ -126,7 +126,14 @@ const TextDisplay = ({ fileContent }: { fileContent: string }) => {
           ))}
 
           {processedText.source && (
-            <p className="textContainer__textSource">{processedText.source}</p>
+            <a
+              className="textContainer__textSource"
+              href={processedText.source}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {processedText.source}
+            </a>
           )}
         </div>
       </>

@@ -18,6 +18,10 @@
   overflow-y: auto;
 }
 
+.userGuide__sections::-webkit-scrollbar-thumb {
+  border: 1.5px solid var(--color-white);
+}
+
 .userGuide__liksSection {
   flex: 1 1 30%;
   background-color: var(--color-bg-light);
