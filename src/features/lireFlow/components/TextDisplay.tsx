@@ -43,6 +43,7 @@ const TextDisplay = ({ fileContent }: { fileContent: string }) => {
     if (allParagraphs.length > 0 && isTitle(allParagraphs[0])) {
       title = allParagraphs[0];
       paragraphs = paragraphs.slice(1);
+      setParagraphIndex(-1);
     }
 
     if (paragraphs.length > 0 && isAuthor(paragraphs[0])) {
@@ -59,7 +60,9 @@ const TextDisplay = ({ fileContent }: { fileContent: string }) => {
   }, [fileContent]);
 
   const nextParagraph = (): void => {
-    if (paragraphIndex < processedText.paragraphs.length - 1) {
+    if (paragraphIndex === -1) {
+      setParagraphIndex(0);
+    } else if (paragraphIndex < processedText.paragraphs.length - 1) {
       setParagraphIndex((prevIndex) => prevIndex + 1);
     } else {
       setParagraphIndex(processedText.paragraphs.length);
@@ -77,7 +80,7 @@ const TextDisplay = ({ fileContent }: { fileContent: string }) => {
           startButton={(): void => setIsReading(true)}
           pauseButton={(): void => setIsReading(false)}
           restartButton={(): void => {
-            setParagraphIndex(0);
+            setParagraphIndex(processedText.title ? -1 : 0);
             setHighlightKey((prevKey) => prevKey + 1);
             setIsReading(false);
           }}
@@ -85,7 +88,20 @@ const TextDisplay = ({ fileContent }: { fileContent: string }) => {
 
         <div className="textContainer">
           {processedText.title && (
-            <h2 className="textContainer__textTitle">{processedText.title}</h2>
+            <h2 className="textContainer__textTitle">
+              {paragraphIndex === -1 ? (
+                <WordHighlighter
+                  key={highlightKey}
+                  paragraph={processedText.title}
+                  onFinish={nextParagraph}
+                  isReading={isReading}
+                  speedRef={speedRef}
+                  wordsPerMinuteRef={wordsPerMinuteRef}
+                />
+              ) : (
+                processedText.title
+              )}
+            </h2>
           )}
 
           {processedText.author && (
