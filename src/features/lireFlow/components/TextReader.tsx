@@ -104,7 +104,7 @@ const TextReader = () => {
     },
   };
 
-  const readFile = (file: File) => {
+  const readFile = async (file: File) => {
     const isTxtFile = (fileType: string): boolean => fileType === "text/plain";
 
     if (!file) return;
@@ -117,23 +117,34 @@ const TextReader = () => {
       return;
     }
 
-    const reader: FileReader = new FileReader();
-    reader.readAsText(file);
+    try {
+      const buffer = await file.arrayBuffer();
 
-    reader.onload = (): void => {
-      if (typeof reader.result === "string") {
-        dispatch({
-          type: "SET_FILE",
-          payload: { name: file.name, content: reader.result },
-        });
-      } else {
-        dispatch({ type: "SET_ERROR", payload: "Erro ao ler o arquivo" });
+      const encodings = ["utf-8", "windows-1252", "iso-8859-1"];
+      let content = "";
+      let decoded = false;
+
+      for (const encoding of encodings) {
+        try {
+          content = new TextDecoder(encoding).decode(buffer);
+          if (!content.includes("�")) {
+            decoded = true;
+            break;
+          }
+        } catch (e) {}
       }
-    };
 
-    reader.onerror = (): void => {
+      if (!decoded) {
+        content = new TextDecoder("utf-8").decode(buffer);
+      }
+
+      dispatch({
+        type: "SET_FILE",
+        payload: { name: file.name, content },
+      });
+    } catch {
       dispatch({ type: "SET_ERROR", payload: "Erro ao ler o arquivo" });
-    };
+    }
   };
 
   const selectedFile = (event: React.ChangeEvent<HTMLInputElement>) => {
