@@ -77,7 +77,9 @@ const TextDisplay = ({ fileContent }: { fileContent: string }) => {
           setSpeed={setSpeed}
           speedRef={speedRef}
           wordsPerMinuteRef={wordsPerMinuteRef}
-          startButton={(): void => setIsReading(true)}
+          startButton={(): void => {
+            if (wordsPerMinuteRef.current !== 0) setIsReading(true);
+          }}
           pauseButton={(): void => setIsReading(false)}
           restartButton={(): void => {
             setParagraphIndex(processedText.title ? -1 : 0);
@@ -89,7 +91,7 @@ const TextDisplay = ({ fileContent }: { fileContent: string }) => {
         <div className="textContainer">
           {processedText.title && (
             <h2 className="textContainer__textTitle">
-              {paragraphIndex === -1 ? (
+              {paragraphIndex === -1 && wordsPerMinuteRef.current !== 0 ? (
                 <WordHighlighter
                   key={highlightKey}
                   paragraph={processedText.title}
@@ -110,7 +112,7 @@ const TextDisplay = ({ fileContent }: { fileContent: string }) => {
 
           {processedText.paragraphs.map((paragraph, index) => (
             <p className="textContainer__text-paragraph" key={index}>
-              {index === paragraphIndex ? (
+              {index === paragraphIndex && wordsPerMinuteRef.current !== 0 ? (
                 <WordHighlighter
                   key={highlightKey}
                   paragraph={paragraph}

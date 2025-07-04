@@ -43,7 +43,7 @@ const TextControls = ({
       "8º ano",
       "9º ano",
     ],
-    levelValue: [120, 44, 72, 80, 99, 114, 120, 121, 129],
+    levelValue: [0, 44, 72, 80, 99, 114, 120, 121, 129],
     lectureSpeed: "Velocidade de leitura:",
     start: "Iniciar",
     pause: "Pausar",
@@ -63,8 +63,10 @@ const TextControls = ({
   };
 
   const selectedLevel = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    wordsPerMinuteRef.current = Number(event.target.value);
+    const value = Number(event.target.value);
+    wordsPerMinuteRef.current = value;
     updateWordsPerMinute();
+    if (value === 0) pauseButton();
   };
 
   const speedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
