@@ -40,7 +40,7 @@ const AboutUs: React.FC = () => {
       position: "Bolsista de Iniciação Científica",
       education: "Técnico em Desenvolvimento de Sistemas",
       affiliation: " COLTEC/UFMG",
-      photo: "/images/raphael.jpg",
+      photo: "/images/Raphael_TeamMember.png",
     },
   ];
 
