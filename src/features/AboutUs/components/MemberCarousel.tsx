@@ -1,14 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
-import TeamMemberCard from "./TeamMemberCard";
-import type { TeamMemberCardProps } from "./TeamMemberCard";
-import { getPublicAssetUrl } from "../../../utils/pathUtils";
+import MemberCard from "./MemberCard";
+import type { Member } from "./Section";
 import "../layout/TeamCarouselStyle.css";
 
-interface TeamCarouselProps {
-  members?: TeamMemberCardProps[];
+interface MemberCarouselProps {
+  members?: Member[];
 }
 
-const TeamCarousel: React.FC<TeamCarouselProps> = ({ members = [] }) => {
+const MemberCarousel: React.FC<MemberCarouselProps> = ({ members = [] }) => {
   const trackRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -52,14 +51,7 @@ const TeamCarousel: React.FC<TeamCarouselProps> = ({ members = [] }) => {
         <div className="aboutUsContainer__teamCarousel__track" ref={trackRef}>
           {members.map((member, index) => (
             <div className="aboutUsContainer__teamCarousel__item" key={index}>
-              <TeamMemberCard
-                name={member.name}
-                role={member.role}
-                position={member.position}
-                education={member.education}
-                affiliation={member.affiliation}
-                photo={getPublicAssetUrl(member.photo)}
-              />
+              <MemberCard member={member} />
             </div>
           ))}
         </div>
@@ -95,4 +87,4 @@ const TeamCarousel: React.FC<TeamCarouselProps> = ({ members = [] }) => {
   );
 };
 
-export default TeamCarousel;
+export default MemberCarousel;

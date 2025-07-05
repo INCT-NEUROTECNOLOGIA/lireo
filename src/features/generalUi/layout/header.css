@@ -20,12 +20,21 @@ header {
 .header__logoContainer {
   display: flex;
   align-items: center;
+  justify-items: center;
+  gap: 1.2rem;
 }
 
 .header__logoContainer__logo {
   height: 2.5rem;
+}
+
+.header__logoContainer__logo.lireo {
   margin-right: 0.6rem;
   margin-top: 0.6rem;
+}
+
+.header__logoContainer__logo.short {
+  height: 1.75rem;
 }
 
 .menu__desktop {
@@ -82,5 +91,17 @@ header {
 
   .menu__desktop {
     display: none;
+  }
+
+  .header__logoContainer {
+    gap: 0.6rem;
+  }
+
+  .header__logoContainer__logo {
+    height: 1.9rem;
+  }
+
+  .header__logoContainer__logo.short {
+    height: 1.25rem;
   }
 }

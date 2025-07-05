@@ -7,6 +7,7 @@ import FadeIn from "../../../utils/components/FadeIn";
 const AboutUs: React.FC = () => {
   const projectCreators: Member[] = [
     {
+      type: "teamMember",
       name: "Profa. Dra. Luciana Mendonça Alves",
       role: "Coordenadora do projeto",
       position: "Departamento de Fonoaudiologia",
@@ -15,6 +16,7 @@ const AboutUs: React.FC = () => {
       photo: "/images/DraLucianaMendonca_TeamMemberPicture.png",
     },
     {
+      type: "teamMember",
       name: "Ramiro Noronha Reis Ribeiro",
       role: "Desenvolvedor",
       position: "Bolsista de Iniciação Científica",
@@ -23,6 +25,7 @@ const AboutUs: React.FC = () => {
       photo: "/images/Ramiro_TeamMemberPicture.png",
     },
     {
+      type: "teamMember",
       name: "Ana Julia Ferreira Garcia",
       role: "Desenvolvedora",
       position: "Bolsista de Iniciação Científica",
@@ -31,6 +34,7 @@ const AboutUs: React.FC = () => {
       photo: "/images/AnaJulia_TeamMemberPicture.png",
     },
     {
+      type: "teamMember",
       name: "Raphael Inácio Bicalho de Carvalho",
       role: "Desenvolvedor",
       position: "Bolsista de Iniciação Científica",
@@ -40,7 +44,18 @@ const AboutUs: React.FC = () => {
     },
   ];
 
-  const collaborators: Member[] = [];
+  const collaborators: Member[] = [
+    {
+      type: "collaborator",
+      photo: "/images/logo-Faculdade-de-Medicina-UFMG.png",
+      alt: "Faculdade de Medicina - UFMG",
+    },
+    {
+      type: "collaborator",
+      photo: "/images/logo-UFMG.png",
+      alt: "UFMG",
+    },
+  ];
 
   const aboutUsText = {
     summary: {

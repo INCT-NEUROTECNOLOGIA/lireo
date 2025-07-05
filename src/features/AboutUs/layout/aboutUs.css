@@ -86,7 +86,7 @@
   justify-items: center;
 }
 
-.aboutUsContainer__teamMember {
+.aboutUsContainer__member {
   text-align: center;
   margin: 2rem;
 }
@@ -98,6 +98,15 @@
   object-fit: cover;
   margin: 0;
   margin-bottom: 1rem;
+}
+
+.aboutUsContainer__collaboratorPhoto {
+  display: block;
+  height: 8rem;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  margin: 0 auto;
 }
 
 .aboutUsContainer__teamMemberName {
