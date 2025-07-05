@@ -28,15 +28,6 @@ header {
   height: 2.5rem;
 }
 
-.header__logoContainer__logo.lireo {
-  margin-right: 0.6rem;
-  margin-top: 0.6rem;
-}
-
-.header__logoContainer__logo.short {
-  height: 1.75rem;
-}
-
 .menu__desktop {
   display: flex;
   gap: clamp(1.5rem, 2vw, 2rem);
@@ -93,15 +84,7 @@ header {
     display: none;
   }
 
-  .header__logoContainer {
-    gap: 0.6rem;
-  }
-
   .header__logoContainer__logo {
-    height: 1.9rem;
-  }
-
-  .header__logoContainer__logo.short {
-    height: 1.25rem;
+    height: 2rem;
   }
 }

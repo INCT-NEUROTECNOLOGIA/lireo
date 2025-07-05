@@ -25,19 +25,9 @@ const Header: React.FC = () => {
       <header>
         <div className="header__logoContainer">
           <img
-            className="header__logoContainer__logo lireo"
+            className="header__logoContainer__logo"
             src={getPublicAssetUrl(headerText.lireo.img)}
             alt={headerText.lireo.alt}
-          />
-          <img
-            className="header__logoContainer__logo"
-            src={getPublicAssetUrl(headerText.faculMed.img)}
-            alt={headerText.faculMed.alt}
-          />
-          <img
-            className="header__logoContainer__logo short"
-            src={getPublicAssetUrl(headerText.UFMG.img)}
-            alt={headerText.UFMG.alt}
           />
         </div>
         <nav>
