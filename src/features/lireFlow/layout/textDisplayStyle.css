@@ -2,7 +2,8 @@
   background-color: var(--color-bg-light);
   border-radius: 12px;
   padding: 1.2rem;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   margin-bottom: 1.2rem;
   box-shadow: 0 0 5px var(--color-shadow);
   max-height: 75vh;
@@ -10,6 +11,7 @@
   color: black;
   position: relative;
   scrollbar-color: var(--color-border) var(--color-bg-light);
+  z-index: 0;
 }
 
 .textContainer__textTitle {
@@ -54,11 +56,26 @@
   word-spacing: inherit;
   border-radius: 3px;
   transition: background-color 0.08s ease, box-shadow 0.08s ease;
+  z-index: 1;
 }
 
 .wordElement.highlighted {
-  background-color: var(--color-hightlight);
-  box-shadow: 0 0 0 0.2rem var(--color-hightlight);
+  position: relative;
+  background-color: var(--color-highlight);
+  box-shadow: 0 0 0 0.2rem var(--color-highlight);
+  z-index: -1;
+}
+
+.wordElement.highlighted::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -1000px;
+  right: -1000px;
+  background-color: #a6f18065;
+  box-shadow: 0 0 0 0.2rem #a6f18065;
+  z-index: -2;
 }
 
 @media (min-width: 1115px) {

@@ -9,18 +9,21 @@ const WordHighlighter = ({
   isReading,
   speedRef,
   wordsPerMinuteRef,
+  containerRef,
 }: {
   paragraph: string;
   onFinish?: () => void;
   isReading: boolean;
   speedRef: RefObject<number>;
   wordsPerMinuteRef: RefObject<number>;
+  containerRef: RefObject<HTMLDivElement | null>;
 }) => {
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
   const elementIndexs = useRef<number[]>([]);
   const indexRef = useRef<number>(0);
   const isReadingRef = useRef<boolean>(isReading);
   const timeoutRef = useRef<number | null>(null);
+  const currentWordRef = useRef<HTMLSpanElement | null>(null);
 
   const elements: string[] = paragraph.split(/(\s+|[^\wÀ-ÖØ-öø-ÿ])/);
 
@@ -94,9 +97,24 @@ const WordHighlighter = ({
     };
   }, [isReading]);
 
+  useEffect(() => {
+    if (!currentWordRef.current || !containerRef.current) return;
+
+    const word = currentWordRef.current;
+    const container = containerRef.current;
+
+    const target =
+      word.offsetTop - container.clientHeight / 4 + word.offsetHeight;
+
+    if (Math.abs(container.scrollTop - target) > 4) {
+      container.scrollTo({ top: target, behavior: "smooth" });
+    }
+  }, [currentIndex]);
+
   return elements.map((element: string, index: number) => (
     <span
       key={index}
+      ref={index === currentIndex ? currentWordRef : null}
       className={`wordElement ${index === currentIndex ? "highlighted" : ""}`}
     >
       {element}
