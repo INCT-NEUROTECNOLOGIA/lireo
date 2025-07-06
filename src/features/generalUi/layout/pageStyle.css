@@ -3,7 +3,7 @@
   --color-primary-hover: #0c9edd;
   --color-primary-light: #baeaff;
   --color-secondary: #70db6a;
-  --color-secondary-hover: #88f84e;
+  --color-secondary-hover: rgba(146, 241, 99, 0.918);
   --color-secondary-light: #adf5a9;
   --color-tertiary: #33aa96;
   --color-tertiary-hover: #44ddc4;
@@ -16,6 +16,7 @@
   --color-accent: #e3fbf7;
   --color-accent-hover: #c6fff6;
   --color-highlight: #a6f180;
+  --color-highlight-secondary: #eff7a38c;
   --color-white: #fff;
   --color-text: #333;
   --color-text-primary: #0a3b50;
