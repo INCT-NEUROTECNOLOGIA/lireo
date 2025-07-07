@@ -20,24 +20,12 @@ header {
 .header__logoContainer {
   display: flex;
   align-items: center;
+  justify-items: center;
+  gap: 1.2rem;
 }
 
 .header__logoContainer__logo {
   height: 2.5rem;
-  margin-right: 0.6rem;
-  margin-top: 0.6rem;
-}
-
-a {
-  text-decoration: none;
-  color: var(--color-white);
-  font-size: 1.05rem;
-  transition: color 0.5s ease;
-  margin-bottom: 0.5rem;
-}
-
-a:hover {
-  color: var(--color-secondary-hover);
 }
 
 .menu__desktop {
@@ -94,5 +82,9 @@ a:hover {
 
   .menu__desktop {
     display: none;
+  }
+
+  .header__logoContainer__logo {
+    height: 2rem;
   }
 }

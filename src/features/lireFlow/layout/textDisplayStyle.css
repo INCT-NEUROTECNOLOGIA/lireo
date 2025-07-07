@@ -2,13 +2,16 @@
   background-color: var(--color-bg-light);
   border-radius: 12px;
   padding: 1.2rem;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   margin-bottom: 1.2rem;
   box-shadow: 0 0 5px var(--color-shadow);
   max-height: 75vh;
-  max-width: 90%;
+  width: inherit;
   color: black;
   position: relative;
+  scrollbar-color: var(--color-border) var(--color-bg-light);
+  z-index: 0;
 }
 
 .textContainer__textTitle {
@@ -19,8 +22,21 @@
 }
 
 .textContainer__textAuthor {
-  font-size: 0.8em;
+  font-size: 0.9em;
   text-align: right;
+}
+
+.textContainer__textSource {
+  display: block;
+  font-size: 0.8em;
+  color: var(--color-primary);
+  text-align: right;
+  cursor: pointer;
+  word-break: break-all;
+}
+
+.textContainer__textSource:hover {
+  color: var(--color-text-primary);
 }
 
 .textContainer__text-paragraph {
@@ -34,14 +50,43 @@
   margin: 0.75rem 0;
 }
 
-mark {
-  background-color: var(--color-secondary-hover);
-  border-radius: 5px;
-  padding: 0.1rem 0 0.2rem;
+.wordElement {
+  font-size: inherit;
+  line-height: inherit;
+  word-spacing: inherit;
+  border-radius: 3px;
+  transition: background-color 0.08s ease, box-shadow 0.08s ease;
+  z-index: 1;
+}
+
+.wordElement.highlighted {
+  position: relative;
+  background-color: var(--color-highlight);
+  box-shadow: 0 0 0 0.2rem var(--color-highlight);
+  z-index: -1;
+}
+
+.wordElement.highlighted::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -1000px;
+  right: -1000px;
+  background-color: var(--color-highlight-secondary);
+  box-shadow: 0 0 0 0.2rem var(--color-highlight-secondary);
+  z-index: -2;
+}
+
+@media (min-width: 1115px) {
+  .textContainer {
+    max-width: 70vw;
+  }
 }
 
 @media (max-width: 720px) {
   .textContainer {
     max-width: 98%;
+    max-height: fit-content;
   }
 }

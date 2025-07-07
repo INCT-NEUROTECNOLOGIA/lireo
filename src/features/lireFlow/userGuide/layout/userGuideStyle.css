@@ -18,6 +18,10 @@
   overflow-y: auto;
 }
 
+.userGuide__sections::-webkit-scrollbar-thumb {
+  border: 1.5px solid var(--color-white);
+}
+
 .userGuide__liksSection {
   flex: 1 1 30%;
   background-color: var(--color-bg-light);
@@ -102,6 +106,7 @@
   width: 100%;
   margin: 1.2rem auto;
   border-radius: 10px;
+  max-width: 50rem;
 }
 
 .userGuide__section .img-small {
@@ -126,5 +131,6 @@
   .userGuide__sections {
     width: 100%;
     max-height: fit-content;
+    overflow-y: hidden;
   }
 }

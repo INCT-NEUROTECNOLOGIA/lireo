@@ -3,6 +3,7 @@ import TextDisplay from "./TextDisplay.jsx";
 import Loading from "../../../utils/components/Loading.tsx";
 import { getPublicAssetUrl } from "../../../utils/pathUtils.ts";
 import "../layout/textReaderStyle.css";
+import { ROUTE_PATHS } from "../../../config/routes.ts";
 
 const TextReader = () => {
   type State = {
@@ -84,15 +85,26 @@ const TextReader = () => {
     uploadText5: " ou ",
     placeholderSelectText: "Selecione um dos textos",
     texts: [
-      "No Reino das Letras Felizes (Leitura fácil)",
       "O Ratinho Rói-Rói (Leitura fácil)",
       "Conto ou não conto (Leitura média)",
       "A Cartomante (Leitura avançada)",
     ],
     fileText: "Arquivo:",
+    newText: "Escolher um novo texto",
+    summary: {
+      title: "Inicie a atividade de leitura fluente",
+      texts: [
+        "O objetivo desta tarefa é treinar a fluência leitora, com foco no ritmo e na automatização da leitura.",
+        "É possível carregar um arquivo no formato .txt ou escolher um dos textos disponíveis na plataforma.",
+        "Durante a tarefa, o texto será exibido com marcações com destaque palavra por palavra, em um tempo que pode ser ajustado conforme a necessidade.",
+      ],
+      linkText: "Para mais informações, acesse o ",
+      link: "Guia do Usuário.",
+      linkRef: ROUTE_PATHS.USER_GUIDE,
+    },
   };
 
-  const readFile = (file: File) => {
+  const readFile = async (file: File) => {
     const isTxtFile = (fileType: string): boolean => fileType === "text/plain";
 
     if (!file) return;
@@ -105,23 +117,34 @@ const TextReader = () => {
       return;
     }
 
-    const reader: FileReader = new FileReader();
-    reader.readAsText(file);
+    try {
+      const buffer = await file.arrayBuffer();
 
-    reader.onload = (): void => {
-      if (typeof reader.result === "string") {
-        dispatch({
-          type: "SET_FILE",
-          payload: { name: file.name, content: reader.result },
-        });
-      } else {
-        dispatch({ type: "SET_ERROR", payload: "Erro ao ler o arquivo" });
+      const encodings = ["utf-8", "windows-1252", "iso-8859-1"];
+      let content = "";
+      let decoded = false;
+
+      for (const encoding of encodings) {
+        try {
+          content = new TextDecoder(encoding).decode(buffer);
+          if (!content.includes("�")) {
+            decoded = true;
+            break;
+          }
+        } catch (e) {}
       }
-    };
 
-    reader.onerror = (): void => {
+      if (!decoded) {
+        content = new TextDecoder("utf-8").decode(buffer);
+      }
+
+      dispatch({
+        type: "SET_FILE",
+        payload: { name: file.name, content },
+      });
+    } catch {
       dispatch({ type: "SET_ERROR", payload: "Erro ao ler o arquivo" });
-    };
+    }
   };
 
   const selectedFile = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -175,89 +198,114 @@ const TextReader = () => {
     dispatch({ type: "SET_FILE_UPLOADER_CLOSE" });
 
   return (
-    <div className="textReaderContainer">
+    <>
       <div
         className={
-          "textReaderContainer__fileUploader" +
-          (state.fileUploaderClose ? "" : " active")
+          "textReaderSummary" + (state.fileUploaderClose ? " hidden" : "")
         }
-        onDrop={dropFile}
-        onDragOver={dragFile}
-        onDragLeave={dragLeave}
-        style={{
-          backgroundColor: state.isDragging
-            ? "var(--color-accent-hover)"
-            : "var(--color-accent)",
-        }}
       >
-        <i className="bi bi-cloud-upload"></i>
-        <div className="textReaderContainer__fileUploader__text">
-          {textReaderText.uploadText}{" "}
-          <strong>{textReaderText.uploadText2}</strong>{" "}
-          {textReaderText.uploadText3}
-        </div>
-        <div className="textReaderContainer__fileUploader__inputSelectGroup">
-          <label
-            htmlFor="upload-file"
-            className="textReaderContainer__fileUploader__label"
-            title={textReaderText.uploadText4}
-          >
-            <strong>{textReaderText.uploadText4}</strong>
-          </label>
-          <input
-            id="upload-file"
-            type="file"
-            onClick={resetSelectFile}
-            onChange={selectedFile}
-            className="textReaderContainer__fileUploader__input"
-          />
-          {textReaderText.uploadText5}
-          <select
-            className="textReaderContainer__fileUploader__selectText"
-            name="texts"
-            id="texts"
-            defaultValue=""
-            onChange={selectedText}
-            ref={resetSelectText}
-            title={textReaderText.placeholderSelectText}
-          >
-            <option value="" disabled>
-              {textReaderText.placeholderSelectText}
-            </option>
-            {textReaderText.texts.map((text, index) => (
-              <option key={index} value={text} title={text}>
-                {text}
-              </option>
-            ))}
-          </select>
-        </div>
+        <h1>{textReaderText.summary.title}</h1>
+        <ul>
+          {textReaderText.summary.texts.map((text, index) => (
+            <li key={index}>{text}</li>
+          ))}
+          <li>
+            {textReaderText.summary.linkText}
+            <a
+              href={textReaderText.summary.linkRef}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {textReaderText.summary.link}
+            </a>
+          </li>
+        </ul>
       </div>
 
-      {state.error && <p style={{ color: "red" }}>{state.error}</p>}
-
-      {state.fileName && (
-        <div className="textReaderContainer__header">
-          <p className="textReaderContainer__fileName" title={state.fileName}>
-            <strong>{textReaderText.fileText}</strong> {state.fileName}
-          </p>
-
-          {state.fileUploaderClose && (
-            <button
-              className="textReaderContainer__button"
-              onClick={handleFileUploader}
+      <div className="textReaderContainer">
+        <div
+          className={
+            "textReaderContainer__fileUploader" +
+            (state.fileUploaderClose ? " hidden" : "")
+          }
+          onDrop={dropFile}
+          onDragOver={dragFile}
+          onDragLeave={dragLeave}
+          style={{
+            backgroundColor: state.isDragging
+              ? "var(--color-accent-hover)"
+              : "var(--color-accent)",
+          }}
+        >
+          <i className="bi bi-cloud-upload"></i>
+          <div className="textReaderContainer__fileUploader__text">
+            {textReaderText.uploadText}{" "}
+            <strong>{textReaderText.uploadText2}</strong>{" "}
+            {textReaderText.uploadText3}
+          </div>
+          <div className="textReaderContainer__fileUploader__inputSelectGroup">
+            <label
+              htmlFor="upload-file"
+              className="textReaderContainer__fileUploader__label"
+              title={textReaderText.uploadText4}
             >
-              Escolher um novo texto
-            </button>
-          )}
+              <strong>{textReaderText.uploadText4}</strong>
+            </label>
+            <input
+              id="upload-file"
+              type="file"
+              onClick={resetSelectFile}
+              onChange={selectedFile}
+              className="textReaderContainer__fileUploader__input"
+            />
+            {textReaderText.uploadText5}
+            <select
+              className="textReaderContainer__fileUploader__selectText"
+              name="texts"
+              id="texts"
+              defaultValue=""
+              onChange={selectedText}
+              ref={resetSelectText}
+              title={textReaderText.placeholderSelectText}
+            >
+              <option value="" disabled>
+                {textReaderText.placeholderSelectText}
+              </option>
+              {textReaderText.texts.map((text, index) => (
+                <option key={index} value={text} title={text}>
+                  {text}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
-      )}
 
-      {state.isLoading ? (
-        <Loading />
-      ) : (
-        <TextDisplay fileContent={state.fileContent} />
-      )}
-    </div>
+        {state.error && <p style={{ color: "red" }}>{state.error}</p>}
+
+        {state.fileName && (
+          <div className="textReaderContainer__header">
+            <p className="textReaderContainer__fileName" title={state.fileName}>
+              <strong>{textReaderText.fileText}</strong> {state.fileName}
+            </p>
+
+            {state.fileUploaderClose && (
+              <button
+                className="textReaderContainer__button"
+                onClick={handleFileUploader}
+              >
+                {textReaderText.newText}
+              </button>
+            )}
+          </div>
+        )}
+
+        {state.isLoading && !state.fileContent ? (
+          <Loading />
+        ) : (
+          <TextDisplay fileContent={state.fileContent} />
+        )}
+      </div>
+    </>
   );
 };
 

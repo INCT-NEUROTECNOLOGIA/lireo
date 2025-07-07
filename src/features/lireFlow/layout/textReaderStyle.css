@@ -7,24 +7,66 @@
   align-items: center;
   justify-content: center;
   margin: 5vh auto;
-  margin-top: 2.2rem;
   border-radius: 0.9rem;
   padding: 4vh 6vh;
   box-shadow: 0 4px 8px 0 var(--color-shadow-transparent),
     0 6px 1.2rem 0 var(--color-shadow);
 }
 
-.textReaderContainer__fileUploader {
+.textReaderSummary.hidden {
   display: none;
+}
+
+.textReaderSummary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(
+    to right,
+    var(--color-secondary-light),
+    var(--color-primary-light)
+  );
+  width: 100%;
+  padding: 2rem;
+  gap: 0.6rem;
+  color: var(--color-text-secondary);
+}
+
+.textReaderSummary h1 {
+  font-size: 2rem;
+  margin: 0;
+  text-align: center;
+  margin-bottom: 0.8rem;
+}
+
+.textReaderSummary ul {
+  margin: 0;
+}
+
+.textReaderSummary li::marker {
+  color: var(--color-text-tertiary);
+}
+
+.textReaderSummary a {
   color: var(--color-tertiary);
+  font-weight: bold;
+}
+
+.textReaderSummary a:hover {
+  color: var(--color-text-tertiary);
+}
+
+.textReaderContainer__fileUploader.hidden {
+  display: none;
 }
 
 .bi-cloud-upload {
   font-size: 3rem;
 }
 
-.textReaderContainer__fileUploader.active {
+.textReaderContainer__fileUploader {
   display: block;
+  color: var(--color-tertiary);
   border: 2px dashed var(--color-tertiary);
   border-radius: 0.75rem;
   padding: 1.2rem;
@@ -58,6 +100,18 @@
 .textReaderContainer__fileUploader__selectText:hover,
 .textReaderContainer__fileUploader__label:hover {
   background-color: var(--color-secondary);
+}
+
+.textReaderContainer__fileUploader__selectText:hover option {
+  color: var(--color-text-secondary);
+}
+
+.textReaderContainer__fileUploader__selectText option:disabled {
+  color: var(--color-text-tertiary);
+}
+
+.textReaderContainer__fileUploader__selectText:hover option:disabled {
+  color: var(--color-text-secondary);
 }
 
 .textReaderContainer__fileUploader__selectText {
@@ -136,6 +190,10 @@ select option {
 }
 
 @media (max-width: 720px) {
+  .textReaderSummary {
+    font-size: 1rem;
+  }
+
   .textReaderContainer__fileUploader__label {
     margin-top: 0.6rem;
   }

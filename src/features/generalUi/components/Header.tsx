@@ -8,7 +8,12 @@ const Header: React.FC = () => {
     initalPage: "Início",
     aboutUs: "Sobre Nós",
     userGuide: "Como usar",
-    logo: "logotipo LIRE-O",
+    lireo: { img: "/images/logo-lireo-white.png", alt: "logo LIRE-O" },
+    UFMG: { img: "/images/logo-UFMG-short.png", alt: "logo UFMG" },
+    faculMed: {
+      img: "/images/logo-Faculdade-de-Medicina-UFMG.png",
+      alt: "logo Faculdade de Medicina UFMG",
+    },
   };
 
   const [menuMobileOpen, setMenuMobileOpen] = useState<boolean>(false);
@@ -21,8 +26,8 @@ const Header: React.FC = () => {
         <div className="header__logoContainer">
           <img
             className="header__logoContainer__logo"
-            src={getPublicAssetUrl("/images/logo-lireo-white.png")}
-            alt={headerText.logo}
+            src={getPublicAssetUrl(headerText.lireo.img)}
+            alt={headerText.lireo.alt}
           />
         </div>
         <nav>

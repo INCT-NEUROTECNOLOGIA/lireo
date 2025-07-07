@@ -7,40 +7,55 @@ import FadeIn from "../../../utils/components/FadeIn";
 const AboutUs: React.FC = () => {
   const projectCreators: Member[] = [
     {
+      type: "teamMember",
       name: "Profa. Dra. Luciana Mendonça Alves",
       role: "Coordenadora do projeto",
-      position: "Departamento de Fonoaudiologia da Faculdade de Medicina",
-      education: "UFMG",
+      position: "Departamento de Fonoaudiologia",
+      education: "Faculdade de Medicina/UFMG",
       affiliation: "CRFa 6-1319",
-      photo: "/images/DraLucianaMendonca_TeamMemberPicture.jpeg",
+      photo: "/images/DraLucianaMendonca_TeamMemberPicture.png",
     },
     {
-      name: "Ramiro",
+      type: "teamMember",
+      name: "Ramiro Noronha Reis Ribeiro",
       role: "Desenvolvedor",
-      position: "",
-      education: "",
-      affiliation: "",
-      photo: "/images/ramiro.jpg",
+      position: "Bolsista de Iniciação Científica",
+      education: "Ciência da Computação",
+      affiliation: "Instituto de Ciências Exatas/UFMG",
+      photo: "/images/Ramiro_TeamMemberPicture.png",
     },
     {
+      type: "teamMember",
       name: "Ana Julia Ferreira Garcia",
       role: "Desenvolvedora",
       position: "Bolsista de Iniciação Científica",
-      education: "Curso Técnico em Desenvolvimento de Sistemas",
+      education: "Técnico em Desenvolvimento de Sistemas",
       affiliation: " COLTEC/UFMG",
-      photo: "/images/AnaJulia_TeamMemberPicture.jpeg",
+      photo: "/images/AnaJulia_TeamMemberPicture.png",
     },
     {
+      type: "teamMember",
       name: "Raphael Inácio Bicalho de Carvalho",
       role: "Desenvolvedor",
       position: "Bolsista de Iniciação Científica",
-      education: "Curso Técnico em Desenvolvimento de Sistemas",
+      education: "Técnico em Desenvolvimento de Sistemas",
       affiliation: " COLTEC/UFMG",
-      photo: "/images/raphael.jpg",
+      photo: "/images/Raphael_TeamMember.png",
     },
   ];
 
-  const collaborators: Member[] = [];
+  const collaborators: Member[] = [
+    {
+      type: "collaborator",
+      photo: "/images/logo-Faculdade-de-Medicina-UFMG.png",
+      alt: "Faculdade de Medicina - UFMG",
+    },
+    {
+      type: "collaborator",
+      photo: "/images/logo-UFMG.png",
+      alt: "UFMG",
+    },
+  ];
 
   const aboutUsText = {
     summary: {
