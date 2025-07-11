@@ -45,9 +45,54 @@ const WordHighlighter = ({
   useEffect((): (() => void) => {
     isReadingRef.current = isReading;
 
+    const fixWordHyphenation = (word: string, hyphenated: string): string => {
+      const isVowel = /^[aeiouáéíóúàâêôãõü]$/i;
+      const starWithVowel = /^[aeiouáéíóúàâêôãõü]/i;
+      const endWithTwoVowels = /[aeiouáéíóúàâêôãõ]{2}$/i;
+      const strongVowels = /^[aáéíóúàâêôãõ]$/i;
+      const weakVowels = /^[eiou]$/i;
+
+      if (word.length <= 2) return word;
+
+      if (starWithVowel.test(word)) {
+        if (/^[lmnrs]$/i.test(word[1]) && !isVowel.test(word[2])) {
+          hyphenated = hyphenated.slice(0, 2) + "-" + hyphenated.slice(2);
+        } else {
+          hyphenated = hyphenated.slice(0, 1) + "-" + hyphenated.slice(1);
+        }
+      }
+
+      if (endWithTwoVowels.test(word)) {
+        const lastIndex = word.length - 1;
+        const lastLetter = word[lastIndex];
+        const penulLetter = word[lastIndex - 1];
+
+        const isHiato =
+          (strongVowels.test(penulLetter) && strongVowels.test(lastLetter)) ||
+          (strongVowels.test(penulLetter) && weakVowels.test(lastLetter));
+
+        if (isHiato) {
+          hyphenated = word.slice(0, lastIndex) + "-" + word.slice(lastIndex);
+        }
+      }
+
+      if (!hyphenated.includes("-") && word.length > 3) {
+        hyphenated = word.slice(0, 2) + "-" + word.slice(2);
+      }
+
+      return hyphenated;
+    };
+
     const calculateWordTime = async (word: string): Promise<number> => {
-      const hyphenatedText: string = await hyphenate(word, { hyphenChar: "-" });
-      const syllablesCount: number = hyphenatedText.split("-").length;
+      const hyphenatedText: string = fixWordHyphenation(
+        word,
+        await hyphenate(word, { hyphenChar: "-" })
+      );
+
+      const syllablesCount: number = hyphenatedText
+        .split("-")
+        .filter((syllable) => syllable.trim() !== "").length;
+      console.log(hyphenatedText);
       return Math.round(
         (syllablesCount * averageSyllableTime(wordsPerMinuteRef.current)) /
           speedRef.current

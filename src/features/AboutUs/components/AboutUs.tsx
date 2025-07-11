@@ -14,6 +14,7 @@ const AboutUs: React.FC = () => {
       education: "Faculdade de Medicina/UFMG",
       affiliation: "CRFa 6-1319",
       photo: "/images/DraLucianaMendonca_TeamMemberPicture.png",
+      alt: "Foto de Profa. Dra. Luciana Mendonça Alves",
     },
     {
       type: "teamMember",
@@ -23,6 +24,7 @@ const AboutUs: React.FC = () => {
       education: "Ciência da Computação",
       affiliation: "Instituto de Ciências Exatas/UFMG",
       photo: "/images/Ramiro_TeamMemberPicture.png",
+      alt: "Foto de Ramiro Noronha Reis Ribeiro",
     },
     {
       type: "teamMember",
@@ -32,6 +34,7 @@ const AboutUs: React.FC = () => {
       education: "Técnico em Desenvolvimento de Sistemas",
       affiliation: " COLTEC/UFMG",
       photo: "/images/AnaJulia_TeamMemberPicture.png",
+      alt: "Foto de Ana Julia Ferreira Garcia",
     },
     {
       type: "teamMember",
@@ -41,6 +44,7 @@ const AboutUs: React.FC = () => {
       education: "Técnico em Desenvolvimento de Sistemas",
       affiliation: " COLTEC/UFMG",
       photo: "/images/Raphael_TeamMember.png",
+      alt: "Foto de Raphael Inácio Bicalho de Carvalho",
     },
   ];
 
