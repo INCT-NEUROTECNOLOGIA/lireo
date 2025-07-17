@@ -102,6 +102,11 @@ const TextReader = () => {
       link: "Guia do Usuário.",
       linkRef: ROUTE_PATHS.USER_GUIDE,
     },
+    erros: {
+      fileType: "Selecione um arquivo de texto (.txt)",
+      readError: "Erro ao ler o arquivo",
+      decodeError: "Erro ao decodificar o arquivo. Tente outro arquivo.",
+    },
   };
 
   const readFile = async (file: File) => {
@@ -112,38 +117,38 @@ const TextReader = () => {
     if (!isTxtFile(file.type)) {
       dispatch({
         type: "SET_ERROR",
-        payload: "Selecione um arquivo de texto (.txt)",
+        payload: textReaderText.erros.fileType,
       });
       return;
     }
 
     try {
       const buffer = await file.arrayBuffer();
-
-      const encodings = ["utf-8", "windows-1252", "iso-8859-1"];
-      let content = "";
-      let decoded = false;
+      const encodings = ["utf-8", "iso-8859-1", "windows-1252"];
+      let content = null;
 
       for (const encoding of encodings) {
         try {
-          content = new TextDecoder(encoding).decode(buffer);
-          if (!content.includes("�")) {
-            decoded = true;
-            break;
-          }
-        } catch (e) {}
+          content = new TextDecoder(encoding, { fatal: true }).decode(buffer);
+          break;
+        } catch (e) {
+          continue;
+        }
       }
 
-      if (!decoded) {
-        content = new TextDecoder("utf-8").decode(buffer);
+      if (!content) {
+        dispatch({
+          type: "SET_ERROR",
+          payload: textReaderText.erros.decodeError,
+        });
+      } else {
+        dispatch({
+          type: "SET_FILE",
+          payload: { name: file.name, content },
+        });
       }
-
-      dispatch({
-        type: "SET_FILE",
-        payload: { name: file.name, content },
-      });
     } catch {
-      dispatch({ type: "SET_ERROR", payload: "Erro ao ler o arquivo" });
+      dispatch({ type: "SET_ERROR", payload: textReaderText.erros.readError });
     }
   };
 
@@ -223,6 +228,9 @@ const TextReader = () => {
       </div>
 
       <div className="textReaderContainer">
+        {state.error && (
+          <p className="textReaderContainer__error">{state.error}</p>
+        )}
         <div
           className={
             "textReaderContainer__fileUploader" +
@@ -279,8 +287,6 @@ const TextReader = () => {
             </select>
           </div>
         </div>
-
-        {state.error && <p style={{ color: "red" }}>{state.error}</p>}
 
         {state.fileName && (
           <div className="textReaderContainer__header">

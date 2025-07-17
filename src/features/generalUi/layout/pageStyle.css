@@ -8,7 +8,7 @@
   --color-tertiary: #33aa96;
   --color-tertiary-hover: #44ddc4;
   --color-tertiary-light: #95e4d7;
-  --color-bg: #daefec;
+  --color-bg: #edfcfa;
   --color-bg-light: #f7f7f7;
   --color-shadow: rgba(0, 0, 0, 0.08);
   --color-shadow-transparent: rgba(0, 0, 0, 0);
@@ -22,6 +22,7 @@
   --color-text-primary: #0a3b50;
   --color-text-secondary: #235721;
   --color-text-tertiary: #1d6357;
+  --color-error: #d62e2e;
 }
 
 * {
