@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef, RefObject } from "react";
 import { hyphenate } from "hyphen/pt";
-import { averageSyllableTime } from "./ReadingParameters";
-import { punctuationMarksTime } from "./ReadingParameters";
+import useReadingParameters from "../hooks/useReadingParameters";
 
 const WordHighlighter = ({
   paragraph,
@@ -18,6 +17,7 @@ const WordHighlighter = ({
   wordsPerMinuteRef: RefObject<number>;
   containerRef: RefObject<HTMLDivElement | null>;
 }) => {
+  const { averageSyllableTime, punctuationMarksTime } = useReadingParameters();
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
   const elementIndexs = useRef<number[]>([]);
   const indexRef = useRef<number>(0);

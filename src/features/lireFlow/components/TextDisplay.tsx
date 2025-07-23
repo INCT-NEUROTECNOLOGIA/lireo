@@ -74,10 +74,10 @@ const TextDisplay = ({ fileContent }: { fileContent: string }) => {
     fileContent && (
       <>
         <TextControls
-          speed={speed}
-          setSpeed={setSpeed}
-          speedRef={speedRef}
           wordsPerMinuteRef={wordsPerMinuteRef}
+          speed={speed}
+          speedRef={speedRef}
+          setSpeed={setSpeed}
           startButton={(): void => {
             if (wordsPerMinuteRef.current !== 0) setIsReading(true);
           }}
