@@ -1,6 +1,7 @@
 import "../layout/textControlsStyle.css";
 import { TextControlsProps } from "../interfaces/ITextControls";
 import useTextControls from "../hooks/useTextControls";
+import { textControlsText } from "../texts/textControlsText";
 
 const TextControls = ({
   wordsPerMinuteRef,
@@ -11,13 +12,8 @@ const TextControls = ({
   pauseButton,
   restartButton,
 }: TextControlsProps) => {
-  const {
-    wordsPerMinute,
-    textControlsText,
-    selectedLevel,
-    speedChange,
-    wordsPerMinuteInput,
-  } = useTextControls({ speedRef, wordsPerMinuteRef, setSpeed, pauseButton });
+  const { wordsPerMinute, selectedLevel, speedChange, wordsPerMinuteInput } =
+    useTextControls({ speedRef, wordsPerMinuteRef, setSpeed, pauseButton });
 
   return (
     <div className="textControls">

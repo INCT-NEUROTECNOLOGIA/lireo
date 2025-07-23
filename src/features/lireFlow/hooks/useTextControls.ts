@@ -13,39 +13,6 @@ const useTextControls = ({
     calculateWordsPerMinute(wordsPerMinuteRef.current, speedRef.current)
   );
 
-  const textControlsText = {
-    placeholderSelectLevel: "Escolha um nível de leitura",
-    levels: [
-      "Nenhum",
-      "Nível 1",
-      "Nível 2",
-      "Nível 3",
-      "Nível 4",
-      "Nível 5",
-      "Nível 6",
-      "Nível 7",
-      "Nível 8",
-    ],
-    levelLegend: [
-      "Nenhum",
-      "2º ano",
-      "3º ano",
-      "4º ano",
-      "5º ano",
-      "6º ano",
-      "7º ano",
-      "8º ano",
-      "9º ano",
-    ],
-    levelValue: [0, 44, 72, 80, 99, 114, 120, 121, 129],
-    lectureSpeed: "Velocidade de leitura:",
-    start: "Iniciar",
-    pause: "Pausar",
-    restart: "Reiniciar",
-    wordPerMinute: " ppm",
-    wordPerMinuteLegend: "Palavras por minuto",
-  };
-
   const updateWordsPerMinute = () => {
     setWordsPerMinute(
       calculateWordsPerMinute(wordsPerMinuteRef.current, speedRef.current)
@@ -84,7 +51,6 @@ const useTextControls = ({
 
   return {
     wordsPerMinute,
-    textControlsText,
     selectedLevel,
     speedChange,
     wordsPerMinuteInput,
