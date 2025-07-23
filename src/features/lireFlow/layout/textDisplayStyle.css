@@ -64,6 +64,7 @@
   background-color: var(--color-highlight);
   box-shadow: 0 0 0 0.2rem var(--color-highlight);
   z-index: -1;
+  scroll-margin-block-end: 50vh;
 }
 
 .wordElement.highlighted::after {

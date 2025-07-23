@@ -4,6 +4,7 @@ import Header from "./features/generalUi/components/Header.tsx";
 import Footer from "./features/generalUi/components/Footer.tsx";
 import UserGuide from "./features/lireFlow/userGuide/components/UserGuide.tsx";
 import AboutUs from "./features/AboutUs/components/AboutUs.tsx";
+import LireGrow from "./features/lireGrow/components/LireGrow.tsx";
 import "./features/generalUi/layout/pageStyle.css";
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
       <Header />
       <div className="pageContent">
         <Routes>
-          <Route path="/" element={<TextReader />} />
+          <Route path="/" element={<LireGrow />} />
           <Route path="/guia-do-usuario" element={<UserGuide />} />
           <Route path="/sobre-nos" element={<AboutUs />} />
         </Routes>
