@@ -1,0 +1,90 @@
+.lireGrowContainer {
+  width: 90%;
+  background-color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 5vh auto;
+  border-radius: 0.9rem;
+  padding: 4vh 6vh;
+  box-shadow: 0 4px 8px 0 var(--color-shadow-transparent),
+    0 6px 1.2rem 0 var(--color-shadow);
+}
+
+.controls {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.selectPhrase {
+  background-color: var(--color-tertiary);
+  color: var(--color-white);
+  max-width: 20%;
+}
+
+.selectPhrase:hover {
+  background-color: var(--color-secondary);
+}
+
+.selectPhrase:hover option {
+  color: var(--color-text-secondary);
+}
+
+.selectPhrase option:disabled {
+  color: var(--color-text-tertiary);
+}
+
+.selectPhrase:hover option:disabled {
+  color: var(--color-text-secondary);
+}
+
+.phraseContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.3rem;
+}
+
+.phraseContainer span {
+  margin: 0.4rem 0;
+  scroll-margin-block-end: 10rem;
+}
+
+.nextPartButton {
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  color: var(--color-white);
+  background-color: var(--color-tertiary);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.nextPartButton:hover {
+  background-color: var(--color-secondary);
+}
+
+.nextPartButton:disabled {
+  background-color: var(--color-tertiary-light);
+  cursor: not-allowed;
+}
+
+.imgContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.imgContainer img {
+  flex: 1;
+  border-radius: 0.5rem;
+}

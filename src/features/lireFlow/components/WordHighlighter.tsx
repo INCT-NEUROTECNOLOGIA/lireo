@@ -9,14 +9,12 @@ const WordHighlighter = ({
   isReading,
   speedRef,
   wordsPerMinuteRef,
-  containerRef,
 }: {
   paragraph: string;
   onFinish?: () => void;
   isReading: boolean;
   speedRef: RefObject<number>;
   wordsPerMinuteRef: RefObject<number>;
-  containerRef: RefObject<HTMLDivElement | null>;
 }) => {
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
   const elementIndexs = useRef<number[]>([]);
@@ -98,16 +96,11 @@ const WordHighlighter = ({
   }, [isReading]);
 
   useEffect(() => {
-    if (!currentWordRef.current || !containerRef.current) return;
-
-    const word = currentWordRef.current;
-    const container = containerRef.current;
-
-    const target =
-      word.offsetTop - container.clientHeight / 4 + word.offsetHeight;
-
-    if (Math.abs(container.scrollTop - target) > 4) {
-      container.scrollTo({ top: target, behavior: "smooth" });
+    if (currentWordRef.current) {
+      currentWordRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+      });
     }
   }, [currentIndex]);
 
