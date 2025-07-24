@@ -1,10 +1,17 @@
 import "../layout/lireGrowStyle.css";
 import { LireGrowText } from "../texts/lireGrowText.ts";
 import useLireGrow from "../hooks/useLireGrow.ts";
+import { getPublicAssetUrl } from "../../../utils/pathUtils.ts";
 
 const LireGrow = () => {
-  const { currentPartRef, phrase, currentIndex, selectedPhrase, nextPart } =
-    useLireGrow();
+  const {
+    currentPartRef,
+    phrase,
+    currentIndex,
+    selectedPhrase,
+    nextPart,
+    imgsPaths,
+  } = useLireGrow();
   return (
     <>
       <div className={"taskSummary"}>
@@ -53,7 +60,6 @@ const LireGrow = () => {
             {LireGrowText.nextPartButton}
           </button>
         </div>
-
         <div className="phraseContainer">
           {phrase.slice(0, currentIndex).map((_, index) => (
             <span ref={currentPartRef}>
@@ -61,6 +67,18 @@ const LireGrow = () => {
             </span>
           ))}
         </div>
+
+        {currentIndex === phrase.length && (
+          <div className="imgContainer">
+            {imgsPaths(phrase).map((img, index) => (
+              <img
+                key={index}
+                src={getPublicAssetUrl(img)}
+                alt={`${LireGrowText.img} ${index + 1}`}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </>
   );

@@ -21,4 +21,5 @@ export const LireGrowText = {
   ],
   placeholderSelectPhrase: "Selecione uma frase",
   nextPartButton: "Próximo",
+  img: "Imagem",
 };

@@ -74,3 +74,17 @@
   background-color: var(--color-tertiary-light);
   cursor: not-allowed;
 }
+
+.imgContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.imgContainer img {
+  flex: 1;
+  border-radius: 0.5rem;
+}

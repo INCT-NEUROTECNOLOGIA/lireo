@@ -6,6 +6,7 @@ const useLireGrow = () => {
   const [phrase, setPhrase] = useState<string[]>(exemple);
   const [currentIndex, setCurrentIndex] = useState(exemple.length);
   const currentPartRef = useRef<HTMLSpanElement | null>(null);
+  const imgsRef: string[] = ["errada1", "errada2", "certa"];
 
   useEffect(() => {
     if (currentPartRef.current) {
@@ -25,12 +26,23 @@ const useLireGrow = () => {
     if (currentIndex < phrase.length) setCurrentIndex(currentIndex + 1);
   };
 
+  const imgsPaths = (phrase: string[]) => {
+    const imgFolder = `/lireGrowImgs/${phrase
+      .join("_")
+      .toLowerCase()
+      .slice(0, -1)}`;
+    return imgsRef
+      .map((img) => `${imgFolder}/${img}.png`)
+      .sort(() => Math.random() - 0.5);
+  };
+
   return {
     currentPartRef,
     phrase,
     currentIndex,
     selectedPhrase,
     nextPart,
+    imgsPaths,
   };
 };
 
