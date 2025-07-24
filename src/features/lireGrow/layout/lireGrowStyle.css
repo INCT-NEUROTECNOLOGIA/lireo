@@ -53,7 +53,8 @@
   scroll-margin-block-end: 10rem;
 }
 
-.nextPartButton {
+.nextPartButton,
+.checkButton {
   padding: 0.7rem 1rem;
   font-size: 1rem;
   font-weight: bold;
@@ -63,9 +64,11 @@
   background-color: var(--color-tertiary);
   cursor: pointer;
   transition: background-color 0.3s ease;
+  width: 15rem;
 }
 
-.nextPartButton:hover {
+.nextPartButton:hover,
+.checkButton:hover {
   background-color: var(--color-secondary);
 }
 
@@ -80,7 +83,7 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 1rem;
-  margin-top: 2rem;
+  margin: 2rem 0;
 }
 
 .imgContainer img {
@@ -88,4 +91,38 @@
   height: 15rem;
   object-fit: contain;
   border-radius: 0.8rem;
+}
+
+.result {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  gap: 1rem;
+}
+
+.checkButton {
+  margin-left: auto;
+}
+
+.resultText {
+  border-radius: 0.5rem;
+  padding: 0.8rem;
+  flex: 1;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.resultText.correct {
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-text-secondary);
+}
+
+.resultText.incorrect {
+  color: var(--color-error);
+  border: 1px solid var(--color-error);
 }

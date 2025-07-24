@@ -11,7 +11,7 @@ export const LireGrowText = {
     link: "Guia do Usuário.",
     linkRef: "/",
   },
-  exemple: "Esse é um exemplo.",
+  example: "Esse é um exemplo.",
   phrases: [
     "O menino viu um gato e uma pata.",
     "Dona Ana gosta de bolo com café.",
@@ -21,5 +21,8 @@ export const LireGrowText = {
   ],
   placeholderSelectPhrase: "Selecione uma frase",
   nextPartButton: "Próximo",
-  img: "Imagem",
+  imgAlt: "Imagem",
+  checkButton: "Verificar",
+  correct: "Muito bem! Você acertou!",
+  incorrect: "Quase lá! Tente de novo!",
 };

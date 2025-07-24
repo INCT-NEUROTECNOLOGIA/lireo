@@ -5,12 +5,16 @@ import { getPublicAssetUrl } from "../../../utils/pathUtils.ts";
 
 const LireGrow = () => {
   const {
-    currentPartRef,
     phrase,
     currentIndex,
+    correctAnswer,
+    shuffledImgsPaths,
+    currentPartRef,
+    chosenImg,
     selectedPhrase,
     nextPart,
-    imgsPaths,
+    selectedImg,
+    checkAnswer,
   } = useLireGrow();
   return (
     <>
@@ -70,13 +74,40 @@ const LireGrow = () => {
 
         {currentIndex === phrase.length && (
           <div className="imgContainer">
-            {imgsPaths(phrase).map((img, index) => (
-              <img
-                key={index}
-                src={getPublicAssetUrl(img)}
-                alt={`${LireGrowText.img} ${index + 1}`}
-              />
+            {shuffledImgsPaths.map((img, index) => (
+              <div key={index}>
+                <input
+                  type="radio"
+                  name="imgs"
+                  id={img}
+                  onChange={selectedImg}
+                />
+                <label htmlFor={img}>
+                  <img
+                    src={getPublicAssetUrl(img)}
+                    alt={`${LireGrowText.imgAlt} ${index + 1}`}
+                  />
+                </label>
+              </div>
             ))}
+          </div>
+        )}
+
+        {chosenImg && (
+          <div className="result">
+            {correctAnswer !== null && (
+              <span
+                className={`resultText ${
+                  correctAnswer ? "correct" : "incorrect"
+                }`}
+              >
+                {correctAnswer ? LireGrowText.correct : LireGrowText.incorrect}
+              </span>
+            )}
+
+            <button className="checkButton" onClick={checkAnswer}>
+              {LireGrowText.checkButton}
+            </button>
           </div>
         )}
       </div>
