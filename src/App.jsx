@@ -13,7 +13,7 @@ function App() {
       <Header />
       <div className="pageContent">
         <Routes>
-          <Route path="/" element={<LireGrow />} />
+          <Route path="/" element={<TextReader />} />
           <Route path="/guia-do-usuario" element={<UserGuide />} />
           <Route path="/sobre-nos" element={<AboutUs />} />
         </Routes>
