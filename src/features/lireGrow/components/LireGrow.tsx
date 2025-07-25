@@ -11,6 +11,7 @@ const LireGrow = () => {
     shuffledImgsPaths,
     currentPartRef,
     chosenImg,
+    summaryClose,
     selectedPhrase,
     nextPart,
     selectedImg,
@@ -18,7 +19,7 @@ const LireGrow = () => {
   } = useLireGrow();
   return (
     <>
-      <div className={"taskSummary"}>
+      <div className={"taskSummary" + (summaryClose ? " hidden" : "")}>
         <h1>{LireGrowText.summary.title}</h1>
         <ul>
           {LireGrowText.summary.texts.map((text, index) => (

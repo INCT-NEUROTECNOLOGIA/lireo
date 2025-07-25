@@ -3,10 +3,12 @@ import { LireGrowText } from "../texts/lireGrowText";
 
 const useLireGrow = () => {
   const example: string[] = LireGrowText.example.split(" ");
+  const phrases: string[] = LireGrowText.phrases;
   const [phrase, setPhrase] = useState<string[]>(example);
   const [currentIndex, setCurrentIndex] = useState(example.length);
   const [correctAnswer, setCorrectAnswer] = useState<boolean | null>(null);
   const [chosenImg, setChosenImg] = useState<string | null>(null);
+  const [summaryClose, setSummaryClose] = useState<boolean>(false);
   const currentPartRef = useRef<HTMLSpanElement | null>(null);
   const imgsRef: string[] = ["errada1", "errada2", "certa"];
 
@@ -39,6 +41,9 @@ const useLireGrow = () => {
     setPhrase(chosenPhrase);
     setCurrentIndex(1);
     setShuffledImgsPaths(imgsPaths(chosenPhrase));
+    setCorrectAnswer(null);
+    setChosenImg(null);
+    setSummaryClose(true);
   };
 
   const nextPart = () => {
@@ -53,6 +58,11 @@ const useLireGrow = () => {
     setCorrectAnswer(chosenImg !== null && chosenImg.includes("certa"));
   };
 
+  const randomPhrase = () => {
+    const randomIndex = Math.floor(Math.random() * phrases.length);
+    const randomPhrase = phrases[randomIndex].split(" ");
+  };
+
   return {
     phrase,
     currentIndex,
@@ -60,6 +70,7 @@ const useLireGrow = () => {
     shuffledImgsPaths,
     currentPartRef,
     chosenImg,
+    summaryClose,
     selectedPhrase,
     nextPart,
     selectedImg,
