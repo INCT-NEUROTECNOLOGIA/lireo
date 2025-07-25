@@ -1,10 +1,10 @@
 .lireGrowContainer {
   width: 90%;
+  min-height: 30rem;
   background-color: var(--color-white);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   margin: 5vh auto;
   border-radius: 0.9rem;
   padding: 4vh 6vh;
@@ -46,14 +46,15 @@
   flex-direction: column;
   align-items: center;
   font-size: 1.3rem;
+  font-weight: 500;
+  gap: 0.4rem;
 }
 
 .phraseContainer span {
-  margin: 0.4rem 0;
   scroll-margin-block-end: 10rem;
 }
 
-.nextPartButton,
+.nextButton,
 .checkButton {
   padding: 0.7rem 1rem;
   font-size: 1rem;
@@ -67,12 +68,12 @@
   width: 15rem;
 }
 
-.nextPartButton:hover,
+.nextButton:hover,
 .checkButton:hover {
   background-color: var(--color-secondary);
 }
 
-.nextPartButton:disabled {
+.nextButton:disabled {
   background-color: var(--color-tertiary-light);
   cursor: not-allowed;
 }
@@ -88,7 +89,7 @@
 
 .imgContainer img {
   width: 20rem;
-  height: 15rem;
+  height: auto;
   object-fit: contain;
   border-radius: 0.8rem;
 }
@@ -125,4 +126,46 @@
 .resultText.incorrect {
   color: var(--color-error);
   border: 1px solid var(--color-error);
+}
+
+@media (max-width: 720px) {
+  .lireGrowContainer {
+    width: 95%;
+    padding: 3vh 4vh;
+  }
+
+  .controls {
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .selectPhrase {
+    width: 100%;
+  }
+
+  .nextButton,
+  .checkButton {
+    width: 100%;
+  }
+
+  .phraseContainer {
+    font-size: 1.2rem;
+    gap: 0.3rem;
+  }
+
+  .imgContainer {
+    margin: 1rem 0;
+  }
+
+  .imgContainer img {
+    width: 16rem;
+  }
+
+  .result {
+    flex-direction: column;
+  }
+
+  .resultText {
+    width: 100%;
+  }
 }

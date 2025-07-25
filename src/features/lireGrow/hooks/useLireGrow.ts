@@ -36,14 +36,18 @@ const useLireGrow = () => {
     imgsPaths(example)
   );
 
-  const selectedPhrase = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const chosenPhrase = event.target.value.split(" ");
-    setPhrase(chosenPhrase);
+  const initializePhrase = (phrase: string[]) => {
+    setPhrase(phrase);
     setCurrentIndex(1);
-    setShuffledImgsPaths(imgsPaths(chosenPhrase));
+    setShuffledImgsPaths(imgsPaths(phrase));
     setCorrectAnswer(null);
     setChosenImg(null);
     setSummaryClose(true);
+  };
+
+  const selectedPhrase = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const chosenPhrase = event.target.value.split(" ");
+    initializePhrase(chosenPhrase);
   };
 
   const nextPart = () => {
@@ -61,6 +65,7 @@ const useLireGrow = () => {
   const randomPhrase = () => {
     const randomIndex = Math.floor(Math.random() * phrases.length);
     const randomPhrase = phrases[randomIndex].split(" ");
+    initializePhrase(randomPhrase);
   };
 
   return {
@@ -75,6 +80,7 @@ const useLireGrow = () => {
     nextPart,
     selectedImg,
     checkAnswer,
+    randomPhrase,
   };
 };
 

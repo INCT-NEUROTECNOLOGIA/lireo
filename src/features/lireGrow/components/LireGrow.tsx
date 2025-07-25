@@ -16,6 +16,7 @@ const LireGrow = () => {
     nextPart,
     selectedImg,
     checkAnswer,
+    randomPhrase,
   } = useLireGrow();
   return (
     <>
@@ -57,7 +58,7 @@ const LireGrow = () => {
           </select>
 
           <button
-            className="nextPartButton"
+            className="nextButton"
             onClick={nextPart}
             disabled={currentIndex >= phrase.length}
             title={LireGrowText.nextPartButton}
@@ -67,7 +68,7 @@ const LireGrow = () => {
         </div>
         <div className="phraseContainer">
           {phrase.slice(0, currentIndex).map((_, index) => (
-            <span ref={currentPartRef}>
+            <span key={index} ref={currentPartRef}>
               {phrase.slice(0, index + 1).join(" ")}
             </span>
           ))}
@@ -106,9 +107,15 @@ const LireGrow = () => {
               </span>
             )}
 
-            <button className="checkButton" onClick={checkAnswer}>
-              {LireGrowText.checkButton}
-            </button>
+            {correctAnswer ? (
+              <button className="nextButton" onClick={randomPhrase}>
+                {LireGrowText.nextPhraseButton}
+              </button>
+            ) : (
+              <button className="checkButton" onClick={checkAnswer}>
+                {LireGrowText.checkButton}
+              </button>
+            )}
           </div>
         )}
       </div>
