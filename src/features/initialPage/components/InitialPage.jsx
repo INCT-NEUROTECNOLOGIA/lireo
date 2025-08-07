@@ -21,12 +21,15 @@ const InitialPage = () => {
 
       <div className="initialPage_howItWorksSection">
         <h1>{InitialPageText.howItWorksSection.title}</h1>
-        {InitialPageText.howItWorksSection.cards.map((card, index) => (
-          <div key={index} className="initialPage_howItWorksSection_card">
-            <h2>{card.title}</h2>
-            <p>{card.text}</p>
-          </div>
-        ))}
+        <div className="initialPage_howItWorksSection_content">
+          {InitialPageText.howItWorksSection.cards.map((card, index) => (
+            <div key={index} className="initialPage_howItWorksSection_card">
+              <i class={card.icon}></i>
+              <h2>{card.title}</h2>
+              <p>{card.text}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="initialPage_forWhomSection">

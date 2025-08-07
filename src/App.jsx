@@ -16,7 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<InitialPage />} />
           <Route path="/lireFlow" element={<TextReader />} />
-          <Route path="/lireGrow" element={<TextReader />} />
+          <Route path="/lireGrow" element={<LireGrow />} />
           <Route path="/guia-do-usuario" element={<UserGuide />} />
           <Route path="/sobre-nos" element={<AboutUs />} />
         </Routes>

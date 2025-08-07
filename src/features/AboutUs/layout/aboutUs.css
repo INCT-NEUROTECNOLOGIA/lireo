@@ -139,7 +139,7 @@
 
 @media (max-width: 980px) {
   .aboutUsContainer__ourStory {
-    padding: 4rem 2rem;
+    padding: 4rem;
   }
 
   .aboutUsContainer__team {
@@ -152,6 +152,10 @@
 }
 
 @media (max-width: 720px) {
+  .aboutUsContainer__ourStory {
+    padding: 4rem 2rem;
+  }
+
   .aboutUsContainer__ourStory p {
     font-size: 1rem;
   }

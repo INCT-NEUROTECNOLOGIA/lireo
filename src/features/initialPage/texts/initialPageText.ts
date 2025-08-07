@@ -15,14 +15,17 @@ export const InitialPageText = {
       {
         title: "Tarefas gamificadas",
         text: "Atividades interativas que tornam a leitura mais envolvente e desafiadora, respeitando o ritmo de cada leitor.",
+        icon: "bi bi-controller",
       },
       {
         title: "Controle de Velocidade",
         text: "Leitura com tempo guiado, destacando palavras conforme a fluência — ideal para treinar precisão, ritmo e entonação.",
+        icon: "bi bi-stopwatch",
       },
       {
         title: "Compreensão em Foco",
         text: "Jogos com imagens, perguntas e pistas para estimular o entendimento do texto, além da decodificação.",
+        icon: "bi bi-search",
       },
     ],
   },
