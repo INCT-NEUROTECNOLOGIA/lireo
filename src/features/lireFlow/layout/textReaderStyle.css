@@ -1,5 +1,5 @@
 .textReaderContainer {
-  width: 90%;
+  width: 85%;
   height: auto;
   background-color: var(--color-white);
   display: flex;
@@ -8,7 +8,7 @@
   justify-content: center;
   margin: 5vh auto;
   border-radius: 0.9rem;
-  padding: 4vh 6vh;
+  padding: 4vh 15vh;
   box-shadow: 0 4px 8px 0 var(--color-shadow-transparent),
     0 6px 1.2rem 0 var(--color-shadow);
 }
@@ -82,7 +82,7 @@
 
 .textReaderContainer__header {
   display: flex;
-  width: inherit;
+  width: 100%;
   text-align: left;
   justify-content: space-between;
   margin-bottom: 1.2rem;
