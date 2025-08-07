@@ -1,0 +1,9 @@
+.initialPage_mainSection {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.initialPage_mainSection img {
+  height: 20rem;
+}

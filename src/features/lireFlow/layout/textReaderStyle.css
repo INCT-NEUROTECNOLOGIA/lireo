@@ -8,7 +8,7 @@
   justify-content: center;
   margin: 5vh auto;
   border-radius: 0.9rem;
-  padding: 4vh 15vh;
+  padding: 4vh 8vh;
   box-shadow: 0 4px 8px 0 var(--color-shadow-transparent),
     0 6px 1.2rem 0 var(--color-shadow);
 }
@@ -27,7 +27,7 @@
   border: 2px dashed var(--color-tertiary);
   border-radius: 0.75rem;
   padding: 1.2rem;
-  width: inherit;
+  width: 100%;
   text-align: center;
   background-color: var(--color-accent);
   transition: background-color 0.3s ease;
@@ -119,13 +119,17 @@
 
 @media (max-width: 1115px) {
   .textReaderContainer {
-    width: 95%;
+    width: 90%;
   }
 }
 
 @media (max-width: 900px) {
   .textReaderContainer__fileUploader__label {
     width: auto;
+  }
+
+  .textReaderContainer__fileUploader {
+    width: 90%;
   }
 }
 
@@ -135,7 +139,7 @@
   }
 
   .textReaderContainer {
-    padding: 1.2rem 0.6rem;
+    padding: 1.2rem;
   }
 
   .textReaderContainer__fileUploader__inputSelectGroup {
