@@ -5,11 +5,27 @@
   justify-content: center;
 }
 
+.initialPage h1 {
+  margin: 0;
+  margin-bottom: 1.5rem;
+}
+
+.initialPage h2 {
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+.initialPage p {
+  font-size: 1rem;
+  margin: 0;
+  margin-bottom: 0.6rem;
+}
+
 .initialPage_mainSection {
   display: flex;
   align-items: center;
   gap: 2rem;
-  padding: 5rem 20vw;
+  padding: 5rem 10vw;
   background-color: var(--color-white);
 }
 
@@ -17,15 +33,11 @@
   font-size: 3rem;
 }
 
-.initialPage_mainSection_text p {
-  font-size: 1rem;
-}
-
 .initialPage_mainSection img {
   height: 20rem;
 }
 
-.initialPage_mainSection_button {
+.button {
   padding: 0.8rem 1.2rem;
   font-size: 1rem;
   font-weight: bold;
@@ -34,18 +46,19 @@
   color: var(--color-white);
   cursor: pointer;
   transition: background-color 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+}
+
+.initialPage_mainSection_button {
   background-color: var(--color-primary);
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
 .initialPage_mainSection_button:hover {
   background-color: var(--color-primary-hover);
 }
 
-.initialPage_howItWorksSection {
+.initialPage_howItWorksSection, 
+.initialPage_activitiesSection {
   width: 100%;
   padding: 5rem;
   display: flex;
@@ -56,12 +69,12 @@
   font-size: 2.5rem;
 }
 
-.initialPage_howItWorksSection_content {
+.initialPage_cardsContainer {
   display: flex;
   gap: 2rem;
 }
 
-.initialPage_howItWorksSection_card {
+.initialPage_card {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -81,6 +94,35 @@
 .initialPage_howItWorksSection_card_icon {
   font-size: 1.5rem;
   margin-bottom: 0.6rem;
+}
+
+.initialPage_forWhomSection {
+  width: 100%;
+  padding: 5rem;
+  background-color: var(--color-white);
+}
+
+.initialPage_callSection {
+  width: 100%;
+  padding: 6rem 2rem;
+  background: linear-gradient(
+    to right,
+    var(--color-secondary-light),
+    var(--color-primary-light)
+  );
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+.initialPage_callSection_button {
+  background-color: var(--color-white);
+  border: 2px solid var(--color-text-secondary);
+  color: var(--color-text-secondary);
+}
+
+.initialPage_callSection_button:hover {
+  background-color: var(--color-text-secondary);
+  color: var(--color-white);
 }
 
 @media (max-width: 980px) {
@@ -103,6 +145,7 @@
 
 @media (max-width: 720px) {
   .initialPage_mainSection {
-    padding: 4rem 1rem;
+    padding: 1.5rem;
+    flex-direction: column;
   }
 }

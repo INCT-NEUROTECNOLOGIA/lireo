@@ -40,4 +40,19 @@ export const InitialPageText = {
       "Pronto para explorar o mundo da leitura de forma divertida e eficaz?",
     button: "Acesse agora o LIRE-O",
   },
+
+  activitiesSection: {
+    title: "Atividades de Leitura",
+    links: [
+      {
+        title: "LireFlow",
+        description: "Acompanhe a leitura com palavras que se destacam uma a uma no tempo ideal. Uma atividade que treina ritmo, atenção e fluência de leitura.",
+        route: "LIRE_FLOW",
+      },
+      {
+        title: "LireGrow",
+        description: "Frases são reveladas palavra por palavra, possibilitando a construção do sentido aos poucos. Um exercício de compreensão e antecipação textual.",
+        route: "LIRE_GLOW",},
+    ],
+  } 
 };
