@@ -7,7 +7,7 @@ const Header: React.FC = () => {
   const headerText = {
     initalPage: "Início",
     aboutUs: "Sobre Nós",
-    userGuide: "Como usar",
+    userGuide: "Atividades",
     lireo: { img: "/images/logo-lireo-white.png", alt: "logo LIRE-O" },
     UFMG: { img: "/images/logo-UFMG-short.png", alt: "logo UFMG" },
     faculMed: {
@@ -17,8 +17,10 @@ const Header: React.FC = () => {
   };
 
   const [menuMobileOpen, setMenuMobileOpen] = useState<boolean>(false);
+  const [activitesList, setActivitesList] = useState<boolean>(false);
 
   const handleMenuMobile = () => setMenuMobileOpen(!menuMobileOpen);
+  const handleActivitiesList = () => setActivitesList(!activitesList);
 
   return (
     <>
@@ -36,7 +38,7 @@ const Header: React.FC = () => {
               <i className="bi bi-house"></i>
               {headerText.initalPage}
             </a>
-            <a href={ROUTE_PATHS.USER_GUIDE}>
+            <a onClick={handleActivitiesList}>
               <i className="bi bi-book"></i>
               {headerText.userGuide}
             </a>
@@ -56,7 +58,7 @@ const Header: React.FC = () => {
         }
       >
         <a href={ROUTE_PATHS.HOME}> {headerText.initalPage} </a>
-        <a href={ROUTE_PATHS.USER_GUIDE}>{headerText.userGuide} </a>
+        <a onClick={handleActivitiesList}>{headerText.userGuide} </a>
         <a href={ROUTE_PATHS.ABOUT_US}>{headerText.aboutUs} </a>
       </div>
     </>
