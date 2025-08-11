@@ -19,7 +19,7 @@ export const InitialPageText = {
       },
       {
         title: "Controle de Velocidade",
-        text: "Leitura com tempo guiado, destacando palavras conforme a fluência — ideal para treinar precisão, ritmo e entonação.",
+        text: "Leitura com tempo guiado, destacando palavras conforme a fluência. Ideal para treinar precisão, ritmo e entonação.",
         icon: "bi bi-stopwatch",
       },
       {
@@ -46,13 +46,18 @@ export const InitialPageText = {
     links: [
       {
         title: "LireFlow",
-        description: "Acompanhe a leitura com palavras que se destacam uma a uma no tempo ideal. Uma atividade que treina ritmo, atenção e fluência de leitura.",
+        description:
+          "Acompanhe a leitura com palavras que se destacam uma a uma no tempo ideal. Uma atividade que treina ritmo, atenção e fluência de leitura.",
         route: "LIRE_FLOW",
+        icon: "bi bi-highlighter",
       },
       {
         title: "LireGrow",
-        description: "Frases são reveladas palavra por palavra, possibilitando a construção do sentido aos poucos. Um exercício de compreensão e antecipação textual.",
-        route: "LIRE_GLOW",},
+        description:
+          "Frases são reveladas palavra por palavra, possibilitando a construção do sentido aos poucos. Um exercício de compreensão e antecipação textual.",
+        route: "LIRE_GLOW",
+        icon: "bi bi-card-text",
+      },
     ],
-  } 
+  },
 };

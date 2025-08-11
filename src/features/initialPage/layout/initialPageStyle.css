@@ -21,22 +21,6 @@
   margin-bottom: 0.6rem;
 }
 
-.initialPage_mainSection {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  padding: 5rem 10vw;
-  background-color: var(--color-white);
-}
-
-.initialPage_mainSection_text h1 {
-  font-size: 3rem;
-}
-
-.initialPage_mainSection img {
-  height: 20rem;
-}
-
 .button {
   padding: 0.8rem 1.2rem;
   font-size: 1rem;
@@ -46,26 +30,21 @@
   color: var(--color-white);
   cursor: pointer;
   transition: background-color 0.3s ease;
+  box-shadow: 0 4px 8px 0 var(--color-shadow-transparent),
+    0 6px 1.2rem 0 var(--color-shadow);
 }
 
-.initialPage_mainSection_button {
-  background-color: var(--color-primary);
-  margin-top: 1.5rem;
-}
-
-.initialPage_mainSection_button:hover {
-  background-color: var(--color-primary-hover);
-}
-
-.initialPage_howItWorksSection, 
-.initialPage_activitiesSection {
+.section {
   width: 100%;
   padding: 5rem;
   display: flex;
   flex-direction: column;
+  color: var(--color-text-tertiary);
+  align-items: center;
+  justify-content: center;
 }
 
-.initialPage_howItWorksSection h1 {
+.section h1 {
   font-size: 2.5rem;
 }
 
@@ -81,53 +60,128 @@
   padding: 2rem;
   border-radius: 12px;
   background-color: var(--color-white);
-  color: var(--color-primary);
+  color: var(--color-text-card);
   text-align: center;
+  box-shadow: 0 4px 8px 0 var(--color-shadow-transparent),
+    0 6px 1.2rem 0 var(--color-shadow);
+  transition: transform 0.3s ease;
+  cursor: default;
 }
 
-.initialPage_howItWorksSection_card h2 {
+.initialPage_card:hover {
+  transform: scale(1.05);
+}
+
+.initialPage_card h2 {
   font-size: 1.5rem;
   margin: 0;
   margin-bottom: 1rem;
 }
 
-.initialPage_howItWorksSection_card_icon {
+.initialPage_card_icon {
   font-size: 1.5rem;
   margin-bottom: 0.6rem;
 }
 
-.initialPage_forWhomSection {
+.initialPage_mainSection {
+  display: flex;
   width: 100%;
-  padding: 5rem;
-  background-color: var(--color-white);
+  align-items: center;
+  justify-content: space-between;
+  padding: 6rem;
+  background: var(--color-white);
+  gap: 3rem;
+}
+
+.initialPage_mainSection_text h1 {
+  font-size: 3rem;
+}
+
+.initialPage_mainSection img {
+  height: 20rem;
+}
+
+.initialPage_mainSection_button {
+  background-color: var(--color-primary);
+  margin-top: 1.5rem;
+}
+
+.initialPage_mainSection_button:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.initialPage_mainSection a:hover {
+  color: var(--color-white);
+}
+
+.initialPage_howItWorksSection {
+  background: linear-gradient(
+    to bottom,
+    var(--color-white) 0%,
+    var(--color-bg) 25%
+  );
 }
 
 .initialPage_callSection {
-  width: 100%;
   padding: 6rem 2rem;
   background: linear-gradient(
     to right,
     var(--color-secondary-light),
     var(--color-primary-light)
   );
-  color: var(--color-text-secondary);
+  color: var(--color-text-tertiary);
   text-align: center;
+  box-shadow: 0 4px 8px 0 var(--color-shadow-transparent),
+    0 6px 1.2rem 0 var(--color-shadow);
+  width: 100%;
 }
 
 .initialPage_callSection_button {
   background-color: var(--color-white);
-  border: 2px solid var(--color-text-secondary);
-  color: var(--color-text-secondary);
+  border: 2px solid var(--color-text-tertiary);
+  color: var(--color-text-tertiary);
+  margin: auto;
 }
 
 .initialPage_callSection_button:hover {
-  background-color: var(--color-text-secondary);
+  background-color: var(--color-text-tertiary);
   color: var(--color-white);
+}
+
+.initialPage_callSection a {
+  color: var(--color-text-tertiary);
+  padding: 0.8rem 1.2rem;
+}
+
+.initialPage_callSection a:hover {
+  color: var(--color-white);
+}
+
+.initialPage_forWhomSection {
+  background: var(--color-white);
+}
+
+.initialPage_activitiesSection {
+  background: linear-gradient(
+    to bottom,
+    var(--color-white) 0%,
+    var(--color-bg) 25%
+  );
+}
+
+.activityCard {
+  max-width: 40rem;
+  cursor: pointer;
+}
+
+.activityCard:hover {
+  color: var(--color-text-tertiary);
 }
 
 @media (max-width: 980px) {
   .initialPage_mainSection {
-    padding: 4rem;
+    padding: 3rem;
+    gap: 1rem;
   }
 
   .initialPage_mainSection img {
@@ -141,11 +195,61 @@
   .initialPage_howItWorksSection {
     padding: 2rem;
   }
+
+  .section {
+    padding: 3rem 1.5rem;
+    text-align: center;
+  }
+
+  .section h1 {
+    font-size: 2rem;
+  }
+
+  .initialPage_cardsContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .initialPage_card h2 {
+    font-size: 1.3rem;
+    margin: 0;
+    margin-bottom: 1rem;
+  }
+
+  .initialPage_card_icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.6rem;
+  }
 }
 
 @media (max-width: 720px) {
+  .initialPage p {
+    font-size: 0.9rem;
+  }
+
   .initialPage_mainSection {
-    padding: 1.5rem;
+    padding: 2rem 1.5rem;
     flex-direction: column;
+  }
+
+  .initialPage_mainSection_text {
+    text-align: center;
+  }
+
+  .initialPage_mainSection_text h1 {
+    font-size: 2.2rem;
+  }
+
+  .initialPage_mainSection img {
+    display: none;
+  }
+
+  .section h1 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+
+  .initialPage_callSection h1 {
+    font-size: 1.6rem;
   }
 }
