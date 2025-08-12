@@ -59,10 +59,6 @@
   background-color: var(--color-secondary);
 }
 
-.textReaderContainer__fileUploader__selectText:hover option {
-  color: var(--color-text-secondary);
-}
-
 .textReaderContainer__fileUploader__selectText option:disabled {
   color: var(--color-text-tertiary);
 }

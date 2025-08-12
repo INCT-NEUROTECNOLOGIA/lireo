@@ -38,7 +38,7 @@ export const InitialPageText = {
   callSection: {
     title:
       "Pronto para explorar o mundo da leitura de forma divertida e eficaz?",
-    button: "Acesse agora o LIRE-O",
+    button: "Acesse as atividades do LIRE-O",
   },
 
   activitiesSection: {
