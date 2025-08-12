@@ -22,6 +22,7 @@ export const LireGrowText = {
   placeholderSelectPhrase: "Selecione uma frase",
   nextPartButton: "Próxima parte",
   nextPhraseButton: "Próxima frase",
+  imageSelectionMessage: "Desafio final: Qual dessas imagens representa o texto que você acabou de ler?",
   imgAlt: "Imagem",
   checkButton: "Verificar",
   correct: "Muito bem! Você acertou!",

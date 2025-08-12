@@ -43,12 +43,6 @@ body {
   scrollbar-color: var(--color-border) var(--color-white);
 }
 
-.pageContent {
-  display: flex;
-  flex-direction: column;
-  min-height: 120vh;
-}
-
 ul li {
   margin: 0.5vh 0;
 }

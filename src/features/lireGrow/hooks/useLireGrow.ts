@@ -5,12 +5,13 @@ const useLireGrow = () => {
   const example: string[] = LireGrowText.example.split(" ");
   const phrases: string[] = LireGrowText.phrases;
   const [phrase, setPhrase] = useState<string[]>(example);
-  const [currentIndex, setCurrentIndex] = useState(example.length);
+  const [currentIndex, setCurrentIndex] = useState(example.length+1);
   const [correctAnswer, setCorrectAnswer] = useState<boolean | null>(null);
   const [chosenImg, setChosenImg] = useState<string | null>(null);
   const [summaryClose, setSummaryClose] = useState<boolean>(false);
   const currentPartRef = useRef<HTMLSpanElement | null>(null);
   const imgsRef: string[] = ["errada1", "errada2", "certa"];
+  const punctuationRegex = /[.,!?;:"()'-]/g;
 
   useEffect(() => {
     if (currentPartRef.current) {
@@ -21,11 +22,15 @@ const useLireGrow = () => {
     }
   }, [currentIndex]);
 
+  const removeAccents = (text: string) => {
+    return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  }
+
   const imgsPaths = (phrase: string[]) => {
-    const imgFolder = `/lireGrowImgs/${phrase
+    const imgFolder = removeAccents(`/lireGrowImgs/${phrase
       .join("_")
       .toLowerCase()
-      .slice(0, -1)}`;
+      .replace(punctuationRegex, "")}`);
 
     return imgsRef
       .map((img) => `${imgFolder}/${img}.png`)
@@ -51,7 +56,7 @@ const useLireGrow = () => {
   };
 
   const nextPart = () => {
-    if (currentIndex < phrase.length) setCurrentIndex(currentIndex + 1);
+    if (currentIndex <= phrase.length) setCurrentIndex(currentIndex + 1);
   };
 
   const selectedImg = (event: React.ChangeEvent<HTMLInputElement>) => {

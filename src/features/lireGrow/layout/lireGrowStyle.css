@@ -1,15 +1,11 @@
 .lireGrowContainer {
-  width: 90%;
-  min-height: 30rem;
+  width: 100%;
+  min-height: 100vh;
   background-color: var(--color-white);
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 5vh auto;
-  border-radius: 0.9rem;
-  padding: 4vh 6vh;
-  box-shadow: 0 4px 8px 0 var(--color-shadow-transparent),
-    0 6px 1.2rem 0 var(--color-shadow);
+  padding: 5vh 8vh;
 }
 
 .controls {
@@ -27,10 +23,6 @@
 
 .selectPhrase:hover {
   background-color: var(--color-secondary);
-}
-
-.selectPhrase:hover option {
-  color: var(--color-text-secondary);
 }
 
 .selectPhrase option:disabled {
@@ -59,10 +51,10 @@
   padding: 0.7rem 1rem;
   font-size: 1rem;
   font-weight: bold;
-  border: none;
+  border: 2px solid var(--color-tertiary);
   border-radius: 8px;
-  color: var(--color-white);
-  background-color: var(--color-tertiary);
+  color: var(--color-tertiary);
+  background-color: var(--color-white);
   cursor: pointer;
   transition: background-color 0.3s ease;
   width: 15rem;
@@ -70,28 +62,39 @@
 
 .nextButton:hover,
 .checkButton:hover {
-  background-color: var(--color-secondary);
+  background-color: var(--color-tertiary);
+  color: var(--color-white);
 }
 
 .nextButton:disabled {
-  background-color: var(--color-tertiary-light);
+  color: var(--color-tertiary-light);
+  border-color: var(--color-tertiary-light);
+  background-color: var(--color-white);
   cursor: not-allowed;
+}
+
+.questionContainer {
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 1rem;
 }
 
 .imgContainer {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin: 2rem 0;
+  gap: 4rem;
+  margin-top: 1.5rem ;
 }
 
 .imgContainer img {
-  width: 20rem;
+  width: 15rem;
   height: auto;
   object-fit: contain;
   border-radius: 0.8rem;
+  cursor: pointer;
 }
 
 .result {

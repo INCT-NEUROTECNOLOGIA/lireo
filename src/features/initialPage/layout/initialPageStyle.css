@@ -137,7 +137,7 @@
 }
 
 .initialPage_callSection_button {
-  background-color: var(--color-white);
+  background-color: var(--color-bg);
   border: 2px solid var(--color-text-tertiary);
   color: var(--color-text-tertiary);
   margin: auto;

@@ -60,7 +60,7 @@ const LireGrow = () => {
           <button
             className="nextButton"
             onClick={nextPart}
-            disabled={currentIndex >= phrase.length}
+            disabled={currentIndex > phrase.length}
             title={LireGrowText.nextPartButton}
           >
             {LireGrowText.nextPartButton}
@@ -74,24 +74,27 @@ const LireGrow = () => {
           ))}
         </div>
 
-        {currentIndex === phrase.length && (
-          <div className="imgContainer">
-            {shuffledImgsPaths.map((img, index) => (
-              <div key={index}>
-                <input
-                  type="radio"
-                  name="imgs"
-                  id={img}
-                  onChange={selectedImg}
-                />
-                <label htmlFor={img}>
-                  <img
-                    src={getPublicAssetUrl(img)}
-                    alt={`${LireGrowText.imgAlt} ${index + 1}`}
+        {currentIndex > phrase.length && (
+          <div className="questionContainer">
+            <p>{LireGrowText.imageSelectionMessage}</p>
+            <div className="imgContainer">
+              {shuffledImgsPaths.map((img, index) => (
+                <div key={index}>
+                  <input
+                    type="radio"
+                    name="imgs"
+                    id={img}
+                    onChange={selectedImg}
                   />
-                </label>
-              </div>
-            ))}
+                  <label htmlFor={img}>
+                    <img
+                      src={getPublicAssetUrl(img)}
+                      alt={`${LireGrowText.imgAlt} ${index + 1}`}
+                    />
+                  </label>
+                </div>
+              ))}
+            </div>
           </div>
         )}
 
