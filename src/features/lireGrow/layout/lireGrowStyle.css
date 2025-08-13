@@ -133,7 +133,6 @@
 
 @media (max-width: 720px) {
   .lireGrowContainer {
-    width: 95%;
     padding: 3vh 4vh;
   }
 
@@ -158,10 +157,11 @@
 
   .imgContainer {
     margin: 1rem 0;
+    justify-content: center;
   }
 
   .imgContainer img {
-    width: 16rem;
+    width: 6rem;
   }
 
   .result {
