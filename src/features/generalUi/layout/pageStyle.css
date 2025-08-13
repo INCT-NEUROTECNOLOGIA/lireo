@@ -146,6 +146,10 @@ select option {
 }
 
 @media (max-width: 720px) {
+  .taskSummary {
+    padding: 2rem 1rem;
+  }
+
   .taskSummary h1 {
     font-size: 2.2rem;
   }
