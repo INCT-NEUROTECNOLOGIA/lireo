@@ -59,7 +59,8 @@ li::marker {
   display: none;
 }
 
-.taskSummary {
+.taskSummary,
+.pageSummary {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -69,12 +70,26 @@ li::marker {
     var(--color-primary-light)
   );
   width: 100%;
-  padding: 2rem;
   gap: 0.6rem;
   color: var(--color-text-secondary);
 }
 
-.taskSummary h1 {
+.taskSummary {
+  padding: 2rem;
+}
+
+.pageSummary {
+  padding: 5rem 15vw;
+}
+
+.pageSummary p {
+  font-size: 1.2rem;
+  margin: 0;
+  text-align: center;
+}
+
+.taskSummary h1,
+.pageSummary h1 {
   font-size: 2.5rem;
   margin: 0;
   text-align: center;
@@ -140,7 +155,8 @@ select option {
 }
 
 @media (max-width: 980px) {
-  .taskSummary {
+  .taskSummary,
+  .pageSummary {
     padding: 4rem 1rem;
   }
 }
@@ -150,11 +166,13 @@ select option {
     padding: 2rem 1rem;
   }
 
-  .taskSummary h1 {
+  .taskSummary h1,
+  .pageSummary h1 {
     font-size: 2.2rem;
   }
 
-  .taskSummary p {
+  .taskSummary p,
+  .pageSummary p {
     font-size: 1rem;
   }
 }
