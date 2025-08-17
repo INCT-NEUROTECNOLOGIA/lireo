@@ -100,7 +100,7 @@ const TextReader = () => {
       ],
       linkText: "Para mais informações, acesse o ",
       link: "Guia do Usuário.",
-      linkRef: ROUTE_PATHS.USER_GUIDE,
+      linkRef: ROUTE_PATHS.USER_GUIDE_LIRE_FLOW,
     },
   };
 

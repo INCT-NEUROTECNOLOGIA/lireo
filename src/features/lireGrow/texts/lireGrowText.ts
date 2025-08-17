@@ -9,7 +9,6 @@ export const LireGrowText = {
     ],
     linkText: "Para mais informações, acesse o ",
     link: "Guia do Usuário.",
-    linkRef: "/",
   },
   example: "Esse é um exemplo.",
   phrases: [
@@ -22,7 +21,8 @@ export const LireGrowText = {
   placeholderSelectPhrase: "Selecione uma frase",
   nextPartButton: "Próxima parte",
   nextPhraseButton: "Próxima frase",
-  imageSelectionMessage: "Desafio final: Qual dessas imagens representa o texto que você acabou de ler?",
+  imageSelectionMessage:
+    "Desafio final: Qual dessas imagens representa o texto que você acabou de ler?",
   imgAlt: "Imagem",
   checkButton: "Verificar",
   correct: "Muito bem! Você acertou!",

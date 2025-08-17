@@ -2,6 +2,7 @@ import "../layout/lireGrowStyle.css";
 import { LireGrowText } from "../texts/lireGrowText.ts";
 import useLireGrow from "../hooks/useLireGrow.ts";
 import { getPublicAssetUrl } from "../../../utils/pathUtils.ts";
+import { ROUTE_PATHS } from "../../../config/routes.ts";
 
 const LireGrow = () => {
   const {
@@ -29,7 +30,7 @@ const LireGrow = () => {
           <li>
             {LireGrowText.summary.linkText}
             <a
-              href={LireGrowText.summary.linkRef}
+              href={ROUTE_PATHS.USER_GUIDE_LIRE_GROW}
               target="_blank"
               rel="noopener noreferrer"
             >
