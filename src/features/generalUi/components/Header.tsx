@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import "../layout/header.css";
 import { ROUTE_PATHS } from "../../../config/routes";
 import { getPublicAssetUrl } from "../../../utils/pathUtils";
@@ -20,6 +20,17 @@ const Header: React.FC = () => {
         icon: "bi bi-card-text",
       },
     ],
+    userGuides: "Guias do Usuário",
+    userGuidesList: [
+      {
+        name: "LireFlow",
+        href: ROUTE_PATHS.USER_GUIDE_LIRE_FLOW,
+      },
+      {
+        name: "LireGrow",
+        href: ROUTE_PATHS.USER_GUIDE_LIRE_GROW,
+      },
+    ],
     lireo: { img: "/images/logo-lireo-white.png", alt: "logo LIRE-O" },
     UFMG: { img: "/images/logo-UFMG-short.png", alt: "logo UFMG" },
     faculMed: {
@@ -30,14 +41,26 @@ const Header: React.FC = () => {
 
   const [menuMobileOpen, setMenuMobileOpen] = useState<boolean>(false);
   const [activitesList, setActivitesList] = useState<boolean>(false);
+  const [userGuidesList, setUserGuidesList] = useState<boolean>(false);
+  const [linkList, setLinkList] = useState<
+    { name: string; href: string; icon?: string }[]
+  >([]);
 
   const handleMenuMobile = () => {
     setMenuMobileOpen(!menuMobileOpen);
     if (activitesList) setActivitesList(false);
   };
+
   const handleActivitiesList = () => {
     setActivitesList(!activitesList);
     if (menuMobileOpen) setMenuMobileOpen(false);
+    setLinkList(headerText.activitesList);
+  };
+
+  const handleUserGuidesList = () => {
+    setUserGuidesList(!userGuidesList);
+    if (menuMobileOpen) setMenuMobileOpen(false);
+    setLinkList(headerText.userGuidesList);
   };
 
   return (
@@ -59,6 +82,10 @@ const Header: React.FC = () => {
             <a onClick={handleActivitiesList}>
               <i className="bi bi-book"></i>
               {headerText.activites}
+            </a>
+            <a onClick={handleUserGuidesList}>
+              <i className="bi bi-journal-text"></i>
+              {headerText.userGuides}
             </a>
             <a href={ROUTE_PATHS.ABOUT_US}>
               <i className="bi bi-people"></i>
@@ -94,13 +121,14 @@ const Header: React.FC = () => {
       </div>
       <div
         className={
-          "menu__toggle__activitiesList" + (activitesList ? " active" : "")
+          "menu__toggle__activitiesList" +
+          (activitesList || userGuidesList ? " active" : "")
         }
       >
-        {headerText.activitesList.map((activity, index) => (
-          <a key={index} href={activity.href}>
-            <i className={activity.icon}></i>
-            {activity.name}
+        {linkList.map((item, index) => (
+          <a key={index} href={item.href}>
+            <i className={item.icon}></i>
+            {item.name}
           </a>
         ))}
       </div>
