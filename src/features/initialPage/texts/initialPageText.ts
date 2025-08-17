@@ -2,7 +2,7 @@ export const InitialPageText = {
   mainSection: {
     title: "Conquiste o mundo da leitura com o LIRE-O!",
     texts: [
-      "O LIRE-O é uma plataforma inovadora que visa aprimorar as habilidades de leitura e escrita de crianças e adolescentes.",
+      "O LIRE-O é uma plataforma que visa aprimorar as habilidades de leitura de crianças e adolescentes.",
       "Com atividades interativas, o LIRE-O estimula a compreensão leitora e o prazer pela leitura.",
       "Explore nossos recursos e descubra como podemos ajudar no desenvolvimento das competências leitoras!",
     ],
@@ -32,7 +32,12 @@ export const InitialPageText = {
 
   forWhomSection: {
     title: "Para quem é o LIRE-O?",
-    text: "O LIRE-O é feito para crianças em fase de alfabetização, educadores que querem inovar suas práticas e famílias que desejam apoiar o desenvolvimento leitor em casa.",
+    texts: [
+      "O LIRE-O foi pensado para quem acredita que a leitura pode ser leve e prazerosa.",
+      "Para as crianças, é um espaço de descobertas, onde cada palavra vira brincadeira e cada atividade ajuda a ganhar confiança.",
+      "Para professores e terapeutas, é um recurso que abre novas formas de ensinar e acompanhar o progresso de cada leitor.",
+      "E para as famílias, é a chance de participar de perto desse processo, transformando a leitura em parte da rotina e em momentos compartilhados.",
+    ],
   },
 
   callSection: {
@@ -54,7 +59,7 @@ export const InitialPageText = {
       {
         title: "LireGrow",
         description:
-          "Frases são reveladas palavra por palavra, possibilitando a construção do sentido aos poucos. Um exercício de compreensão e antecipação textual.",
+          "Frases são reveladas palavra por palavra, possibilitando a construção do sentido aos poucos. Um exercício de compreensão textual.",
         route: "LIRE_GLOW",
         icon: "bi bi-card-text",
       },

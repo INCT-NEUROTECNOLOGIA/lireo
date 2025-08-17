@@ -47,8 +47,15 @@ const InitialPage = () => {
       </div>
 
       <div className="section initialPage_forWhomSection">
-        <h1>{InitialPageText.forWhomSection.title}</h1>
-        <p>{InitialPageText.forWhomSection.text}</p>
+        <div>
+          <h1>{InitialPageText.forWhomSection.title}</h1>
+          {InitialPageText.forWhomSection.texts.map((text, index) => (
+            <p key={index}>{text}</p>
+          ))}
+        </div>
+        <FadeIn>
+          <img src={getPublicAssetUrl("/images/icone-lireo.png")} />
+        </FadeIn>
       </div>
 
       <div
