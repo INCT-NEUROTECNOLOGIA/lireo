@@ -3,5 +3,5 @@ export const ROUTE_PATHS = {
   ABOUT_US: "/lireo/sobre-nos",
   USER_GUIDE: "/lireo/guia-do-usuario",
   LIRE_FLOW: "/lireo/lireFlow",
-  LIRE_GLOW: "/lireo/lireGrow",
+  LIRE_GROW: "/lireo/lireGrow",
 };

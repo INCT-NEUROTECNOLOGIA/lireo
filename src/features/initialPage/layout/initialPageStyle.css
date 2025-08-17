@@ -181,7 +181,7 @@
 @media (max-width: 980px) {
   .initialPage_mainSection {
     padding: 3rem;
-    gap: 1rem;
+    gap: 2rem;
   }
 
   .initialPage_mainSection img {
@@ -237,7 +237,7 @@
   }
 
   .initialPage_mainSection_text h1 {
-    font-size: 2rem;
+    font-size: 2.3rem;
   }
 
   .initialPage_mainSection_text p,
@@ -253,8 +253,8 @@
     margin-top: 1rem;
   }
 
-   .initialPage_mainSection_button a, 
-   .initialPage_callSection_button a {
+  .initialPage_mainSection_button a,
+  .initialPage_callSection_button a {
     font-size: 0.9rem;
   }
 
