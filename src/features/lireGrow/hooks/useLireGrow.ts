@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import { LireGrowText } from "../texts/lireGrowText";
+import { lireGrowText } from "../texts/lireGrowText";
 
 const useLireGrow = () => {
-  const example: string[] = LireGrowText.example.split(" ");
-  const phrases: string[] = LireGrowText.phrases;
+  const example: string[] = lireGrowText.example.split(" ");
+  const phrases: string[] = lireGrowText.phrases;
   const [phrase, setPhrase] = useState<string[]>(example);
-  const [currentIndex, setCurrentIndex] = useState(example.length+1);
+  const [currentIndex, setCurrentIndex] = useState(example.length + 1);
   const [correctAnswer, setCorrectAnswer] = useState<boolean | null>(null);
   const [chosenImg, setChosenImg] = useState<string | null>(null);
   const [summaryClose, setSummaryClose] = useState<boolean>(false);
@@ -24,13 +24,15 @@ const useLireGrow = () => {
 
   const removeAccents = (text: string) => {
     return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-  }
+  };
 
   const imgsPaths = (phrase: string[]) => {
-    const imgFolder = removeAccents(`/lireGrowImgs/${phrase
-      .join("_")
-      .toLowerCase()
-      .replace(punctuationRegex, "")}`);
+    const imgFolder = removeAccents(
+      `/lireGrowImgs/${phrase
+        .join("_")
+        .toLowerCase()
+        .replace(punctuationRegex, "")}`
+    );
 
     return imgsRef
       .map((img) => `${imgFolder}/${img}.png`)

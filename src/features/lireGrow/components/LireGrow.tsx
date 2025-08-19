@@ -1,5 +1,5 @@
 import "../layout/lireGrowStyle.css";
-import { LireGrowText } from "../texts/lireGrowText.ts";
+import { lireGrowText } from "../texts/lireGrowText.ts";
 import useLireGrow from "../hooks/useLireGrow.ts";
 import { getPublicAssetUrl } from "../../../utils/pathUtils.ts";
 import { ROUTE_PATHS } from "../../../config/routes.ts";
@@ -22,19 +22,19 @@ const LireGrow = () => {
   return (
     <>
       <div className={"taskSummary" + (summaryClose ? " hidden" : "")}>
-        <h1>{LireGrowText.summary.title}</h1>
+        <h1>{lireGrowText.summary.title}</h1>
         <ul>
-          {LireGrowText.summary.texts.map((text, index) => (
+          {lireGrowText.summary.texts.map((text, index) => (
             <li key={index}>{text}</li>
           ))}
           <li>
-            {LireGrowText.summary.linkText}
+            {lireGrowText.summary.linkText}
             <a
               href={ROUTE_PATHS.USER_GUIDE_LIRE_GROW}
               target="_blank"
               rel="noopener noreferrer"
             >
-              {LireGrowText.summary.link}
+              {lireGrowText.summary.link}
             </a>
           </li>
         </ul>
@@ -46,12 +46,12 @@ const LireGrow = () => {
             className="selectPhrase"
             defaultValue=""
             onChange={selectedPhrase}
-            title={LireGrowText.placeholderSelectPhrase}
+            title={lireGrowText.placeholderSelectPhrase}
           >
             <option value="" disabled>
-              {LireGrowText.placeholderSelectPhrase}
+              {lireGrowText.placeholderSelectPhrase}
             </option>
-            {LireGrowText.phrases.map((phrase, index) => (
+            {lireGrowText.phrases.map((phrase, index) => (
               <option key={index} value={phrase} title={phrase}>
                 {phrase}
               </option>
@@ -62,9 +62,9 @@ const LireGrow = () => {
             className="nextButton"
             onClick={nextPart}
             disabled={currentIndex > phrase.length}
-            title={LireGrowText.nextPartButton}
+            title={lireGrowText.nextPartButton}
           >
-            {LireGrowText.nextPartButton}
+            {lireGrowText.nextPartButton}
           </button>
         </div>
         <div className="phraseContainer">
@@ -77,7 +77,7 @@ const LireGrow = () => {
 
         {currentIndex > phrase.length && (
           <div className="questionContainer">
-            <p>{LireGrowText.imageSelectionMessage}</p>
+            <p>{lireGrowText.imageSelectionMessage}</p>
             <div className="imgContainer">
               {shuffledImgsPaths.map((img, index) => (
                 <div key={index}>
@@ -90,7 +90,7 @@ const LireGrow = () => {
                   <label htmlFor={img}>
                     <img
                       src={getPublicAssetUrl(img)}
-                      alt={`${LireGrowText.imgAlt} ${index + 1}`}
+                      alt={`${lireGrowText.imgAlt} ${index + 1}`}
                     />
                   </label>
                 </div>
@@ -107,17 +107,17 @@ const LireGrow = () => {
                   correctAnswer ? "correct" : "incorrect"
                 }`}
               >
-                {correctAnswer ? LireGrowText.correct : LireGrowText.incorrect}
+                {correctAnswer ? lireGrowText.correct : lireGrowText.incorrect}
               </span>
             )}
 
             {correctAnswer ? (
               <button className="nextButton" onClick={randomPhrase}>
-                {LireGrowText.nextPhraseButton}
+                {lireGrowText.nextPhraseButton}
               </button>
             ) : (
               <button className="checkButton" onClick={checkAnswer}>
-                {LireGrowText.checkButton}
+                {lireGrowText.checkButton}
               </button>
             )}
           </div>

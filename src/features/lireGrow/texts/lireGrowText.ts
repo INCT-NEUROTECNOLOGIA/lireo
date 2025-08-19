@@ -1,4 +1,4 @@
-export const LireGrowText = {
+export const lireGrowText = {
   summary: {
     title: "LireGrow",
     texts: [

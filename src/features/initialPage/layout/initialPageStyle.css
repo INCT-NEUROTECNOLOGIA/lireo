@@ -234,7 +234,8 @@
 @media (max-width: 720px) {
   .initialPage_mainSection {
     padding: 3rem 2rem;
-    flex-direction: column;
+    flex-direction: column-reverse;
+    gap: 1rem;
   }
 
   .initialPage_mainSection_text {
@@ -250,7 +251,7 @@
   }
 
   .initialPage img {
-    display: none;
+    height: 8rem;
   }
 
   .initialPage_mainSection_button {
