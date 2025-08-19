@@ -9,6 +9,7 @@ const useLireGrow = () => {
   const [correctAnswer, setCorrectAnswer] = useState<boolean | null>(null);
   const [chosenImg, setChosenImg] = useState<string | null>(null);
   const [summaryClose, setSummaryClose] = useState<boolean>(false);
+  const [fontSize, setFontSize] = useState<number>(16);
   const currentPartRef = useRef<HTMLSpanElement | null>(null);
   const imgsRef: string[] = ["errada1", "errada2", "certa"];
   const punctuationRegex = /[.,!?;:"()'-]/g;
@@ -75,6 +76,16 @@ const useLireGrow = () => {
     initializePhrase(randomPhrase);
   };
 
+  const fontSizeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseFloat(event.target.value);
+    setFontSize(value);
+
+    const min = parseFloat(event.target.min);
+    const max = parseFloat(event.target.max);
+    const percent = ((value - min) / (max - min)) * 100;
+    event.target.style.setProperty("--progress", `${percent}%`);
+  };
+
   return {
     phrase,
     currentIndex,
@@ -83,11 +94,13 @@ const useLireGrow = () => {
     currentPartRef,
     chosenImg,
     summaryClose,
+    fontSize,
     selectedPhrase,
     nextPart,
     selectedImg,
     checkAnswer,
     randomPhrase,
+    fontSizeChange,
   };
 };
 

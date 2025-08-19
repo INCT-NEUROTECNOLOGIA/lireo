@@ -13,11 +13,13 @@ const LireGrow = () => {
     currentPartRef,
     chosenImg,
     summaryClose,
+    fontSize,
     selectedPhrase,
     nextPart,
     selectedImg,
     checkAnswer,
     randomPhrase,
+    fontSizeChange,
   } = useLireGrow();
   return (
     <>
@@ -41,6 +43,24 @@ const LireGrow = () => {
       </div>
 
       <div className="lireGrowContainer">
+        <div
+          className="fontSizeAdjustment"
+          title={lireGrowText.fontSizeAdjustment}
+        >
+          <p>{lireGrowText.fontSizeAdjustment}</p>
+          <div className="fontSizeAdjustment__slider">
+            <p className="fontSizeAdjustment__value">{fontSize}</p>
+            <input
+              type="range"
+              min="10"
+              max="64"
+              step="1"
+              value={fontSize}
+              onChange={fontSizeChange}
+              className="fontSizeAdjustment__input"
+            />
+          </div>
+        </div>
         <div className="controls">
           <select
             className="selectPhrase"

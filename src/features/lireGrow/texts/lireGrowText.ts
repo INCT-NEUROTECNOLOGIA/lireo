@@ -27,4 +27,5 @@ export const lireGrowText = {
   checkButton: "Verificar",
   correct: "Muito bem! Você acertou!",
   incorrect: "Quase lá! Tente de novo!",
+  fontSizeAdjustment: "Tamanho da fonte:",
 };
