@@ -33,6 +33,26 @@ export const userGuideText = {
       ],
     },
 
+    fontSize: {
+      title: "Ajuste do Tamanho da Fonte",
+      icon: "bi bi-type",
+      id: "fontSize",
+      className: "fontSize",
+      content: [
+        {
+          type: "text",
+          text: "Para facilitar a leitura, o LireGrow permite ajustar o tamanho da fonte das frases por meio de um controle deslizante:",
+        },
+        {
+          type: "imageSmall",
+          image: {
+            src: "/userGuideLireGrowImgs/font_size_control.png",
+            alt: "Controle de tamanho da fonte",
+          },
+        },
+      ],
+    },
+
     progressiveReading: {
       title: "Leitura Progressiva",
       icon: "bi bi-eye",

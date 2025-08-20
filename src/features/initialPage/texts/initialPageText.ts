@@ -2,9 +2,9 @@ export const InitialPageText = {
   mainSection: {
     title: "Conquiste o mundo da leitura com o LIRE-O!",
     texts: [
-      "O LIRE-O é uma plataforma que visa aprimorar as habilidades de leitura de crianças e adolescentes.",
-      "Com atividades interativas, o LIRE-O estimula a compreensão leitora e o prazer pela leitura.",
-      "Explore nossos recursos e descubra como podemos ajudar no desenvolvimento das competências leitoras!",
+      "O LIRE-O é uma plataforma criada para estimular e aprimorar as habilidades de leitura de crianças e adolescentes.",
+      "Com atividades interativas e desafios gamificados, o LIRE-O treina a decodificação, a fluência e a compreensão leitora, acompanhando o progresso de cada leitor.",
+      "Explore nossos recursos e descubra novas formas de apoiar o desenvolvimento das competências leitoras!",
     ],
     button: "Iniciar atividades de leitura",
   },
@@ -36,7 +36,7 @@ export const InitialPageText = {
       "O LIRE-O foi pensado para quem acredita que a leitura pode ser leve e prazerosa.",
       "Para as crianças, é um espaço de descobertas, onde cada palavra vira brincadeira e cada atividade ajuda a ganhar confiança.",
       "Para professores e terapeutas, é um recurso que abre novas formas de ensinar e acompanhar o progresso de cada leitor.",
-      "E para as famílias, é a chance de participar de perto desse processo, transformando a leitura em parte da rotina e em momentos compartilhados.",
+      "E para as famílias, é uma oportunidade de participar de perto desse processo e incentivar o hábito da leitura no cotidiano.",
     ],
   },
 
