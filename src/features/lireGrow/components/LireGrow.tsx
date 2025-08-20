@@ -52,7 +52,9 @@ const LireGrow = () => {
             <p className="fontSizeAdjustment__value">{fontSize}</p>
             <input
               type="range"
-              min="10"
+              id="fontSizeRange"
+              name="fontSizeRange"
+              min="12"
               max="64"
               step="1"
               value={fontSize}
@@ -63,6 +65,8 @@ const LireGrow = () => {
         </div>
         <div className="controls">
           <select
+            id="phraseSelect"
+            name="phraseSelect"
             className="selectPhrase"
             defaultValue=""
             onChange={selectedPhrase}
@@ -87,7 +91,7 @@ const LireGrow = () => {
             {lireGrowText.nextPartButton}
           </button>
         </div>
-        <div className="phraseContainer">
+        <div className="phraseContainer" style={{ fontSize: `${fontSize}px` }}>
           {phrase.slice(0, currentIndex).map((_, index) => (
             <span key={index} ref={currentPartRef}>
               {phrase.slice(0, index + 1).join(" ")}
@@ -96,7 +100,10 @@ const LireGrow = () => {
         </div>
 
         {currentIndex > phrase.length && (
-          <div className="questionContainer">
+          <div
+            className="questionContainer"
+            style={{ fontSize: `${fontSize}px` }}
+          >
             <p>{lireGrowText.imageSelectionMessage}</p>
             <div className="imgContainer">
               {shuffledImgsPaths.map((img, index) => (

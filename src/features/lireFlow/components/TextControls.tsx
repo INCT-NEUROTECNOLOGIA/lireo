@@ -126,6 +126,8 @@ const TextControls = ({
             <div className="textControls__speedSlider__inputContainer">
               <input
                 type="range"
+                id="speedRange"
+                name="speed"
                 min="0.1"
                 max="3"
                 step="0.1"
@@ -145,6 +147,8 @@ const TextControls = ({
           >
             <i className="bi bi-clock"></i>
             <input
+              id="wordsPerMinuteInput"
+              name="wordsPerMinute"
               className="textControls__wordsPerMinute__input"
               value={wordsPerMinute}
               onChange={wordsPerMinuteInput}

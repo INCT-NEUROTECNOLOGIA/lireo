@@ -9,7 +9,7 @@ const useLireGrow = () => {
   const [correctAnswer, setCorrectAnswer] = useState<boolean | null>(null);
   const [chosenImg, setChosenImg] = useState<string | null>(null);
   const [summaryClose, setSummaryClose] = useState<boolean>(false);
-  const [fontSize, setFontSize] = useState<number>(16);
+  const [fontSize, setFontSize] = useState<number>(25);
   const currentPartRef = useRef<HTMLSpanElement | null>(null);
   const imgsRef: string[] = ["errada1", "errada2", "certa"];
   const punctuationRegex = /[.,!?;:"()'-]/g;
