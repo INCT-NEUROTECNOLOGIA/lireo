@@ -1,6 +1,6 @@
-import { useEffect, useState, useRef, RefObject } from "react";
-import { hyphenate } from "hyphen/pt";
-import useReadingParameters from "../hooks/useReadingParameters";
+
+import { RefObject } from "react";
+import { useWordHighlighter } from "../hooks/useWordHighlighter";
 
 const WordHighlighter = ({
   paragraph,
@@ -17,109 +17,28 @@ const WordHighlighter = ({
   wordsPerMinuteRef: RefObject<number>;
   containerRef: RefObject<HTMLDivElement | null>;
 }) => {
-  const { averageSyllableTime, punctuationMarksTime } = useReadingParameters();
-  const [currentIndex, setCurrentIndex] = useState<number | null>(null);
-  const elementIndexs = useRef<number[]>([]);
-  const indexRef = useRef<number>(0);
-  const isReadingRef = useRef<boolean>(isReading);
-  const timeoutRef = useRef<number | null>(null);
-  const currentWordRef = useRef<HTMLSpanElement | null>(null);
+  const { currentIndex, currentWordRef, elements } = useWordHighlighter({
+    paragraph,
+    isReading,
+    speedRef,
+    wordsPerMinuteRef,
+    containerRef,
+    onFinish,
+  });
 
-  const elements: string[] = paragraph.split(/(\s+|[^\wÀ-ÖØ-öø-ÿ])/);
-
-  const isWord = (element: string): boolean => /^[\wÀ-ÖØ-öø-ÿ]+$/.test(element);
-  const isPunctuation = (element: string): boolean =>
-    /^[.,!?;:"()]+$/.test(element);
-
-  useEffect((): void => {
-    elementIndexs.current = elements
-      .map((element: string, index: number): number | null =>
-        isWord(element) || isPunctuation(element) ? index : null
-      )
-      .filter((index): index is number => index !== null);
-
-    indexRef.current = 0;
-    setCurrentIndex(null);
-  }, [paragraph]);
-
-  useEffect((): (() => void) => {
-    isReadingRef.current = isReading;
-
-    const calculateWordTime = async (word: string): Promise<number> => {
-      const hyphenatedText: string = await hyphenate(word, { hyphenChar: "-" });
-      const syllablesCount: number = hyphenatedText.split("-").length;
-      return Math.round(
-        (syllablesCount * averageSyllableTime(wordsPerMinuteRef.current)) /
-          speedRef.current
-      );
-    };
-
-    const highlightFlow = async (): Promise<void> => {
-      while (indexRef.current < elementIndexs.current.length) {
-        if (!isReadingRef.current) return;
-
-        const element: string =
-          elements[elementIndexs.current[indexRef.current]];
-
-        let waitTime: number = 0;
-
-        if (isWord(element)) {
-          setCurrentIndex(elementIndexs.current[indexRef.current]);
-          waitTime = await calculateWordTime(element);
-        } else {
-          waitTime =
-            punctuationMarksTime.find((mark) => mark.mark === element)?.time ||
-            150;
-        }
-
-        await new Promise(
-          (resolve) => (timeoutRef.current = setTimeout(resolve, waitTime))
-        );
-
-        indexRef.current++;
-      }
-
-      setCurrentIndex(null);
-      if (onFinish) {
-        await new Promise(
-          (resolve) => (timeoutRef.current = setTimeout(resolve, 500))
-        );
-        onFinish();
-      }
-    };
-
-    highlightFlow();
-
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-  }, [isReading]);
-
-  useEffect(() => {
-    if (!currentWordRef.current || !containerRef.current) return;
-
-    const word = currentWordRef.current;
-    const container = containerRef.current;
-
-    const target =
-      word.offsetTop - container.clientHeight / 4 + word.offsetHeight;
-
-    if (Math.abs(container.scrollTop - target) > 4) {
-      container.scrollTo({ top: target, behavior: "smooth" });
-    }
-  }, [currentIndex]);
-
-  return elements.map((element: string, index: number) => (
-    <span
-      key={index}
-      ref={index === currentIndex ? currentWordRef : null}
-      className={`wordElement ${index === currentIndex ? "highlighted" : ""}`}
-    >
-      {element}
-    </span>
-  ));
+  return (
+    <>
+      {elements.map((element, index) => (
+        <span
+          key={index}
+          ref={index === currentIndex ? currentWordRef : null}
+          className={`wordElement ${index === currentIndex ? "highlighted" : ""}`}
+        >
+          {element}
+        </span>
+      ))}
+    </>
+  );
 };
 
 export default WordHighlighter;
