@@ -283,4 +283,8 @@
   .initialPage_forWhomSection {
     gap: 0;
   }
+
+  .initialPage_forWhomSection img {
+    display: none;
+  }
 }

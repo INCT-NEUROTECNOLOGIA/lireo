@@ -85,7 +85,7 @@
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 4rem;
+  gap: 2rem;
   margin-top: 1.5rem;
 }
 
@@ -221,10 +221,7 @@
   .imgContainer {
     margin: 1rem 0;
     justify-content: center;
-  }
-
-  .imgContainer img {
-    width: 6rem;
+    gap: 1rem;
   }
 
   .result {
