@@ -60,7 +60,7 @@ export const InitialPageText = {
         title: "LireGrow",
         description:
           "Frases são reveladas palavra por palavra, possibilitando a construção do sentido aos poucos. Um exercício de compreensão textual.",
-        route: "LIRE_GLOW",
+        route: "LIRE_GROW",
         icon: "bi bi-card-text",
       },
     ],
