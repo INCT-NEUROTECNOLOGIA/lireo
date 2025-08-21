@@ -1,0 +1,238 @@
+.lireGrowContainer {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5vh 8vh;
+}
+
+.controls {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.selectPhrase {
+  background-color: var(--color-tertiary);
+  color: var(--color-white);
+  width: 20rem;
+}
+
+.selectPhrase:hover {
+  background-color: var(--color-secondary);
+}
+
+.selectPhrase option:disabled {
+  color: var(--color-text-tertiary);
+}
+
+.selectPhrase:hover option:disabled {
+  color: var(--color-text-secondary);
+}
+
+.phraseContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.3rem;
+  font-weight: 500;
+  gap: 0.4rem;
+}
+
+.phraseContainer span {
+  scroll-margin-block-end: 10rem;
+}
+
+.nextButton,
+.checkButton {
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: 2px solid var(--color-tertiary);
+  border-radius: 8px;
+  color: var(--color-tertiary);
+  background-color: var(--color-white);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 15rem;
+}
+
+.nextButton:hover,
+.checkButton:hover {
+  background-color: var(--color-tertiary);
+  color: var(--color-white);
+}
+
+.nextButton:disabled {
+  color: var(--color-tertiary-light);
+  border-color: var(--color-tertiary-light);
+  background-color: var(--color-white);
+  cursor: not-allowed;
+}
+
+.questionContainer {
+  font-weight: 700;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.imgContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.imgContainer img {
+  width: 14rem;
+  height: auto;
+  max-height: 10rem;
+  object-fit: contain;
+  border-radius: 0.8rem;
+  cursor: pointer;
+}
+
+.result {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  gap: 1rem;
+}
+
+.checkButton {
+  margin-left: auto;
+}
+
+.resultText {
+  border-radius: 0.5rem;
+  padding: 0.8rem;
+  flex: 1;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.resultText.correct {
+  color: var(--color-secondary);
+  border: 1px solid var(--color-secondary);
+}
+
+.resultText.incorrect {
+  color: var(--color-error);
+  border: 1px solid var(--color-error);
+}
+
+.fontSizeAdjustment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: start;
+  margin-bottom: 1.5rem;
+  gap: 0.6rem;
+  width: 20rem;
+}
+
+.fontSizeAdjustment p {
+  margin: 0;
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+}
+
+.fontSizeAdjustment__slider {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.3rem;
+  width: 100%;
+}
+
+.fontSizeAdjustment__input {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 5px;
+  background: linear-gradient(
+        to right,
+        var(--color-secondary-hover),
+        var(--color-primary-hover)
+      )
+      0% 0% / var(--progress, 50%) 100% no-repeat,
+    #e5f6fa;
+  cursor: pointer;
+  border: 1px solid var(--color-border);
+  --progress: 25%;
+}
+
+.fontSizeAdjustment__input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background-color: var(--color-primary-hover);
+  cursor: pointer;
+  border: none;
+}
+
+.fontSizeAdjustment__input::-moz-range-thumb {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background-color: var(--color-primary-hover);
+  cursor: pointer;
+  border: none;
+}
+
+@media (max-width: 720px) {
+  .lireGrowContainer {
+    padding: 3vh 4vh;
+  }
+
+  .controls {
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .selectPhrase {
+    width: 100%;
+  }
+
+  .nextButton,
+  .checkButton {
+    width: 100%;
+  }
+
+  .phraseContainer {
+    gap: 0.3rem;
+  }
+
+  .imgContainer {
+    margin: 1rem 0;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .result {
+    flex-direction: column;
+  }
+
+  .resultText {
+    width: 100%;
+  }
+
+  .fontSizeAdjustment {
+    width: 100%;
+  }
+}
