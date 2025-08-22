@@ -1,27 +1,20 @@
-import React, { useState } from "react";
 import "../layout/header.css";
-import { ROUTE_PATHS } from "../../../config/routes";
 import { getPublicAssetUrl } from "../../../utils/pathUtils";
+import { headerText } from "../texts/headerText";
+import useHeader from "../hooks/useHeader";
 
 const Header: React.FC = () => {
-  const headerText = {
-    initalPage: "Início",
-    aboutUs: "Sobre Nós",
-    userGuide: "Como usar",
-    lireo: { img: "/images/logo-lireo-white.png", alt: "logo LIRE-O" },
-    UFMG: { img: "/images/logo-UFMG-short.png", alt: "logo UFMG" },
-    faculMed: {
-      img: "/images/logo-Faculdade-de-Medicina-UFMG.png",
-      alt: "logo Faculdade de Medicina UFMG",
-    },
-  };
-
-  const [menuMobileOpen, setMenuMobileOpen] = useState<boolean>(false);
-
-  const handleMenuMobile = () => setMenuMobileOpen(!menuMobileOpen);
+  const {
+    menuMobileOpen,
+    activitesList,
+    userGuidesList,
+    linkList,
+    handleClick,
+    handleMenuMobile,
+  } = useHeader();
 
   return (
-    <>
+    <div className="header__container">
       <header>
         <div className="header__logoContainer">
           <img
@@ -32,21 +25,30 @@ const Header: React.FC = () => {
         </div>
         <nav>
           <div className="menu__desktop">
-            <a href={ROUTE_PATHS.HOME}>
-              <i className="bi bi-house"></i>
-              {headerText.initalPage}
-            </a>
-            <a href={ROUTE_PATHS.USER_GUIDE}>
-              <i className="bi bi-book"></i>
-              {headerText.userGuide}
-            </a>
-            <a href={ROUTE_PATHS.ABOUT_US}>
-              <i className="bi bi-people"></i>
-              {headerText.aboutUs}
-            </a>
+            {headerText.menuLinks.map(
+              (link, index) =>
+                (link.href && (
+                  <a key={index} href={link?.href}>
+                    <i className={link.icon}></i>
+                    {link.name}
+                  </a>
+                )) ||
+                (link.action && (
+                  <a key={index} onClick={() => handleClick(link.action)}>
+                    <i className={link.icon}></i>
+                    {link.name}
+                  </a>
+                ))
+            )}
           </div>
           <button className="menu__toggle__mobile" onClick={handleMenuMobile}>
-            <i className={menuMobileOpen ? "bi bi-x-lg" : "bi bi-list"}></i>
+            <i
+              className={
+                menuMobileOpen || activitesList || userGuidesList
+                  ? "bi bi-x-lg"
+                  : "bi bi-list"
+              }
+            ></i>
           </button>
         </nav>
       </header>
@@ -55,11 +57,36 @@ const Header: React.FC = () => {
           "menu__toggle__mobile__content" + (menuMobileOpen ? " active" : "")
         }
       >
-        <a href={ROUTE_PATHS.HOME}> {headerText.initalPage} </a>
-        <a href={ROUTE_PATHS.USER_GUIDE}>{headerText.userGuide} </a>
-        <a href={ROUTE_PATHS.ABOUT_US}>{headerText.aboutUs} </a>
+        {headerText.menuLinks.map(
+          (link, index) =>
+            (link.href && (
+              <a key={index} href={link?.href}>
+                <i className={link.icon}></i>
+                {link.name}
+              </a>
+            )) ||
+            (link.action && (
+              <a key={index} onClick={() => handleClick(link.action)}>
+                <i className={link.icon}></i>
+                {link.name}
+              </a>
+            ))
+        )}
       </div>
-    </>
+      <div
+        className={
+          "menu__toggle__activitiesList" +
+          (activitesList || userGuidesList ? " active" : "")
+        }
+      >
+        {linkList.map((item, index) => (
+          <a key={index} href={item.href}>
+            <i className={item.icon}></i>
+            {item.name}
+          </a>
+        ))}
+      </div>
+    </div>
   );
 };
 

@@ -8,14 +8,12 @@ const WordHighlighter = ({
   isReading,
   speedRef,
   wordsPerMinuteRef,
-  containerRef,
 }: {
   paragraph: string;
   onFinish?: () => void;
   isReading: boolean;
   speedRef: RefObject<number>;
   wordsPerMinuteRef: RefObject<number>;
-  containerRef: RefObject<HTMLDivElement | null>;
 }) => {
   const { currentIndex, currentWordRef, elements } = useWordHighlighter({
     paragraph,

@@ -34,7 +34,7 @@ const TextReader = () => {
     fileText: "Arquivo:",
     newText: "Escolher um novo texto",
     summary: {
-      title: "Inicie a atividade de leitura fluente",
+      title: "LireFlow",
       texts: [
         "O objetivo desta tarefa é treinar a fluência leitora, com foco no ritmo e na automatização da leitura.",
         "É possível carregar um arquivo no formato .txt ou escolher um dos textos disponíveis na plataforma.",
@@ -42,13 +42,15 @@ const TextReader = () => {
       ],
       linkText: "Para mais informações, acesse o ",
       link: "Guia do Usuário.",
-      linkRef: ROUTE_PATHS.USER_GUIDE,
+      linkRef: ROUTE_PATHS.USER_GUIDE_LIRE_FLOW,
     },
   };
 
   return (
     <>
-      <div className={"textReaderSummary" + (state.fileUploaderClose ? " hidden" : "")}>
+      <div
+        className={"taskSummary" + (state.fileUploaderClose ? " hidden" : "")}
+      >
         <h1>{textReaderText.summary.title}</h1>
         <ul>
           {textReaderText.summary.texts.map((text, index) => (
