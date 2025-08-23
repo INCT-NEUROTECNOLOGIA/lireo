@@ -2,6 +2,7 @@ import { useEffect, useState, useRef, RefObject } from "react";
 import { hyphenate } from "hyphen/pt";
 import { averageSyllableTime } from "./ReadingParameters";
 import { punctuationMarksTime } from "./ReadingParameters";
+import { RegexConstants } from "../../../constants/regexContants";
 
 const WordHighlighter = ({
   paragraph,
@@ -46,16 +47,18 @@ const WordHighlighter = ({
     isReadingRef.current = isReading;
 
     const fixWordHyphenation = (word: string, hyphenated: string): string => {
-      const isVowel = /^[aeiouáéíóúàâêôãõü]$/i;
-      const starWithVowel = /^[aeiouáéíóúàâêôãõü]/i;
-      const endWithTwoVowels = /[aeiouáéíóúàâêôãõ]{2}$/i;
-      const strongVowels = /^[aáéíóúàâêôãõ]$/i;
-      const weakVowels = /^[eiou]$/i;
-
       if (word.length <= 2) return word;
 
-      if (starWithVowel.test(word)) {
-        if (/^[lmnrs]$/i.test(word[1]) && !isVowel.test(word[2])) {
+      const {
+        vowel,
+        startWithVowel,
+        endWithTwoVowels,
+        strongVowels,
+        weakVowels,
+      } = RegexConstants;
+
+      if (startWithVowel.test(word)) {
+        if (/^[lmnrs]$/i.test(word[1]) && !vowel.test(word[2])) {
           hyphenated = hyphenated.slice(0, 2) + "-" + hyphenated.slice(2);
         } else {
           hyphenated = hyphenated.slice(0, 1) + "-" + hyphenated.slice(1);
@@ -92,7 +95,6 @@ const WordHighlighter = ({
       const syllablesCount: number = hyphenatedText
         .split("-")
         .filter((syllable) => syllable.trim() !== "").length;
-      console.log(hyphenatedText);
       return Math.round(
         (syllablesCount * averageSyllableTime(wordsPerMinuteRef.current)) /
           speedRef.current
