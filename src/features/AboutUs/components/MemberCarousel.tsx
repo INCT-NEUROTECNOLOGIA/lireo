@@ -8,6 +8,8 @@ interface MemberCarouselProps {
   members?: Member[];
 }
 
+const CAROUSEL_WAIT_TIME_MS = 4000;
+
 const MemberCarousel: React.FC<MemberCarouselProps> = ({ members = [] }) => {
   const trackRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
@@ -15,7 +17,7 @@ const MemberCarousel: React.FC<MemberCarouselProps> = ({ members = [] }) => {
   const { currentIndex, goToIndex, goNext, goPrev } = useMemberCarousel({
     membersLength: members.length,
     isPaused,
-    waitTime: 4000,
+    waitTime: CAROUSEL_WAIT_TIME_MS,
   });
 
   useEffect(() => {
@@ -27,7 +29,6 @@ const MemberCarousel: React.FC<MemberCarouselProps> = ({ members = [] }) => {
   if (members.length === 0) return null;
 
   return (
-    members.length > 0 && (
       <div
         className="aboutUsContainer__teamCarousel"
         onMouseEnter={() => setIsPaused(true)}
@@ -68,7 +69,6 @@ const MemberCarousel: React.FC<MemberCarouselProps> = ({ members = [] }) => {
           </button>
         </div>
       </div>
-    )
   );
 };
 
