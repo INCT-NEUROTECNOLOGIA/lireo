@@ -58,25 +58,38 @@ const WordHighlighter = ({
       } = RegexConstants;
 
       if (startWithVowel.test(word)) {
-        if (/^[lmnrs]$/i.test(word[1]) && !vowel.test(word[2])) {
-          hyphenated = hyphenated.slice(0, 2) + "-" + hyphenated.slice(2);
-        } else {
-          hyphenated = hyphenated.slice(0, 1) + "-" + hyphenated.slice(1);
-        }
+        const fixHyphenationWordsStartWithVowel = (hyphenated: string) => {
+          const shouldAttachConsonantToPreviousVowel =
+            /^[lmnrs]$/i.test(word[1]) && !vowel.test(word[2]);
+
+          if (shouldAttachConsonantToPreviousVowel) {
+            return hyphenated.slice(0, 2) + "-" + hyphenated.slice(2);
+          }
+
+          return hyphenated.slice(0, 1) + "-" + hyphenated.slice(1);
+        };
+
+        hyphenated = fixHyphenationWordsStartWithVowel(hyphenated);
       }
 
       if (endWithTwoVowels.test(word)) {
-        const lastIndex = word.length - 1;
-        const lastLetter = word[lastIndex];
-        const penulLetter = word[lastIndex - 1];
+        const applyHiatusHyphenationRule = (hyphenated: string) => {
+          const lastIndex = word.length - 1;
+          const lastLetter = word[lastIndex];
+          const penulLetter = word[lastIndex - 1];
+          const isHiatus =
+            (strongVowels.test(penulLetter) && strongVowels.test(lastLetter)) ||
+            (strongVowels.test(penulLetter) && weakVowels.test(lastLetter));
 
-        const isHiato =
-          (strongVowels.test(penulLetter) && strongVowels.test(lastLetter)) ||
-          (strongVowels.test(penulLetter) && weakVowels.test(lastLetter));
+          if (isHiatus) {
+            return (
+              hyphenated.slice(0, lastIndex) + "-" + hyphenated.slice(lastIndex)
+            );
+          }
 
-        if (isHiato) {
-          hyphenated = word.slice(0, lastIndex) + "-" + word.slice(lastIndex);
-        }
+          return word;
+        };
+        hyphenated = applyHiatusHyphenationRule(hyphenated);
       }
 
       if (!hyphenated.includes("-") && word.length > 3) {

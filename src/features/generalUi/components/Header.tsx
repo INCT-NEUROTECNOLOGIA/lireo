@@ -16,9 +16,9 @@ const Header: React.FC = () => {
     },
   };
 
-  const [menuMobileOpen, setMenuMobileOpen] = useState<boolean>(false);
+  const [isMenuMobileOpen, setIsMenuMobileOpen] = useState<boolean>(false);
 
-  const handleMenuMobile = () => setMenuMobileOpen(!menuMobileOpen);
+  const handleMenuMobile = () => setIsMenuMobileOpen(!isMenuMobileOpen);
 
   return (
     <>
@@ -46,13 +46,13 @@ const Header: React.FC = () => {
             </a>
           </div>
           <button className="menu__toggle__mobile" onClick={handleMenuMobile}>
-            <i className={menuMobileOpen ? "bi bi-x-lg" : "bi bi-list"}></i>
+            <i className={isMenuMobileOpen ? "bi bi-x-lg" : "bi bi-list"}></i>
           </button>
         </nav>
       </header>
       <div
         className={
-          "menu__toggle__mobile__content" + (menuMobileOpen ? " active" : "")
+          "menu__toggle__mobile__content" + (isMenuMobileOpen ? " active" : "")
         }
       >
         <a href={ROUTE_PATHS.HOME}> {headerText.initalPage} </a>

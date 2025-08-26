@@ -12,23 +12,17 @@ const TextDisplay = ({ fileContent }: { fileContent: string }) => {
   const wordsPerMinuteRef = useRef<number>(120);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Considera como título a linha com até 10 palavras,
-  // assumindo que títulos são geralmente curtos, diretos e não muito longos.
   const isTitle = (line: string): boolean => {
     const wordCount = line.split(/\s+/).length;
     return wordCount <= 10;
   };
 
-  // Considera autor se tiver até 6 palavras e não terminar com pontuação forte,
-  // assumindo que nomes são curtos e não são frases completas.
   const isAuthor = (line: string): boolean => {
     const wordCount = line.split(/\s+/).length;
     const endsWithPunctuation = /[.!?]$/.test(line);
     return wordCount <= 6 && !endsWithPunctuation;
   };
 
-  // Considera fonte se a linha tiver um link, com ou sem palavras como “fonte” ou “referência”,
-  // assumindo que fontes geralmente vêm assim formatadas.
   const isSource = (line: string): string | null => {
     const regex =
       /^(?:\s*(?:fonte|refer(?:ê|e)ncia|extra[ií]do|dispon[ií]vel)[\s:,-]*)?(https?:\/\/\S+|www\.\S+)/i;
