@@ -39,6 +39,15 @@ export const ABOUT_US_TEAM = {
       affiliation: " COLTEC/UFMG",
       photo: "/images/Raphael_TeamMember.png",
     },
+    {
+      type: "teamMember",
+      name: "Isadora Ramos",
+      role: "Desenvolvedora",
+      position: "Bolsista de Iniciação Científica",
+      education: "Técnico em Desenvolvimento de Sistemas",
+      affiliation: " COLTEC/UFMG",
+      photo: "/images/Isadora_TeamMemberPicture.png",
+    },
   ],
 
   collaborators: <Member[]> [
