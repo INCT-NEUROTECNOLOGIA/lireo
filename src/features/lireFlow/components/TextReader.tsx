@@ -67,7 +67,7 @@ const TextReader = () => {
 
       <div className="textReaderContainer">
         <div
-          className={"textReaderContainer__fileUploader" + (state.fileUploaderClose ? " hidden" : "")}
+          className={"textReaderContainer__fileUploader" + (state.fileUploaderClose ? " hidden" : "")+ (state.isDragging ? " dragging" : "")}
           onDrop={dropFile}
           onDragOver={dragFile}
           onDragLeave={dragLeave}

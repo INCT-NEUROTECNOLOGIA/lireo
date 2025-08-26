@@ -1,25 +1,19 @@
-const useReadingParameters = () => {
-  const averageSyllablesPerWord = 2.5;
-  const minute = 60000;
+import {
+  AVERAGE_SYLLABLES_PER_WORD,
+  ONE_MINUTE_IN_SECONDS,
+  PUNCTUATION_MARKS_TIME,
+} from "../constantes/ReadingConstants";
 
-  const punctuationMarksTime = [
-    { mark: ".", time: 400 },
-    { mark: ",", time: 200 },
-    { mark: ";", time: 400 },
-    { mark: "!", time: 500 },
-    { mark: "?", time: 500 },
-    { mark: ":", time: 400 },
-    { mark: "-", time: 200 },
-  ];
+const useReadingParameters = () => {
 
   const averageSyllableTime = (wpm: number): number => {
-    return minute / (wpm * averageSyllablesPerWord);
+    return ONE_MINUTE_IN_SECONDS / (wpm * AVERAGE_SYLLABLES_PER_WORD);
   };
 
   const calculateWordsPerMinute = (wpm: number, speed: number): number => {
     const currentSyllableTime = averageSyllableTime(wpm) / speed;
-    const syllablesPerMinute = minute / currentSyllableTime;
-    const wordsPerMinute = syllablesPerMinute / averageSyllablesPerWord;
+    const syllablesPerMinute = ONE_MINUTE_IN_SECONDS / currentSyllableTime;
+    const wordsPerMinute = syllablesPerMinute / AVERAGE_SYLLABLES_PER_WORD;
     return Math.round(wordsPerMinute);
   };
 
@@ -92,7 +86,7 @@ const useReadingParameters = () => {
   };
 
   return {
-    punctuationMarksTime,
+    punctuationMarksTime: PUNCTUATION_MARKS_TIME,
     averageSyllableTime,
     calculateWordsPerMinute,
     classifyPerformance,
