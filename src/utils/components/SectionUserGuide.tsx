@@ -1,6 +1,6 @@
 import React from "react";
 import { SectionUserGuideProps } from "./SectionInterfaces";
-import { getPublicAssetUrl } from "../../../../utils/pathUtils";
+import { getPublicAssetUrl } from "../../utils/pathUtils";
 
 const SectionUserGuide: React.FC<SectionUserGuideProps> = ({
   title,
