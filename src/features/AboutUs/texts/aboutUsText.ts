@@ -46,7 +46,7 @@ export const ABOUT_US_TEAM = {
       position: "Bolsista de Iniciação Científica",
       education: "Técnico em Desenvolvimento de Sistemas",
       affiliation: " COLTEC/UFMG",
-      photo: "/images/Isadora_TeamMemberPicture.png",
+      photo: "/images/Isadora_TeamMemberPicture.jpg",
     },
   ],
 
