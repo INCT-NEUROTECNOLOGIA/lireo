@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, RefObject } from "react";
+import { useEffect, useState, useRef, RefObject, useCallback } from "react";
 import { hyphenate } from "hyphen/pt";
 import useReadingParameters from "./useReadingParameters";
 
@@ -30,9 +30,8 @@ export const useWordHighlighter = ({
 
   const elements: string[] = paragraph.split(/(\s+|[^\wÀ-ÖØ-öø-ÿ])/);
 
-  const isWord = (element: string): boolean => /^[\wÀ-ÖØ-öø-ÿ]+$/.test(element);
-  const isPunctuation = (element: string): boolean =>
-    /^[.,!?;:"()]+$/.test(element);
+  const isWord = (element: string) => /^[\wÀ-ÖØ-öø-ÿ]+$/.test(element);
+  const isPunctuation = (element: string) => /^[.,!?;:"()]+$/.test(element);
 
   useEffect(() => {
     elementIndexes.current = elements
@@ -43,56 +42,55 @@ export const useWordHighlighter = ({
     setCurrentIndex(null);
   }, [paragraph]);
 
-  useEffect(() => {
-    isReadingRef.current = isReading;
-
-    const calculateWordTime = async (word: string) => {
+  const calculateWordTime = useCallback(
+    async (word: string) => {
       const hyphenatedText = await hyphenate(word, { hyphenChar: "-" });
       const syllablesCount = hyphenatedText.split("-").length;
       return Math.round(
         (syllablesCount * averageSyllableTime(wordsPerMinuteRef.current)) /
           speedRef.current
       );
-    };
+    },
+    [averageSyllableTime, wordsPerMinuteRef, speedRef]
+  );
 
-    const highlightFlow = async () => {
-      while (indexRef.current < elementIndexes.current.length) {
-        if (!isReadingRef.current) return;
+  const highlightFlow = useCallback(async () => {
+    while (indexRef.current < elementIndexes.current.length) {
+      if (!isReadingRef.current) return;
 
-        const element = elements[elementIndexes.current[indexRef.current]];
-        let waitTime = 0;
+      const element = elements[elementIndexes.current[indexRef.current]];
+      let waitTime = 0;
 
-        if (isWord(element)) {
-          setCurrentIndex(elementIndexes.current[indexRef.current]);
-          waitTime = await calculateWordTime(element);
-        } else {
-          waitTime =
-            punctuationMarksTime.find((mark) => mark.mark === element)?.time ||
-            150;
-        }
-
-        await new Promise(
-          (resolve) => (timeoutRef.current = setTimeout(resolve, waitTime))
-        );
-        indexRef.current++;
+      if (isWord(element)) {
+        setCurrentIndex(elementIndexes.current[indexRef.current]);
+        waitTime = await calculateWordTime(element);
+      } else {
+        waitTime =
+          punctuationMarksTime.find((mark) => mark.mark === element)?.time ||
+          150;
       }
 
-      setCurrentIndex(null);
+      await new Promise((resolve) => (timeoutRef.current = setTimeout(resolve, waitTime)));
+      indexRef.current++;
+    }
 
-      if (onFinish) {
-        await new Promise((resolve) => (timeoutRef.current = setTimeout(resolve, 500)));
-        onFinish();
-      }
-    };
+    setCurrentIndex(null);
 
+    if (onFinish) {
+      await new Promise((resolve) => (timeoutRef.current = setTimeout(resolve, 500)));
+      onFinish();
+    }
+  }, [elements, calculateWordTime, onFinish, punctuationMarksTime]);
+
+  useEffect(() => {
+    isReadingRef.current = isReading;
     highlightFlow();
 
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
-  }, [isReading, elements]);
+  }, [isReading, highlightFlow]);
 
- 
   useEffect(() => {
     if (!currentWordRef.current || !containerRef.current) return;
     const word = currentWordRef.current;

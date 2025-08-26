@@ -71,7 +71,6 @@ const TextReader = () => {
           onDrop={dropFile}
           onDragOver={dragFile}
           onDragLeave={dragLeave}
-          style={{ backgroundColor: state.isDragging ? "var(--color-accent-hover)" : "var(--color-accent)" }}
         >
           <i className="bi bi-cloud-upload"></i>
           <div className="textReaderContainer__fileUploader__text">
