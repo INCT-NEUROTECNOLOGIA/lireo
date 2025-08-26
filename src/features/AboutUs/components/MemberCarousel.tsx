@@ -8,7 +8,7 @@ interface MemberCarouselProps {
   members?: Member[];
 }
 
-const CAROUSEL_WAIT_TIME_MS = 4000;
+export const CAROUSEL_WAIT_TIME_MS = 4000;
 
 const MemberCarousel: React.FC<MemberCarouselProps> = ({ members = [] }) => {
   const trackRef = useRef<HTMLDivElement>(null);

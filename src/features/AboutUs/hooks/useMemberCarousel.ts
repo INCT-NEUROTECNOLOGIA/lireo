@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { CAROUSEL_WAIT_TIME_MS } from "../components/MemberCarousel";
 
 interface UseMemberCarouselProps {
   membersLength: number;
@@ -6,7 +7,8 @@ interface UseMemberCarouselProps {
   waitTime?: number;
 }
 
-export function useMemberCarousel({ membersLength, isPaused, waitTime = 4000 }: UseMemberCarouselProps) {
+export function useMemberCarousel({ membersLength, isPaused, waitTime = CAROUSEL_WAIT_TIME_MS}: UseMemberCarouselProps) {
+  
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const goToIndex = (index: number) => {
