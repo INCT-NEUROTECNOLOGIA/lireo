@@ -3,9 +3,12 @@ import "../layout/aboutUs.css";
 import Section from "./Section";
 import { getPublicAssetUrl } from "../../../utils/pathUtils";
 import FadeIn from "../../../utils/components/FadeIn";
-import { aboutUsText, collaborators, projectCreators } from "../texts/aboutUsText";
+import { ABOUT_US_TEAM } from "../texts/aboutUsText";
+
 
 const AboutUs: React.FC = () => {
+
+  const { aboutUsText, projectCreators, collaborators } = ABOUT_US_TEAM;
 
   return (
     <div className="aboutUsContainer">
@@ -19,8 +22,7 @@ const AboutUs: React.FC = () => {
           <h1 className="aboutUsContainer__ourStory__title">
             {aboutUsText.ourStory.section[0].title}
           </h1>
-          {aboutUsText.ourStory.section[0].description.map(
-            (paragraph, index) => (
+          {aboutUsText.ourStory.section[0].description.map((paragraph, index) => (
               <p key={index}>{paragraph}</p>
             )
           )}

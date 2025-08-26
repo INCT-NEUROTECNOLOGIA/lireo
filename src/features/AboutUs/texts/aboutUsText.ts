@@ -1,7 +1,8 @@
 import { Member } from "../components/Section";
 
 
-export const projectCreators: Member[] = [
+export const ABOUT_US_TEAM = { 
+  projectCreators: <Member[]> [
     {
       type: "teamMember",
       name: "Profa. Dra. Luciana Mendonça Alves",
@@ -38,9 +39,9 @@ export const projectCreators: Member[] = [
       affiliation: " COLTEC/UFMG",
       photo: "/images/Raphael_TeamMember.png",
     },
-  ];
+  ],
 
-   export const collaborators: Member[] = [
+  collaborators: <Member[]> [
     {
       type: "collaborator",
       photo: "/images/logo-Faculdade-de-Medicina-UFMG.png",
@@ -51,9 +52,9 @@ export const projectCreators: Member[] = [
       photo: "/images/logo-UFMG.png",
       alt: "UFMG",
     },
-  ];
+  ],
 
-  export const aboutUsText = {
+  aboutUsText: {
     summary: {
       title: "Sobre Nós",
       description:
@@ -85,4 +86,5 @@ export const projectCreators: Member[] = [
     },
     creatorsSection: "Idealizadores do Projeto",
     collaboratorsSection: "Colaboradores do Projeto",
+  },
   };
