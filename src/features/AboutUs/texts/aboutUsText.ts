@@ -41,7 +41,7 @@ export const ABOUT_US_TEAM = {
     },
     {
       type: "teamMember",
-      name: "Isadora Ramos",
+      name: "Isadora Ramos Pereira",
       role: "Desenvolvedora",
       position: "Bolsista de Iniciação Científica",
       education: "Técnico em Desenvolvimento de Sistemas",
