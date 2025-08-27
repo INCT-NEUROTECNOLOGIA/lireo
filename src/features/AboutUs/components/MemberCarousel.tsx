@@ -3,12 +3,11 @@ import MemberCard from "./MemberCard";
 import type { Member } from "./Section";
 import "../layout/TeamCarouselStyle.css";
 import { useMemberCarousel } from "../hooks/useMemberCarousel";
+import { CAROUSEL_WAIT_TIME_MS } from "../constantes/time"; 
 
 interface MemberCarouselProps {
   members?: Member[];
 }
-
-export const CAROUSEL_WAIT_TIME_MS = 4000;
 
 const MemberCarousel: React.FC<MemberCarouselProps> = ({ members = [] }) => {
   const trackRef = useRef<HTMLDivElement>(null);
