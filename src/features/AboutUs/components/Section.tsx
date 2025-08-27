@@ -10,7 +10,7 @@ export interface Member {
   education?: string;
   affiliation?: string;
   photo: string;
-  alt: string;
+  alt?: string;
 }
 
 interface SectionProps {

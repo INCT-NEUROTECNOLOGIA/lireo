@@ -5,6 +5,7 @@ import { getPublicAssetUrl } from "../../../utils/pathUtils";
 import FadeIn from "../../../utils/components/FadeIn";
 import { ABOUT_US_TEAM } from "../texts/aboutUsText";
 
+
 const AboutUs: React.FC = () => {
 
   const { aboutUsText, projectCreators, collaborators } = ABOUT_US_TEAM;

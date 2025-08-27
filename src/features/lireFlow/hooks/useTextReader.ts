@@ -75,43 +75,31 @@ export const useTextReader = () => {
     if (!file) return;
 
     if (!isTxtFile(file.type)) {
-      dispatch({
-        type: ActionType.SET_ERROR,
-        payload: "Selecione um arquivo de texto (.txt)",
-      });
+      dispatch({ type: ActionType.SET_ERROR, payload: "Selecione um arquivo de texto (.txt)" });
       return;
     }
 
     try {
       const buffer = await file.arrayBuffer();
-      const encodings = ["utf-8", "iso-8859-1", "windows-1252"];
-      let content = null;
+      const encodings = ["utf-8", "windows-1252", "iso-8859-1"];
+      let content = "";
+      let decoded = false;
 
       for (const encoding of encodings) {
         try {
-          content = new TextDecoder(encoding, { fatal: true }).decode(buffer);
-          break;
-        } catch (e) {
-          continue;
-        }
+          content = new TextDecoder(encoding).decode(buffer);
+          if (!content.includes("�")) {
+            decoded = true;
+            break;
+          }
+        } catch {}
       }
 
-      if (!content) {
-        dispatch({
-          type: ActionType.SET_ERROR,
-          payload: "Erro ao decodificar o arquivo. Tente outro arquivo.",
-        });
-      } else {
-        dispatch({
-          type: ActionType.SET_FILE,
-          payload: { name: file.name, content },
-        });
-      }
+      if (!decoded) content = new TextDecoder("utf-8").decode(buffer);
+
+      dispatch({ type: ActionType.SET_FILE, payload: { name: file.name, content } });
     } catch {
-      dispatch({
-        type: ActionType.SET_ERROR,
-        payload: "Erro ao ler o arquivo",
-      });
+      dispatch({ type: ActionType.SET_ERROR, payload: "Erro ao ler o arquivo" });
     }
   };
 
@@ -128,16 +116,10 @@ export const useTextReader = () => {
       const filePath = `${basePath}${event.target.value}.txt`;
       const response = await fetch(filePath);
       const text = await response.text();
-      dispatch({
-        type: ActionType.SET_FILE,
-        payload: { name: event.target.value, content: text },
-      });
+      dispatch({ type: ActionType.SET_FILE, payload: { name: event.target.value, content: text } });
       if (resetSelectText.current) resetSelectText.current.value = "";
     } catch {
-      dispatch({
-        type: ActionType.SET_ERROR,
-        payload: "Erro ao carregar o arquivo",
-      });
+      dispatch({ type: ActionType.SET_ERROR, payload: "Erro ao carregar o arquivo" });
     }
   };
 
@@ -162,8 +144,7 @@ export const useTextReader = () => {
     dispatch({ type: ActionType.SET_DRAGGING, payload: false });
   };
 
-  const handleFileUploader = () =>
-    dispatch({ type: ActionType.SET_FILE_UPLOADER_CLOSE });
+  const handleFileUploader = () => dispatch({ type: ActionType.SET_FILE_UPLOADER_CLOSE });
 
   return {
     state,
