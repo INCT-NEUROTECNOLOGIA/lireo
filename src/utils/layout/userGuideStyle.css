@@ -94,7 +94,7 @@
 
 .support a {
   color: var(--color-tertiary);
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .support a:hover {

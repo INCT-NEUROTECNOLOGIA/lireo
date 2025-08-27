@@ -167,12 +167,12 @@ export const userGuideText = {
       content: [
         {
           type: "text",
-          text: "Em caso de dúvidas, dificuldades ou sugestões, consulte a seção destinada às informações de contato: ",
+          text: "Em caso de dúvidas, dificuldades ou sugestões, entre em contato em: ",
         },
         {
           type: "link",
-          text: "Sobre Nós",
-          href: ROUTE_PATHS.ABOUT_US,
+          text: "suporte.lireo@gmail.com",
+          href: "https://mail.google.com/mail/u/0/?fs=1&to=suporte.lireo@gmail.com&tf=cm",
         },
       ],
     },

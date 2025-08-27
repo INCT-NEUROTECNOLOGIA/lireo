@@ -7,9 +7,9 @@ const Footer: React.FC = () => {
     catchphrase: ["Fluência que diverte.", "Leitura que transforma."],
     contactTitle: "Contato",
     contactText: "Para dúvidas ou sugestões, entre em contato em: ",
-    email: "lireo.suporte@gmail.com",
+    email: "suporte.lireo@gmail.com",
     emailRef:
-      "https://mail.google.com/mail/u/0/?fs=1&to=lireo.suporte@gmail.com&tf=cm",
+      "https://mail.google.com/mail/u/0/?fs=1&to=suporte.lireo@gmail.com&tf=cm",
     quote: {
       text: '"Observai os lírios, como crescem. Não trabalham nem fiam e, no entanto, eu vos digo: nem Salomão, em toda a sua glória, jamais se vestiu como um só dentre eles."',
       origin: "Lucas 12:27",

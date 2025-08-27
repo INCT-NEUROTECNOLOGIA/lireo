@@ -152,8 +152,8 @@ export const userGuideText = {
         },
         {
           type: "link",
-          text: "Sobre Nós",
-          href: ROUTE_PATHS.ABOUT_US,
+          text: "suporte.lireo@gmail.com",
+          href: "https://mail.google.com/mail/u/0/?fs=1&to=suporte.lireo@gmail.com&tf=cm",
         },
       ],
     },
