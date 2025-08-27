@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import MemberCard from "./MemberCard";
 import type { Member } from "./Section";
 import "../layout/TeamCarouselStyle.css";
+import { useMemberCarousel } from "../hooks/useMemberCarousel";
+import { CAROUSEL_WAIT_TIME_MS } from "../constantes/time"; 
 
 interface MemberCarouselProps {
   members?: Member[];
@@ -9,31 +11,13 @@ interface MemberCarouselProps {
 
 const MemberCarousel: React.FC<MemberCarouselProps> = ({ members = [] }) => {
   const trackRef = useRef<HTMLDivElement>(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const waitTime = 4000;
 
-  const goToIndex = (index: number) => {
-    setCurrentIndex(index);
-  };
-
-  const goPrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + members.length) % members.length);
-  };
-
-  const goNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % members.length);
-  };
-
-  useEffect(() => {
-    if (isPaused) return;
-
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % members.length);
-    }, waitTime);
-
-    return () => clearInterval(interval);
-  }, [members.length, isPaused]);
+  const { currentIndex, goToIndex, goNext, goPrev } = useMemberCarousel({
+    membersLength: members.length,
+    isPaused,
+    waitTime: CAROUSEL_WAIT_TIME_MS,
+  });
 
   useEffect(() => {
     if (trackRef.current) {
@@ -41,8 +25,9 @@ const MemberCarousel: React.FC<MemberCarouselProps> = ({ members = [] }) => {
     }
   }, [currentIndex]);
 
+  if (members.length === 0) return null;
+
   return (
-    members.length > 0 && (
       <div
         className="aboutUsContainer__teamCarousel"
         onMouseEnter={() => setIsPaused(true)}
@@ -83,7 +68,6 @@ const MemberCarousel: React.FC<MemberCarouselProps> = ({ members = [] }) => {
           </button>
         </div>
       </div>
-    )
   );
 };
 

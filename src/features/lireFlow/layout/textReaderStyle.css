@@ -60,6 +60,10 @@
   display: none;
 }
 
+.textReaderContainer__fileUploader.dragging {
+  background-color: var(--color-accent-hover);
+}
+
 .bi-cloud-upload {
   font-size: 3rem;
 }
