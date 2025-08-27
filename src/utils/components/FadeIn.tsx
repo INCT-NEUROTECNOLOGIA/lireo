@@ -1,29 +1,13 @@
-import { useEffect, useRef } from "react";
+import React from "react";
 import "../layout/fadeInStyle.css";
+import useFadeIn from "./hooks/useFadeIn";
 
-const FadeIn = ({ children }: { children: React.ReactNode }) => {
-  const fadeInRef = useRef<HTMLDivElement | null>(null);
+interface FadeInProps {
+  children: React.ReactNode;
+}
 
-  useEffect(() => {
-    const fadeInElement = fadeInRef.current;
-
-    if (!fadeInElement) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          fadeInElement.classList.add("show");
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    observer.observe(fadeInElement);
-
-    return () => {
-      observer.unobserve(fadeInElement);
-    };
-  }, []);
+const FadeInComponent = ({ children }: FadeInProps) => {
+  const fadeInRef = useFadeIn(); // hook que retorna o ref com lógica do IntersectionObserver
 
   return (
     <div ref={fadeInRef} className="fade-in">
@@ -32,4 +16,4 @@ const FadeIn = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default FadeIn;
+export default FadeInComponent;
