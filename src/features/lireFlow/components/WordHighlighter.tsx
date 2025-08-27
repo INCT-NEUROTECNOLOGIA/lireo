@@ -1,4 +1,4 @@
-import { RefObject, useRef } from "react";
+import { RefObject } from "react";
 import { useWordHighlighter } from "../hooks/useWordHighlighter";
 
 const WordHighlighter = ({
