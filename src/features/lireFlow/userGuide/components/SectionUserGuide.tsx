@@ -1,6 +1,6 @@
 import React from "react";
 import { SectionUserGuideProps } from "./SectionInterfaces";
-import { getPublicAssetUrl } from "../../utils/pathUtils";
+import { getPublicAssetUrl } from "../../../../utils/pathUtils";
 
 const SectionUserGuide: React.FC<SectionUserGuideProps> = ({
   title,
@@ -76,7 +76,12 @@ const SectionUserGuide: React.FC<SectionUserGuideProps> = ({
 
           case "link":
             return (
-              <a key={index} href={item.href}>
+              <a
+                key={index}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {item.text}
               </a>
             );

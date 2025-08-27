@@ -1,6 +1,6 @@
-import "../../../../utils/layout/userGuideStyle.css";
-import { userGuideText } from "../text/TextUserGuide";
-import SectionUserGuide from "../../../../utils/components/SectionUserGuide";
+import "../layout/userGuideStyle.css";
+import { userGuideText } from "./TextUserGuide";
+import SectionUserGuide from "./SectionUserGuide";
 import FadeIn from "../../../../utils/components/FadeIn";
 
 const UserGuide = () => {

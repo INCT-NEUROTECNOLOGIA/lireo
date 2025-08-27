@@ -7,7 +7,7 @@
   margin-bottom: 1.2rem;
   box-shadow: 0 0 5px var(--color-shadow);
   max-height: 75vh;
-  width: 100%;
+  width: inherit;
   color: black;
   position: relative;
   scrollbar-color: var(--color-border) var(--color-bg-light);
@@ -64,7 +64,6 @@
   background-color: var(--color-highlight);
   box-shadow: 0 0 0 0.2rem var(--color-highlight);
   z-index: -1;
-  scroll-margin-block-end: 50vh;
 }
 
 .wordElement.highlighted::after {
@@ -77,6 +76,12 @@
   background-color: var(--color-highlight-secondary);
   box-shadow: 0 0 0 0.2rem var(--color-highlight-secondary);
   z-index: -2;
+}
+
+@media (min-width: 1115px) {
+  .textContainer {
+    max-width: 70vw;
+  }
 }
 
 @media (max-width: 720px) {

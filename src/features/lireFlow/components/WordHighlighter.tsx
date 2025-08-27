@@ -1,5 +1,4 @@
-
-import { RefObject, useRef } from "react";
+import { RefObject } from "react";
 import { useWordHighlighter } from "../hooks/useWordHighlighter";
 
 const WordHighlighter = ({
@@ -8,16 +7,15 @@ const WordHighlighter = ({
   isReading,
   speedRef,
   wordsPerMinuteRef,
+  containerRef,
 }: {
   paragraph: string;
   onFinish?: () => void;
   isReading: boolean;
   speedRef: RefObject<number>;
   wordsPerMinuteRef: RefObject<number>;
+  containerRef: RefObject<HTMLDivElement | null>;
 }) => {
-
-  const containerRef = useRef<HTMLDivElement>(null);
-  
   const { currentIndex, currentWordRef, elements } = useWordHighlighter({
     paragraph,
     isReading,
@@ -33,7 +31,9 @@ const WordHighlighter = ({
         <span
           key={index}
           ref={index === currentIndex ? currentWordRef : null}
-          className={`wordElement ${index === currentIndex ? "highlighted" : ""}`}
+          className={`wordElement ${
+            index === currentIndex ? "highlighted" : ""
+          }`}
         >
           {element}
         </span>
