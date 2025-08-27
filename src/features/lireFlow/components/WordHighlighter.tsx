@@ -16,9 +16,6 @@ const WordHighlighter = ({
   wordsPerMinuteRef: RefObject<number>;
   containerRef: RefObject<HTMLDivElement | null>;
 }) => {
-
-  const containerRef = useRef<HTMLDivElement>(null);
-  
   const { currentIndex, currentWordRef, elements } = useWordHighlighter({
     paragraph,
     isReading,
@@ -34,7 +31,9 @@ const WordHighlighter = ({
         <span
           key={index}
           ref={index === currentIndex ? currentWordRef : null}
-          className={`wordElement ${index === currentIndex ? "highlighted" : ""}`}
+          className={`wordElement ${
+            index === currentIndex ? "highlighted" : ""
+          }`}
         >
           {element}
         </span>

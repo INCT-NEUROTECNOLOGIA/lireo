@@ -45,6 +45,7 @@ const TextDisplay = ({ fileContent }: { fileContent: string }) => {
                 isReading={isReading}
                 speedRef={speedRef}
                 wordsPerMinuteRef={wordsPerMinuteRef}
+                containerRef={containerRef}
               />
             ) : (
               processedText.title
@@ -66,6 +67,7 @@ const TextDisplay = ({ fileContent }: { fileContent: string }) => {
                 isReading={isReading}
                 speedRef={speedRef}
                 wordsPerMinuteRef={wordsPerMinuteRef}
+                containerRef={containerRef}
               />
             ) : (
               paragraph
