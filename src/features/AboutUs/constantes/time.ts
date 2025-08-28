@@ -1,1 +1,0 @@
-export const CAROUSEL_WAIT_TIME_MS = 4000;
