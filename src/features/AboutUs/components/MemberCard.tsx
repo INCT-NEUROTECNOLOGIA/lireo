@@ -8,20 +8,19 @@ export interface MemberCardProps {
 }
 
 const MemberCard: React.FC<MemberCardProps> = ({ member }) => {
-  const imageError = (e: React.SyntheticEvent) =>
-    ((e.target as HTMLImageElement).src = getPublicAssetUrl(
-      "/images/placeholder.jpg"
-    ));
-
   return (
     <>
       {member?.type === "teamMember" && (
         <div className="aboutUsContainer__member">
           <img
             src={getPublicAssetUrl(member.photo)}
-            alt={member.alt}
+            alt={`Foto de ${member.name}`}
             className="aboutUsContainer__teamMemberPhoto"
-            onError={imageError}
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = getPublicAssetUrl(
+                "/images/placeholder.jpg"
+              );
+            }}
           />
           <div className="aboutUsContainer__teamMemberTexts">
             <h3 className="aboutUsContainer__teamMemberName">{member.name}</h3>
@@ -41,7 +40,11 @@ const MemberCard: React.FC<MemberCardProps> = ({ member }) => {
             src={getPublicAssetUrl(member.photo)}
             alt={member.alt}
             className="aboutUsContainer__collaboratorPhoto"
-            onError={imageError}
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = getPublicAssetUrl(
+                "/images/placeholder.jpg"
+              );
+            }}
           />
         </div>
       )}
