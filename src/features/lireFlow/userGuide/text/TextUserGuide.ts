@@ -1,6 +1,8 @@
+import { ROUTE_PATHS } from "../../../../config/routes";
+
 export const userGuideText = {
-  title: "Como usar o LIRE-FLOW",
-  text: "Este guia apresenta as principais funcionalidades da plataforma.",
+  title: "Como usar o LireFlow",
+  text: "Este guia apresenta as principais funcionalidades do LireFlow",
   sections: {
     loadText: {
       title: "Carregar um texto",
@@ -49,7 +51,7 @@ export const userGuideText = {
         {
           type: "image",
           image: {
-            src: "/userGuideImgs/reading_controls.png",
+            src: "/userGuideLireFlowImgs/reading_controls.png",
             alt: "Controles de Leitura",
           },
         },
@@ -103,7 +105,7 @@ export const userGuideText = {
         {
           type: "image",
           image: {
-            src: "/userGuideImgs/tabela_fluencia_leitora.jpg",
+            src: "/userGuideLireFlowImgs/tabela_fluencia_leitora.jpg",
             alt: "Tabela de Fluência Leitora",
           },
         },
@@ -127,7 +129,7 @@ export const userGuideText = {
         {
           type: "imageSmall",
           image: {
-            src: "/userGuideImgs/words_per_minute_input.png",
+            src: "/userGuideLireFlowImgs/words_per_minute_input.png",
             alt: "Campo para ajuste manual de palavras por minuto",
           },
         },
@@ -165,12 +167,12 @@ export const userGuideText = {
       content: [
         {
           type: "text",
-          text: "Em caso de dúvidas, dificuldades ou sugestões, entre em contato em: ",
+          text: "Em caso de dúvidas, dificuldades ou sugestões, consulte a seção destinada às informações de contato: ",
         },
         {
           type: "link",
-          text: "lireo.suporte@gmail.com",
-          href: "https://mail.google.com/mail/u/0/?fs=1&to=lireo.suporte@gmail.com&tf=cm",
+          text: "Sobre Nós",
+          href: ROUTE_PATHS.ABOUT_US,
         },
       ],
     },
