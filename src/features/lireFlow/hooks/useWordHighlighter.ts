@@ -1,6 +1,9 @@
-import { useEffect, useState, useRef, RefObject, useCallback } from "react";
+import { useState, useRef, RefObject, useCallback } from "react";
 import { hyphenate } from "hyphen/pt";
-import { averageSyllableTime, punctuationMarksTime } from "../components/ReadingParameters";
+import {
+  averageSyllableTime,
+  punctuationMarksTime,
+} from "../components/ReadingParameters";
 
 export const useWordHighlighter = ({
   paragraph,
@@ -65,8 +68,9 @@ export const useWordHighlighter = ({
           waitTime = await calculateWordTime(element);
         } else {
           waitTime =
-            punctuationMarksTime.find((mark: { mark: string; }) => mark.mark === element)?.time ||
-            150;
+            punctuationMarksTime.find(
+              (mark: { mark: string }) => mark.mark === element
+            )?.time || 150;
         }
 
         await new Promise(
@@ -94,7 +98,7 @@ export const useWordHighlighter = ({
     };
   }, [isReading]);
 
-  useEffect(() => {
+  const scrollToCurrentWord = useCallback(() => {
     if (currentWordRef.current) {
       currentWordRef.current.scrollIntoView({
         behavior: "smooth",
@@ -102,5 +106,13 @@ export const useWordHighlighter = ({
       });
     }
   }, [currentIndex]);
-    return { elements, currentIndex, currentWordRef, initializeIndexes, updateReadingState  };
+
+  return {
+    elements,
+    currentIndex,
+    currentWordRef,
+    initializeIndexes,
+    updateReadingState,
+    scrollToCurrentWord,
+  };
 };

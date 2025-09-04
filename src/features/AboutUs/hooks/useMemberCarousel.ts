@@ -1,25 +1,25 @@
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback } from "react";
 import type { Member } from "../components/Section";
 
-export function useMemberCarousel (members: Member[]) {
+export const useMemberCarousel = (members: Member[]) => {
   const trackRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const waitTime = 4000; 
+  const waitTime = 4000;
 
-  function goToIndex (index: number) {
+  const goToIndex = (index: number) => {
     setCurrentIndex(index);
-  }
+  };
 
-  function goPrev ()  {
+  const goPrev = () => {
     setCurrentIndex((prev) => (prev - 1 + members.length) % members.length);
-  }
+  };
 
-  function goNext ()  {
+  const goNext = () => {
     setCurrentIndex((prev) => (prev + 1) % members.length);
-  }
+  };
 
-  const AutoPlay = useCallback (() => {
+  const autoPlay = useCallback(() => {
     if (isPaused) return;
 
     const interval = setInterval(() => {
@@ -29,7 +29,7 @@ export function useMemberCarousel (members: Member[]) {
     return () => clearInterval(interval);
   }, [members.length, isPaused]);
 
-  const updateTrackPosition = useCallback (() => {
+  const updateTrackPosition = useCallback(() => {
     if (trackRef.current) {
       trackRef.current.style.transform = `translateX(-${currentIndex * 100}%)`;
     }
@@ -43,7 +43,7 @@ export function useMemberCarousel (members: Member[]) {
     goToIndex,
     goPrev,
     goNext,
-    AutoPlay,
+    autoPlay,
     updateTrackPosition,
   };
-}
+};
