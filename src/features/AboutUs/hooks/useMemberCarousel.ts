@@ -7,19 +7,19 @@ export function useMemberCarousel (members: Member[]) {
   const [isPaused, setIsPaused] = useState(false);
   const waitTime = 4000; 
 
-  const goToIndex = useCallback ((index: number) => {
+  function goToIndex (index: number) {
     setCurrentIndex(index);
-  }, []);
+  }
 
-  const goPrev = useCallback (() => {
+  function goPrev ()  {
     setCurrentIndex((prev) => (prev - 1 + members.length) % members.length);
-  }, [members.length]);
+  }
 
-  const goNext = useCallback (() => {
+  function goNext ()  {
     setCurrentIndex((prev) => (prev + 1) % members.length);
-  }, [members.length]);
+  }
 
-  useEffect(() => {
+  const AutoPlay = useCallback (() => {
     if (isPaused) return;
 
     const interval = setInterval(() => {
@@ -29,7 +29,7 @@ export function useMemberCarousel (members: Member[]) {
     return () => clearInterval(interval);
   }, [members.length, isPaused]);
 
-  useEffect(() => {
+  const updateTrackPosition = useCallback (() => {
     if (trackRef.current) {
       trackRef.current.style.transform = `translateX(-${currentIndex * 100}%)`;
     }
@@ -43,5 +43,7 @@ export function useMemberCarousel (members: Member[]) {
     goToIndex,
     goPrev,
     goNext,
+    AutoPlay,
+    updateTrackPosition,
   };
 }

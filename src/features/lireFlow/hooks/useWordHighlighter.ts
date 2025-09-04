@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, RefObject } from "react";
+import { useEffect, useState, useRef, RefObject, useCallback } from "react";
 import { hyphenate } from "hyphen/pt";
 import { averageSyllableTime, punctuationMarksTime } from "../components/ReadingParameters";
 
@@ -28,7 +28,7 @@ export const useWordHighlighter = ({
   const isPunctuation = (element: string): boolean =>
     /^[.,!?;:"()]+$/.test(element);
 
-  useEffect((): void => {
+  const initializeIndexes = useCallback(() => {
     elementIndexs.current = elements
       .map((element: string, index: number): number | null =>
         isWord(element) || isPunctuation(element) ? index : null
@@ -39,7 +39,7 @@ export const useWordHighlighter = ({
     setCurrentIndex(null);
   }, [paragraph]);
 
-  useEffect((): (() => void) => {
+  const updateReadingState = useCallback(() => {
     isReadingRef.current = isReading;
 
     const calculateWordTime = async (word: string): Promise<number> => {
@@ -102,5 +102,5 @@ export const useWordHighlighter = ({
       });
     }
   }, [currentIndex]);
-    return { elements, currentIndex, currentWordRef };
+    return { elements, currentIndex, currentWordRef, initializeIndexes, updateReadingState  };
 };

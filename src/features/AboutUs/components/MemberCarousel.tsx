@@ -1,4 +1,4 @@
-//import React from "react";
+
 import MemberCard from "./MemberCard";
 import type { Member } from "./Section";
 import "../layout/TeamCarouselStyle.css";
@@ -17,13 +17,17 @@ const MemberCarousel: React.FC<MemberCarouselProps> = ({ members = [] }) => {
     goToIndex,
     goPrev,
     goNext,
+    AutoPlay,
+    updateTrackPosition,
   } = useMemberCarousel(members);
   
     useEffect(() => {
-      if (trackRef.current) {
-        trackRef.current.style.transform = `translateX(-${currentIndex * 100}%)`;
-      }
-    }, [currentIndex]);
+    return AutoPlay();
+  }, [AutoPlay]);
+
+  useEffect(() => {
+    updateTrackPosition();
+  }, [updateTrackPosition]);
 
   return (
     members.length > 0 && (
