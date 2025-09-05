@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, RefObject, useCallback } from "react";
+import { useState, useRef, RefObject, useCallback } from "react";
 import { hyphenate } from "hyphen/pt";
 import { averageSyllableTime, punctuationMarksTime } from "../components/ReadingParameters";
 
@@ -50,6 +50,7 @@ export const useWordHighlighter = ({
           speedRef.current
       );
     };
+    
 
     const highlightFlow = async (): Promise<void> => {
       while (indexRef.current < elementIndexs.current.length) {
@@ -94,13 +95,13 @@ export const useWordHighlighter = ({
     };
   }, [isReading]);
 
-  useEffect(() => {
-    if (currentWordRef.current) {
-      currentWordRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-      });
-    }
-  }, [currentIndex]);
-    return { elements, currentIndex, currentWordRef, initializeIndexes, updateReadingState  };
+  const scrollToCurrentWord = useCallback(() => {
+  if (currentWordRef.current) {
+    currentWordRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+    });
+  }
+}, []);
+    return { elements, currentIndex, currentWordRef, initializeIndexes, updateReadingState,  scrollToCurrentWord };
 };

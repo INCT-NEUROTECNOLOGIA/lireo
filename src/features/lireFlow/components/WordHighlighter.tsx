@@ -1,4 +1,4 @@
-import React, { RefObject, useEffect } from "react";
+import { RefObject, useEffect } from "react";
 import { useWordHighlighter } from "../hooks/useWordHighlighter"; 
 
 
@@ -16,7 +16,7 @@ const WordHighlighter = ({
   speedRef: RefObject<number>;
   wordsPerMinuteRef: RefObject<number>;
 }) => {
-  const { elements, currentIndex, currentWordRef, initializeIndexes, updateReadingState } =
+  const { elements, currentIndex, currentWordRef, initializeIndexes, updateReadingState, scrollToCurrentWord } =
     useWordHighlighter({
       paragraph,
       onFinish,
@@ -32,6 +32,10 @@ const WordHighlighter = ({
   useEffect(() => {
     updateReadingState();
   }, [updateReadingState]);
+
+  useEffect(() => {
+  scrollToCurrentWord();
+}, [currentIndex, scrollToCurrentWord]);
 
   return elements.map((element: string, index: number) => (
     <span
