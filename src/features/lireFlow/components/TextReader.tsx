@@ -5,6 +5,7 @@ import "../layout/textReaderStyle.css";
 import { ROUTE_PATHS } from "../../../config/routes.ts";
 import { useTextReader } from "../hooks/useTextReader";
 
+
 const TextReader: React.FC = () => {
   const {
     state,

@@ -180,5 +180,4 @@ import { useReducer, useRef } from "react";
     handleFileUploader,
     resetSelectFile,
   };
-
 };
