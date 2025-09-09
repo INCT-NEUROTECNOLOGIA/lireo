@@ -1,7 +1,6 @@
 import { getPublicAssetUrl } from "../../../utils/pathUtils.ts";
 import { useReducer, useRef } from "react";
 
-//const TextReader = () => {
 type State = {
 fileName: string;
 fileContent: string;
@@ -168,7 +167,6 @@ dispatch({ type: "SET_FILE_UPLOADER_CLOSE" });
 
 return {
 state,
-dispatch,
 resetSelectText,
 readFile,
 selectedFile,
