@@ -1,9 +1,11 @@
+import "../layout/lireMorphStyle.css";
+import { ROUTE_PATHS } from "../../../config/routes";
 import useLireMorph from "../hooks/useLireMorph";
 import { lireMorphText } from "../texts/lireMorphText";
-import { ROUTE_PATHS } from "../../../config/routes";
+import { radicals } from "../texts/radicals";
 
 const LireMorph = () => {
-  const { summaryClose } = useLireMorph();
+  const { radical, prefixes, summaryClose, selectedRadical } = useLireMorph();
 
   return (
     <>
@@ -25,7 +27,41 @@ const LireMorph = () => {
           </li>
         </ul>
       </div>
-      ;
+
+      <div className="lireMorphContainer">
+        <select
+          id="radicalSelect"
+          name="radicalSelect"
+          className="radicalSelect"
+          defaultValue=""
+          onChange={selectedRadical}
+          title={lireMorphText.placeholderSelectRadical}
+        >
+          <option value="" disabled>
+            {lireMorphText.placeholderSelectRadical}
+          </option>
+          {radicals.map((item, index) => (
+            <option key={index} value={index} title={item.radical}>
+              {item.radical}
+            </option>
+          ))}
+        </select>
+
+        <span className="radical">{radical}</span>
+
+        {prefixes.map((prefix, index) => (
+          <span
+            key={index}
+            className="prefix"
+            style={{
+              top: `${prefix.positionTop}%`,
+              left: `${prefix.positionLeft}%`,
+            }}
+          >
+            {prefix.text}
+          </span>
+        ))}
+      </div>
     </>
   );
 };

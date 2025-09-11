@@ -1,3 +1,5 @@
+import { radicals } from "./radicals";
+
 export const lireMorphText = {
   summary: {
     title: "LireMorph",
@@ -9,5 +11,10 @@ export const lireMorphText = {
     ],
     linkText: "Para mais informações, acesse o ",
     link: "Guia do Usuário.",
+  },
+  placeholderSelectRadical: "Selecione um radical",
+  exemple: {
+    radical: "exempl",
+    prefixes: ["o", "ar", "ificar", "ificação", "ário", "ozinho", "ão"],
   },
 };

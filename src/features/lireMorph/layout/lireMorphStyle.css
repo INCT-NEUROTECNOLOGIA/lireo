@@ -1,0 +1,50 @@
+.lireMorphContainer {
+  width: 100%;
+  min-height: 90vh;
+  background-color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  padding: 5vh 8vh;
+  position: relative;
+}
+
+.radicalSelect {
+  background-color: var(--color-tertiary);
+  color: var(--color-white);
+  width: 20rem;
+}
+
+.radicalSelect:hover {
+  background-color: var(--color-secondary);
+}
+
+.radicalSelect option:disabled {
+  color: var(--color-text-tertiary);
+}
+
+.radicalSelect:hover option:disabled {
+  color: var(--color-text-secondary);
+}
+
+.lireMorphContainer span {
+  padding: 0.2rem 0.6rem;
+  border-radius: 8px;
+}
+
+.radical {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  text-transform: uppercase;
+  background-color: var(--color-highlight);
+}
+
+.prefix {
+  position: absolute;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  transition: top 0.3s, left 0.3s;
+  background-color: var(--color-secondary);
+}
