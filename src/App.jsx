@@ -7,6 +7,7 @@ import UserGuideLireFlow from "./features/lireFlow/userGuide/components/UserGuid
 import UserGuideLireGrow from "./features/lireGrow/userGuide/components/UserGuide.tsx";
 import AboutUs from "./features/AboutUs/components/AboutUs.tsx";
 import LireGrow from "./features/lireGrow/components/LireGrow.tsx";
+import LireMorph from "./features/lireMorph/components/LireMorph.tsx";
 import "./features/generalUi/layout/pageStyle.css";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<InitialPage />} />
         <Route path="/lireFlow" element={<TextReader />} />
         <Route path="/lireGrow" element={<LireGrow />} />
+        <Route path="/lireMorph" element={<LireMorph />} />
         <Route
           path="/lireFlow/guia-do-usuario"
           element={<UserGuideLireFlow />}

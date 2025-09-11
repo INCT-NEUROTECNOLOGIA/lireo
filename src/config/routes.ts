@@ -5,4 +5,5 @@ export const ROUTE_PATHS = {
   USER_GUIDE_LIRE_GROW: "/lireo/lireGrow/guia-do-usuario",
   LIRE_FLOW: "/lireo/lireFlow",
   LIRE_GROW: "/lireo/lireGrow",
+  LIRE_MORPH: "/lireo/lireMorph",
 };

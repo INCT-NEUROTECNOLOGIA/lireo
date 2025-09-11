@@ -24,7 +24,12 @@ export const headerText = {
     {
       name: "LireGrow",
       href: ROUTE_PATHS.LIRE_GROW,
-      icon: "bi bi-card-text",
+      icon: "bi bi-triangle",
+    },
+    {
+      name: "LireMorph",
+      href: ROUTE_PATHS.LIRE_MORPH,
+      icon: "bi bi-puzzle",
     },
   ],
   userGuides: "Guias do Usuário",
