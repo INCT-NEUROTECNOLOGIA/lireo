@@ -1,11 +1,26 @@
 .lireMorphContainer {
   width: 100%;
-  min-height: 90vh;
   background-color: var(--color-white);
   display: flex;
   flex-direction: column;
   padding: 5vh 8vh;
+}
+
+.wordsContainer {
   position: relative;
+  width: 100%;
+  min-height: 80vh;
+}
+
+.wordsContainer::before {
+  content: "";
+  position: absolute;
+  top: 5%; /* seu padding-top */
+  left: 5%; /* seu padding-left */
+  right: 5%; /* seu padding-right */
+  bottom: 5%; /* seu padding-bottom */
+  border: 1px dashed red; /* padding visual */
+  pointer-events: none; /* não interfere no drag */
 }
 
 .radicalSelect {
@@ -44,9 +59,15 @@
 
 .affix {
   position: absolute;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   text-transform: uppercase;
-  transition: top 0.3s, left 0.3s;
   background-color: var(--color-secondary);
   cursor: grab;
+  transition: font-size 0.3s ease-in-out;
+  transform: translate(-50%, -50%);
+}
+
+.affix.dragging {
+  font-size: 2rem;
+  background-color: var(--color-highlight);
 }
