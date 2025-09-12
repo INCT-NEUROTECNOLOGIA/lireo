@@ -39,12 +39,14 @@
   font-size: 2rem;
   text-transform: uppercase;
   background-color: var(--color-highlight);
+  cursor: none;
 }
 
-.prefix {
+.affix {
   position: absolute;
   font-size: 1.2rem;
   text-transform: uppercase;
   transition: top 0.3s, left 0.3s;
   background-color: var(--color-secondary);
+  cursor: grab;
 }

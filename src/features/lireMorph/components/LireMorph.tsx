@@ -5,7 +5,8 @@ import { lireMorphText } from "../texts/lireMorphText";
 import { radicals } from "../texts/radicals";
 
 const LireMorph = () => {
-  const { radical, prefixes, summaryClose, selectedRadical } = useLireMorph();
+  const { radical, affixes, summaryClose, selectedRadical, grabAffix } =
+    useLireMorph();
 
   return (
     <>
@@ -49,16 +50,17 @@ const LireMorph = () => {
 
         <span className="radical">{radical}</span>
 
-        {prefixes.map((prefix, index) => (
+        {affixes.map((affix, index) => (
           <span
             key={index}
-            className="prefix"
+            className="affix"
             style={{
-              top: `${prefix.positionTop}%`,
-              left: `${prefix.positionLeft}%`,
+              top: `${affix.positionTop}px`,
+              left: `${affix.positionLeft}px`,
             }}
+            onMouseDown={(e) => grabAffix(e, index)}
           >
-            {prefix.text}
+            {affix.text}
           </span>
         ))}
       </div>
