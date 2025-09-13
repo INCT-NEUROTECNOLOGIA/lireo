@@ -12,17 +12,6 @@
   min-height: 80vh;
 }
 
-.wordsContainer::before {
-  content: "";
-  position: absolute;
-  top: 5%; /* seu padding-top */
-  left: 5%; /* seu padding-left */
-  right: 5%; /* seu padding-right */
-  bottom: 5%; /* seu padding-bottom */
-  border: 1px dashed red; /* padding visual */
-  pointer-events: none; /* não interfere no drag */
-}
-
 .radicalSelect {
   background-color: var(--color-tertiary);
   color: var(--color-white);
@@ -55,6 +44,7 @@
   text-transform: uppercase;
   background-color: var(--color-highlight);
   cursor: none;
+  user-select: none;
 }
 
 .affix {
@@ -65,9 +55,11 @@
   cursor: grab;
   transition: font-size 0.3s ease-in-out;
   transform: translate(-50%, -50%);
+  user-select: none;
 }
 
 .affix.dragging {
   font-size: 2rem;
   background-color: var(--color-highlight);
+  cursor: grabbing;
 }

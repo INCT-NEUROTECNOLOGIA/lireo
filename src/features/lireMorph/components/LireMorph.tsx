@@ -10,7 +10,10 @@ const LireMorph = () => {
     affixes,
     currentIndex,
     summaryClose,
+    isDragging,
+    radicalRef,
     containerRef,
+    targetAffixRef,
     selectedRadical,
     grabAffix,
   } = useLireMorph();
@@ -56,19 +59,29 @@ const LireMorph = () => {
         </select>
 
         <div className="wordsContainer" ref={containerRef}>
-          <span className="radical">{radical}</span>
+          <span className="radical" ref={radicalRef}>
+            {radical}
+          </span>
 
           {affixes.map((affix, index) => (
             <span
               key={index}
               className={
-                "affix" + (index == currentIndex.current ? " dragging" : "")
+                "affix" +
+                (index == currentIndex.current && isDragging.current
+                  ? " dragging"
+                  : "")
               }
               style={{
                 left: `${affix.position.x}%`,
                 top: `${affix.position.y}%`,
               }}
               onMouseDown={(e) => grabAffix(e, index)}
+              ref={
+                index == currentIndex.current && isDragging.current
+                  ? targetAffixRef
+                  : null
+              }
             >
               {affix.text}
             </span>
