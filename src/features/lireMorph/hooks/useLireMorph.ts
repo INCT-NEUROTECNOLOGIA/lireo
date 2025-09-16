@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo, useEffect } from "react";
 import { lireMorphText } from "../texts/lireMorphText";
 import { radicals } from "../texts/radicals";
 
@@ -14,73 +14,93 @@ type Affix = {
 
 const useLireMorph = () => {
   const [summaryClose, setSummaryClose] = useState<boolean>(false);
-  const [radical, setRadical] = useState<string>(lireMorphText.exemple.radical);
-
+  const [radicalIndex, setRadicalIndex] = useState<number | null>(null);
+  const [affixes, setAffixes] = useState<Affix[]>([]);
   const radicalRef = useRef<HTMLSpanElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const containerRect = useRef<DOMRect | null>(null);
   const targetAffixRef = useRef<HTMLSpanElement | null>(null);
   const targetAffixRect = useRef<DOMRect | null>(null);
-  const currentIndex = useRef<number | null>(null);
-  const isDragging = useRef<boolean>(false);
-  const isFittedLeft = useRef<boolean>(false);
-  const isFittedRight = useRef<boolean>(false);
-  const offset = useRef({ x: 0, y: 0 });
+  const dragState = useRef({
+    currentIndex: null as number | null,
+    isDragging: false,
+    isFittedLeft: false,
+    isFittedRight: false,
+    offset: { x: 0, y: 0 },
+  });
 
-  const AVOID_ZONE_START = 40;
-  const AVOID_ZONE_END = 60;
-  const PADDING_PERCENT = 10;
-  const THRESHOLD = 30;
+  const ROWS = 4;
+  const COLS = 4;
+  const FLUTTER = 5;
+  const PADDING = 10;
+  const THRESHOLD = 15;
+  const DISTANCE_FIT = 15;
 
-  const getRandomPosition = (): Position => {
-    let position: Position = { x: 0, y: 0 };
+  const baseCells = useMemo(() => {
+    const cells: Position[] = [];
+    for (let row = 0; row < ROWS; row++) {
+      for (let col = 0; col < COLS; col++) {
+        const cellX =
+          (100 / COLS) * (col + 0.5) + (Math.random() * 2 - 1) * FLUTTER;
+        const cellY =
+          (100 / ROWS) * (row + 0.5) + (Math.random() * 2 - 1) * FLUTTER;
+        cells.push({ x: cellX, y: cellY });
+      }
+    }
+    return cells;
+  }, []);
 
-    do {
-      position.x =
-        PADDING_PERCENT + Math.random() * (100 - 2 * PADDING_PERCENT);
-    } while (position.x > AVOID_ZONE_START && position.x < AVOID_ZONE_END);
-
-    do {
-      position.y =
-        PADDING_PERCENT + Math.random() * (100 - 2 * PADDING_PERCENT);
-    } while (position.y > AVOID_ZONE_START && position.y < AVOID_ZONE_END);
-
-    return position;
+  const shuffleCells = (cells: Position[]) => {
+    const shuffled = [...cells];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
   };
 
   const initializeAffixes = (affixes: string[]): Affix[] => {
-    return affixes.map((text) => ({
+    const shuffled = shuffleCells(baseCells);
+    return affixes.map((text, i) => ({
       text,
-      position: getRandomPosition(),
+      position: shuffled[i],
     }));
   };
 
-  const [affixes, setAffixes] = useState<Affix[]>(
-    initializeAffixes(lireMorphText.exemple.prefixes)
-  );
+  const radical = useMemo(() => {
+    if (radicalIndex === null) return lireMorphText.exemple.radical;
+    return radicals[radicalIndex].radical;
+  }, [radicalIndex]);
+
+  useEffect(() => {
+    if (radicalIndex === null) {
+      setAffixes(initializeAffixes(lireMorphText.exemple.prefixes));
+    } else {
+      setAffixes(initializeAffixes(radicals[radicalIndex].prefixes));
+    }
+  }, [radicalIndex]);
 
   const selectedRadical = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const index = parseInt(event.target.value);
-    setRadical(radicals[index].radical);
-    setAffixes(initializeAffixes(radicals[index].prefixes));
+    setRadicalIndex(index);
     setSummaryClose(true);
   };
 
   const grabAffix = (e: React.MouseEvent, index: number) => {
     e.preventDefault();
-    currentIndex.current = index;
-    isDragging.current = true;
-    isFittedLeft.current = false;
-    isFittedRight.current = false;
+    dragState.current.currentIndex = index;
+    dragState.current.isDragging = true;
+    dragState.current.isFittedLeft = false;
+    dragState.current.isFittedRight = false;
 
     targetAffixRef.current = e.currentTarget as HTMLSpanElement;
     targetAffixRect.current = targetAffixRef.current.getBoundingClientRect();
 
-    offset.current.x =
+    dragState.current.offset.x =
       e.clientX -
       targetAffixRect.current.left -
       targetAffixRect.current.width / 2;
-    offset.current.y =
+    dragState.current.offset.y =
       e.clientY -
       targetAffixRect.current.top -
       targetAffixRect.current.height / 2;
@@ -93,28 +113,28 @@ const useLireMorph = () => {
     Math.min(Math.max(v, min), max);
 
   const moveAffix = (e: MouseEvent) => {
-    if (!isDragging.current || !containerRef.current) return;
+    if (!dragState.current.isDragging || !containerRef.current) return;
 
     containerRect.current = containerRef.current.getBoundingClientRect();
     const leftPercent = clamp(
-      ((e.clientX - containerRect.current.left - offset.current.x) /
+      ((e.clientX - containerRect.current.left - dragState.current.offset.x) /
         containerRect.current.width) *
         100,
-      PADDING_PERCENT,
-      100 - PADDING_PERCENT
+      PADDING,
+      100 - PADDING
     );
 
     const topPercent = clamp(
-      ((e.clientY - containerRect.current.top - offset.current.y) /
+      ((e.clientY - containerRect.current.top - dragState.current.offset.y) /
         containerRect.current.height) *
         100,
-      PADDING_PERCENT,
-      100 - PADDING_PERCENT
+      PADDING,
+      100 - PADDING
     );
 
     setAffixes((prev) =>
       prev.map((a, i) =>
-        i === currentIndex.current
+        i === dragState.current.currentIndex
           ? {
               ...a,
               position: {
@@ -129,13 +149,13 @@ const useLireMorph = () => {
 
   const dropAffix = () => {
     fitWithRadical();
-    isDragging.current = false;
+    dragState.current.isDragging = false;
     document.removeEventListener("mousemove", moveAffix);
     document.removeEventListener("mouseup", dropAffix);
   };
 
   const fitWithRadical = () => {
-    if (currentIndex.current === null) return;
+    if (dragState.current.currentIndex === null) return;
     if (!containerRef.current || !radicalRef.current || !targetAffixRef.current)
       return;
 
@@ -144,55 +164,53 @@ const useLireMorph = () => {
     const radicalRect = radicalRef.current.getBoundingClientRect();
 
     const distanceLeft = Math.abs(
-      targetAffixRect.current.right -
-        targetAffixRect.current.width / 2 -
-        radicalRect.left
+      targetAffixRect.current.right - radicalRect.left
     );
     const distanceRight = Math.abs(
-      targetAffixRect.current.left +
-        targetAffixRect.current.width / 2 -
-        radicalRect.right
+      targetAffixRect.current.left - radicalRect.right
     );
 
-    const centerPositionY =
-      ((radicalRect.top -
-        containerRect.current.top +
-        targetAffixRect.current.height / 2) /
-        containerRect.current.height) *
-      100;
+    const distanceTop = targetAffixRect.current.bottom - radicalRect.top;
+    const distanceBottom = targetAffixRect.current.top - radicalRect.bottom;
 
-    let fitPositionX: number | null = null;
+    let fitPosition: Position = { x: 0, y: 0 };
+
+    if (distanceBottom < THRESHOLD || distanceTop < THRESHOLD) {
+      fitPosition.y =
+        ((radicalRect.top +
+          targetAffixRect.current.height / 2 -
+          containerRect.current.top) /
+          containerRect.current.height) *
+        100;
+    }
 
     if (distanceLeft < THRESHOLD) {
-      isFittedLeft.current = true;
-      fitPositionX =
+      dragState.current.isFittedLeft = true;
+      fitPosition.x =
         ((radicalRect.left -
           targetAffixRect.current.width / 2 -
           containerRect.current.left +
-          15) /
+          DISTANCE_FIT) /
           containerRect.current.width) *
         100;
     } else if (distanceRight < THRESHOLD) {
-      isFittedRight.current = true;
-      fitPositionX =
+      dragState.current.isFittedRight = true;
+      fitPosition.x =
         ((radicalRect.right -
           containerRect.current.left +
           targetAffixRect.current.width / 2 -
-          15) /
+          DISTANCE_FIT) /
           containerRect.current.width) *
         100;
     }
 
-    if (fitPositionX) {
-      setAffixes((prev) =>
+    if (fitPosition.x != 0 && fitPosition.y != 0) {
+      setAffixes((prev: Affix[]) =>
         prev.map((a, i) =>
-          i === currentIndex.current
+          i === dragState.current.currentIndex
             ? {
                 ...a,
-                position: {
-                  x: fitPositionX,
-                  y: centerPositionY,
-                },
+                position: fitPosition,
               }
             : a
         )
@@ -203,11 +221,8 @@ const useLireMorph = () => {
   return {
     radical,
     affixes,
-    currentIndex,
     summaryClose,
-    isDragging,
-    isFittedLeft,
-    isFittedRight,
+    dragState,
     radicalRef,
     containerRef,
     targetAffixRef,

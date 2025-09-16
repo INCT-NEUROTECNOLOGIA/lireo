@@ -8,11 +8,8 @@ const LireMorph = () => {
   const {
     radical,
     affixes,
-    currentIndex,
     summaryClose,
-    isDragging,
-    isFittedLeft,
-    isFittedRight,
+    dragState,
     radicalRef,
     containerRef,
     targetAffixRef,
@@ -70,13 +67,16 @@ const LireMorph = () => {
               key={index}
               className={
                 "affix" +
-                (index == currentIndex.current && isDragging.current
+                (index === dragState.current.currentIndex &&
+                dragState.current.isDragging
                   ? " dragging"
                   : "") +
-                (index == currentIndex.current && isFittedLeft.current
+                (index === dragState.current.currentIndex &&
+                dragState.current.isFittedLeft
                   ? " fitLeft"
                   : "") +
-                (index == currentIndex.current && isFittedRight.current
+                (index === dragState.current.currentIndex &&
+                dragState.current.isFittedRight
                   ? " fitRight"
                   : "")
               }
@@ -86,7 +86,8 @@ const LireMorph = () => {
               }}
               onMouseDown={(e) => grabAffix(e, index)}
               ref={
-                index == currentIndex.current && isDragging.current
+                index === dragState.current.currentIndex &&
+                dragState.current.isDragging
                   ? targetAffixRef
                   : null
               }

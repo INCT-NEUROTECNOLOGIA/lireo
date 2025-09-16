@@ -13,6 +13,6 @@ export const lireMorphText = {
   placeholderSelectRadical: "Selecione um radical",
   exemple: {
     radical: "exempl",
-    prefixes: ["o", "ar", "ificar", "ificação", "ário", "ozinho"],
+    prefixes: ["o", "ar", "ificar", "ificação", "ário", "ozinho", "ão"],
   },
 };
