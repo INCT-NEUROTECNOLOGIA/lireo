@@ -11,6 +11,8 @@ const LireMorph = () => {
     currentIndex,
     summaryClose,
     isDragging,
+    isFittedLeft,
+    isFittedRight,
     radicalRef,
     containerRef,
     targetAffixRef,
@@ -70,6 +72,12 @@ const LireMorph = () => {
                 "affix" +
                 (index == currentIndex.current && isDragging.current
                   ? " dragging"
+                  : "") +
+                (index == currentIndex.current && isFittedLeft.current
+                  ? " fitLeft"
+                  : "") +
+                (index == currentIndex.current && isFittedRight.current
+                  ? " fitRight"
                   : "")
               }
               style={{

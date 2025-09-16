@@ -4,12 +4,12 @@ export const radicals = [
     prefixes: ["ido", "escer", "icultura", "ista"],
   },
   {
-    radical: "escrever",
-    prefixes: ["ito", "itor", "itório"],
+    radical: "escr",
+    prefixes: ["ever", "ito", "itor", "itório"],
   },
   {
-    radical: "pensar",
-    prefixes: ["amento", "ador"],
+    radical: "pensa",
+    prefixes: ["mento", "dor"],
   },
   {
     radical: "audi",
@@ -24,7 +24,7 @@ export const radicals = [
     prefixes: ["e", "ante"],
   },
   {
-    radical: "construir",
+    radical: "constru",
     prefixes: ["tor", "ção"],
   },
   {
@@ -44,8 +44,8 @@ export const radicals = [
     prefixes: ["eiro", "egulho", "aria"],
   },
   {
-    radical: "caf",
-    prefixes: ["eteria", "eteira", "ezal"],
+    radical: "cafe",
+    prefixes: ["teria", "teira", "zal"],
   },
   {
     radical: "ferr",

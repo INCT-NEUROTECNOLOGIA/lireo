@@ -60,6 +60,21 @@
 
 .affix.dragging {
   font-size: 2rem;
-  background-color: var(--color-highlight);
   cursor: grabbing;
+}
+
+.affix.fitLeft {
+  font-size: 2rem;
+  background-color: var(--color-highlight);
+  cursor: grab;
+  padding: 0.2rem 0.3rem;
+  border-radius: 8px 0px 0px 8px;
+}
+
+.affix.fitRight {
+  font-size: 2rem;
+  background-color: var(--color-highlight);
+  cursor: grab;
+  padding: 0.2rem 0.3rem;
+  border-radius: 0px 8px 8px 0px;
 }

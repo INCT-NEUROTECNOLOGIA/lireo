@@ -23,6 +23,8 @@ const useLireMorph = () => {
   const targetAffixRect = useRef<DOMRect | null>(null);
   const currentIndex = useRef<number | null>(null);
   const isDragging = useRef<boolean>(false);
+  const isFittedLeft = useRef<boolean>(false);
+  const isFittedRight = useRef<boolean>(false);
   const offset = useRef({ x: 0, y: 0 });
 
   const AVOID_ZONE_START = 40;
@@ -59,11 +61,8 @@ const useLireMorph = () => {
 
   const selectedRadical = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const index = parseInt(event.target.value);
-
     setRadical(radicals[index].radical);
-
     setAffixes(initializeAffixes(radicals[index].prefixes));
-
     setSummaryClose(true);
   };
 
@@ -71,8 +70,11 @@ const useLireMorph = () => {
     e.preventDefault();
     currentIndex.current = index;
     isDragging.current = true;
+    isFittedLeft.current = false;
+    isFittedRight.current = false;
 
-    targetAffixRect.current = (e.target as HTMLElement).getBoundingClientRect();
+    targetAffixRef.current = e.currentTarget as HTMLSpanElement;
+    targetAffixRect.current = targetAffixRef.current.getBoundingClientRect();
 
     offset.current.x =
       e.clientX -
@@ -133,55 +135,68 @@ const useLireMorph = () => {
   };
 
   const fitWithRadical = () => {
-    if (
-      currentIndex.current !== null &&
-      containerRef.current &&
-      radicalRef.current &&
-      targetAffixRect.current
-    ) {
-      if (
-        radicalRef.current &&
-        targetAffixRef.current &&
-        containerRect.current
-      ) {
-        const radicalRect = radicalRef.current.getBoundingClientRect();
-        targetAffixRect.current =
-          targetAffixRef.current.getBoundingClientRect();
+    if (currentIndex.current === null) return;
+    if (!containerRef.current || !radicalRef.current || !targetAffixRef.current)
+      return;
 
-        const distance = Math.abs(
-          targetAffixRect.current.left - radicalRect.right
-        );
+    containerRect.current = containerRef.current.getBoundingClientRect();
+    targetAffixRect.current = targetAffixRef.current.getBoundingClientRect();
+    const radicalRect = radicalRef.current.getBoundingClientRect();
 
-        if (distance < THRESHOLD) {
-          const leftPercent =
-            ((radicalRect.right -
-              containerRect.current.left +
-              targetAffixRect.current.width / 2) /
-              containerRect.current.width) *
-            100;
+    const distanceLeft = Math.abs(
+      targetAffixRect.current.right -
+        targetAffixRect.current.width / 2 -
+        radicalRect.left
+    );
+    const distanceRight = Math.abs(
+      targetAffixRect.current.left +
+        targetAffixRect.current.width / 2 -
+        radicalRect.right
+    );
 
-          const topPercent =
-            ((radicalRect.top -
-              containerRect.current.top +
-              targetAffixRect.current.height / 2) /
-              containerRect.current.height) *
-            100;
+    const centerPositionY =
+      ((radicalRect.top -
+        containerRect.current.top +
+        targetAffixRect.current.height / 2) /
+        containerRect.current.height) *
+      100;
 
-          setAffixes((prev) =>
-            prev.map((a, i) =>
-              i === currentIndex.current
-                ? {
-                    ...a,
-                    position: {
-                      x: leftPercent - 1.5,
-                      y: topPercent,
-                    },
-                  }
-                : a
-            )
-          );
-        }
-      }
+    let fitPositionX: number | null = null;
+
+    if (distanceLeft < THRESHOLD) {
+      isFittedLeft.current = true;
+      fitPositionX =
+        ((radicalRect.left -
+          targetAffixRect.current.width / 2 -
+          containerRect.current.left +
+          15) /
+          containerRect.current.width) *
+        100;
+    } else if (distanceRight < THRESHOLD) {
+      isFittedRight.current = true;
+      fitPositionX =
+        ((radicalRect.right -
+          containerRect.current.left +
+          targetAffixRect.current.width / 2 -
+          15) /
+          containerRect.current.width) *
+        100;
+    }
+
+    if (fitPositionX) {
+      setAffixes((prev) =>
+        prev.map((a, i) =>
+          i === currentIndex.current
+            ? {
+                ...a,
+                position: {
+                  x: fitPositionX,
+                  y: centerPositionY,
+                },
+              }
+            : a
+        )
+      );
     }
   };
 
@@ -191,6 +206,8 @@ const useLireMorph = () => {
     currentIndex,
     summaryClose,
     isDragging,
+    isFittedLeft,
+    isFittedRight,
     radicalRef,
     containerRef,
     targetAffixRef,
