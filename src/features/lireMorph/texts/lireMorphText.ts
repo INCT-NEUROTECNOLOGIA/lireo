@@ -1,5 +1,3 @@
-import { radicals } from "./radicals";
-
 export const lireMorphText = {
   summary: {
     title: "LireMorph",
