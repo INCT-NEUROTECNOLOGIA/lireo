@@ -1,6 +1,6 @@
 import React, { RefObject, useState } from "react";
 import "../layout/textControlsStyle.css";
-import { calculateWordsPerMinute } from "./ReadingParameters";
+import { calculateWordsPerMinute } from "./readingParameters";
 
 const TextControls = ({
   speed,

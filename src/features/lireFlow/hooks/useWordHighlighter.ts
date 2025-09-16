@@ -1,6 +1,6 @@
 import { useState, useRef, RefObject, useCallback } from "react";
 import { hyphenate } from "hyphen/pt";
-import { averageSyllableTime, punctuationMarksTime } from "../components/ReadingParameters";
+import { averageSyllableTime, punctuationMarksTime } from "../components/readingParameters";
 
 export const useWordHighlighter = ({
   paragraph,
