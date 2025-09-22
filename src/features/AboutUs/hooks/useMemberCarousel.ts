@@ -19,7 +19,7 @@ export const useMemberCarousel = (members: Member[]) => {
     setCurrentIndex((prev) => (prev + 1) % members.length);
   }
 
-  const AutoPlay = useCallback (() => {
+  const autoPlay = useCallback (() => {
     if (isPaused) return;
 
     const interval = setInterval(() => {
@@ -43,7 +43,7 @@ export const useMemberCarousel = (members: Member[]) => {
     goToIndex,
     goPrev,
     goNext,
-    AutoPlay,
+    autoPlay,
     updateTrackPosition,
   };
 }

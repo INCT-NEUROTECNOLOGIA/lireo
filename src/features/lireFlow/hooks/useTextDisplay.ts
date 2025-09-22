@@ -1,5 +1,12 @@
 import { useState, useRef, useMemo } from "react";
 
+type ProcessedText = {
+  paragraphs: string[];
+  title: string;
+  author: string;
+  source: string | null;
+};
+
 export const useTextDisplay = ({ fileContent }: { fileContent: string }) => {
   const [paragraphIndex, setParagraphIndex] = useState<number>(0);
   const [highlightKey, setHighlightKey] = useState<number>(0);
@@ -26,7 +33,7 @@ export const useTextDisplay = ({ fileContent }: { fileContent: string }) => {
     return match ? match[1] : null;
   };
 
-  const processedText = useMemo(() => {
+  const processedText: ProcessedText = useMemo(() => {
     const allParagraphs = fileContent
       .split("\n")
       .map((paragraph: string) => paragraph.trim())

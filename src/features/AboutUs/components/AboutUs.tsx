@@ -4,7 +4,7 @@ import Section from "./Section";
 import { getPublicAssetUrl } from "../../../utils/pathUtils";
 import FadeIn from "../../../utils/components/FadeIn";
 import { aboutUsText } from "../text/textAboutUs";
-import { projectCreators, collaborators } from "../text/textAboutUs";
+import { projectCreators, collaborators } from "../text/textAboutUs" ;
 
 const AboutUs: React.FC = () => {
   

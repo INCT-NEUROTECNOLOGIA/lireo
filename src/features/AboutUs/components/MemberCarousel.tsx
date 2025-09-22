@@ -17,13 +17,13 @@ const MemberCarousel: React.FC<MemberCarouselProps> = ({ members = [] }) => {
     goToIndex,
     goPrev,
     goNext,
-    AutoPlay,
+    autoPlay,
     updateTrackPosition,
   } = useMemberCarousel(members);
   
     useEffect(() => {
-    return AutoPlay();
-  }, [AutoPlay]);
+    return autoPlay();
+  }, [autoPlay]);
 
   useEffect(() => {
     updateTrackPosition();
