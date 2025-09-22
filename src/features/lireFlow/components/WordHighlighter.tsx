@@ -16,7 +16,7 @@ const WordHighlighter = ({
   speedRef: RefObject<number>;
   wordsPerMinuteRef: RefObject<number>;
 }) => {
-  const { elements, currentIndex, currentWordRef, initializeIndexes, updateReadingState, scrollToCurrentWord } =
+  const { wordsAndSeparators, currentIndex, currentWordRef, initializeIndexes, updateReadingState, scrollToCurrentWord } =
     useWordHighlighter({
       paragraph,
       onFinish,
@@ -37,7 +37,7 @@ const WordHighlighter = ({
   scrollToCurrentWord();
 }, [currentIndex, scrollToCurrentWord]);
 
-  return elements.map((element: string, index: number) => (
+  return wordsAndSeparators.map((element: string, index: number) => (
     <span
       key={index}
       ref={index === currentIndex ? currentWordRef : null}

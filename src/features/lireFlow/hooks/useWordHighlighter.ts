@@ -1,4 +1,4 @@
-import { useState, useRef, RefObject, useCallback } from "react";
+import { useState, useRef, RefObject, useCallback, useMemo } from "react";
 import { hyphenate } from "hyphen/pt";
 import { averageSyllableTime, punctuationMarksTime } from "../components/readingParameters";
 
@@ -22,14 +22,17 @@ export const useWordHighlighter = ({
   const timeoutRef = useRef<number | null>(null);
   const currentWordRef = useRef<HTMLSpanElement | null>(null);
 
-  const elements: string[] = paragraph.split(/(\s+|[^\wÀ-ÖØ-öø-ÿ])/);
+
+  const wordsAndSeparators = useMemo(() => {
+    return paragraph.split(/(\s+|[^\wÀ-ÖØ-öø-ÿ])/);
+  }, [paragraph]);
 
   const isWord = (element: string): boolean => /^[\wÀ-ÖØ-öø-ÿ]+$/.test(element);
   const isPunctuation = (element: string): boolean =>
     /^[.,!?;:"()]+$/.test(element);
 
   const initializeIndexes = useCallback(() => {
-    elementIndexs.current = elements
+    elementIndexs.current = wordsAndSeparators
       .map((element: string, index: number): number | null =>
         isWord(element) || isPunctuation(element) ? index : null
       )
@@ -45,10 +48,9 @@ export const useWordHighlighter = ({
     const calculateWordTime = async (word: string): Promise<number> => {
       const hyphenatedText: string = await hyphenate(word, { hyphenChar: "-" });
       const syllablesCount: number = hyphenatedText.split("-").length;
-      return Math.round(
-        (syllablesCount * averageSyllableTime(wordsPerMinuteRef.current)) /
-          speedRef.current
-      );
+      const variableNameWithAnMeaning = (syllablesCount * averageSyllableTime(wordsPerMinuteRef.current)) /
+          speedRef.current;
+      return Math.round(variableNameWithAnMeaning);
     };
     
 
@@ -57,7 +59,7 @@ export const useWordHighlighter = ({
         if (!isReadingRef.current) return;
 
         const element: string =
-          elements[elementIndexs.current[indexRef.current]];
+          wordsAndSeparators[elementIndexs.current[indexRef.current]];
 
         let waitTime: number = 0;
 
@@ -103,5 +105,5 @@ export const useWordHighlighter = ({
     });
   }
 }, []);
-    return { elements, currentIndex, currentWordRef, initializeIndexes, updateReadingState,  scrollToCurrentWord };
+    return { wordsAndSeparators, currentIndex, currentWordRef, initializeIndexes, updateReadingState,  scrollToCurrentWord };
 };
