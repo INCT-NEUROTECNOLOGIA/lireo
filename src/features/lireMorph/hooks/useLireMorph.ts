@@ -36,7 +36,7 @@ const useLireMorph = () => {
   const THRESHOLD = 15;
   const DISTANCE_FIT = 15;
 
-  const baseCells = useMemo(() => {
+  const cellsGrid = useMemo(() => {
     const cells: Position[] = [];
     for (let row = 0; row < ROWS; row++) {
       for (let col = 0; col < COLS; col++) {
@@ -60,7 +60,7 @@ const useLireMorph = () => {
   };
 
   const initializeAffixes = (affixes: string[]): Affix[] => {
-    const shuffled = shuffleCells(baseCells);
+    const shuffled = shuffleCells(cellsGrid);
     return affixes.map((text, i) => ({
       text,
       position: shuffled[i],
