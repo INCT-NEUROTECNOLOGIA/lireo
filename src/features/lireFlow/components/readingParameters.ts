@@ -87,7 +87,6 @@ export const classifyPerformance = (
       { limit: Infinity, performance: "Não sugestivo de déficit" },
     ],
   };
-
-  return readingLevels[level].find((level) => wordsReadPerMinute <= level.limit)
-    ?.performance;
-};
+ return readingLevels[level].find((lvl) => wordsReadPerMinute <= lvl.limit)
+        ?.performance;
+    };
