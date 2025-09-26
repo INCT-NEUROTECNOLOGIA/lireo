@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { headerText } from "../texts/headerText";
+import { useState } from 'react';
+import { headerText } from '../texts/headerText';
 
 const useHeader = () => {
   const [menuMobileOpen, setMenuMobileOpen] = useState<boolean>(false);
@@ -29,10 +29,10 @@ const useHeader = () => {
 
   const handleClick = (action: string) => {
     switch (action) {
-      case "activitesList":
+      case 'activitesList':
         handleActivitiesList();
         break;
-      case "userGuidesList":
+      case 'userGuidesList':
         handleUserGuidesList();
         break;
       default:

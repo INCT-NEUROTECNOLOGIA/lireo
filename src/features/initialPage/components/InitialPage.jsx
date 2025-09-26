@@ -1,8 +1,8 @@
-import "../layout/initialPageStyle.css";
-import { InitialPageText } from "../texts/initialPageText.ts";
-import { getPublicAssetUrl } from "../../../utils/pathUtils";
-import { ROUTE_PATHS } from "../../../config/routes";
-import FadeIn from "../../../utils/components/FadeIn";
+import '../layout/initialPageStyle.css';
+import { InitialPageText } from '../texts/initialPageText.ts';
+import { getPublicAssetUrl } from '../../../utils/pathUtils';
+import { ROUTE_PATHS } from '../../../config/routes';
+import FadeIn from '../../../utils/components/FadeIn';
 
 const InitialPage = () => {
   return (
@@ -20,7 +20,7 @@ const InitialPage = () => {
           </button>
         </div>
         <FadeIn>
-          <img src={getPublicAssetUrl("/images/icone-lireo.png")} />
+          <img src={getPublicAssetUrl('/images/icone-lireo.png')} />
         </FadeIn>
       </div>
 
@@ -54,7 +54,7 @@ const InitialPage = () => {
           ))}
         </div>
         <FadeIn>
-          <img src={getPublicAssetUrl("/images/icone-lireo.png")} />
+          <img src={getPublicAssetUrl('/images/icone-lireo.png')} />
         </FadeIn>
       </div>
 

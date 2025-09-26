@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -20,25 +20,25 @@
 
           const currentPathname = window.location.pathname;
 
-          const appBaseUrl = "/lireo/";
-          const appSpecificPath = redirectData.startsWith("/")
+          const appBaseUrl = '/lireo/';
+          const appSpecificPath = redirectData.startsWith('/')
             ? redirectData.substring(1)
             : redirectData;
           const newFullPath = appBaseUrl + appSpecificPath;
 
           if (newFullPath !== currentPathname) {
             console.log(
-              `[SPA Redirect - index.html] Tentando history.replaceState para: ${newFullPath}`
+              `[SPA Redirect - index.html] Tentando history.replaceState para: ${newFullPath}`,
             );
-            history.replaceState(null, "", newFullPath);
+            history.replaceState(null, '', newFullPath);
           } else {
             console.log(
-              "[SPA Redirect - index.html] Novo caminho é o mesmo que o atual."
+              '[SPA Redirect - index.html] Novo caminho é o mesmo que o atual.',
             );
           }
         } else {
           console.log(
-            '[SPA Redirect - index.html] Nenhum dado "redirect" no sessionStorage.'
+            '[SPA Redirect - index.html] Nenhum dado "redirect" no sessionStorage.',
           );
         }
       })();
