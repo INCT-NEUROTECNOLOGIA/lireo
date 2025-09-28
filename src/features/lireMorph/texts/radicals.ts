@@ -1,66 +1,85 @@
-export const radicals = [
+import { MorphemicWord } from "../types/morphemicWord.type";
+import { SuffixEnum } from "../types/suffix.enum";
+
+export const radicals = <MorphemicWord[]>[
   {
     radical: "flor",
-    prefixes: ["ido", "escer", "icultura", "ista"],
+    prefixes: [],
+    suffixes: [SuffixEnum.IDO, SuffixEnum.ESCER, SuffixEnum.ICULTURA, SuffixEnum.ISTA],
   },
   {
     radical: "escr",
-    prefixes: ["ever", "ito", "itor", "itório"],
+    prefixes: [],
+    suffixes: [SuffixEnum.EVER, SuffixEnum.ITO, SuffixEnum.ITOR, SuffixEnum.ITORIO],
   },
   {
     radical: "pensa",
-    prefixes: ["mento", "dor"],
+    prefixes: [],
+    suffixes: [SuffixEnum.MENTO, SuffixEnum.DOR],
   },
   {
     radical: "audi",
-    prefixes: ["ção", "tório", "tível"],
+    prefixes: [],
+    suffixes: [SuffixEnum.CAO, SuffixEnum.TORIO, SuffixEnum.TIVEL],
   },
   {
     radical: "limp",
-    prefixes: ["eza", "o"],
+    prefixes: [],
+    suffixes: [SuffixEnum.EZA, SuffixEnum.O],
   },
   {
     radical: "cort",
-    prefixes: ["e", "ante"],
+    prefixes: [],
+    suffixes: [SuffixEnum.E, SuffixEnum.ANTE],
   },
   {
     radical: "constru",
-    prefixes: ["tor", "ção"],
+    prefixes: [],
+    suffixes: [SuffixEnum.TOR, SuffixEnum.CAO],
   },
   {
     radical: "trabalh",
-    prefixes: ["o", "ador"],
+    prefixes: [],
+    suffixes: [SuffixEnum.A, SuffixEnum.ADOR],
   },
   {
     radical: "viv",
-    prefixes: ["er", "a"],
+    prefixes: [],
+    suffixes: [SuffixEnum.ER, SuffixEnum.A],
   },
   {
     radical: "cant",
-    prefixes: ["ora", "oria"],
+    prefixes: [],
+    suffixes: [SuffixEnum.ORA, SuffixEnum.ORIA],
   },
   {
     radical: "pedr",
-    prefixes: ["eiro", "egulho", "aria"],
+    prefixes: [],
+    suffixes: [SuffixEnum.EIRO, SuffixEnum.EGULHO, SuffixEnum.ARIA],
   },
   {
     radical: "cafe",
-    prefixes: ["teria", "teira", "zal"],
+    prefixes: [],
+    suffixes: [SuffixEnum.TERIA, SuffixEnum.TEIRA, SuffixEnum.ZAL],
   },
   {
     radical: "ferr",
-    prefixes: ["eiro", "ovia", "adura", "amenta"],
+    prefixes: [],
+    suffixes: [SuffixEnum.EIRO, SuffixEnum.OVIA, SuffixEnum.ADURA, SuffixEnum.AMENTA],
   },
   {
     radical: "livr",
-    prefixes: ["aria", "eiro"],
+    prefixes: [],
+    suffixes: [SuffixEnum.ARIA, SuffixEnum.EIRO],
   },
   {
     radical: "mar",
-    prefixes: ["inho", "ítimo"],
+    prefixes: [],
+    suffixes: [SuffixEnum.INHO, SuffixEnum.ITIMO],
   },
   {
     radical: "fort",
-    prefixes: ["ificar", "aleza", "íssimo"],
-  },
+    prefixes: [],
+    suffixes: [SuffixEnum.IFICAR, SuffixEnum.ALEZA, SuffixEnum.ISSIMO],
+  }
 ];

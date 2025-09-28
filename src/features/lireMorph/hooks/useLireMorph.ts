@@ -1,6 +1,8 @@
 import { useState, useRef, useMemo, useEffect } from "react";
 import { lireMorphText } from "../texts/lireMorphText";
 import { radicals } from "../texts/radicals";
+import { PrefixesEnum } from "../types/prefix.enum";
+import { SuffixEnum } from "../types/suffix.enum";
 
 type Position = {
   x: number;
@@ -8,7 +10,7 @@ type Position = {
 };
 
 type Affix = {
-  text: string;
+  text: PrefixesEnum | SuffixEnum;
   position: Position;
 };
 
@@ -59,7 +61,7 @@ const useLireMorph = () => {
     return shuffled;
   };
 
-  const initializeAffixes = (affixes: string[]): Affix[] => {
+  const initializeAffixes = (affixes: (PrefixesEnum | SuffixEnum)[]): Affix[] => {
     const shuffled = shuffleCells(cellsGrid);
     return affixes.map((text, i) => ({
       text,
@@ -74,9 +76,9 @@ const useLireMorph = () => {
 
   useEffect(() => {
     if (radicalIndex === null) {
-      setAffixes(initializeAffixes(lireMorphText.exemple.prefixes));
+      setAffixes(initializeAffixes(lireMorphText.exemple.suffixes));
     } else {
-      setAffixes(initializeAffixes(radicals[radicalIndex].prefixes));
+      setAffixes(initializeAffixes(radicals[radicalIndex].suffixes));
     }
   }, [radicalIndex]);
 

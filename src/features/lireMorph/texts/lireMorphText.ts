@@ -1,3 +1,5 @@
+import { SuffixEnum } from "../types/suffix.enum";
+
 export const lireMorphText = {
   summary: {
     title: "LireMorph",
@@ -13,6 +15,7 @@ export const lireMorphText = {
   placeholderSelectRadical: "Selecione um radical",
   exemple: {
     radical: "exempl",
-    prefixes: ["o", "ar", "ificar", "ificação", "ário", "ozinho", "ão"],
+    suffixes: [SuffixEnum.O, SuffixEnum.AR, SuffixEnum.IFICAR, SuffixEnum.ARIO, SuffixEnum.OZINHO, SuffixEnum.AO],
+    prefixes: [],
   },
 };
