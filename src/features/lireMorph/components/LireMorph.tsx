@@ -1,8 +1,8 @@
 import "../layout/lireMorphStyle.css";
-import { ROUTE_PATHS } from "../../../config/routes";
 import useLireMorph from "../hooks/useLireMorph";
-import { lireMorphText } from "../texts/lireMorphText";
-import { radicals } from "../texts/radicals";
+import LireoMorthInstructions from "./LireoMorthInstructions";
+import LireoMorphRadicalSelector from "./LireoMorphRadicalSelector";
+import LireoMorphWordGame from "./LireoMorphWordGame";
 
 const LireMorph = () => {
   const {
@@ -19,83 +19,19 @@ const LireMorph = () => {
 
   return (
     <>
-      <div className={"taskSummary" + (summaryClose ? " hidden" : "")}>
-        <h1>{lireMorphText.summary.title}</h1>
-        <ul>
-          {lireMorphText.summary.texts.map((text, index) => (
-            <li key={index}>{text}</li>
-          ))}
-          <li>
-            {lireMorphText.summary.linkText}
-            <a
-              href={ROUTE_PATHS.USER_GUIDE_LIRE_GROW}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {lireMorphText.summary.link}
-            </a>
-          </li>
-        </ul>
-      </div>
-
+      <LireoMorthInstructions summaryClose={summaryClose} />
       <div className="lireMorphContainer">
-        <select
-          id="radicalSelect"
-          name="radicalSelect"
-          className="radicalSelect"
-          defaultValue=""
-          onChange={selectedRadical}
-          title={lireMorphText.placeholderSelectRadical}
-        >
-          <option value="" disabled>
-            {lireMorphText.placeholderSelectRadical}
-          </option>
-          {radicals.map((item, index) => (
-            <option key={index} value={index} title={item.radical}>
-              {item.radical}
-            </option>
-          ))}
-        </select>
+        <LireoMorphRadicalSelector selectedRadical={selectedRadical} />
 
-        <div className="wordsContainer" ref={containerRef}>
-          <span className="radical" ref={radicalRef}>
-            {radical}
-          </span>
-
-          {affixes.map((affix, index) => (
-            <span
-              key={index}
-              className={
-                "affix" +
-                (index === dragState.current.currentIndex &&
-                dragState.current.isDragging
-                  ? " dragging"
-                  : "") +
-                (index === dragState.current.currentIndex &&
-                dragState.current.isFittedLeft
-                  ? " fitLeft"
-                  : "") +
-                (index === dragState.current.currentIndex &&
-                dragState.current.isFittedRight
-                  ? " fitRight"
-                  : "")
-              }
-              style={{
-                left: `${affix.position.x}%`,
-                top: `${affix.position.y}%`,
-              }}
-              onMouseDown={(e) => grabAffix(e, index)}
-              ref={
-                index === dragState.current.currentIndex &&
-                dragState.current.isDragging
-                  ? targetAffixRef
-                  : null
-              }
-            >
-              {affix.text}
-            </span>
-          ))}
-        </div>
+        <LireoMorphWordGame
+          containerRef={containerRef}
+          radicalRef={radicalRef}
+          targetAffixRef={targetAffixRef}
+          radical={radical}
+          affixes={affixes}
+          dragState={dragState}
+          grabAffix={grabAffix}
+        />
       </div>
     </>
   );

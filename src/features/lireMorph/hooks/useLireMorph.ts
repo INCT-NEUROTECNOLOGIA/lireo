@@ -3,16 +3,8 @@ import { lireMorphText } from "../texts/lireMorphText";
 import { radicals } from "../texts/radicals";
 import { PrefixesEnum } from "../types/prefix.enum";
 import { SuffixEnum } from "../types/suffix.enum";
-
-type Position = {
-  x: number;
-  y: number;
-};
-
-type Affix = {
-  text: PrefixesEnum | SuffixEnum;
-  position: Position;
-};
+import { Affix } from "../types/Affix.type";
+import { Position } from "../types/position.type";
 
 const useLireMorph = () => {
   const [summaryClose, setSummaryClose] = useState<boolean>(false);
