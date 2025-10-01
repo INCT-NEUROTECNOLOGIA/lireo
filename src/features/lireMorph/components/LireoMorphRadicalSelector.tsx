@@ -2,17 +2,17 @@ import { lireMorphText } from "../texts/lireMorphText";
 import { radicals } from "../texts/radicals";
 
 interface LireoMorphRadicalSelectorProps {
-  selectedRadical: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  selectRadical: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const LireoMorphRadicalSelector = ({ selectedRadical }: LireoMorphRadicalSelectorProps) => {
+const LireoMorphRadicalSelector = ({ selectRadical }: LireoMorphRadicalSelectorProps) => {
     return (
         <select
           id="radicalSelect"
           name="radicalSelect"
           className="radicalSelect"
           defaultValue=""
-          onChange={selectedRadical}
+          onChange={selectRadical}
           title={lireMorphText.placeholderSelectRadical}
         >
           <option value="" disabled>

@@ -6,14 +6,14 @@ import LireoMorphWordGame from "./LireoMorphWordGame";
 
 const LireMorph = () => {
   const {
-    radical,
+    selectedRadical,
     affixes,
     summaryClose,
     dragState,
     radicalRef,
     containerRef,
     targetAffixRef,
-    selectedRadical,
+    selectRadical,
     grabAffix,
   } = useLireMorph();
 
@@ -21,13 +21,13 @@ const LireMorph = () => {
     <>
       <LireoMorthInstructions summaryClose={summaryClose} />
       <div className="lireMorphContainer">
-        <LireoMorphRadicalSelector selectedRadical={selectedRadical} />
+        <LireoMorphRadicalSelector selectRadical={selectRadical} />
 
         <LireoMorphWordGame
           containerRef={containerRef}
           radicalRef={radicalRef}
           targetAffixRef={targetAffixRef}
-          radical={radical}
+          selectedRadical={selectedRadical}
           affixes={affixes}
           dragState={dragState}
           grabAffix={grabAffix}

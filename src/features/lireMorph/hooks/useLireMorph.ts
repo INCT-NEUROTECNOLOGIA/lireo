@@ -1,4 +1,4 @@
-import { useState, useRef, useMemo, useEffect } from "react";
+import React, { useState, useRef, useMemo, useEffect } from "react";
 import { lireMorphText } from "../texts/lireMorphText";
 import { radicals } from "../texts/radicals";
 import { PrefixesEnum } from "../types/prefix.enum";
@@ -8,7 +8,7 @@ import { Position } from "../types/position.type";
 
 const useLireMorph = () => {
   const [summaryClose, setSummaryClose] = useState<boolean>(false);
-  const [radicalIndex, setRadicalIndex] = useState<number | null>(null);
+  const [selectedRadicalIndex, setSelectedRadicalIndex] = useState<number | null>(null);
   const [affixes, setAffixes] = useState<Affix[]>([]);
   const radicalRef = useRef<HTMLSpanElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -61,85 +61,111 @@ const useLireMorph = () => {
     }));
   };
 
-  const radical = useMemo(() => {
-    if (radicalIndex === null) return lireMorphText.exemple.radical;
-    return radicals[radicalIndex].radical;
-  }, [radicalIndex]);
-
-  useEffect(() => {
-    if (radicalIndex === null) {
-      setAffixes(initializeAffixes(lireMorphText.exemple.suffixes));
-    } else {
-      setAffixes(initializeAffixes(radicals[radicalIndex].suffixes));
-    }
-  }, [radicalIndex]);
-
-  const selectedRadical = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const selectRadical = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const index = parseInt(event.target.value);
-    setRadicalIndex(index);
+    setSelectedRadicalIndex(index);
     setSummaryClose(true);
   };
 
+  const selectedRadical = useMemo(() => {
+    if (selectedRadicalIndex === null) return lireMorphText.exemple.radical;
+    return radicals[selectedRadicalIndex].radical;
+  }, [selectedRadicalIndex]);
+
   const grabAffix = (e: React.MouseEvent, index: number) => {
     e.preventDefault();
-    dragState.current.currentIndex = index;
-    dragState.current.isDragging = true;
-    dragState.current.isFittedLeft = false;
-    dragState.current.isFittedRight = false;
 
-    targetAffixRef.current = e.currentTarget as HTMLSpanElement;
-    targetAffixRect.current = targetAffixRef.current.getBoundingClientRect();
+    _resetDragtStateToIsDragging(index);
 
-    dragState.current.offset.x =
-      e.clientX -
-      targetAffixRect.current.left -
-      targetAffixRect.current.width / 2;
-    dragState.current.offset.y =
-      e.clientY -
-      targetAffixRect.current.top -
-      targetAffixRect.current.height / 2;
+    _setTheTargetAffixWithTheMouseInfo(e);
+
+    const newPosition = _getTheNewAffixPosition(e);
+    if(!newPosition) return;
+
+    dragState.current.offset = newPosition;
 
     document.addEventListener("mousemove", moveAffix);
     document.addEventListener("mouseup", dropAffix);
   };
 
-  const clamp = (v: number, min: number, max: number) =>
-    Math.min(Math.max(v, min), max);
+  const _resetDragtStateToIsDragging = (index: number) =>{
+      dragState.current.currentIndex = index;
+      dragState.current.isDragging = true;
+      dragState.current.isFittedLeft = false;
+      dragState.current.isFittedRight = false;
+  }
+
+  const _setTheTargetAffixWithTheMouseInfo = (e: React.MouseEvent) => {
+      targetAffixRef.current = e.target as HTMLSpanElement;
+      targetAffixRect.current = targetAffixRef.current.getBoundingClientRect();
+  }
+
+  const _getTheNewAffixPosition = (e: React.MouseEvent) => {
+    if (!targetAffixRef.current || !targetAffixRect.current) return;
+
+    const newPosition: Position = {
+      x: e.clientX -
+      targetAffixRect.current.left -
+      targetAffixRect.current.width / 2,
+      y: e.clientY -
+      targetAffixRect.current.top -
+      targetAffixRect.current.height / 2,
+    };
+
+    return newPosition;
+  }
 
   const moveAffix = (e: MouseEvent) => {
     if (!dragState.current.isDragging || !containerRef.current) return;
 
     containerRect.current = containerRef.current.getBoundingClientRect();
-    const leftPercent = clamp(
-      ((e.clientX - containerRect.current.left - dragState.current.offset.x) /
-        containerRect.current.width) *
-        100,
-      PADDING,
-      100 - PADDING
-    );
 
-    const topPercent = clamp(
-      ((e.clientY - containerRect.current.top - dragState.current.offset.y) /
-        containerRect.current.height) *
-        100,
-      PADDING,
-      100 - PADDING
-    );
+  const newPosition = _newPosition(e, containerRect);
 
-    setAffixes((prev) =>
-      prev.map((a, i) =>
-        i === dragState.current.currentIndex
-          ? {
-              ...a,
-              position: {
-                x: leftPercent,
-                y: topPercent,
-              },
-            }
-          : a
-      )
-    );
+  setAffixes((prev) => {
+  const indexToUpdate = dragState.current.currentIndex ?? -1;
+  
+  if (indexToUpdate < 0 || indexToUpdate >= prev.length) {
+    return prev;
+  }
+
+  const newAffixes = [...prev];
+  
+  const updatedAffix = {
+    ...newAffixes[indexToUpdate], 
+    position: newPosition,
   };
+
+  newAffixes[indexToUpdate] = updatedAffix;
+
+  return newAffixes; 
+});
+
+};
+
+ const _newPosition =(e: MouseEvent, containerRect: React.RefObject<DOMRect | null>): Position => {
+      const leftPercent = _clamp(
+      ((e.clientX - containerRect.current!.left - dragState.current.offset.x) /
+        containerRect.current!.width) *
+        100,
+      PADDING,
+      100 - PADDING
+    );
+
+    const topPercent = _clamp(
+      ((e.clientY - containerRect.current!.top - dragState.current.offset.y) /
+        containerRect.current!.height) *
+        100,
+      PADDING,
+      100 - PADDING
+    );
+
+    return {x: leftPercent, y: topPercent};
+
+ };
+
+ const _clamp = (v: number, min: number, max: number) =>
+    Math.min(Math.max(v, min), max);
 
   const dropAffix = () => {
     fitWithRadical();
@@ -155,6 +181,7 @@ const useLireMorph = () => {
 
     containerRect.current = containerRef.current.getBoundingClientRect();
     targetAffixRect.current = targetAffixRef.current.getBoundingClientRect();
+
     const radicalRect = radicalRef.current.getBoundingClientRect();
 
     const distanceLeft = Math.abs(
@@ -163,7 +190,6 @@ const useLireMorph = () => {
     const distanceRight = Math.abs(
       targetAffixRect.current.left - radicalRect.right
     );
-
     const distanceTop = targetAffixRect.current.bottom - radicalRect.top;
     const distanceBottom = targetAffixRect.current.top - radicalRect.bottom;
 
@@ -212,15 +238,23 @@ const useLireMorph = () => {
     }
   };
 
+    useEffect(() => {
+    if (selectedRadicalIndex === null) {
+      setAffixes(initializeAffixes(lireMorphText.exemple.suffixes));
+    } else {
+      setAffixes(initializeAffixes(radicals[selectedRadicalIndex].suffixes));
+    }
+  }, [selectedRadicalIndex]);
+
   return {
-    radical,
+    selectedRadical,
     affixes,
     summaryClose,
     dragState,
     radicalRef,
     containerRef,
     targetAffixRef,
-    selectedRadical,
+    selectRadical,
     grabAffix,
   };
 };

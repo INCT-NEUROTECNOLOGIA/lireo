@@ -6,7 +6,7 @@ interface LireoMorphWordGameProps {
   containerRef: React.RefObject<HTMLDivElement | null>;
   radicalRef: React.RefObject<HTMLSpanElement | null>;
   targetAffixRef: React.RefObject<HTMLSpanElement | null>;
-  radical: string;
+  selectedRadical: string;
     affixes: Affix[];
     dragState: React.RefObject<{
     currentIndex: number | null;
@@ -25,7 +25,7 @@ const LireoMorphWordGame = ({
   containerRef,
   radicalRef,
   targetAffixRef,
-  radical,
+  selectedRadical,
   affixes,
     dragState,
     grabAffix,
@@ -33,7 +33,7 @@ const LireoMorphWordGame = ({
     return (
         <div className="wordsContainer" ref={containerRef}>
           <span className="radical" ref={radicalRef}>
-            {radical}
+            {selectedRadical}
           </span>
 
           {affixes.map((affix, index) => (
