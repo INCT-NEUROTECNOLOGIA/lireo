@@ -100,7 +100,6 @@ export const useWordHighlighter = ({
     };
   }, [isReading, onFinish, wordsAndSeparators, speedRef, wordsPerMinuteRef]);
 
-
   const scrollToCurrentWord = useCallback(() => {
     if (currentWordRef.current) {
       currentWordRef.current.scrollIntoView({

@@ -139,7 +139,7 @@ export const useTextReader = () => {
         payload: { name: event.target.value, content: text },
       });
       if (resetSelectText.current) resetSelectText.current.value = '';
-    } catch  {
+    } catch {
       dispatch({ type: 'SET_ERROR', payload: 'Erro ao carregar o arquivo' });
     }
   };

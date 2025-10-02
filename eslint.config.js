@@ -10,7 +10,6 @@ import unusedImports from 'eslint-plugin-unused-imports';
 export default [
   { ignores: ['dist', 'node_modules'] },
 
-  
   {
     files: ['**/*.{ts,tsx}'],
 
@@ -20,7 +19,7 @@ export default [
       globals: {
         ...globals.browser,
       },
-      
+
       parser: tsParser,
       parserOptions: {
         ecmaFeatures: { jsx: true },
@@ -30,7 +29,6 @@ export default [
     },
 
     plugins: {
-    
       '@typescript-eslint': tsPlugin,
       react,
       'react-hooks': reactHooks,
@@ -45,14 +43,13 @@ export default [
     },
 
     rules: {
-      
       ...js.configs.recommended.rules,
       ...react.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
 
       ...tsPlugin.configs['eslint-recommended'].rules,
       ...tsPlugin.configs.recommended.rules,
-      
+
       'no-unused-vars': 'off',
       'unused-imports/no-unused-vars': 'off',
       '@typescript-eslint/no-unused-vars': [
@@ -69,7 +66,7 @@ export default [
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
       'react-refresh/only-export-components': 'warn',
-      'eqeqeq': ['error', 'always'],
+      eqeqeq: ['error', 'always'],
     },
   },
 ];
