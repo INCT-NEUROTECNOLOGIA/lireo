@@ -1,5 +1,6 @@
 import { getPublicAssetUrl } from '../../../utils/pathUtils.ts';
 import { useReducer, useRef } from 'react';
+import React from 'react';
 
 type State = {
   fileName: string;
@@ -100,7 +101,9 @@ export const useTextReader = () => {
             decoded = true;
             break;
           }
-        } catch (e) {}
+        } catch {
+          void 0;
+        }
       }
 
       if (!decoded) {
@@ -136,7 +139,7 @@ export const useTextReader = () => {
         payload: { name: event.target.value, content: text },
       });
       if (resetSelectText.current) resetSelectText.current.value = '';
-    } catch (error) {
+    } catch  {
       dispatch({ type: 'SET_ERROR', payload: 'Erro ao carregar o arquivo' });
     }
   };

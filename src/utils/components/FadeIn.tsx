@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import '../layout/fadeInStyle.css';
+import React from 'react';
 
 const FadeIn = ({ children }: { children: React.ReactNode }) => {
   const fadeInRef = useRef<HTMLDivElement | null>(null);

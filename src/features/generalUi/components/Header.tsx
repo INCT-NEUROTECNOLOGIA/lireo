@@ -2,6 +2,7 @@ import '../layout/header.css';
 import { getPublicAssetUrl } from '../../../utils/pathUtils';
 import { headerText } from '../texts/headerText';
 import useHeader from '../hooks/useHeader';
+import React from 'react';
 
 const Header: React.FC = () => {
   const {

@@ -42,7 +42,7 @@ export const useWordHighlighter = ({
 
     indexRef.current = 0;
     setCurrentIndex(null);
-  }, [paragraph]);
+  }, [wordsAndSeparators]);
 
   const updateReadingState = useCallback(() => {
     isReadingRef.current = isReading;
@@ -98,7 +98,8 @@ export const useWordHighlighter = ({
         clearTimeout(timeoutRef.current);
       }
     };
-  }, [isReading]);
+  }, [isReading, onFinish, wordsAndSeparators, speedRef, wordsPerMinuteRef]);
+
 
   const scrollToCurrentWord = useCallback(() => {
     if (currentWordRef.current) {
