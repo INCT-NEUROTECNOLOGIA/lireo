@@ -1,16 +1,15 @@
-
-import MemberCard from "./MemberCard";
-import type { Member } from "./Section";
-import "../layout/TeamCarouselStyle.css";
-import { useMemberCarousel } from "../hooks/useMemberCarousel";
-import React, { useEffect } from "react";
+import MemberCard from './MemberCard';
+import type { Member } from './Section';
+import '../layout/TeamCarouselStyle.css';
+import { useMemberCarousel } from '../hooks/useMemberCarousel';
+import React, { useEffect } from 'react';
 
 interface MemberCarouselProps {
   members?: Member[];
 }
 
 const MemberCarousel: React.FC<MemberCarouselProps> = ({ members = [] }) => {
-   const {
+  const {
     trackRef,
     currentIndex,
     setIsPaused,
@@ -20,8 +19,8 @@ const MemberCarousel: React.FC<MemberCarouselProps> = ({ members = [] }) => {
     autoPlay,
     updateTrackPosition,
   } = useMemberCarousel(members);
-  
-    useEffect(() => {
+
+  useEffect(() => {
     return autoPlay();
   }, [autoPlay]);
 
@@ -56,8 +55,8 @@ const MemberCarousel: React.FC<MemberCarouselProps> = ({ members = [] }) => {
               <button
                 key={index}
                 className={
-                  "aboutUsContainer__teamCarousel__indicators__dot" +
-                  (index === currentIndex ? " active" : "")
+                  'aboutUsContainer__teamCarousel__indicators__dot' +
+                  (index === currentIndex ? ' active' : '')
                 }
                 onClick={() => goToIndex(index)}
               ></button>

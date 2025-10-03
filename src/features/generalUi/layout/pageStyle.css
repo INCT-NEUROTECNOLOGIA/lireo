@@ -31,7 +31,11 @@
 }
 
 body {
-  font-family: Segoe UI, Verdana, Arial, sans-serif;
+  font-family:
+    Segoe UI,
+    Verdana,
+    Arial,
+    sans-serif;
   background-color: var(--color-bg);
   margin: 0;
   margin-top: 4.4rem;

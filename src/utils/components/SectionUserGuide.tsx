@@ -1,6 +1,6 @@
-import React from "react";
-import { SectionUserGuideProps } from "./SectionInterfaces";
-import { getPublicAssetUrl } from "../../utils/pathUtils";
+import React from 'react';
+import { SectionUserGuideProps } from './SectionInterfaces';
+import { getPublicAssetUrl } from '../../utils/pathUtils';
 
 const SectionUserGuide: React.FC<SectionUserGuideProps> = ({
   title,
@@ -14,10 +14,10 @@ const SectionUserGuide: React.FC<SectionUserGuideProps> = ({
 
       {content.map((item, index) => {
         switch (item.type) {
-          case "text":
+          case 'text':
             return <p key={index}>{item.text}</p>;
 
-          case "list":
+          case 'list':
             return (
               <ul key={index}>
                 {item.items?.map((listItem, listIndex) => (
@@ -29,7 +29,7 @@ const SectionUserGuide: React.FC<SectionUserGuideProps> = ({
               </ul>
             );
 
-          case "listChevron":
+          case 'listChevron':
             return (
               <div className="list" key={index}>
                 {item.items?.map((listItem, listIndex) => (
@@ -42,7 +42,7 @@ const SectionUserGuide: React.FC<SectionUserGuideProps> = ({
               </div>
             );
 
-          case "listCheck":
+          case 'listCheck':
             return (
               <div className="list" key={index}>
                 {item.items?.map((listItem, listIndex) => (
@@ -55,7 +55,7 @@ const SectionUserGuide: React.FC<SectionUserGuideProps> = ({
               </div>
             );
 
-          case "image":
+          case 'image':
             return (
               <img
                 key={index}
@@ -64,7 +64,7 @@ const SectionUserGuide: React.FC<SectionUserGuideProps> = ({
               />
             );
 
-          case "imageSmall":
+          case 'imageSmall':
             return (
               <img
                 className="img-small"
@@ -74,7 +74,7 @@ const SectionUserGuide: React.FC<SectionUserGuideProps> = ({
               />
             );
 
-          case "link":
+          case 'link':
             return (
               <a key={index} href={item.href}>
                 {item.text}

@@ -1,5 +1,6 @@
-import { useEffect, useRef } from "react";
-import "../layout/fadeInStyle.css";
+import { useEffect, useRef } from 'react';
+import '../layout/fadeInStyle.css';
+import React from 'react';
 
 const FadeIn = ({ children }: { children: React.ReactNode }) => {
   const fadeInRef = useRef<HTMLDivElement | null>(null);
@@ -12,10 +13,10 @@ const FadeIn = ({ children }: { children: React.ReactNode }) => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          fadeInElement.classList.add("show");
+          fadeInElement.classList.add('show');
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     );
 
     observer.observe(fadeInElement);

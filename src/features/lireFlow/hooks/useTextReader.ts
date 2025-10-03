@@ -1,5 +1,6 @@
-import { getPublicAssetUrl } from "../../../utils/pathUtils.ts";
-import { useReducer, useRef } from "react";
+import { getPublicAssetUrl } from '../../../utils/pathUtils.ts';
+import { useReducer, useRef } from 'react';
+import React from 'react';
 
 type State = {
   fileName: string;
@@ -11,55 +12,55 @@ type State = {
 };
 
 const initialState: State = {
-  fileName: "",
-  fileContent: "",
-  error: "",
+  fileName: '',
+  fileContent: '',
+  error: '',
   isDragging: false,
   isLoading: false,
   fileUploaderClose: false,
 };
 
 type Action =
-  | { type: "SET_FILE"; payload: { name: string; content: string } }
-  | { type: "SET_ERROR"; payload: string }
-  | { type: "RESET" }
-  | { type: "SET_LOADING"; payload: boolean }
-  | { type: "SET_DRAGGING"; payload: boolean }
-  | { type: "SET_FILE_UPLOADER_CLOSE" };
+  | { type: 'SET_FILE'; payload: { name: string; content: string } }
+  | { type: 'SET_ERROR'; payload: string }
+  | { type: 'RESET' }
+  | { type: 'SET_LOADING'; payload: boolean }
+  | { type: 'SET_DRAGGING'; payload: boolean }
+  | { type: 'SET_FILE_UPLOADER_CLOSE' };
 
 const readerReducer = (state: State, action: Action): State => {
   switch (action.type) {
-    case "SET_FILE":
+    case 'SET_FILE':
       return {
         ...state,
         fileName: action.payload.name,
         fileContent: action.payload.content,
-        error: "",
+        error: '',
         isLoading: false,
         fileUploaderClose: true,
       };
-    case "SET_ERROR":
+    case 'SET_ERROR':
       return {
         ...state,
         error: action.payload,
         isLoading: false,
       };
-    case "RESET":
+    case 'RESET':
       return {
         ...initialState,
         isLoading: true,
       };
-    case "SET_LOADING":
+    case 'SET_LOADING':
       return {
         ...state,
         isLoading: action.payload,
       };
-    case "SET_DRAGGING":
+    case 'SET_DRAGGING':
       return {
         ...state,
         isDragging: action.payload,
       };
-    case "SET_FILE_UPLOADER_CLOSE":
+    case 'SET_FILE_UPLOADER_CLOSE':
       return {
         ...state,
         fileUploaderClose: !state.fileUploaderClose,
@@ -74,14 +75,14 @@ export const useTextReader = () => {
   const resetSelectText = useRef<HTMLSelectElement>(null);
 
   const readFile = async (file: File) => {
-    const isTxtFile = (fileType: string): boolean => fileType === "text/plain";
+    const isTxtFile = (fileType: string): boolean => fileType === 'text/plain';
 
     if (!file) return;
 
     if (!isTxtFile(file.type)) {
       dispatch({
-        type: "SET_ERROR",
-        payload: "Selecione um arquivo de texto (.txt)",
+        type: 'SET_ERROR',
+        payload: 'Selecione um arquivo de texto (.txt)',
       });
       return;
     }
@@ -89,64 +90,66 @@ export const useTextReader = () => {
     try {
       const buffer = await file.arrayBuffer();
 
-      const encodings = ["utf-8", "windows-1252", "iso-8859-1"];
-      let content = "";
+      const encodings = ['utf-8', 'windows-1252', 'iso-8859-1'];
+      let content = '';
       let decoded = false;
 
       for (const encoding of encodings) {
         try {
           content = new TextDecoder(encoding).decode(buffer);
-          if (!content.includes("�")) {
+          if (!content.includes('�')) {
             decoded = true;
             break;
           }
-        } catch (e) {}
+        } catch {
+          void 0;
+        }
       }
 
       if (!decoded) {
-        content = new TextDecoder("utf-8").decode(buffer);
+        content = new TextDecoder('utf-8').decode(buffer);
       }
 
       dispatch({
-        type: "SET_FILE",
+        type: 'SET_FILE',
         payload: { name: file.name, content },
       });
     } catch {
-      dispatch({ type: "SET_ERROR", payload: "Erro ao ler o arquivo" });
+      dispatch({ type: 'SET_ERROR', payload: 'Erro ao ler o arquivo' });
     }
   };
 
   const selectedFile = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch({ type: "RESET" });
+    dispatch({ type: 'RESET' });
 
     if (!event.target.files) return;
     readFile(event.target.files[0]);
   };
 
   const selectedText = async (event: React.ChangeEvent<HTMLSelectElement>) => {
-    dispatch({ type: "RESET" });
+    dispatch({ type: 'RESET' });
 
     try {
-      let basePath = getPublicAssetUrl("texts/");
+      let basePath = getPublicAssetUrl('texts/');
       const filePath = `${basePath}${event.target.value}.txt`;
       const response = await fetch(filePath);
       const text = await response.text();
       dispatch({
-        type: "SET_FILE",
+        type: 'SET_FILE',
         payload: { name: event.target.value, content: text },
       });
-      if (resetSelectText.current) resetSelectText.current.value = "";
-    } catch (error) {
-      dispatch({ type: "SET_ERROR", payload: "Erro ao carregar o arquivo" });
+      if (resetSelectText.current) resetSelectText.current.value = '';
+    } catch {
+      dispatch({ type: 'SET_ERROR', payload: 'Erro ao carregar o arquivo' });
     }
   };
 
   const resetSelectFile = (event: React.MouseEvent<HTMLInputElement>) => {
-    event.currentTarget.value = "";
+    event.currentTarget.value = '';
   };
 
   const dropFile = (event: React.DragEvent<HTMLDivElement>) => {
-    dispatch({ type: "RESET" });
+    dispatch({ type: 'RESET' });
 
     event.preventDefault();
     if (!event.dataTransfer.files.length) return;
@@ -154,17 +157,17 @@ export const useTextReader = () => {
   };
 
   const dragFile = (event: React.DragEvent<HTMLDivElement>) => {
-    dispatch({ type: "SET_DRAGGING", payload: true });
+    dispatch({ type: 'SET_DRAGGING', payload: true });
     event.preventDefault();
   };
 
   const dragLeave = (event: React.DragEvent<HTMLDivElement>) => {
-    dispatch({ type: "SET_DRAGGING", payload: false });
+    dispatch({ type: 'SET_DRAGGING', payload: false });
     event.preventDefault();
   };
 
   const handleFileUploader = () =>
-    dispatch({ type: "SET_FILE_UPLOADER_CLOSE" });
+    dispatch({ type: 'SET_FILE_UPLOADER_CLOSE' });
 
   return {
     state,

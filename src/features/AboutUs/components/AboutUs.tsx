@@ -1,13 +1,12 @@
-import React from "react";
-import "../layout/aboutUs.css";
-import Section from "./Section";
-import { getPublicAssetUrl } from "../../../utils/pathUtils";
-import FadeIn from "../../../utils/components/FadeIn";
-import { aboutUsText } from "../text/textAboutUs";
-import { projectCreators, collaborators } from "../text/textAboutUs" ;
+import React from 'react';
+import '../layout/aboutUs.css';
+import Section from './Section';
+import { getPublicAssetUrl } from '../../../utils/pathUtils';
+import FadeIn from '../../../utils/components/FadeIn';
+import { aboutUsText } from '../text/textAboutUs';
+import { projectCreators, collaborators } from '../text/textAboutUs';
 
 const AboutUs: React.FC = () => {
-  
   return (
     <div className="aboutUsContainer">
       <div className="pageSummary">
@@ -23,7 +22,7 @@ const AboutUs: React.FC = () => {
           {aboutUsText.ourStory.section[0].description.map(
             (paragraph, index) => (
               <p key={index}>{paragraph}</p>
-            )
+            ),
           )}
         </FadeIn>
         <FadeIn>
@@ -33,14 +32,14 @@ const AboutUs: React.FC = () => {
               {aboutUsText.ourStory.section[1].description.map(
                 (paragraph, index) => (
                   <p key={index}>{paragraph}</p>
-                )
+                ),
               )}
               <p className="quote">
                 {aboutUsText.ourStory.section[1].quote?.text}
                 <span>{aboutUsText.ourStory.section[1].quote?.origin}</span>
               </p>
             </div>
-            <img src={getPublicAssetUrl("/images/icone-lireo.png")} />
+            <img src={getPublicAssetUrl('/images/icone-lireo.png')} />
           </div>
         </FadeIn>
       </div>

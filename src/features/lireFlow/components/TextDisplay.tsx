@@ -1,7 +1,7 @@
-import "../layout/textDisplayStyle.css";
-import WordHighlighter from "./WordHighlighter";
-import TextControls from "./TextControls";
-import { useTextDisplay } from "../hooks/useTextDisplay";
+import '../layout/textDisplayStyle.css';
+import WordHighlighter from './WordHighlighter';
+import TextControls from './TextControls';
+import { useTextDisplay } from '../hooks/useTextDisplay';
 
 const TextDisplay = ({ fileContent }: { fileContent: string }) => {
   const {

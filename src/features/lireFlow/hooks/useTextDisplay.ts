@@ -1,4 +1,4 @@
-import { useState, useRef, useMemo } from "react";
+import { useState, useRef, useMemo } from 'react';
 
 type ProcessedText = {
   paragraphs: string[];
@@ -35,13 +35,13 @@ export const useTextDisplay = ({ fileContent }: { fileContent: string }) => {
 
   const processedText: ProcessedText = useMemo(() => {
     const allParagraphs = fileContent
-      .split("\n")
+      .split('\n')
       .map((paragraph: string) => paragraph.trim())
       .filter((trimmedParagraph: string) => trimmedParagraph);
 
     let paragraphs = allParagraphs;
-    let title = "";
-    let author = "";
+    let title = '';
+    let author = '';
     let source: string | null = null;
 
     if (allParagraphs.length > 0 && isTitle(allParagraphs[0])) {
@@ -73,7 +73,7 @@ export const useTextDisplay = ({ fileContent }: { fileContent: string }) => {
     }
   };
 
-   return {
+  return {
     processedText,
     paragraphIndex,
     highlightKey,
@@ -85,6 +85,6 @@ export const useTextDisplay = ({ fileContent }: { fileContent: string }) => {
     setIsReading,
     nextParagraph,
     setHighlightKey,
-    setParagraphIndex
+    setParagraphIndex,
   };
 };
