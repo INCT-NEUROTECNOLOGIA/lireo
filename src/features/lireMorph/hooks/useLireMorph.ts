@@ -10,6 +10,8 @@ const useLireMorph = () => {
   const [summaryClose, setSummaryClose] = useState<boolean>(false);
   const [selectedRadicalIndex, setSelectedRadicalIndex] = useState<number | null>(null);
   const [affixes, setAffixes] = useState<Affix[]>([]);
+  const [showPrefixes, setShowPrefixes] = useState<boolean>(true);
+  const [showSuffixes, setShowSuffixes] = useState<boolean>(true);
   const radicalRef = useRef<HTMLSpanElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const containerRect = useRef<DOMRect | null>(null);
@@ -53,9 +55,19 @@ const useLireMorph = () => {
     return shuffled;
   };
 
-  const initializeAffixes = (affixes: (PrefixesEnum | SuffixEnum)[]): Affix[] => {
+  const initializeAffixes = (prefixes: PrefixesEnum[], suffixes: SuffixEnum[]): Affix[] => {
+    let allAffixes: (PrefixesEnum | SuffixEnum)[] = [];
+    
+    if (showPrefixes) {
+      allAffixes = [...allAffixes, ...prefixes];
+    }
+    
+    if (showSuffixes) {
+      allAffixes = [...allAffixes, ...suffixes];
+    }
+    
     const shuffled = shuffleCells(cellsGrid);
-    return affixes.map((text, i) => ({
+    return allAffixes.map((text, i) => ({
       text,
       position: shuffled[i],
     }));
@@ -65,6 +77,14 @@ const useLireMorph = () => {
     const index = parseInt(event.target.value);
     setSelectedRadicalIndex(index);
     setSummaryClose(true);
+  };
+
+  const togglePrefixes = () => {
+    setShowPrefixes(prev => !prev);
+  };
+
+  const toggleSuffixes = () => {
+    setShowSuffixes(prev => !prev);
   };
 
   const selectedRadical = useMemo(() => {
@@ -240,11 +260,11 @@ const useLireMorph = () => {
 
     useEffect(() => {
     if (selectedRadicalIndex === null) {
-      setAffixes(initializeAffixes(lireMorphText.exemple.suffixes));
+      setAffixes(initializeAffixes(lireMorphText.exemple.prefixes, lireMorphText.exemple.suffixes));
     } else {
-      setAffixes(initializeAffixes(radicals[selectedRadicalIndex].suffixes));
+      setAffixes(initializeAffixes(radicals[selectedRadicalIndex].prefixes, radicals[selectedRadicalIndex].suffixes));
     }
-  }, [selectedRadicalIndex]);
+  }, [selectedRadicalIndex, showPrefixes, showSuffixes]);
 
   return {
     selectedRadical,
@@ -254,8 +274,12 @@ const useLireMorph = () => {
     radicalRef,
     containerRef,
     targetAffixRef,
+    showPrefixes,
+    showSuffixes,
     selectRadical,
     grabAffix,
+    togglePrefixes,
+    toggleSuffixes,
   };
 };
 

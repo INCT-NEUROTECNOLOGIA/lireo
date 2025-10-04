@@ -1,3 +1,4 @@
+import { PrefixesEnum } from "../types/prefix.enum";
 import { SuffixEnum } from "../types/suffix.enum";
 
 export const lireMorphText = {
@@ -16,6 +17,6 @@ export const lireMorphText = {
   exemple: {
     radical: "exempl",
     suffixes: [SuffixEnum.O, SuffixEnum.AR, SuffixEnum.IFICAR, SuffixEnum.ARIO, SuffixEnum.OZINHO, SuffixEnum.AO],
-    prefixes: [],
+    prefixes: [] as PrefixesEnum[],
   },
 };

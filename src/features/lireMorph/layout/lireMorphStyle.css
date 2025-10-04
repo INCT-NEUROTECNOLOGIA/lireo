@@ -6,6 +6,12 @@
   padding: 5vh 8vh;
 }
 
+.selectorAndFiltersContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
 .wordsContainer {
   position: relative;
   width: 100%;
@@ -28,6 +34,71 @@
 
 .radicalSelect:hover option:disabled {
   color: var(--color-text-secondary);
+}
+
+.affixFiltersContainer {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-left: 1rem;
+}
+
+.checkboxGroup {
+  display: flex;
+  align-items: center;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.prefixLabel {
+  background-color: #FFF3CD;
+  color: #856404;
+  border: 2px solid #FFD700;
+}
+
+.prefixLabel:hover {
+  background-color: #FFD700;
+  color: #ffffff;
+}
+
+.suffixLabel {
+  background-color: #D4EDDA;
+  color: #155724;
+  border: 2px solid #28A745;
+}
+
+.suffixLabel:hover {
+  background-color: #28A745;
+  color: #ffffff;
+}
+
+.affixCheckbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: currentColor;
+}
+
+.prefixCheckbox {
+  accent-color: #FFD700;
+}
+
+.suffixCheckbox {
+  accent-color: #28A745;
+}
+
+.checkboxText {
+  user-select: none;
 }
 
 .lireMorphContainer span {
