@@ -1,4 +1,4 @@
-import React, { useState, useRef, useMemo, useEffect } from "react";
+import React, { useState, useRef, useMemo, useEffect, useCallback } from "react";
 import { lireMorphText } from "../texts/lireMorphText";
 import { radicals } from "../texts/radicals";
 import { PrefixesEnum } from "../types/prefix.enum";
@@ -12,6 +12,7 @@ const useLireMorph = () => {
   const [affixes, setAffixes] = useState<Affix[]>([]);
   const [showPrefixes, setShowPrefixes] = useState<boolean>(true);
   const [showSuffixes, setShowSuffixes] = useState<boolean>(true);
+  const isInitialLoad = useRef<boolean>(true);
   const radicalRef = useRef<HTMLSpanElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const containerRect = useRef<DOMRect | null>(null);
@@ -55,23 +56,49 @@ const useLireMorph = () => {
     return shuffled;
   };
 
-  const initializeAffixes = (prefixes: PrefixesEnum[], suffixes: SuffixEnum[]): Affix[] => {
-    let allAffixes: (PrefixesEnum | SuffixEnum)[] = [];
-    
+  const _getVisibleAffixes = (prefixes: PrefixesEnum[], suffixes: SuffixEnum[]): (PrefixesEnum | SuffixEnum)[] => {
+    let targetAffixes: (PrefixesEnum | SuffixEnum)[] = [];
     if (showPrefixes) {
-      allAffixes = [...allAffixes, ...prefixes];
+      targetAffixes = [...targetAffixes, ...prefixes];
     }
-    
     if (showSuffixes) {
-      allAffixes = [...allAffixes, ...suffixes];
+      targetAffixes = [...targetAffixes, ...suffixes];
     }
-    
-    const shuffled = shuffleCells(cellsGrid);
-    return allAffixes.map((text, i) => ({
-      text,
-      position: shuffled[i],
-    }));
-  };
+    return targetAffixes;
+  }
+
+  const _filterAffixesThatWillBeVisible = (affixes: Affix[], targetAffixes: (PrefixesEnum | SuffixEnum)[]): Affix[] => {
+    return affixes.filter(affix => targetAffixes.includes(affix.text));
+  }
+
+  const _findAffixesThatNeedToBeAdded = (existingAffixes: Affix[], targetAffixes: (PrefixesEnum | SuffixEnum)[]): (PrefixesEnum | SuffixEnum)[] => {
+    return targetAffixes.filter(text => !existingAffixes.some(affix => affix.text === text));
+  }
+
+
+  const updateAffixesBasedOnFilters = useCallback((prefixes: PrefixesEnum[], suffixes: SuffixEnum[]): void => {
+    setAffixes(prevAffixes => {
+      const targetAffixes = _getVisibleAffixes(prefixes, suffixes);
+
+      const existingAffixes = _filterAffixesThatWillBeVisible(prevAffixes, targetAffixes);
+
+      const newAffixTexts = _findAffixesThatNeedToBeAdded(existingAffixes, targetAffixes);
+      
+      const usedPositions = existingAffixes.map(affix => affix.position);
+      const availablePositions = shuffleCells(cellsGrid).filter(pos => 
+        !usedPositions.some(used => 
+          Math.abs(used.x - pos.x) < 5 && Math.abs(used.y - pos.y) < 5
+        )
+      );
+
+      const newAffixes = newAffixTexts.map((text, i) => ({
+        text,
+        position: availablePositions[i] || shuffleCells(cellsGrid)[i],
+      }));
+
+      return [...existingAffixes, ...newAffixes];
+    });
+  }, [showPrefixes, showSuffixes, cellsGrid]);
 
   const selectRadical = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const index = parseInt(event.target.value);
@@ -258,13 +285,34 @@ const useLireMorph = () => {
     }
   };
 
-    useEffect(() => {
+  const previousRadicalIndex = useRef<number | null>(null);
+  const previousShowPrefixes = useRef<boolean>(true);
+  const previousShowSuffixes = useRef<boolean>(true);
+
+  const _updateAffixesBasedOnFilters = useCallback(() => {
     if (selectedRadicalIndex === null) {
-      setAffixes(initializeAffixes(lireMorphText.exemple.prefixes, lireMorphText.exemple.suffixes));
+      updateAffixesBasedOnFilters(lireMorphText.exemple.prefixes, lireMorphText.exemple.suffixes);
     } else {
-      setAffixes(initializeAffixes(radicals[selectedRadicalIndex].prefixes, radicals[selectedRadicalIndex].suffixes));
+      updateAffixesBasedOnFilters(radicals[selectedRadicalIndex].prefixes, radicals[selectedRadicalIndex].suffixes);
     }
-  }, [selectedRadicalIndex, showPrefixes, showSuffixes]);
+  }, [selectedRadicalIndex, updateAffixesBasedOnFilters]);
+
+  useEffect(() => {
+    const radicalChanged = previousRadicalIndex.current !== selectedRadicalIndex;
+    const filtersChanged = previousShowPrefixes.current !== showPrefixes || 
+                          previousShowSuffixes.current !== showSuffixes;
+
+    if (isInitialLoad.current || radicalChanged) {
+      _updateAffixesBasedOnFilters();
+      isInitialLoad.current = false;
+    } else if (filtersChanged) {
+      _updateAffixesBasedOnFilters();
+    }
+
+    previousRadicalIndex.current = selectedRadicalIndex;
+    previousShowPrefixes.current = showPrefixes;
+    previousShowSuffixes.current = showSuffixes;
+  }, [selectedRadicalIndex, showPrefixes, showSuffixes, updateAffixesBasedOnFilters]);
 
   return {
     selectedRadical,

@@ -1,1 +1,3 @@
-export enum PrefixesEnum {}
+export enum PrefixesEnum {
+    PRE = "pre",	
+}
