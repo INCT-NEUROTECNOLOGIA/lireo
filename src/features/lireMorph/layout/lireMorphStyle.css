@@ -122,11 +122,19 @@
   position: absolute;
   font-size: 1.4rem;
   text-transform: uppercase;
-  background-color: var(--color-secondary);
   cursor: grab;
   transition: font-size 0.3s ease-in-out;
   transform: translate(-50%, -50%);
   user-select: none;
+}
+
+.affix.prefix {
+  background-color: #FFD700; 
+  color: #856404;
+}
+
+.affix.suffix {
+  background-color: var(--color-secondary);
 }
 
 .affix.dragging {
@@ -148,4 +156,16 @@
   cursor: grab;
   padding: 0.2rem 0.3rem;
   border-radius: 0px 8px 8px 0px;
+}
+
+.affix.prefix.fitLeft,
+.affix.prefix.fitRight {
+  background-color: var(--color-highlight);
+  color: var(--color-white);
+}
+
+.affix.suffix.fitLeft,
+.affix.suffix.fitRight {
+  background-color: var(--color-highlight);
+  color: var(--color-white);
 }

@@ -18,6 +18,7 @@ const useLireMorph = () => {
   const containerRect = useRef<DOMRect | null>(null);
   const targetAffixRef = useRef<HTMLSpanElement | null>(null);
   const targetAffixRect = useRef<DOMRect | null>(null);
+  const [fittedAffixes, setFittedAffixes] = useState<{[key: number]: 'left' | 'right' | null}>({});
   const dragState = useRef({
     currentIndex: null as number | null,
     isDragging: false,
@@ -75,6 +76,19 @@ const useLireMorph = () => {
     return targetAffixes.filter(text => !existingAffixes.some(affix => affix.text === text));
   }
 
+  
+  const _cleaningFittedAffixes = useCallback(() => {
+    setFittedAffixes(prev => {
+      const newFittedAffixes = {...prev};
+      Object.keys(newFittedAffixes).forEach(key => {
+        const index = parseInt(key);
+        if (index >= affixes.length) {
+          delete newFittedAffixes[index];
+        }
+      });
+      return newFittedAffixes;
+    });
+  }, [affixes.length]);
 
   const updateAffixesBasedOnFilters = useCallback((prefixes: PrefixesEnum[], suffixes: SuffixEnum[]): void => {
     setAffixes(prevAffixes => {
@@ -98,7 +112,9 @@ const useLireMorph = () => {
 
       return [...existingAffixes, ...newAffixes];
     });
-  }, [showPrefixes, showSuffixes, cellsGrid]);
+
+    _cleaningFittedAffixes();
+  }, [showPrefixes, showSuffixes, cellsGrid, affixes.length]);
 
   const selectRadical = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const index = parseInt(event.target.value);
@@ -122,7 +138,7 @@ const useLireMorph = () => {
   const grabAffix = (e: React.MouseEvent, index: number) => {
     e.preventDefault();
 
-    _resetDragtStateToIsDragging(index);
+    _resetDragStateToIsDragging(index);
 
     _setTheTargetAffixWithTheMouseInfo(e);
 
@@ -135,7 +151,7 @@ const useLireMorph = () => {
     document.addEventListener("mouseup", dropAffix);
   };
 
-  const _resetDragtStateToIsDragging = (index: number) =>{
+  const _resetDragStateToIsDragging = (index: number) =>{
       dragState.current.currentIndex = index;
       dragState.current.isDragging = true;
       dragState.current.isFittedLeft = false;
@@ -221,6 +237,21 @@ const useLireMorph = () => {
     document.removeEventListener("mouseup", dropAffix);
   };
 
+  const _verifyIfTheLeftOrRightIsOccupied = () => {
+    const currentIndex = dragState.current.currentIndex;
+    if (currentIndex === null) return { isLeftOccupied: false, isRightOccupied: false };
+    const isLeftOccupied = Object.entries(fittedAffixes).some(([idx, side]) => 
+      parseInt(idx) !== currentIndex && side === 'left'
+    );
+    const isRightOccupied = Object.entries(fittedAffixes).some(([idx, side]) => 
+      parseInt(idx) !== currentIndex && side === 'right'
+    );
+    return {
+      isLeftOccupied,
+      isRightOccupied,
+    }
+  }
+
   const fitWithRadical = () => {
     if (dragState.current.currentIndex === null) return;
     if (!containerRef.current || !radicalRef.current || !targetAffixRef.current)
@@ -241,6 +272,7 @@ const useLireMorph = () => {
     const distanceBottom = targetAffixRect.current.top - radicalRect.bottom;
 
     let fitPosition: Position = { x: 0, y: 0 };
+    let fittedSide: 'left' | 'right' | null = null;
 
     if (distanceBottom < THRESHOLD || distanceTop < THRESHOLD) {
       fitPosition.y =
@@ -251,8 +283,11 @@ const useLireMorph = () => {
         100;
     }
 
-    if (distanceLeft < THRESHOLD) {
+    const { isLeftOccupied, isRightOccupied } = _verifyIfTheLeftOrRightIsOccupied();
+
+    if (distanceLeft < THRESHOLD && !isLeftOccupied) {
       dragState.current.isFittedLeft = true;
+      fittedSide = 'left';
       fitPosition.x =
         ((radicalRect.left -
           targetAffixRect.current.width / 2 -
@@ -260,8 +295,9 @@ const useLireMorph = () => {
           DISTANCE_FIT) /
           containerRect.current.width) *
         100;
-    } else if (distanceRight < THRESHOLD) {
+    } else if (distanceRight < THRESHOLD && !isRightOccupied) {
       dragState.current.isFittedRight = true;
+      fittedSide = 'right';
       fitPosition.x =
         ((radicalRect.right -
           containerRect.current.left +
@@ -271,7 +307,12 @@ const useLireMorph = () => {
         100;
     }
 
-    if (fitPosition.x != 0 && fitPosition.y != 0) {
+    if (fitPosition.x != 0 && fitPosition.y != 0 && fittedSide) {
+      setFittedAffixes(prev => ({
+        ...prev,
+        [dragState.current.currentIndex!]: fittedSide
+      }));
+
       setAffixes((prev: Affix[]) =>
         prev.map((a, i) =>
           i === dragState.current.currentIndex
@@ -282,6 +323,17 @@ const useLireMorph = () => {
             : a
         )
       );
+    } else {
+      dragState.current.isFittedLeft = false;
+      dragState.current.isFittedRight = false;
+      
+      if (fittedAffixes[dragState.current.currentIndex!]) {
+        setFittedAffixes(prev => {
+          const newFittedAffixes = {...prev};
+          delete newFittedAffixes[dragState.current.currentIndex!];
+          return newFittedAffixes;
+        });
+      }
     }
   };
 
@@ -303,6 +355,7 @@ const useLireMorph = () => {
                           previousShowSuffixes.current !== showSuffixes;
 
     if (isInitialLoad.current || radicalChanged) {
+      setFittedAffixes({});  
       _updateAffixesBasedOnFilters();
       isInitialLoad.current = false;
     } else if (filtersChanged) {
@@ -324,6 +377,7 @@ const useLireMorph = () => {
     targetAffixRef,
     showPrefixes,
     showSuffixes,
+    fittedAffixes,
     selectRadical,
     grabAffix,
     togglePrefixes,

@@ -17,6 +17,6 @@ export const lireMorphText = {
   exemple: {
     radical: "exempl",
     suffixes: [SuffixEnum.O, SuffixEnum.AR, SuffixEnum.IFICAR, SuffixEnum.ARIO, SuffixEnum.OZINHO, SuffixEnum.AO],
-    prefixes: [] as PrefixesEnum[],
+    prefixes: [PrefixesEnum.PRE, PrefixesEnum.RE],
   },
 };

@@ -7,8 +7,8 @@ interface LireoMorphWordGameProps {
   radicalRef: React.RefObject<HTMLSpanElement | null>;
   targetAffixRef: React.RefObject<HTMLSpanElement | null>;
   selectedRadical: string;
-    affixes: Affix[];
-    dragState: React.RefObject<{
+  affixes: Affix[];
+  dragState: React.RefObject<{
     currentIndex: number | null;
     isDragging: boolean;
     isFittedLeft: boolean;
@@ -17,7 +17,8 @@ interface LireoMorphWordGameProps {
         x: number;
         y: number;
     };
-}>;
+  }>;
+  fittedAffixes: {[key: number]: 'left' | 'right' | null};
   grabAffix: (e: React.MouseEvent<HTMLSpanElement, MouseEvent>, index: number) => void;
 }
 
@@ -27,8 +28,9 @@ const LireoMorphWordGame = ({
   targetAffixRef,
   selectedRadical,
   affixes,
-    dragState,
-    grabAffix,
+  dragState,
+  fittedAffixes,
+  grabAffix,
 }: LireoMorphWordGameProps) => {
     return (
         <div className="wordsContainer" ref={containerRef}>
@@ -42,6 +44,7 @@ const LireoMorphWordGame = ({
               index={index}
               affix={affix}
               dragState={dragState}
+              fittedAffixes={fittedAffixes}
               grabAffix={grabAffix}
               targetAffixRef={targetAffixRef}
             />

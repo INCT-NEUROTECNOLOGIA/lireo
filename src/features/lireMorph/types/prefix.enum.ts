@@ -1,3 +1,7 @@
 export enum PrefixesEnum {
-    PRE = "pre",	
+    PRE = "pre",
+    RE = "re",
+    DES = "des",
+    IN = "in",
+    ANTI = "anti",
 }

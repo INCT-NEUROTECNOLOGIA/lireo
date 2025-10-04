@@ -16,6 +16,7 @@ const LireMorph = () => {
     targetAffixRef,
     showPrefixes,
     showSuffixes,
+    fittedAffixes,
     selectRadical,
     grabAffix,
     togglePrefixes,
@@ -43,6 +44,7 @@ const LireMorph = () => {
           selectedRadical={selectedRadical}
           affixes={affixes}
           dragState={dragState}
+          fittedAffixes={fittedAffixes}
           grabAffix={grabAffix}
         />
       </div>
