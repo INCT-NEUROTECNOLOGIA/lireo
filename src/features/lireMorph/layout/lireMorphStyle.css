@@ -10,6 +10,8 @@
   display: flex;
   align-items: center;
   margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .wordsContainer {
@@ -21,7 +23,6 @@
 .radicalSelect {
   background-color: var(--color-tertiary);
   color: var(--color-white);
-  width: 20rem;
 }
 
 .radicalSelect:hover {
@@ -40,7 +41,7 @@
   display: flex;
   gap: 1rem;
   align-items: center;
-  margin-left: 1rem;
+  flex-wrap: wrap;
 }
 
 .checkboxGroup {
@@ -53,7 +54,7 @@
   align-items: center;
   cursor: pointer;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: bold;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
   border-radius: 8px;
@@ -61,25 +62,11 @@
 }
 
 .prefixLabel {
-  background-color: #FFF3CD;
-  color: #856404;
-  border: 2px solid #FFD700;
-}
-
-.prefixLabel:hover {
-  background-color: #FFD700;
-  color: #ffffff;
+  background-color: var(--color-tertiary-light);
 }
 
 .suffixLabel {
-  background-color: #D4EDDA;
-  color: #155724;
-  border: 2px solid #28A745;
-}
-
-.suffixLabel:hover {
-  background-color: #28A745;
-  color: #ffffff;
+  background-color: var(--color-primary-light);
 }
 
 .affixCheckbox {
@@ -90,11 +77,11 @@
 }
 
 .prefixCheckbox {
-  accent-color: #FFD700;
+  accent-color: var(--color-tertiary-hover);
 }
 
 .suffixCheckbox {
-  accent-color: #28A745;
+  accent-color: var(--color-primary-hover);
 }
 
 .checkboxText {
@@ -129,12 +116,11 @@
 }
 
 .affix.prefix {
-  background-color: #FFD700; 
-  color: #856404;
+  background-color: var(--color-tertiary-hover);
 }
 
 .affix.suffix {
-  background-color: var(--color-secondary);
+  background-color: var(--color-primary-hover);
 }
 
 .affix.dragging {
@@ -168,4 +154,24 @@
 .affix.suffix.fitRight {
   background-color: var(--color-highlight);
   color: var(--color-white);
+}
+
+@media (min-width: 900px) {
+  .suffixLabel:hover {
+    background-color: var(--color-primary-hover);
+    color: #ffffff;
+  }
+
+  .prefixLabel:hover {
+    background-color: var(--color-tertiary-hover);
+    color: #ffffff;
+  }
+}
+
+@media (max-width: 720px) {
+  .radicalSelect,
+  .checkboxGroup,
+  .checkboxLabel {
+    width: 100%;
+  }
 }
