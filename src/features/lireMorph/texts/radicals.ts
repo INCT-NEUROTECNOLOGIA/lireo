@@ -6,12 +6,22 @@ export const radicals = <MorphemicWord[]>[
   {
     radical: "flor",
     prefixes: [],
-    suffixes: [SuffixEnum.IDO, SuffixEnum.ESCER, SuffixEnum.ICULTURA, SuffixEnum.ISTA],
+    suffixes: [
+      SuffixEnum.IDO,
+      SuffixEnum.ESCER,
+      SuffixEnum.ICULTURA,
+      SuffixEnum.ISTA,
+    ],
   },
   {
     radical: "escr",
     prefixes: [],
-    suffixes: [SuffixEnum.EVER, SuffixEnum.ITO, SuffixEnum.ITOR, SuffixEnum.ITORIO],
+    suffixes: [
+      SuffixEnum.EVER,
+      SuffixEnum.ITO,
+      SuffixEnum.ITOR,
+      SuffixEnum.ITORIO,
+    ],
   },
   {
     radical: "pensa",
@@ -66,7 +76,12 @@ export const radicals = <MorphemicWord[]>[
   {
     radical: "ferr",
     prefixes: [],
-    suffixes: [SuffixEnum.EIRO, SuffixEnum.OVIA, SuffixEnum.ADURA, SuffixEnum.AMENTA],
+    suffixes: [
+      SuffixEnum.EIRO,
+      SuffixEnum.OVIA,
+      SuffixEnum.ADURA,
+      SuffixEnum.AMENTA,
+    ],
   },
   {
     radical: "livr",
@@ -82,5 +97,10 @@ export const radicals = <MorphemicWord[]>[
     radical: "fort",
     prefixes: [],
     suffixes: [SuffixEnum.IFICAR, SuffixEnum.ALEZA, SuffixEnum.ISSIMO],
-  }
+  },
+  {
+    radical: "dent",
+    prefixes: [],
+    suffixes: [SuffixEnum.ISTA, SuffixEnum.AL],
+  },
 ];

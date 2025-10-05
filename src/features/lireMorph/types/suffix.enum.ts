@@ -41,4 +41,5 @@ export enum SuffixEnum {
   ADOR = "ador",
   INHO = "inho",
   AR = "ar",
+  AL = "al",
 }

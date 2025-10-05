@@ -49,6 +49,12 @@
   align-items: center;
 }
 
+.checkboxGroup.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
 .checkboxLabel {
   display: flex;
   align-items: center;
@@ -147,24 +153,22 @@
 .affix.prefix.fitLeft,
 .affix.prefix.fitRight {
   background-color: var(--color-highlight);
-  color: var(--color-white);
 }
 
 .affix.suffix.fitLeft,
 .affix.suffix.fitRight {
   background-color: var(--color-highlight);
-  color: var(--color-white);
 }
 
 @media (min-width: 900px) {
   .suffixLabel:hover {
     background-color: var(--color-primary-hover);
-    color: #ffffff;
+    color: var(--color-white);
   }
 
   .prefixLabel:hover {
     background-color: var(--color-tertiary-hover);
-    color: #ffffff;
+    color: var(--color-white);
   }
 }
 

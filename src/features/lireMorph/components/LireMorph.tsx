@@ -16,6 +16,8 @@ const LireMorph = () => {
     targetAffixRef,
     showPrefixes,
     showSuffixes,
+    isPrefixesDisable,
+    isSuffixesDisable,
     fittedAffixes,
     selectRadical,
     grabAffix,
@@ -32,6 +34,8 @@ const LireMorph = () => {
           <LireoMorphAffixFilters
             showPrefixes={showPrefixes}
             showSuffixes={showSuffixes}
+            isPrefixesDisable={isPrefixesDisable}
+            isSuffixesDisable={isSuffixesDisable}
             togglePrefixes={togglePrefixes}
             toggleSuffixes={toggleSuffixes}
           />
