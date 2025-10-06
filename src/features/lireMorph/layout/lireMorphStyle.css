@@ -140,16 +140,10 @@
   user-select: none;
 }
 
+.suffix,
+.radical,
 .prefix {
-  background-color: var(--color-tertiary-hover);
-}
-
-.suffix {
   background-color: var(--color-primary-hover);
-}
-
-.radical {
-  background-color: var(--color-secondary);
 }
 
 .morph.dragging {
