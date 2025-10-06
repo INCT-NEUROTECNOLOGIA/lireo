@@ -5,14 +5,14 @@
  * @returns O caminho completo para o asset ou o BASE_URL.
  */
 export const getPublicAssetUrl = (relativePath?: string): string => {
-    const baseUrl: string = import.meta.env.BASE_URL;
-    if (!relativePath) {
-        return baseUrl;
-    }
+  const baseUrl: string = import.meta.env.BASE_URL;
+  if (!relativePath) {
+    return baseUrl;
+  }
 
-    const pathWithoutLeadingSlash = relativePath.startsWith('/')
-        ? relativePath.substring(1)
-        : relativePath;
+  const pathWithoutLeadingSlash = relativePath.startsWith('/')
+    ? relativePath.substring(1)
+    : relativePath;
 
-    return `${baseUrl}${pathWithoutLeadingSlash}`;
+  return `${baseUrl}${pathWithoutLeadingSlash}`;
 };

@@ -1,21 +1,21 @@
-import React from "react";
-import "../layout/footer.css";
-import { getPublicAssetUrl } from "../../../utils/pathUtils";
+import React from 'react';
+import '../layout/footer.css';
+import { getPublicAssetUrl } from '../../../utils/pathUtils';
 
 const Footer: React.FC = () => {
   const footerText = {
-    catchphrase: ["Fluência que diverte.", "Leitura que transforma."],
-    contactTitle: "Contato",
-    contactText: "Para dúvidas ou sugestões, entre em contato em: ",
-    email: "lireo.suporte@gmail.com",
+    catchphrase: ['Fluência que diverte.', 'Leitura que transforma.'],
+    contactTitle: 'Contato',
+    contactText: 'Para dúvidas ou sugestões, entre em contato em: ',
+    email: 'lireo.suporte@gmail.com',
     emailRef:
-      "https://mail.google.com/mail/u/0/?fs=1&to=lireo.suporte@gmail.com&tf=cm",
+      'https://mail.google.com/mail/u/0/?fs=1&to=lireo.suporte@gmail.com&tf=cm',
     quote: {
       text: '"Observai os lírios, como crescem. Não trabalham nem fiam e, no entanto, eu vos digo: nem Salomão, em toda a sua glória, jamais se vestiu como um só dentre eles."',
-      origin: "Lucas 12:27",
+      origin: 'Lucas 12:27',
     },
-    copyright: "© 2024 LIRE-O. Todos os direitos reservados.",
-    logo: "logotipo LIRE-O",
+    copyright: '© 2024 LIRE-O. Todos os direitos reservados.',
+    logo: 'logotipo LIRE-O',
   };
 
   return (
@@ -24,7 +24,7 @@ const Footer: React.FC = () => {
         <div className="footer__section">
           <img
             className="footer__img"
-            src={getPublicAssetUrl("/images/logo-lireo-white.png")}
+            src={getPublicAssetUrl('/images/logo-lireo-white.png')}
             alt={footerText.logo}
           />
           <p className="footer__text">{footerText.catchphrase[0]}</p>
