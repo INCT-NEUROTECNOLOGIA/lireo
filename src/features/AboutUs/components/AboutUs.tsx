@@ -4,7 +4,11 @@ import Section from './Section';
 import { getPublicAssetUrl } from '../../../utils/pathUtils';
 import FadeIn from '../../../utils/components/FadeIn';
 import { aboutUsText } from '../text/textAboutUs';
-import { projectCreators, collaborators } from '../text/textAboutUs';
+import {
+  projectCreators,
+  projectCollaborators,
+  projectExecution,
+} from '../text/textAboutUs';
 
 const AboutUs: React.FC = () => {
   return (
@@ -45,10 +49,13 @@ const AboutUs: React.FC = () => {
       </div>
 
       <Section title={aboutUsText.creatorsSection} members={projectCreators} />
-
       <Section
         title={aboutUsText.collaboratorsSection}
-        members={collaborators}
+        members={projectCollaborators}
+      />
+      <Section
+        title={aboutUsText.executionSection}
+        members={projectExecution}
       />
     </div>
   );

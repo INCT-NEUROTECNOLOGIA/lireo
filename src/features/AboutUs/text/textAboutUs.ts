@@ -29,27 +29,57 @@ export const projectCreators: Member[] = [
     affiliation: ' COLTEC/UFMG',
     photo: '/images/AnaJulia_TeamMemberPicture.png',
   },
-  {
-    type: 'teamMember',
-    name: 'Raphael Inácio Bicalho de Carvalho',
-    role: 'Desenvolvedor',
-    position: 'Bolsista de Iniciação Científica',
-    education: 'Técnico em Desenvolvimento de Sistemas',
-    affiliation: ' COLTEC/UFMG',
-    photo: '/images/Raphael_TeamMember.png',
-  },
+];
+
+export const projectCollaborators: Member[] = [
   {
     type: 'teamMember',
     name: 'Isadora Ramos Pereira',
-    role: 'Desenvolvedora',
+    role: 'Colaboradora',
     position: 'Bolsista de Iniciação Científica',
     education: 'Técnico em Desenvolvimento de Sistemas',
     affiliation: ' COLTEC/UFMG',
     photo: '/images/Isadora_TeamMemberPicture.jpg',
   },
+  {
+    type: 'teamMember',
+    name: 'Thiago Calebe Ramos dos Santos',
+    role: 'Colaborador',
+    position: 'Bolsista de Iniciação Científica',
+    education: 'Técnico em Desenvolvimento de Sistemas',
+    affiliation: ' COLTEC/UFMG',
+    photo: '/images/Thiago_TeamMemberPicture.jpg',
+  },
+  {
+    type: 'teamMember',
+    name: 'Izabelly Monteiro',
+    role: 'Colaboradora',
+    position: 'Docente de Língua Portuguesa',
+    education: 'Licenciada em Letras',
+    affiliation: 'Faculdade de Letras/UFMG',
+    photo: '/images/Izabelly_TeamMemberPicture.jpg',
+  },
+  {
+    type: 'teamMember',
+    name: 'Debora Fraga Lodi',
+    role: 'Colaboradora',
+    position: 'Departamento de Fonoaudiologia',
+    education: 'Faculdade de Medicina/UFMG',
+    affiliation: 'CRFa 6-5743',
+    photo: '/images/Debora_TeamMemberPicture.jpg',
+  },
+  {
+    type: 'teamMember',
+    name: 'Débora Marques de Miranda',
+    role: 'Colaboradora',
+    position: 'Professora Associada',
+    education: 'Coordenadora do Centro de Tecnologia da Faculdade de Medicina',
+    affiliation: 'Departamento de Pediatria/UFMG',
+    photo: '/images/DéboraMarques_TeamMemberPicture.jpg',
+  },
 ];
 
-export const collaborators: Member[] = [
+export const projectExecution: Member[] = [
   {
     type: 'collaborator',
     photo: '/images/logo-Faculdade-de-Medicina-UFMG.png',
@@ -59,6 +89,11 @@ export const collaborators: Member[] = [
     type: 'collaborator',
     photo: '/images/logo-UFMG.png',
     alt: 'UFMG',
+  },
+  {
+    type: 'collaborator',
+    photo: '/images/logo-Neurotec-INCT .png',
+    alt: 'INCT',
   },
 ];
 
@@ -94,4 +129,5 @@ export const aboutUsText = {
   },
   creatorsSection: 'Idealizadores do Projeto',
   collaboratorsSection: 'Colaboradores do Projeto',
+  executionSection: 'Realização',
 };
