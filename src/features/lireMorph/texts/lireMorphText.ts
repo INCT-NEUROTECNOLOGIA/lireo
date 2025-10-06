@@ -15,7 +15,7 @@ export const lireMorphText = {
   },
   modes: ["prefixo", "radical", "sufixo"],
   placeholderSelect: "Selecione um ",
-  exemple: {
+  radicalExample: {
     radical: "exempl",
     suffixes: [
       SuffixEnum.O,
@@ -26,5 +26,13 @@ export const lireMorphText = {
       SuffixEnum.AO,
     ],
     prefixes: [PrefixEnum.PRE, PrefixEnum.RE],
+  },
+  prefixExample: {
+    affix: PrefixEnum.RE,
+    radicals: ["exemplo", "criar", "lembrar", "ciclar"],
+  },
+  suffixExample: {
+    affix: SuffixEnum.AR,
+    radicals: ["exempl", "mostr", "ensin", "formul"],
   },
 };

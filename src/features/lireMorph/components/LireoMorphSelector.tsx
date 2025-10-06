@@ -5,7 +5,7 @@ import { MorphemicWord } from "../types/morphemicWord.type";
 interface LireoMorphSelectorProps {
   selectedMorphIndex: number | null;
   morphema: MorphemicWord[] | AffixCombination[];
-  choosenMode: string;
+  chosenMode: string;
   selectMainMorph: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   isMorphemicWord: (
     item: MorphemicWord | AffixCombination
@@ -15,7 +15,7 @@ interface LireoMorphSelectorProps {
 const LireoMorphSelector = ({
   selectedMorphIndex,
   morphema,
-  choosenMode,
+  chosenMode,
   selectMainMorph,
   isMorphemicWord,
 }: LireoMorphSelectorProps) => {
@@ -26,10 +26,10 @@ const LireoMorphSelector = ({
       className="morphSelect"
       value={selectedMorphIndex ?? ""}
       onChange={selectMainMorph}
-      title={lireMorphText.placeholderSelect + choosenMode}
+      title={lireMorphText.placeholderSelect + chosenMode}
     >
       <option value="" disabled>
-        {lireMorphText.placeholderSelect + choosenMode}
+        {lireMorphText.placeholderSelect + chosenMode}
       </option>
       {morphema.map((item, index) => (
         <option

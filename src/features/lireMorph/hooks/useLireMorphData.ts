@@ -22,10 +22,13 @@ const useLireMorphData = ({ setSummaryClose }: useLireMorphDataProps) => {
   const [selectedMorphIndex, setSelectedMorphIndex] = useState<number | null>(
     null
   );
+  const [example, setExample] = useState<MorphemicWord | AffixCombination>(
+    lireMorphText.radicalExample
+  );
   const [morphema, setMorphema] = useState<
     MorphemicWord[] | AffixCombination[]
   >(radicals);
-  const [choosenMode, setChosenMode] = useState<ModeEnum>(ModeEnum.RADICAL);
+  const [chosenMode, setChosenMode] = useState<ModeEnum>(ModeEnum.RADICAL);
   const [isPrefixesDisable, setIsPrefixesDisable] = useState<boolean>(false);
   const [isSuffixesDisable, setIsSuffixesDisable] = useState<boolean>(false);
 
@@ -75,12 +78,25 @@ const useLireMorphData = ({ setSummaryClose }: useLireMorphDataProps) => {
     switch (mode) {
       case ModeEnum.PREFIX:
         setMorphema(prefixes);
+        setExample(lireMorphText.prefixExample);
+        setMorphs(initializeMorphs(lireMorphText.prefixExample.radicals));
         break;
       case ModeEnum.RADICAL:
         setMorphema(radicals);
+        setExample(lireMorphText.radicalExample);
+        setMorphs(
+          initializeMorphs(
+            [
+              ...(lireMorphText.radicalExample.prefixes || []),
+              ...(lireMorphText.radicalExample.suffixes || []),
+            ].map(String)
+          )
+        );
         break;
       case ModeEnum.SUFFIX:
         setMorphema(suffixes);
+        setExample(lireMorphText.suffixExample);
+        setMorphs(initializeMorphs(lireMorphText.suffixExample.radicals));
         break;
       default:
         setMorphema([]);
@@ -94,7 +110,8 @@ const useLireMorphData = ({ setSummaryClose }: useLireMorphDataProps) => {
   };
 
   const selectedMainMorph = useMemo(() => {
-    if (selectedMorphIndex === null) return lireMorphText.exemple.radical;
+    if (selectedMorphIndex === null)
+      return isMorphemicWord(example) ? example.radical : example.affix;
 
     const chosenMorph = morphema[selectedMorphIndex];
     return isMorphemicWord(chosenMorph)
@@ -125,10 +142,11 @@ const useLireMorphData = ({ setSummaryClose }: useLireMorphDataProps) => {
     morphs,
     selectedMorphIndex,
     selectedMainMorph,
-    choosenMode,
+    chosenMode,
     isPrefixesDisable,
     isSuffixesDisable,
     cellsGrid,
+    example,
     shuffleCells,
     setMorphs,
     isMorphemicWord,

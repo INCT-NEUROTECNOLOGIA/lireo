@@ -13,7 +13,7 @@ const LireMorph = () => {
     morphema,
     selectedMorphIndex,
     selectedMainMorph,
-    choosenMode,
+    chosenMode,
     isPrefixesDisable,
     isSuffixesDisable,
     dragState,
@@ -35,16 +35,16 @@ const LireMorph = () => {
     <>
       <LireoMorthInstructions summaryClose={summaryClose} />
       <div className="lireMorphContainer">
-        <LireoMorphMode choosenMode={choosenMode} selectedMode={selectMode} />
+        <LireoMorphMode chosenMode={chosenMode} selectedMode={selectMode} />
         <div className="selectorAndFiltersContainer">
           <LireoMorphSelector
             selectedMorphIndex={selectedMorphIndex}
             morphema={morphema}
             selectMainMorph={selectMainMorph}
-            choosenMode={choosenMode}
+            chosenMode={chosenMode}
             isMorphemicWord={isMorphemicWord}
           />
-          {choosenMode === "radical" && (
+          {chosenMode === "radical" && (
             <LireoMorphAffixFilters
               showPrefixes={showPrefixes}
               showSuffixes={showSuffixes}

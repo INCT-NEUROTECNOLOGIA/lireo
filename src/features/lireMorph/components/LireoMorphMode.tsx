@@ -1,11 +1,11 @@
 import { lireMorphText } from "../texts/lireMorphText";
 
 interface LireoMorphModeProps {
-  choosenMode: string | null;
+  chosenMode: string | null;
   selectedMode: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const LireoMorphMode = ({ choosenMode, selectedMode }: LireoMorphModeProps) => {
+const LireoMorphMode = ({ chosenMode, selectedMode }: LireoMorphModeProps) => {
   return (
     <div className="modeContainer">
       {lireMorphText.modes.map((mode, index) => {
@@ -13,13 +13,13 @@ const LireoMorphMode = ({ choosenMode, selectedMode }: LireoMorphModeProps) => {
           <label
             key={index}
             className={`checkboxLabel modeLabel ${
-              choosenMode === mode ? "selected" : ""
+              chosenMode === mode ? "selected" : ""
             }`}
           >
             <input
               type="radio"
               value={mode}
-              checked={choosenMode === mode}
+              checked={chosenMode === mode}
               className="modeCheckbox"
               onChange={selectedMode}
             />

@@ -2,7 +2,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { PrefixEnum } from "../types/prefix.enum";
 import { SuffixEnum } from "../types/suffix.enum";
 import { Morph } from "../types/morph.type";
-import { lireMorphText } from "../texts/lireMorphText";
 import { MorphemicWord } from "../types/morphemicWord.type";
 import { AffixCombination } from "../types/affixCombination.type";
 
@@ -11,6 +10,7 @@ interface useLireMorphFiltersProps {
   selectedMorphIndex: number | null;
   morphema: MorphemicWord[] | AffixCombination[];
   cellsGrid: { x: number; y: number }[];
+  example: MorphemicWord | AffixCombination;
   shuffleCells: (
     cells: { x: number; y: number }[]
   ) => { x: number; y: number }[];
@@ -28,6 +28,7 @@ const useLireMorphFilters = ({
   selectedMorphIndex,
   morphema,
   cellsGrid,
+  example,
   shuffleCells,
   isMorphemicWord,
   setMorphs,
@@ -122,17 +123,15 @@ const useLireMorphFilters = ({
 
   const _updatemorphBasedOnFilters = useCallback(() => {
     if (selectedMorphIndex === null) {
-      updatemorphBasedOnFilters(
-        lireMorphText.exemple.prefixes,
-        lireMorphText.exemple.suffixes
-      );
+      if (isMorphemicWord(example))
+        updatemorphBasedOnFilters(example.prefixes, example.suffixes);
     } else if (isMorphemicWord(morphema[selectedMorphIndex])) {
       updatemorphBasedOnFilters(
         morphema[selectedMorphIndex].prefixes,
         morphema[selectedMorphIndex].suffixes
       );
     }
-  }, [selectedMorphIndex, updatemorphBasedOnFilters]);
+  }, [selectedMorphIndex, updatemorphBasedOnFilters, example]);
 
   useEffect(() => {
     const radicalChanged = previousRadicalIndex.current !== selectedMorphIndex;
@@ -171,6 +170,7 @@ const useLireMorphFilters = ({
     showSuffixes,
     togglePrefixes,
     toggleSuffixes,
+    updatemorphBasedOnFilters,
   };
 };
 
