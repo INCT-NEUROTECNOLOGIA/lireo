@@ -21,6 +21,7 @@ const LireoMorphAffixFilters = ({
         <label className="checkboxLabel prefixLabel">
           <input
             type="checkbox"
+            id="prefix"
             checked={showPrefixes}
             disabled={isPrefixesDisable}
             onChange={togglePrefixes}
@@ -34,6 +35,7 @@ const LireoMorphAffixFilters = ({
         <label className="checkboxLabel suffixLabel">
           <input
             type="checkbox"
+            id="suffix"
             checked={showSuffixes}
             disabled={isSuffixesDisable}
             onChange={toggleSuffixes}

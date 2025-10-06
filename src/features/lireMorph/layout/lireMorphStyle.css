@@ -79,6 +79,7 @@
   background-color: var(--color-secondary-light);
   color: var(--color-text-secondary);
   text-transform: uppercase;
+  justify-content: center;
 }
 
 .modeLabel.selected {
@@ -171,6 +172,7 @@
   display: flex;
   gap: 1rem;
   margin-bottom: 1rem;
+  flex-wrap: wrap;
 }
 
 @media (min-width: 900px) {
@@ -188,7 +190,8 @@
 @media (max-width: 720px) {
   .morphSelect,
   .checkboxGroup,
-  .checkboxLabel {
+  .checkboxLabel,
+  .affixFiltersContainer {
     width: 100%;
   }
 }

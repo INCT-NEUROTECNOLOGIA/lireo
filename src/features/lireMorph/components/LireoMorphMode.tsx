@@ -18,6 +18,7 @@ const LireoMorphMode = ({ chosenMode, selectedMode }: LireoMorphModeProps) => {
           >
             <input
               type="radio"
+              id={mode}
               value={mode}
               checked={chosenMode === mode}
               className="modeCheckbox"
