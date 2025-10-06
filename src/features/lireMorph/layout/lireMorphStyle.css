@@ -79,6 +79,7 @@
   background-color: var(--color-secondary-light);
   color: var(--color-text-secondary);
   text-transform: uppercase;
+  justify-content: center;
 }
 
 .modeLabel.selected {
