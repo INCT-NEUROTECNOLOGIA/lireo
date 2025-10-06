@@ -20,20 +20,20 @@
   min-height: 80vh;
 }
 
-.radicalSelect {
+.morphSelect {
   background-color: var(--color-tertiary);
   color: var(--color-white);
 }
 
-.radicalSelect:hover {
+.morphSelect:hover {
   background-color: var(--color-secondary);
 }
 
-.radicalSelect option:disabled {
+.morphSelect option:disabled {
   color: var(--color-text-tertiary);
 }
 
-.radicalSelect:hover option:disabled {
+.morphSelect:hover option:disabled {
   color: var(--color-text-secondary);
 }
 
@@ -75,6 +75,17 @@
   background-color: var(--color-primary-light);
 }
 
+.modeLabel {
+  background-color: var(--color-secondary-light);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+}
+
+.modeLabel.selected {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+}
+
 .affixCheckbox {
   width: 18px;
   height: 18px;
@@ -90,6 +101,14 @@
   accent-color: var(--color-primary-hover);
 }
 
+.modeCheckbox {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+}
+
 .checkboxText {
   user-select: none;
 }
@@ -99,7 +118,7 @@
   border-radius: 8px;
 }
 
-.radical {
+.mainMorph {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -111,7 +130,7 @@
   user-select: none;
 }
 
-.affix {
+.morph {
   position: absolute;
   font-size: 1.4rem;
   text-transform: uppercase;
@@ -121,20 +140,24 @@
   user-select: none;
 }
 
-.affix.prefix {
+.prefix {
   background-color: var(--color-tertiary-hover);
 }
 
-.affix.suffix {
+.suffix {
   background-color: var(--color-primary-hover);
 }
 
-.affix.dragging {
+.radical {
+  background-color: var(--color-secondary);
+}
+
+.morph.dragging {
   font-size: 2rem;
   cursor: grabbing;
 }
 
-.affix.fitLeft {
+.morph.fitLeft {
   font-size: 2rem;
   background-color: var(--color-highlight);
   cursor: grab;
@@ -142,7 +165,7 @@
   border-radius: 8px 0px 0px 8px;
 }
 
-.affix.fitRight {
+.morph.fitRight {
   font-size: 2rem;
   background-color: var(--color-highlight);
   cursor: grab;
@@ -150,14 +173,10 @@
   border-radius: 0px 8px 8px 0px;
 }
 
-.affix.prefix.fitLeft,
-.affix.prefix.fitRight {
-  background-color: var(--color-highlight);
-}
-
-.affix.suffix.fitLeft,
-.affix.suffix.fitRight {
-  background-color: var(--color-highlight);
+.modeContainer {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 @media (min-width: 900px) {
@@ -173,7 +192,7 @@
 }
 
 @media (max-width: 720px) {
-  .radicalSelect,
+  .morphSelect,
   .checkboxGroup,
   .checkboxLabel {
     width: 100%;

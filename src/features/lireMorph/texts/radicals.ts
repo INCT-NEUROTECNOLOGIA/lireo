@@ -1,5 +1,5 @@
 import { MorphemicWord } from "../types/morphemicWord.type";
-import { PrefixesEnum } from "../types/prefix.enum";
+import { PrefixEnum } from "../types/prefix.enum";
 import { SuffixEnum } from "../types/suffix.enum";
 
 export const radicals = <MorphemicWord[]>[
@@ -55,7 +55,7 @@ export const radicals = <MorphemicWord[]>[
   },
   {
     radical: "viv",
-    prefixes: [PrefixesEnum.PRE, PrefixesEnum.RE],
+    prefixes: [PrefixEnum.PRE, PrefixEnum.RE],
     suffixes: [SuffixEnum.ER, SuffixEnum.A],
   },
   {

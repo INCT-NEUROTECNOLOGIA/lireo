@@ -1,4 +1,4 @@
-import { PrefixesEnum } from "../types/prefix.enum";
+import { PrefixEnum } from "../types/prefix.enum";
 import { SuffixEnum } from "../types/suffix.enum";
 
 export const lireMorphText = {
@@ -13,10 +13,18 @@ export const lireMorphText = {
     linkText: "Para mais informações, acesse o ",
     link: "Guia do Usuário.",
   },
-  placeholderSelectRadical: "Selecione um radical",
+  modes: ["prefixo", "radical", "sufixo"],
+  placeholderSelect: "Selecione um ",
   exemple: {
     radical: "exempl",
-    suffixes: [SuffixEnum.O, SuffixEnum.AR, SuffixEnum.IFICAR, SuffixEnum.ARIO, SuffixEnum.OZINHO, SuffixEnum.AO],
-    prefixes: [PrefixesEnum.PRE, PrefixesEnum.RE],
+    suffixes: [
+      SuffixEnum.O,
+      SuffixEnum.AR,
+      SuffixEnum.IFICAR,
+      SuffixEnum.ARIO,
+      SuffixEnum.OZINHO,
+      SuffixEnum.AO,
+    ],
+    prefixes: [PrefixEnum.PRE, PrefixEnum.RE],
   },
 };
