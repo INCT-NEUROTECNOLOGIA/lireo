@@ -56,6 +56,7 @@
 .initialPage_cardsContainer {
   display: flex;
   gap: 2rem;
+  width: 100%;
 }
 
 .initialPage_card {
