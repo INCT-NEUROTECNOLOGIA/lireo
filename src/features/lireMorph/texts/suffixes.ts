@@ -21,6 +21,6 @@ export const suffixes = <AffixCombination[]>[
   },
   {
     affix: SuffixEnum.ISTA,
-    radicals: ["dent", "jorn", "pian"],
+    radicals: ["dent", "jornal", "pian"],
   },
 ];

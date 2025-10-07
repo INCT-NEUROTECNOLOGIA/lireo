@@ -55,7 +55,7 @@ export const radicals = <MorphemicWord[]>[
   },
   {
     radical: "viv",
-    prefixes: [PrefixEnum.PRE, PrefixEnum.RE],
+    prefixes: [PrefixEnum.RE],
     suffixes: [SuffixEnum.ER, SuffixEnum.A],
   },
   {

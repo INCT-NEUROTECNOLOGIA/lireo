@@ -25,7 +25,7 @@ export const lireMorphText = {
       SuffixEnum.OZINHO,
       SuffixEnum.AO,
     ],
-    prefixes: [PrefixEnum.PRE, PrefixEnum.RE],
+    prefixes: [PrefixEnum.RE],
   },
   prefixExample: {
     affix: PrefixEnum.RE,
