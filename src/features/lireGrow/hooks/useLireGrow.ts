@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
-import { lireGrowText } from "../texts/lireGrowText";
+import React, { useState, useEffect, useRef } from 'react';
+import { lireGrowText } from '../texts/lireGrowText';
 
 const useLireGrow = () => {
-  const example: string[] = lireGrowText.example.split(" ");
+  const example: string[] = lireGrowText.example.split(' ');
   const phrases: string[] = lireGrowText.phrases;
   const [phrase, setPhrase] = useState<string[]>(example);
   const [currentIndex, setCurrentIndex] = useState(example.length + 1);
@@ -11,28 +11,28 @@ const useLireGrow = () => {
   const [summaryClose, setSummaryClose] = useState<boolean>(false);
   const [fontSize, setFontSize] = useState<number>(25);
   const currentPartRef = useRef<HTMLSpanElement | null>(null);
-  const imgsRef: string[] = ["errada1", "errada2", "certa"];
+  const imgsRef: string[] = ['errada1', 'errada2', 'certa'];
   const punctuationRegex = /[.,!?;:"()'-]/g;
 
   useEffect(() => {
     if (currentPartRef.current) {
       currentPartRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
+        behavior: 'smooth',
+        block: 'nearest',
       });
     }
   }, [currentIndex]);
 
   const removeAccents = (text: string) => {
-    return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   };
 
   const imgsPaths = (phrase: string[]) => {
     const imgFolder = removeAccents(
       `/lireGrowImgs/${phrase
-        .join("_")
+        .join('_')
         .toLowerCase()
-        .replace(punctuationRegex, "")}`
+        .replace(punctuationRegex, '')}`,
     );
 
     return imgsRef
@@ -41,7 +41,7 @@ const useLireGrow = () => {
   };
 
   const [shuffledImgsPaths, setShuffledImgsPaths] = useState<string[]>(
-    imgsPaths(example)
+    imgsPaths(example),
   );
 
   const initializePhrase = (phrase: string[]) => {
@@ -54,7 +54,7 @@ const useLireGrow = () => {
   };
 
   const selectedPhrase = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const chosenPhrase = event.target.value.split(" ");
+    const chosenPhrase = event.target.value.split(' ');
     initializePhrase(chosenPhrase);
   };
 
@@ -67,12 +67,12 @@ const useLireGrow = () => {
   };
 
   const checkAnswer = () => {
-    setCorrectAnswer(chosenImg !== null && chosenImg.includes("certa"));
+    setCorrectAnswer(chosenImg !== null && chosenImg.includes('certa'));
   };
 
   const randomPhrase = () => {
     const randomIndex = Math.floor(Math.random() * phrases.length);
-    const randomPhrase = phrases[randomIndex].split(" ");
+    const randomPhrase = phrases[randomIndex].split(' ');
     initializePhrase(randomPhrase);
   };
 
@@ -83,7 +83,7 @@ const useLireGrow = () => {
     const min = parseFloat(event.target.min);
     const max = parseFloat(event.target.max);
     const percent = ((value - min) / (max - min)) * 100;
-    event.target.style.setProperty("--progress", `${percent}%`);
+    event.target.style.setProperty('--progress', `${percent}%`);
   };
 
   return {

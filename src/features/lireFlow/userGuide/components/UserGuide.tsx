@@ -1,7 +1,7 @@
-import "../../../../utils/layout/userGuideStyle.css";
-import { userGuideText } from "../text/TextUserGuide";
-import SectionUserGuide from "../../../../utils/components/SectionUserGuide";
-import FadeIn from "../../../../utils/components/FadeIn";
+import '../../../../utils/layout/userGuideStyle.css';
+import { userGuideText } from '../text/TextUserGuide';
+import SectionUserGuide from '../../../../utils/components/SectionUserGuide';
+import FadeIn from '../../../../utils/components/FadeIn';
 
 const UserGuide = () => {
   return (

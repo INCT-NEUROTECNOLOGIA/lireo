@@ -1,8 +1,8 @@
-import "../layout/initialPageStyle.css";
-import { InitialPageText } from "../texts/initialPageText.ts";
-import { getPublicAssetUrl } from "../../../utils/pathUtils";
-import { ROUTE_PATHS } from "../../../config/routes";
-import FadeIn from "../../../utils/components/FadeIn";
+import '../layout/initialPageStyle.css';
+import { InitialPageText } from '../texts/initialPageText.ts';
+import { getPublicAssetUrl } from '../../../utils/pathUtils';
+import { ROUTE_PATHS } from '../../../config/routes';
+import FadeIn from '../../../utils/components/FadeIn';
 
 const InitialPage = () => {
   return (
@@ -20,7 +20,7 @@ const InitialPage = () => {
           </button>
         </div>
         <FadeIn>
-          <img src={getPublicAssetUrl("/images/icone-lireo.png")} />
+          <img src={getPublicAssetUrl('/images/icone-lireo.png')} />
         </FadeIn>
       </div>
 
@@ -30,7 +30,7 @@ const InitialPage = () => {
           <div className="initialPage_cardsContainer">
             {InitialPageText.howItWorksSection.cards.map((card, index) => (
               <div key={index} className="initialPage_card">
-                <i class={`initialPage_card_icon ${card.icon}`}></i>
+                <i className={`initialPage_card_icon ${card.icon}`}></i>
                 <h2>{card.title}</h2>
                 <p>{card.text}</p>
               </div>
@@ -54,7 +54,7 @@ const InitialPage = () => {
           ))}
         </div>
         <FadeIn>
-          <img src={getPublicAssetUrl("/images/icone-lireo.png")} />
+          <img src={getPublicAssetUrl('/images/icone-lireo.png')} />
         </FadeIn>
       </div>
 
@@ -71,7 +71,7 @@ const InitialPage = () => {
                 className="initialPage_card activityCard"
                 href={ROUTE_PATHS[activity.route]}
               >
-                <i class={`initialPage_card_icon ${activity.icon}`}></i>
+                <i className={`initialPage_card_icon ${activity.icon}`}></i>
                 <h2>{activity.title}</h2>
                 <p>{activity.description}</p>
               </a>

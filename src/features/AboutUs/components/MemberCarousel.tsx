@@ -1,45 +1,32 @@
-import React, { useEffect, useRef, useState } from "react";
-import MemberCard from "./MemberCard";
-import type { Member } from "./Section";
-import "../layout/TeamCarouselStyle.css";
+import MemberCard from './MemberCard';
+import type { Member } from './Section';
+import '../layout/TeamCarouselStyle.css';
+import { useMemberCarousel } from '../hooks/useMemberCarousel';
+import React, { useEffect } from 'react';
 
 interface MemberCarouselProps {
   members?: Member[];
 }
 
 const MemberCarousel: React.FC<MemberCarouselProps> = ({ members = [] }) => {
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const waitTime = 4000;
-
-  const goToIndex = (index: number) => {
-    setCurrentIndex(index);
-  };
-
-  const goPrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + members.length) % members.length);
-  };
-
-  const goNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % members.length);
-  };
+  const {
+    trackRef,
+    currentIndex,
+    setIsPaused,
+    goToIndex,
+    goPrev,
+    goNext,
+    autoPlay,
+    updateTrackPosition,
+  } = useMemberCarousel(members);
 
   useEffect(() => {
-    if (isPaused) return;
-
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % members.length);
-    }, waitTime);
-
-    return () => clearInterval(interval);
-  }, [members.length, isPaused]);
+    return autoPlay();
+  }, [autoPlay]);
 
   useEffect(() => {
-    if (trackRef.current) {
-      trackRef.current.style.transform = `translateX(-${currentIndex * 100}%)`;
-    }
-  }, [currentIndex]);
+    updateTrackPosition();
+  }, [updateTrackPosition]);
 
   return (
     members.length > 0 && (
@@ -68,8 +55,8 @@ const MemberCarousel: React.FC<MemberCarouselProps> = ({ members = [] }) => {
               <button
                 key={index}
                 className={
-                  "aboutUsContainer__teamCarousel__indicators__dot" +
-                  (index === currentIndex ? " active" : "")
+                  'aboutUsContainer__teamCarousel__indicators__dot' +
+                  (index === currentIndex ? ' active' : '')
                 }
                 onClick={() => goToIndex(index)}
               ></button>
