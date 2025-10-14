@@ -1,6 +1,6 @@
 import { ROUTE_PATHS } from '../../../../config/routes';
 
-export const userGuideText = {
+export const userGuideTextLireGrow = {
   title: 'Como usar o LireGrow',
   text: 'Este guia apresenta as principais funcionalidades do LireGrow',
   sections: {

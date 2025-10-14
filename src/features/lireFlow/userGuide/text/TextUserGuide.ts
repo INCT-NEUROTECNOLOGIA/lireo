@@ -1,6 +1,6 @@
 import { ROUTE_PATHS } from '../../../../config/routes';
 
-export const userGuideText = {
+export const userGuideTextLireFlow = {
   title: 'Como usar o LireFlow',
   text: 'Este guia apresenta as principais funcionalidades do LireFlow',
   sections: {
