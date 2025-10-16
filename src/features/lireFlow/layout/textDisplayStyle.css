@@ -74,8 +74,8 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  left: -1000px;
-  right: -1000px;
+  left: -5000px;
+  right: -5000px;
   background-color: var(--color-highlight-secondary);
   box-shadow: 0 0 0 0.2rem var(--color-highlight-secondary);
   z-index: -2;

@@ -14,6 +14,7 @@ export const useTextDisplay = ({ fileContent }: { fileContent: string }) => {
   const [speed, setSpeed] = useState<number>(1);
   const speedRef = useRef<number>(1);
   const wordsPerMinuteRef = useRef<number>(120);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const isTitle = (line: string): boolean => {
     const wordCount = line.split(/\s+/).length;
@@ -81,6 +82,7 @@ export const useTextDisplay = ({ fileContent }: { fileContent: string }) => {
     speed,
     speedRef,
     wordsPerMinuteRef,
+    containerRef,
     setSpeed,
     setIsReading,
     nextParagraph,
