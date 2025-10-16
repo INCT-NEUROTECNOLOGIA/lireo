@@ -1,11 +1,11 @@
 import { useRef, useState, useCallback } from 'react';
 import type { Member } from '../components/Section';
+import { CAROUSEL_WAIT_TIME_MS } from '../constants/time';
 
 export const useMemberCarousel = (members: Member[]) => {
   const trackRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const waitTime = 4000;
 
   const goToIndex = (index: number) => {
     setCurrentIndex(index);
@@ -24,7 +24,7 @@ export const useMemberCarousel = (members: Member[]) => {
 
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % members.length);
-    }, waitTime);
+    }, CAROUSEL_WAIT_TIME_MS);
 
     return () => clearInterval(interval);
   }, [members.length, isPaused]);
