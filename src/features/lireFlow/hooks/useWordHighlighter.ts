@@ -134,6 +134,11 @@ export const useWordHighlighter = ({
       );
 
       indexRef.current++;
+
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
     }
 
     setCurrentIndex(null);
@@ -164,17 +169,36 @@ export const useWordHighlighter = ({
   ]);
 
   const scrollToCurrentWord = useCallback(() => {
-    if (!currentWordRef.current || !containerRef.current) return;
-
     const word = currentWordRef.current;
-    const container = containerRef.current;
+    const container = containerRef.current ?? null;
+    if (!word || !('IntersectionObserver' in window)) return;
 
-    const target =
-      word.offsetTop - container.clientHeight / 4 + word.offsetHeight;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (!entry.isIntersecting || entry.intersectionRatio < 0.4) {
+          if ((observer as any).__pending) return;
+          (observer as any).__pending = true;
+          setTimeout(() => {
+            (observer as any).__pending = false;
+            const targetBlock = 'nearest';
+            word.scrollIntoView({
+              behavior: 'smooth',
+              block: targetBlock,
+              inline: 'nearest',
+            });
+          }, 80);
+        }
+      },
+      {
+        root: container,
+        threshold: [0.0, 0.5, 0.8, 1.0],
+        rootMargin: '0px 0px -15% 0px',
+      },
+    );
 
-    if (Math.abs(container.scrollTop - target) > 4) {
-      container.scrollTo({ top: target, behavior: 'smooth' });
-    }
+    observer.observe(word);
+    return () => observer.disconnect();
   }, [currentIndex, currentWordRef, containerRef]);
 
   return {
