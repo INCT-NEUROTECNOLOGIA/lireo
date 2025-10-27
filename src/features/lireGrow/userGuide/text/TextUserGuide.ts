@@ -4,6 +4,18 @@ export const userGuideTextLireGrow = {
   title: 'Como usar o LireGrow',
   text: 'Este guia apresenta as principais funcionalidades do LireGrow',
   sections: {
+    objective: {
+      title: 'Objetivo',
+      icon: 'bi bi-bullseye',
+      id: 'objective',
+      className: 'objective',
+      content: [
+        {
+          type: 'text',
+          text: 'Essa atividade tem como objetivo estimular a compreensão leitora. O LireGrow apresenta a leitura de forma progressiva, incentivando o foco e a antecipação de sentidos, seguida de atividades que fortalecem a associação entre texto e imagem.',
+        },
+      ],
+    },
     chooseText: {
       title: 'Escolher uma frase',
       icon: 'bi bi-book',

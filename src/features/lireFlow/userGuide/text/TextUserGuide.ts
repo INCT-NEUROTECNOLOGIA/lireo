@@ -4,6 +4,19 @@ export const userGuideTextLireFlow = {
   title: 'Como usar o LireFlow',
   text: 'Este guia apresenta as principais funcionalidades do LireFlow',
   sections: {
+    objective: {
+      title: 'Objetivo',
+      icon: 'bi bi-bullseye',
+      id: 'objective',
+      className: 'objective',
+      content: [
+        {
+          type: 'text',
+          text: 'Essa atividade tem como objetivo desenvolver a fluência leitora, promovendo o ritmo, a precisão e a compreensão durante a leitura. O LireFlow utiliza o destaque sequencial de palavras para incentivar a leitura contínua e o acompanhamento visual, ajudando o leitor a aprimorar sua velocidade e atenção ao texto.',
+        },
+      ],
+    },
+
     loadText: {
       title: 'Carregar um texto',
       icon: 'bi bi-book',

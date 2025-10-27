@@ -12,213 +12,116 @@ export const userGuideTextLireMorph = {
       content: [
         {
           type: 'text',
-          text: 'A atividade LireMorph tem como objetivo desenvolver a consciência morfológica, permitindo a exploração da formação de palavras a partir de prefixos, radicais e sufixos. Ao experimentar diferentes combinações, o leitor amplia seu vocabulário e compreende melhor o funcionamento da estrutura das palavras.',
+          text: 'Essa atividade tem como objetivo desenvolver a consciência morfológica, permitindo a exploração da formação de palavras a partir de prefixos, radicais e sufixos. Ao experimentar diferentes combinações, o leitor amplia seu vocabulário e compreende melhor o funcionamento da estrutura das palavras.',
         },
       ],
     },
-    morfemaBase: {
-      title: 'Escolher o morfema base',
+    typeOfMorpheme: {
+      title: 'Escolher o tipo de morfema',
       icon: 'bi bi-grid-1x2',
-      id: 'morfemaBase',
-      className: 'morfemaBase',
+      id: 'typeOfMorpheme',
+      className: 'typeOfMorpheme',
       content: [
         {
           type: 'text',
-          text: 'Primeiro, escolha qual morfema ficará no centro da tela e servirá como base para as combinações: prefixo, radical ou sufixo.',
+          text: 'O primeiro passo é escolher o tipo de morfema que servirá como base das combinações. Esse morfema ficará fixo no centro da tela.',
         },
         {
           type: 'text',
-          text: 'Para selecionar o morfema base, basta clicar em uma das opções:',
+          text: 'Para isso, clique em uma das opções localizadas no canto esquerdo da tela:',
         },
         {
           type: 'imageSmall',
           image: {
-            src: '/userGuideLireMorphImgs/morpheme_choice.png',
+            src: '/userGuideLireMorphImgs/types_of_morpheme.png',
             alt: 'Botões para escolher morfema base: Prefixo, Radical, Sufixo',
           },
         },
-        {
-          type: 'listChevron',
-          items: [
-            {
-              bold: 'Prefixo',
-              text: ': seleciona um prefixo como base;', //  combine com radicais e sufixos.
-            },
-            {
-              bold: 'Radical',
-              text: ': seleciona o radical como base;', // ideal para ver variações morfológicas.
-            },
-            {
-              bold: 'Sufixo',
-              text: ': seleciona um sufixo como base;', // combine com prefixos e radicais.
-            },
-          ],
-        },
       ],
     },
-
-    prefixo: {
-      title: 'Prefixo',
-      icon: 'bi bi-arrow-left-right',
-      id: 'prefixo',
-      className: 'prefixo',
+    morphemeSelection: {
+      title: 'Selecionar morfema base',
+      icon: 'bi bi-menu-button',
+      id: 'morphemeSelection',
+      className: 'morphemeSelection',
       content: [
         {
           type: 'text',
-          text: 'Para começar, use a caixa de seleção para escolher um dos prefixos disponíveis.', // Os prefixos aparecem em uma lista de opções e podem ser combinados com radicais e sufixos para formar palavras.
+          text: 'Depois de escolher o tipo de morfema, selecione qual elemento específico será utilizado como base para formar as palavras.',
         },
         {
-          type: 'listChevron',
-          items: [
-            {
-              bold: 'Selecionar prefixo',
-              text: ' — use a caixa de seleção para escolher uma das opções disponíveis.',
-            },
-            {
-              bold: 'Formar palavras',
-              text: ' — após escolher um prefixo, combine-o com um radical e/ou sufixo para ver as palavras possíveis.',
-            },
-          ],
+          type: 'text',
+          text: 'Use a caixa de seleção exibida no canto esquerdo da tela para escolher o morfema desejado.',
         },
         {
-          type: 'image',
+          type: 'imageSmall',
           image: {
-            src: '/userGuideLireMorphImgs/prefix_selection.png',
-            alt: 'Selecionar prefixo',
+            src: '/userGuideLireMorphImgs/morpheme_selection.png',
+            alt: 'Botões para escolher morfema base: Prefixo, Radical, Sufixo',
           },
         },
       ],
     },
-
-    sufixo: {
-      title: 'Sufixo',
-      icon: 'bi bi-arrow-return-right',
-      id: 'sufixo',
-      className: 'sufixo',
+    morphemeVisibility: {
+      title: 'Exibição de morfemas',
+      icon: 'bi bi-eye',
+      id: 'morphemeVisibility',
+      className: 'morphemeVisibility',
       content: [
         {
           type: 'text',
-          text: 'Em seguida, escolha um sufixo. Os sufixos alteram o sentido ou a classe gramatical das palavras formadas.',
+          text: 'O LireMorph permite controlar a exibição dos morfemas complementares, como prefixos e sufixos, durante a atividade.',
         },
-        {
-          type: 'listChevron',
-          items: [
-            {
-              bold: 'Selecionar sufixo',
-              text: ' — use a caixa de seleção para escolher uma das opções disponíveis.',
-            },
-            {
-              bold: 'Formar palavras',
-              text: ' — após escolher um sufixo, combine-o com um prefixo e/ou radical para gerar variações de palavras.',
-            },
-          ],
-        },
-        {
-          type: 'image',
-          image: {
-            src: '/userGuideLireMorphImgs/suffix_selection.png',
-            alt: 'Selecionar sufixo',
-          },
-        },
-      ],
-    },
-
-    radical: {
-      title: 'Radical',
-      icon: 'bi bi-kanban',
-      id: 'radical',
-      className: 'radical',
-      content: [
         {
           type: 'text',
-          text: 'Por fim, selecione um radical — a base da palavra. O radical é combinado com prefixos e sufixos para formar palavras completas.',
+          text: 'Ao lado da caixa de seleção, há botões que indicam se os morfemas correspondentes estão habilitados ou desabilitados para exibição na tela.',
         },
         {
-          type: 'list',
-          items: [
-            {
-              bold: 'Selecionar radical: ',
-              text: 'use a caixa de seleção para escolher uma das opções disponíveis.',
-            },
-            {
-              bold: 'Combinações: ',
-              text: 'formule palavras usando os prefixos e sufixos selecionados; experimente diferentes combinações para observar mudanças de sentido.',
-            },
-          ],
-        },
-        {
-          type: 'image',
+          type: 'imageSmall',
           image: {
-            src: '/userGuideLireMorphImgs/radical_selection.png',
-            alt: 'Selecionar radical',
+            src: '/userGuideLireMorphImgs/morpheme_visibility.png',
+            alt: 'Botões para exibir ou ocultar prefixos e sufixos no LireMorph',
           },
+        },
+        {
+          type: 'text',
+          text: 'Essa funcionalidade ajuda o usuário a focar nas combinações desejadas, testando diferentes estruturas de palavras com maior controle.',
         },
       ],
     },
-
-    formarPalavras: {
-      title: 'Formar palavras',
+    wordFormation: {
+      title: 'Formação de palavras',
       icon: 'bi bi-pencil-square',
-      id: 'formarPalavras',
-      className: 'formarPalavras',
+      id: 'wordFormation',
+      className: 'wordFormation',
       content: [
         {
           type: 'text',
-          text: 'Após selecionar prefixo, sufixo e radical, a atividade mostrará as palavras formadas. Analise sentido, ortografia e possíveis variações.',
+          text: 'Arraste os demais morfemas para o centro da tela para combiná-los com o morfema base e formar novas palavras.',
         },
         {
-          type: 'listCheck',
-          items: [
-            {
-              bold: 'Experimentar combinações: ',
-              text: 'tente diferentes prefixos/sufixos para perceber como o significado muda.',
-            },
-            {
-              bold: 'Verificar ortografia: ',
-              text: 'confira se a palavra resultante está grafada corretamente.',
-            },
-            {
-              bold: 'Registrar descobertas: ',
-              text: 'anote observações sobre sentido, classe gramatical e alterações morfológicas.',
-            },
-          ],
-        },
-        {
-          type: 'image',
+          type: 'imageSmall',
           image: {
-            src: '/userGuideLireMorphImgs/formed_words.png',
-            alt: 'Palavras formadas',
+            src: '/userGuideLireMorphImgs/words_formation1.png',
+            alt: 'Processo de formação de palavras no LireMorph',
+          },
+        },
+        {
+          type: 'imageSmall',
+          image: {
+            src: '/userGuideLireMorphImgs/words_formation2.png',
+            alt: 'Arrastando morfemas para formação palavras',
+          },
+        },
+        {
+          type: 'imageSmall',
+          image: {
+            src: '/userGuideLireMorphImgs/words_formation3.png',
+            alt: 'Palavras formadas no LireMorph',
           },
         },
       ],
     },
-
-    exemplos: {
-      title: 'Exemplos e atividades sugeridas',
-      icon: 'bi bi-journal-text',
-      id: 'exemplos',
-      className: 'exemplos',
-      content: [
-        {
-          type: 'text',
-          text: 'Use os exemplos para praticar: peça aos alunos que criem listas de palavras com um mesmo radical, que classifiquem por significado ou que criem frases com as palavras formadas.',
-        },
-        {
-          type: 'list',
-          items: [
-            {
-              bold: 'Atividade 1: ',
-              text: 'Formar 10 palavras a partir de um radical escolhido.',
-            },
-            {
-              bold: 'Atividade 2: ',
-              text: 'Classificar palavras formadas por campos semânticos (ex.: movimento, sensação).',
-            },
-          ],
-        },
-      ],
-    },
-
     support: {
       title: 'Suporte',
       icon: 'bi bi-question-circle',
@@ -227,7 +130,7 @@ export const userGuideTextLireMorph = {
       content: [
         {
           type: 'text',
-          text: 'Em caso de dúvidas, dificuldades ou sugestões sobre a atividade LireMorph, consulte a seção de contato e ajuda:',
+          text: 'Em caso de dúvidas, dificuldades ou sugestões, consulte a seção destinada às informações de contato:',
         },
         {
           type: 'link',
