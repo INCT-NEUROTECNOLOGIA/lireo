@@ -14,9 +14,11 @@ export const lireMorphText = {
     link: "Guia do Usuário.",
   },
   placeholderSelectRadical: "Selecione um radical",
+  placeholderSelect: "",
   exemple: {
     radical: "exempl",
     suffixes: [SuffixEnum.O, SuffixEnum.AR, SuffixEnum.IFICAR, SuffixEnum.ARIO, SuffixEnum.OZINHO, SuffixEnum.AO],
     prefixes: [PrefixesEnum.PRE, PrefixesEnum.RE],
   },
+   modes: [],
 };
