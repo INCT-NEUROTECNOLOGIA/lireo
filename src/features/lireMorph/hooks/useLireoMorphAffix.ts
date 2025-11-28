@@ -1,6 +1,6 @@
-import { Morph } from "../types/morph.type";
-import { PrefixEnum } from "../types/prefix.enum";
-import { SuffixEnum } from "../types/suffix.enum";
+import { Morph } from '../types/morph.type';
+import { PrefixesEnum } from '../types/prefix.enum';
+import { SuffixEnum } from '../types/suffix.enum';
 
 export interface useLireoMorphAffixProps {
   index: number;
@@ -15,7 +15,7 @@ export interface useLireoMorphAffixProps {
       y: number;
     };
   }>;
-  fittedMorph: { [key: number]: "left" | "right" | null };
+  fittedMorph: { [key: number]: 'left' | 'right' | null };
 }
 
 const useLireoMorphAffix = ({
@@ -32,26 +32,28 @@ const useLireoMorphAffix = ({
   const isFittedLeft =
     (index === dragState.current.currentIndex &&
       dragState.current.isFittedLeft) ||
-    fittedMorph[index] === "left";
+    fittedMorph[index] === 'left';
   const isFittedRight =
     (index === dragState.current.currentIndex &&
       dragState.current.isFittedRight) ||
-    fittedMorph[index] === "right";
+    fittedMorph[index] === 'right';
 
-  const isPrefix = Object.values(PrefixEnum).includes(morph.text as PrefixEnum);
+  const isPrefix = Object.values(PrefixesEnum).includes(
+    morph.text as PrefixesEnum,
+  );
   const isSuffix = Object.values(SuffixEnum).includes(morph.text as SuffixEnum);
 
   const getMorphType = () => {
-    if (isPrefix) return " prefix";
-    if (isSuffix) return " suffix";
-    return " radical";
+    if (isPrefix) return ' prefix';
+    if (isSuffix) return ' suffix';
+    return ' radical';
   };
 
   const classType = () => {
-    if (isDragging) return " dragging";
-    if (isFittedLeft) return " fitLeft";
-    if (isFittedRight) return " fitRight";
-    return "";
+    if (isDragging) return ' dragging';
+    if (isFittedLeft) return ' fitLeft';
+    if (isFittedRight) return ' fitRight';
+    return '';
   };
 
   return { leftPosition, topPosition, isDragging, getMorphType, classType };

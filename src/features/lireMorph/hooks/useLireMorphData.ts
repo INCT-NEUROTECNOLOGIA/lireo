@@ -1,13 +1,13 @@
-import { useEffect, useMemo, useState } from "react";
-import { prefixes } from "../texts/prefixes";
-import { radicals } from "../texts/radicals";
-import { suffixes } from "../texts/suffixes";
-import { MorphemicWord } from "../types/morphemicWord.type";
-import { AffixCombination } from "../types/affixCombination.type";
-import { lireMorphText } from "../texts/lireMorphText";
-import { Morph } from "../types/morph.type";
-import { ModeEnum } from "../types/mode.enum";
-import { Position } from "../types/position.type";
+import { useEffect, useMemo, useState } from 'react';
+import { prefixes } from '../texts/prefixes';
+import { radicals } from '../texts/radicals';
+import { suffixes } from '../texts/suffixes';
+import { MorphemicWord } from '../types/morphemicWord.type';
+import { AffixCombination } from '../types/affixCombination.type';
+import { lireMorphText } from '../texts/lireMorphText';
+import { Morph } from '../types/morph.type';
+import { ModeEnum } from '../types/mode.enum';
+import { Position } from '../types/position.type';
 
 interface useLireMorphDataProps {
   setSummaryClose: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,10 +20,10 @@ const FLUTTER = 5;
 const useLireMorphData = ({ setSummaryClose }: useLireMorphDataProps) => {
   const [morphs, setMorphs] = useState<Morph[]>([]);
   const [selectedMorphIndex, setSelectedMorphIndex] = useState<number | null>(
-    null
+    null,
   );
   const [example, setExample] = useState<MorphemicWord | AffixCombination>(
-    lireMorphText.radicalExample
+    lireMorphText.example,
   );
   const [morphema, setMorphema] = useState<
     MorphemicWord[] | AffixCombination[]
@@ -56,9 +56,9 @@ const useLireMorphData = ({ setSummaryClose }: useLireMorphDataProps) => {
   };
 
   const isMorphemicWord = (
-    item: MorphemicWord | AffixCombination
+    item: MorphemicWord | AffixCombination,
   ): item is MorphemicWord => {
-    return "radical" in item;
+    return 'radical' in item;
   };
 
   const initializeMorphs = (morphs: string[]): Morph[] => {
@@ -78,25 +78,25 @@ const useLireMorphData = ({ setSummaryClose }: useLireMorphDataProps) => {
     switch (mode) {
       case ModeEnum.PREFIX:
         setMorphema(prefixes);
-        setExample(lireMorphText.prefixExample);
-        setMorphs(initializeMorphs(lireMorphText.prefixExample.radicals));
+        setExample(lireMorphText.example);
+        setMorphs(initializeMorphs(lireMorphText.example.suffixes));
         break;
       case ModeEnum.RADICAL:
         setMorphema(radicals);
-        setExample(lireMorphText.radicalExample);
+        setExample(lireMorphText.example);
         setMorphs(
           initializeMorphs(
             [
-              ...(lireMorphText.radicalExample.prefixes || []),
-              ...(lireMorphText.radicalExample.suffixes || []),
-            ].map(String)
-          )
+              ...(lireMorphText.example.prefixes || []),
+              ...(lireMorphText.example.suffixes || []),
+            ].map(String),
+          ),
         );
         break;
       case ModeEnum.SUFFIX:
         setMorphema(suffixes);
-        setExample(lireMorphText.suffixExample);
-        setMorphs(initializeMorphs(lireMorphText.suffixExample.radicals));
+        setExample(lireMorphText.example);
+        setMorphs(initializeMorphs(lireMorphText.example.suffixes));
         break;
       default:
         setMorphema([]);
