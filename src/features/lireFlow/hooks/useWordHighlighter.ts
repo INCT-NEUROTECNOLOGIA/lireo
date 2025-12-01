@@ -25,6 +25,7 @@ export const useWordHighlighter = ({
   const isReadingRef = useRef<boolean>(isReading);
   const timeoutRef = useRef<number | null>(null);
   const currentWordRef = useRef<HTMLSpanElement | null>(null);
+  const activeFlowIdRef = useRef<number>(0);
 
   const elements: string[] = paragraph.split(/(\s+|[^\wÀ-ÖØ-öø-ÿ])/);
 
@@ -112,9 +113,13 @@ export const useWordHighlighter = ({
     );
   };
 
-  const highlightFlow = async (): Promise<void> => {
+  const isNotActiveFlow = (flowId: number): boolean => {
+    return activeFlowIdRef.current !== flowId;
+  };
+
+  const highlightFlow = async (flowId: number): Promise<void> => {
     while (indexRef.current < elementIndexs.current.length) {
-      if (!isReadingRef.current) return;
+      if (!isReadingRef.current || isNotActiveFlow(flowId)) return;
 
       const element: string = elements[elementIndexs.current[indexRef.current]];
 
@@ -122,7 +127,10 @@ export const useWordHighlighter = ({
 
       if (isWord(element)) {
         setCurrentIndex(elementIndexs.current[indexRef.current]);
+
         waitTime = await calculateWordTime(element);
+
+        if (isNotActiveFlow(flowId)) return;
       } else {
         waitTime =
           PUNCTUATION_MARKS_TIME.find((mark) => mark.mark === element)?.time ||
@@ -133,27 +141,34 @@ export const useWordHighlighter = ({
         (resolve) => (timeoutRef.current = setTimeout(resolve, waitTime)),
       );
 
-      indexRef.current++;
+      if (isNotActiveFlow(flowId)) return;
 
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-        timeoutRef.current = null;
-      }
+      indexRef.current++;
     }
 
     setCurrentIndex(null);
+
     if (onFinish) {
+      if (isNotActiveFlow(flowId)) return;
+
       await new Promise(
         (resolve) => (timeoutRef.current = setTimeout(resolve, 500)),
       );
-      onFinish();
+
+      if (!isNotActiveFlow(flowId)) {
+        onFinish();
+      }
     }
   };
 
   const runReadingFlow = useCallback((): (() => void) => {
     isReadingRef.current = isReading;
+    let flowCounter = 0;
 
-    highlightFlow();
+    const newFlowId = ++flowCounter;
+    activeFlowIdRef.current = newFlowId;
+
+    highlightFlow(newFlowId);
 
     return () => {
       if (timeoutRef.current) {
