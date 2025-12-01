@@ -1,5 +1,6 @@
 export interface SectionUserGuideProps {
   title: string;
+  icon?: string;
   id: string;
   className: string;
   content: SectionContent[];

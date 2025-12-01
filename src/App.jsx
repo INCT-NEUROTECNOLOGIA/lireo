@@ -1,14 +1,16 @@
-import { Routes, Route } from "react-router-dom";
-import TextReader from "./features/lireFlow/components/TextReader.tsx";
-import Header from "./features/generalUi/components/Header.tsx";
-import Footer from "./features/generalUi/components/Footer.tsx";
-import InitialPage from "./features/initialPage/components/InitialPage.jsx";
-import UserGuideLireFlow from "./features/lireFlow/userGuide/components/UserGuide.tsx";
-import UserGuideLireGrow from "./features/lireGrow/userGuide/components/UserGuide.tsx";
-import AboutUs from "./features/AboutUs/components/AboutUs.tsx";
-import LireGrow from "./features/lireGrow/components/LireGrow.tsx";
-import LireMorph from "./features/lireMorph/components/LireMorph.tsx";
-import "./features/generalUi/layout/pageStyle.css";
+import { Routes, Route } from 'react-router-dom';
+import TextReader from './features/lireFlow/components/TextReader.tsx';
+import Header from './features/generalUi/components/Header.tsx';
+import Footer from './features/generalUi/components/Footer.tsx';
+import InitialPage from './features/initialPage/components/InitialPage.jsx';
+import UserGuide from './utils/components/UserGuide.tsx';
+import { userGuideTextLireFlow } from './features/lireFlow/userGuide/text/TextUserGuide.ts';
+import { userGuideTextLireGrow } from './features/lireGrow/userGuide/text/TextUserGuide.ts';
+import { userGuideTextLireMorph } from './features/lireMorph/userGuide/text/TextUserGuide.ts';
+import AboutUs from './features/AboutUs/components/AboutUs.tsx';
+import LireGrow from './features/lireGrow/components/LireGrow.tsx';
+import LireMorph from './features/lireMorph/components/LireMorph.tsx';
+import './features/generalUi/layout/pageStyle.css';
 
 function App() {
   return (
@@ -21,11 +23,15 @@ function App() {
         <Route path="/lireMorph" element={<LireMorph />} />
         <Route
           path="/lireFlow/guia-do-usuario"
-          element={<UserGuideLireFlow />}
+          element={<UserGuide userGuideText={userGuideTextLireFlow} />}
         />
         <Route
           path="/lireGrow/guia-do-usuario"
-          element={<UserGuideLireGrow />}
+          element={<UserGuide userGuideText={userGuideTextLireGrow} />}
+        />
+        <Route
+          path="/lireMorph/guia-do-usuario"
+          element={<UserGuide userGuideText={userGuideTextLireMorph} />}
         />
         <Route path="/sobre-nos" element={<AboutUs />} />
       </Routes>
