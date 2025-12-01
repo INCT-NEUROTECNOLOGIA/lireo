@@ -1,4 +1,4 @@
-import { useState, useRef, useMemo } from 'react';
+import { useState, useRef, useMemo, useCallback } from 'react';
 
 type ProcessedText = {
   paragraphs: string[];
@@ -64,15 +64,17 @@ export const useTextDisplay = ({ fileContent }: { fileContent: string }) => {
     return { paragraphs, title, author, source };
   }, [fileContent]);
 
-  const nextParagraph = (): void => {
-    if (paragraphIndex === -1) {
-      setParagraphIndex(0);
-    } else if (paragraphIndex < processedText.paragraphs.length - 1) {
-      setParagraphIndex((prevIndex) => prevIndex + 1);
-    } else {
-      setParagraphIndex(processedText.paragraphs.length);
-    }
-  };
+  const nextParagraph = useCallback((): void => {
+    setParagraphIndex((prevIndex) => {
+      if (prevIndex === -1) {
+        return 0;
+      } else if (prevIndex < processedText.paragraphs.length - 1) {
+        return prevIndex + 1;
+      } else {
+        return processedText.paragraphs.length;
+      }
+    });
+  }, [processedText]);
 
   return {
     processedText,
