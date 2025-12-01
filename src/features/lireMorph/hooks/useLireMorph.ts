@@ -1,7 +1,7 @@
-import { useState } from "react";
-import useLireMorphFilters from "./useLireMorphFilters";
-import useLireMorphMove from "./useLireMorphMove";
-import useLireMorphData from "./useLireMorphData";
+import { useState } from 'react';
+import useLireMorphFilters from './useLireMorphFilters';
+import useLireMorphMove from './useLireMorphMove';
+import useLireMorphData from './useLireMorphData';
 
 const useLireMorph = () => {
   const [summaryClose, setSummaryClose] = useState<boolean>(false);

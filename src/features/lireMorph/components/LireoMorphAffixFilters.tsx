@@ -17,7 +17,7 @@ const LireoMorphAffixFilters = ({
 }: LireoMorphAffixFiltersProps) => {
   return (
     <div className="affixFiltersContainer">
-      <div className={`checkboxGroup ${isPrefixesDisable ? "disabled" : ""}`}>
+      <div className={`checkboxGroup ${isPrefixesDisable ? 'disabled' : ''}`}>
         <label className="checkboxLabel prefixLabel">
           <input
             type="checkbox"
@@ -31,7 +31,7 @@ const LireoMorphAffixFilters = ({
         </label>
       </div>
 
-      <div className={`checkboxGroup ${isSuffixesDisable ? "disabled" : ""}`}>
+      <div className={`checkboxGroup ${isSuffixesDisable ? 'disabled' : ''}`}>
         <label className="checkboxLabel suffixLabel">
           <input
             type="checkbox"

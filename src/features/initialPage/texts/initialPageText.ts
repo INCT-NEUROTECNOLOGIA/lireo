@@ -59,16 +59,16 @@ export const InitialPageText = {
       {
         title: 'LireGrow',
         description:
-          "Frases são reveladas palavra por palavra, possibilitando a construção do sentido aos poucos. Um exercício de compreensão textual.",
-        route: "LIRE_GROW",
-        icon: "bi bi-triangle",
+          'Frases são reveladas palavra por palavra, possibilitando a construção do sentido aos poucos. Um exercício de compreensão textual.',
+        route: 'LIRE_GROW',
+        icon: 'bi bi-triangle',
       },
       {
-        title: "LireMorph",
+        title: 'LireMorph',
         description:
-          "Prefixos, radicais e sufixos se combinam como peças de um quebra-cabeça, revelando a lógica por trás da criação das palavras.",
-        route: "LIRE_MORPH",
-        icon: "bi bi-puzzle",
+          'Prefixos, radicais e sufixos se combinam como peças de um quebra-cabeça, revelando a lógica por trás da criação das palavras.',
+        route: 'LIRE_MORPH',
+        icon: 'bi bi-puzzle',
       },
     ],
   },

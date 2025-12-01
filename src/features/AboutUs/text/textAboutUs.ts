@@ -29,7 +29,6 @@ export const projectCreators: Member[] = [
     affiliation: ' COLTEC/UFMG',
     photo: '/images/AnaJulia_TeamMemberPicture.png',
   },
-
 ];
 
 export const projectCollaborators: Member[] = [
@@ -97,7 +96,6 @@ export const projectExecution: Member[] = [
     alt: 'INCT',
   },
 ];
-
 
 export const aboutUsText = {
   summary: {
