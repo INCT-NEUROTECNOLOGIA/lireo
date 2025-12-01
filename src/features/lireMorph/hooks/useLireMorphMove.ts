@@ -132,21 +132,24 @@ const useLireMorphMove = ({ setMorphs }: useLireMorphMoveProps) => {
   };
 //
   const grabMorphTouch = (e: React.TouchEvent, index: number) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    _resetDragStateToIsDragging(index);
+  _resetDragStateToIsDragging(index);
 
-    const touch = e.touches[0];
-    _setTheTargetMorphWithTheMouseInfo(e);
+  const touch = e.touches[0];
+  if (!touch) return;
 
-    const newPosition = _getTheNewMorphPosition(touch);
-    if (!newPosition) return;
+  targetMorphRef.current = touch.target as HTMLSpanElement;
+  targetMorphRect.current = targetMorphRef.current.getBoundingClientRect();
 
-    dragState.current.offset = newPosition;
+  const newPosition = _getTheNewMorphPosition(touch);
+  if (!newPosition) return;
 
-    document.addEventListener("touchmove", moveMorphTouch, { passive: false });
-    document.addEventListener("touchend", dropMorphTouch);
-  };
+  dragState.current.offset = newPosition;
+
+  document.addEventListener("touchmove", moveMorphTouch, { passive: false });
+  document.addEventListener("touchend", dropMorphTouch);
+};
 
   const moveMorphTouch = (e: TouchEvent) => {
     if (!dragState.current.isDragging || !containerRef.current) return;
