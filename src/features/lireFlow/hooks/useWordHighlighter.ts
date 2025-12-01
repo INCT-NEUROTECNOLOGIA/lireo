@@ -1,4 +1,4 @@
-import { useCallback, useState, useRef, RefObject } from 'react';
+import { useCallback, useState, useRef, RefObject, useMemo } from 'react';
 import { hyphenate } from 'hyphen/pt';
 import { averageSyllableTime } from '../components/readingParameters';
 import { PUNCTUATION_MARKS_TIME } from '../constants/readingContants';
@@ -27,7 +27,10 @@ export const useWordHighlighter = ({
   const currentWordRef = useRef<HTMLSpanElement | null>(null);
   const activeFlowIdRef = useRef<number>(0);
 
-  const elements: string[] = paragraph.split(/(\s+|[^\wÀ-ÖØ-öø-ÿ])/);
+  const elements = useMemo(
+    () => paragraph.split(/(\s+|[^\wÀ-ÖØ-öø-ÿ])/),
+    [paragraph],
+  );
 
   const isWord = (element: string): boolean => /^[\wÀ-ÖØ-öø-ÿ]+$/.test(element);
   const isPunctuation = (element: string): boolean =>
@@ -42,7 +45,7 @@ export const useWordHighlighter = ({
 
     indexRef.current = 0;
     setCurrentIndex(null);
-  }, [paragraph]);
+  }, [elements]);
 
   const fixWordHyphenation = (word: string, hyphenated: string): string => {
     if (word.length <= 2) return word;
@@ -163,10 +166,9 @@ export const useWordHighlighter = ({
 
   const runReadingFlow = useCallback((): (() => void) => {
     isReadingRef.current = isReading;
-    let flowCounter = 0;
 
-    const newFlowId = ++flowCounter;
-    activeFlowIdRef.current = newFlowId;
+    activeFlowIdRef.current = ++activeFlowIdRef.current;
+    const newFlowId = activeFlowIdRef.current;
 
     highlightFlow(newFlowId);
 
@@ -185,36 +187,20 @@ export const useWordHighlighter = ({
 
   const scrollToCurrentWord = useCallback(() => {
     const word = currentWordRef.current;
-    const container = containerRef.current ?? null;
-    if (!word || !('IntersectionObserver' in window)) return;
+    const container = containerRef.current;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        if (!entry.isIntersecting || entry.intersectionRatio < 0.4) {
-          if ((observer as any).__pending) return;
-          (observer as any).__pending = true;
-          setTimeout(() => {
-            (observer as any).__pending = false;
-            const targetBlock = 'nearest';
-            word.scrollIntoView({
-              behavior: 'smooth',
-              block: targetBlock,
-              inline: 'nearest',
-            });
-          }, 80);
-        }
-      },
-      {
-        root: container,
-        threshold: [0.0, 0.5, 0.8, 1.0],
-        rootMargin: '0px 0px -15% 0px',
-      },
-    );
+    if (!word || !container || !('IntersectionObserver' in window)) return;
 
-    observer.observe(word);
-    return () => observer.disconnect();
-  }, [currentIndex, currentWordRef, containerRef]);
+    const scrollTimeout = setTimeout(() => {
+      word.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'nearest',
+      });
+    }, 0);
+
+    return () => clearTimeout(scrollTimeout);
+  }, [currentIndex, containerRef]);
 
   return {
     elements,

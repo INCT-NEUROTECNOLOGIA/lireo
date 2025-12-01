@@ -84,6 +84,5 @@
 @media (max-width: 720px) {
   .textContainer {
     max-width: 98%;
-    max-height: fit-content;
   }
 }
