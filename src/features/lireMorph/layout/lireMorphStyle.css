@@ -142,9 +142,11 @@
 }
 
 .suffix,
-.radical,
-.prefix {
+.radical {
   background-color: var(--color-primary-hover);
+}
+.prefix {
+  background-color: var(--color-tertiary-hover); /* verde água */
 }
 
 .morph.dragging {

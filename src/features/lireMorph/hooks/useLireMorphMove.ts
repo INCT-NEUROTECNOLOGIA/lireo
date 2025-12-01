@@ -49,12 +49,12 @@ const useLireMorphMove = ({ setMorphs }: useLireMorphMoveProps) => {
     dragState.current.isFittedRight = false;
   };
 
-  const _setTheTargetMorphWithTheMouseInfo = (e: React.MouseEvent) => {
+  const _setTheTargetMorphWithTheMouseInfo = (e: React.MouseEvent | React.TouchEvent) => {
     targetMorphRef.current = e.target as HTMLSpanElement;
     targetMorphRect.current = targetMorphRef.current.getBoundingClientRect();
   };
 
-  const _getTheNewMorphPosition = (e: React.MouseEvent) => {
+  const _getTheNewMorphPosition = (e: { clientX: number; clientY: number }) => {
     if (!targetMorphRef.current || !targetMorphRect.current) return;
 
     const newPosition: Position = {
@@ -99,7 +99,7 @@ const useLireMorphMove = ({ setMorphs }: useLireMorphMoveProps) => {
   };
 
   const _newPosition = (
-    e: MouseEvent,
+    e: { clientX: number; clientY: number },
     containerRect: React.RefObject<DOMRect | null>
   ): Position => {
     const leftPercent = _clamp(
@@ -130,6 +130,62 @@ const useLireMorphMove = ({ setMorphs }: useLireMorphMoveProps) => {
     document.removeEventListener("mousemove", moveMorph);
     document.removeEventListener("mouseup", dropMorph);
   };
+//
+  const grabMorphTouch = (e: React.TouchEvent, index: number) => {
+    e.preventDefault();
+
+    _resetDragStateToIsDragging(index);
+
+    const touch = e.touches[0];
+    _setTheTargetMorphWithTheMouseInfo(e);
+
+    const newPosition = _getTheNewMorphPosition(touch);
+    if (!newPosition) return;
+
+    dragState.current.offset = newPosition;
+
+    document.addEventListener("touchmove", moveMorphTouch, { passive: false });
+    document.addEventListener("touchend", dropMorphTouch);
+  };
+
+  const moveMorphTouch = (e: TouchEvent) => {
+    if (!dragState.current.isDragging || !containerRef.current) return;
+
+    const touch = e.touches[0];
+    if (!touch) return;
+
+    containerRect.current = containerRef.current.getBoundingClientRect();
+
+    const newPosition = _newPosition(touch, containerRect);
+
+    setMorphs((prev) => {
+      const indexToUpdate = dragState.current.currentIndex ?? -1;
+
+      if (indexToUpdate < 0 || indexToUpdate >= prev.length) {
+        return prev;
+      }
+
+      const newmorph = [...prev];
+
+      const updatedMorph = {
+        ...newmorph[indexToUpdate],
+        position: newPosition,
+      };
+
+      newmorph[indexToUpdate] = updatedMorph;
+
+      return newmorph;
+    });
+  };
+
+  const dropMorphTouch = () => {
+    fitWithRadical();
+    dragState.current.isDragging = false;
+
+    document.removeEventListener("touchmove", moveMorphTouch);
+    document.removeEventListener("touchend", dropMorphTouch);
+  };
+//
 
   const _verifyIfTheLeftOrRightIsOccupied = () => {
     const currentIndex = dragState.current.currentIndex;
@@ -244,6 +300,9 @@ const useLireMorphMove = ({ setMorphs }: useLireMorphMoveProps) => {
     targetMorphRef,
     fittedMorph,
     grabMorph,
+    grabMorphTouch,
+    moveMorphTouch,
+    dropMorphTouch,
     setFittedMorph,
   };
 };
