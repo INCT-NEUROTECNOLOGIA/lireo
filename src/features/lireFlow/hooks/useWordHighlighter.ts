@@ -122,7 +122,10 @@ export const useWordHighlighter = ({
 
   const highlightFlow = async (flowId: number): Promise<void> => {
     while (indexRef.current < elementIndexs.current.length) {
-      if (!isReadingRef.current || isNotActiveFlow(flowId)) return;
+      const shouldStopReading =
+        !isReadingRef.current || isNotActiveFlow(flowId);
+
+      if (shouldStopReading) return;
 
       const element: string = elements[elementIndexs.current[indexRef.current]];
 
@@ -151,16 +154,16 @@ export const useWordHighlighter = ({
 
     setCurrentIndex(null);
 
-    if (onFinish) {
-      if (isNotActiveFlow(flowId)) return;
+    if (!onFinish) return;
 
-      await new Promise(
-        (resolve) => (timeoutRef.current = setTimeout(resolve, 500)),
-      );
+    if (isNotActiveFlow(flowId)) return;
 
-      if (!isNotActiveFlow(flowId)) {
-        onFinish();
-      }
+    await new Promise(
+      (resolve) => (timeoutRef.current = setTimeout(resolve, 500)),
+    );
+
+    if (!isNotActiveFlow(flowId)) {
+      onFinish();
     }
   };
 
@@ -189,7 +192,10 @@ export const useWordHighlighter = ({
     const word = currentWordRef.current;
     const container = containerRef.current;
 
-    if (!word || !container || !('IntersectionObserver' in window)) return;
+    const isMissingScrollRequirements =
+      !word || !container || !('IntersectionObserver' in window);
+
+    if (isMissingScrollRequirements) return;
 
     const scrollTimeout = setTimeout(() => {
       word.scrollIntoView({
