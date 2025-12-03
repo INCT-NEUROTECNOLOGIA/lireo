@@ -83,6 +83,10 @@
 }
 
 .textControls__buttons {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 4.4rem;
+  background-color: var(--color-white);
   flex: 1;
   display: flex;
   justify-content: flex-end;
@@ -200,7 +204,7 @@
 
   .textControls__inputContainer {
     width: 100%;
-    gap: 2.5rem;
+    gap: 0.8rem;
   }
 
   .textControls__buttonText {
