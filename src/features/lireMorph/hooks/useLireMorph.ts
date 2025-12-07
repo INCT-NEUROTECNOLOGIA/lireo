@@ -1,7 +1,7 @@
-import { useState } from "react";
-import useLireMorphFilters from "./useLireMorphFilters";
-import useLireMorphMove from "./useLireMorphMove";
-import useLireMorphData from "./useLireMorphData";
+import { useEffect, useState } from 'react';
+import useLireMorphFilters from './useLireMorphFilters';
+import useLireMorphMove from './useLireMorphMove';
+import useLireMorphData from './useLireMorphData';
 
 const useLireMorph = () => {
   const [summaryClose, setSummaryClose] = useState<boolean>(false);
@@ -31,6 +31,7 @@ const useLireMorph = () => {
     fittedMorph,
     grabMorph,
     setFittedMorph,
+    resetAllDragState,
   } = useLireMorphMove({ setMorphs });
 
   const { showPrefixes, showSuffixes, togglePrefixes, toggleSuffixes } =
@@ -45,6 +46,10 @@ const useLireMorph = () => {
       setMorphs,
       setFittedMorph,
     });
+
+  useEffect(() => {
+    resetAllDragState();
+  }, [chosenMode, selectedMainMorph]);
 
   return {
     summaryClose,
