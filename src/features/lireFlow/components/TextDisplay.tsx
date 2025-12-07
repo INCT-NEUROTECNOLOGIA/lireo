@@ -12,6 +12,7 @@ const TextDisplay = ({ fileContent }: { fileContent: string }) => {
     speed,
     speedRef,
     wordsPerMinuteRef,
+    containerRef,
     setSpeed,
     setIsReading,
     nextParagraph,
@@ -40,7 +41,7 @@ const TextDisplay = ({ fileContent }: { fileContent: string }) => {
           }}
         />
 
-        <div className="textContainer">
+        <div className="textContainer" ref={containerRef}>
           {processedText.title && (
             <h2 className="textContainer__textTitle">
               {paragraphIndex === -1 && wordsPerMinuteRef.current !== 0 ? (
@@ -51,6 +52,7 @@ const TextDisplay = ({ fileContent }: { fileContent: string }) => {
                   isReading={isReading}
                   speedRef={speedRef}
                   wordsPerMinuteRef={wordsPerMinuteRef}
+                  containerRef={containerRef}
                 />
               ) : (
                 processedText.title
@@ -72,6 +74,7 @@ const TextDisplay = ({ fileContent }: { fileContent: string }) => {
                   isReading={isReading}
                   speedRef={speedRef}
                   wordsPerMinuteRef={wordsPerMinuteRef}
+                  containerRef={containerRef}
                 />
               ) : (
                 paragraph
