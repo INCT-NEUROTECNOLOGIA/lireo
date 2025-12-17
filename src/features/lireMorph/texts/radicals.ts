@@ -1,86 +1,106 @@
-import { MorphemicWord } from "../types/morphemicWord.type";
-import { PrefixesEnum } from "../types/prefix.enum";
-import { SuffixEnum } from "../types/suffix.enum";
+import { MorphemicWord } from '../types/morphemicWord.type';
+import { PrefixesEnum } from '../types/prefix.enum';
+import { SuffixEnum } from '../types/suffix.enum';
 
 export const radicals = <MorphemicWord[]>[
   {
-    radical: "flor",
+    radical: 'flor',
     prefixes: [],
-    suffixes: [SuffixEnum.IDO, SuffixEnum.ESCER, SuffixEnum.ICULTURA, SuffixEnum.ISTA],
+    suffixes: [
+      SuffixEnum.IDO,
+      SuffixEnum.ESCER,
+      SuffixEnum.ICULTURA,
+      SuffixEnum.ISTA,
+    ],
   },
   {
-    radical: "escr",
+    radical: 'escr',
     prefixes: [],
-    suffixes: [SuffixEnum.EVER, SuffixEnum.ITO, SuffixEnum.ITOR, SuffixEnum.ITORIO],
+    suffixes: [
+      SuffixEnum.EVER,
+      SuffixEnum.ITO,
+      SuffixEnum.ITOR,
+      SuffixEnum.ITORIO,
+    ],
   },
   {
-    radical: "pensa",
+    radical: 'pensa',
     prefixes: [],
     suffixes: [SuffixEnum.MENTO, SuffixEnum.DOR],
   },
   {
-    radical: "audi",
+    radical: 'audi',
     prefixes: [],
     suffixes: [SuffixEnum.CAO, SuffixEnum.TORIO, SuffixEnum.TIVEL],
   },
   {
-    radical: "limp",
+    radical: 'limp',
     prefixes: [],
     suffixes: [SuffixEnum.EZA, SuffixEnum.O],
   },
   {
-    radical: "cort",
+    radical: 'cort',
     prefixes: [],
     suffixes: [SuffixEnum.E, SuffixEnum.ANTE],
   },
   {
-    radical: "constru",
+    radical: 'constru',
     prefixes: [],
     suffixes: [SuffixEnum.TOR, SuffixEnum.CAO],
   },
   {
-    radical: "trabalh",
+    radical: 'trabalh',
     prefixes: [],
     suffixes: [SuffixEnum.A, SuffixEnum.ADOR],
   },
   {
-    radical: "viv",
-    prefixes: [PrefixesEnum.PRE, PrefixesEnum.RE],
+    radical: 'viv',
+    prefixes: [PrefixesEnum.RE],
     suffixes: [SuffixEnum.ER, SuffixEnum.A],
   },
   {
-    radical: "cant",
+    radical: 'cant',
     prefixes: [],
     suffixes: [SuffixEnum.ORA, SuffixEnum.ORIA],
   },
   {
-    radical: "pedr",
+    radical: 'pedr',
     prefixes: [],
     suffixes: [SuffixEnum.EIRO, SuffixEnum.EGULHO, SuffixEnum.ARIA],
   },
   {
-    radical: "cafe",
+    radical: 'cafe',
     prefixes: [],
     suffixes: [SuffixEnum.TERIA, SuffixEnum.TEIRA, SuffixEnum.ZAL],
   },
   {
-    radical: "ferr",
+    radical: 'ferr',
     prefixes: [],
-    suffixes: [SuffixEnum.EIRO, SuffixEnum.OVIA, SuffixEnum.ADURA, SuffixEnum.AMENTA],
+    suffixes: [
+      SuffixEnum.EIRO,
+      SuffixEnum.OVIA,
+      SuffixEnum.ADURA,
+      SuffixEnum.AMENTA,
+    ],
   },
   {
-    radical: "livr",
+    radical: 'livr',
     prefixes: [],
     suffixes: [SuffixEnum.ARIA, SuffixEnum.EIRO],
   },
   {
-    radical: "mar",
+    radical: 'mar',
     prefixes: [],
     suffixes: [SuffixEnum.INHO, SuffixEnum.ITIMO],
   },
   {
-    radical: "fort",
+    radical: 'fort',
     prefixes: [],
     suffixes: [SuffixEnum.IFICAR, SuffixEnum.ALEZA, SuffixEnum.ISSIMO],
-  }
+  },
+  {
+    radical: 'dent',
+    prefixes: [],
+    suffixes: [SuffixEnum.ISTA, SuffixEnum.AL],
+  },
 ];
