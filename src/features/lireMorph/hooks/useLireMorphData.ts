@@ -1,8 +1,6 @@
-import { useMemo, useState, useCallback, useRef } from "react";
-import { radicals } from "../texts/radicals";
-import { lireMorphText } from "../texts/lireMorphText";
-import { Position } from "../types/position.type";
+import { useState, useMemo } from "react";
 import { Affix } from "../types/Affix.type";
+import { Position } from "../types/position.type";
 import { PrefixesEnum } from "../types/prefix.enum";
 import { SuffixEnum } from "../types/suffix.enum";
 
@@ -16,7 +14,7 @@ const useLireMorphData = () => {
   const [affixes, setAffixes] = useState<Affix[]>([]);
   const [showPrefixes, setShowPrefixes] = useState<boolean>(true);
   const [showSuffixes, setShowSuffixes] = useState<boolean>(true);
-  const isInitialLoad = useRef<boolean>(true);
+  const [fittedAffixes, setFittedAffixes] = useState<{ [key: number]: 'left' | 'right' | null }>({});
 
   const cellsGrid = useMemo(() => {
     const cells: Position[] = [];
@@ -54,54 +52,18 @@ const useLireMorphData = () => {
     return targetAffixes.filter(text => !existingAffixes.some(affix => affix.text === text));
   };
 
-  const updateAffixesBasedOnFilters = useCallback((prefixes: PrefixesEnum[], suffixes: SuffixEnum[]): void => {
-    setAffixes(prevAffixes => {
-      const targetAffixes = _getVisibleAffixes(prefixes, suffixes);
-      const existingAffixes = _filterAffixesThatWillBeVisible(prevAffixes, targetAffixes);
-      const newAffixTexts = _findAffixesThatNeedToBeAdded(existingAffixes, targetAffixes);
-      
-      const usedPositions = existingAffixes.map(affix => affix.position);
-      const availablePositions = shuffleCells(cellsGrid).filter(pos => 
-        !usedPositions.some(used => Math.abs(used.x - pos.x) < 5 && Math.abs(used.y - pos.y) < 5)
-      );
-
-      const newAffixes = newAffixTexts.map((text, i) => ({
-        text,
-        position: availablePositions[i] || shuffleCells(cellsGrid)[i],
-      }));
-
-      return [...existingAffixes, ...newAffixes];
-    });
-  }, [showPrefixes, showSuffixes, cellsGrid]);
-
-  const selectRadical = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const index = parseInt(event.target.value);
-    setSelectedRadicalIndex(index);
-    setSummaryClose(true);
-  };
-
-  const togglePrefixes = () => setShowPrefixes(prev => !prev);
-  const toggleSuffixes = () => setShowSuffixes(prev => !prev);
-
-  const selectedRadical = useMemo(() => {
-    if (selectedRadicalIndex === null) return lireMorphText.example.radical;
-    return radicals[selectedRadicalIndex].radical;
-  }, [selectedRadicalIndex]);
-
   return {
-    summaryClose,
-    setSummaryClose,
-    selectedRadicalIndex,
-    selectedRadical,
-    affixes,
-    setAffixes,
-    showPrefixes,
-    showSuffixes,
-    isInitialLoad,
-    updateAffixesBasedOnFilters,
-    selectRadical,
-    togglePrefixes,
-    toggleSuffixes,
+    summaryClose, setSummaryClose,
+    selectedRadicalIndex, setSelectedRadicalIndex,
+    affixes, setAffixes,
+    showPrefixes, setShowPrefixes,
+    showSuffixes, setShowSuffixes,
+    fittedAffixes, setFittedAffixes,
+    cellsGrid,
+    shuffleCells,
+    _getVisibleAffixes,
+    _filterAffixesThatWillBeVisible,
+    _findAffixesThatNeedToBeAdded
   };
 };
 
