@@ -2,6 +2,7 @@ import { lireMorphText } from "../texts/lireMorphText";
 import { AffixCombination } from "../types/affixCombination.type";
 import { MorphemicWord } from "../types/morphemicWord.type";
 
+
 interface LireoMorphSelectorProps {
   selectedMorphIndex: number | null;
   morphema: MorphemicWord[] | AffixCombination[];

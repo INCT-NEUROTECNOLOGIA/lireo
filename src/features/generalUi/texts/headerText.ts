@@ -24,12 +24,12 @@ export const headerText = {
     {
       name: 'LireGrow',
       href: ROUTE_PATHS.LIRE_GROW,
-      icon: "bi bi-triangle",
+      icon: 'bi bi-triangle',
     },
     {
-      name: "LireMorph",
+      name: 'LireMorph',
       href: ROUTE_PATHS.LIRE_MORPH,
-      icon: "bi bi-puzzle",
+      icon: 'bi bi-puzzle',
     },
   ],
   userGuides: 'Guias do Usuário',
@@ -37,12 +37,17 @@ export const headerText = {
     {
       name: 'LireFlow',
       href: ROUTE_PATHS.USER_GUIDE_LIRE_FLOW,
-      icon: 'bi bi-journal-text',
+      icon: '',
     },
     {
       name: 'LireGrow',
       href: ROUTE_PATHS.USER_GUIDE_LIRE_GROW,
-      icon: 'bi bi-journal-text',
+      icon: '',
+    },
+    {
+      name: 'LireMorph',
+      href: ROUTE_PATHS.USER_GUIDE_LIRE_MORPH,
+      icon: '',
     },
   ],
   lireo: { img: '/images/logo-lireo-white.png', alt: 'logo LIRE-O' },

@@ -1,5 +1,6 @@
 import { lireMorphText } from "../texts/lireMorphText";
 
+
 interface LireoMorphModeProps {
   chosenMode: string | null;
   selectedMode: (event: React.ChangeEvent<HTMLInputElement>) => void;

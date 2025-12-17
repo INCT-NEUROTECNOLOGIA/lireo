@@ -7,19 +7,21 @@ const WordHighlighter = ({
   isReading,
   speedRef,
   wordsPerMinuteRef,
+  containerRef,
 }: {
   paragraph: string;
   onFinish?: () => void;
   isReading: boolean;
   speedRef: RefObject<number>;
   wordsPerMinuteRef: RefObject<number>;
+  containerRef: RefObject<HTMLDivElement | null>;
 }) => {
   const {
-    wordsAndSeparators,
+    elements,
     currentIndex,
     currentWordRef,
-    initializeIndexes,
-    updateReadingState,
+    initializeElementIndexs,
+    runReadingFlow,
     scrollToCurrentWord,
   } = useWordHighlighter({
     paragraph,
@@ -27,21 +29,14 @@ const WordHighlighter = ({
     isReading,
     speedRef,
     wordsPerMinuteRef,
+    containerRef,
   });
 
-  useEffect(() => {
-    initializeIndexes();
-  }, [initializeIndexes]);
+  useEffect(initializeElementIndexs, [initializeElementIndexs]);
+  useEffect(runReadingFlow, [runReadingFlow]);
+  useEffect(scrollToCurrentWord, [scrollToCurrentWord]);
 
-  useEffect(() => {
-    updateReadingState();
-  }, [updateReadingState]);
-
-  useEffect(() => {
-    scrollToCurrentWord();
-  }, [currentIndex, scrollToCurrentWord]);
-
-  return wordsAndSeparators.map((element: string, index: number) => (
+  return elements.map((element: string, index: number) => (
     <span
       key={index}
       ref={index === currentIndex ? currentWordRef : null}

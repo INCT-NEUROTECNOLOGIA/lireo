@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { PrefixEnum } from "../types/prefix.enum";
-import { SuffixEnum } from "../types/suffix.enum";
-import { Morph } from "../types/morph.type";
-import { MorphemicWord } from "../types/morphemicWord.type";
-import { AffixCombination } from "../types/affixCombination.type";
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { PrefixesEnum } from '../types/prefix.enum';
+import { SuffixEnum } from '../types/suffix.enum';
+import { Morph } from '../types/morph.type';
+import { MorphemicWord } from '../types/morphemicWord.type';
+import { AffixCombination } from '../types/affixCombination.type';
 
 interface useLireMorphFiltersProps {
   morphs: Morph[];
@@ -12,14 +12,14 @@ interface useLireMorphFiltersProps {
   cellsGrid: { x: number; y: number }[];
   example: MorphemicWord | AffixCombination;
   shuffleCells: (
-    cells: { x: number; y: number }[]
+    cells: { x: number; y: number }[],
   ) => { x: number; y: number }[];
   isMorphemicWord: (
-    word: MorphemicWord | AffixCombination
+    word: MorphemicWord | AffixCombination,
   ) => word is MorphemicWord;
   setMorphs: React.Dispatch<React.SetStateAction<Morph[]>>;
   setFittedMorph: React.Dispatch<
-    React.SetStateAction<{ [key: number]: "left" | "right" | null }>
+    React.SetStateAction<{ [key: number]: 'left' | 'right' | null }>
   >;
 }
 
@@ -42,10 +42,10 @@ const useLireMorphFilters = ({
   const isInitialLoad = useRef<boolean>(true);
 
   const _getVisiblemorph = (
-    prefixes: PrefixEnum[],
-    suffixes: SuffixEnum[]
-  ): (PrefixEnum | SuffixEnum)[] => {
-    let targetmorph: (PrefixEnum | SuffixEnum)[] = [];
+    prefixes: PrefixesEnum[],
+    suffixes: SuffixEnum[],
+  ): (PrefixesEnum | SuffixEnum)[] => {
+    let targetmorph: (PrefixesEnum | SuffixEnum)[] = [];
     if (showPrefixes) {
       targetmorph = [...targetmorph, ...prefixes];
     }
@@ -57,17 +57,17 @@ const useLireMorphFilters = ({
 
   const _filtermorphThatWillBeVisible = (
     morphs: Morph[],
-    targetmorph: (PrefixEnum | SuffixEnum | string)[]
+    targetmorph: (PrefixesEnum | SuffixEnum | string)[],
   ): Morph[] => {
     return morphs.filter((Morph) => targetmorph.includes(Morph.text));
   };
 
   const _findmorphThatNeedToBeAdded = (
     existingmorph: Morph[],
-    targetmorph: (PrefixEnum | SuffixEnum)[]
-  ): (PrefixEnum | SuffixEnum)[] => {
+    targetmorph: (PrefixesEnum | SuffixEnum)[],
+  ): (PrefixesEnum | SuffixEnum)[] => {
     return targetmorph.filter(
-      (text) => !existingmorph.some((Morph) => Morph.text === text)
+      (text) => !existingmorph.some((Morph) => Morph.text === text),
     );
   };
 
@@ -85,18 +85,18 @@ const useLireMorphFilters = ({
   }, [morphs.length]);
 
   const updatemorphBasedOnFilters = useCallback(
-    (prefixes: PrefixEnum[], suffixes: SuffixEnum[]): void => {
+    (prefixes: PrefixesEnum[], suffixes: SuffixEnum[]): void => {
       setMorphs((prevMorph) => {
         const targetmorph = _getVisiblemorph(prefixes, suffixes);
 
         const existingmorph = _filtermorphThatWillBeVisible(
           prevMorph,
-          targetmorph
+          targetmorph,
         );
 
         const newMorphTexts = _findmorphThatNeedToBeAdded(
           existingmorph,
-          targetmorph
+          targetmorph,
         );
 
         const usedPositions = existingmorph.map((Morph) => Morph.position);
@@ -104,8 +104,8 @@ const useLireMorphFilters = ({
           (pos) =>
             !usedPositions.some(
               (used) =>
-                Math.abs(used.x - pos.x) < 5 && Math.abs(used.y - pos.y) < 5
-            )
+                Math.abs(used.x - pos.x) < 5 && Math.abs(used.y - pos.y) < 5,
+            ),
         );
 
         const newmorph = newMorphTexts.map((text, i) => ({
@@ -118,7 +118,7 @@ const useLireMorphFilters = ({
 
       _cleaningFittedMorph();
     },
-    [showPrefixes, showSuffixes, cellsGrid, morphs.length]
+    [showPrefixes, showSuffixes, cellsGrid, morphs.length],
   );
 
   const _updatemorphBasedOnFilters = useCallback(() => {
@@ -128,7 +128,7 @@ const useLireMorphFilters = ({
     } else if (isMorphemicWord(morphema[selectedMorphIndex])) {
       updatemorphBasedOnFilters(
         morphema[selectedMorphIndex].prefixes,
-        morphema[selectedMorphIndex].suffixes
+        morphema[selectedMorphIndex].suffixes,
       );
     }
   }, [selectedMorphIndex, updatemorphBasedOnFilters, example]);
