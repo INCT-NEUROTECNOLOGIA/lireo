@@ -15,8 +15,7 @@ footer {
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
-  max-width: 75rem;
-  padding: 2rem 4rem;
+  padding: 2rem 4.5rem;
   gap: 2rem;
   width: 100%;
 }
@@ -73,4 +72,10 @@ footer {
   font-size: 0.85rem;
   color: var(--color-primary-light);
   padding: 0.9rem;
+}
+
+@media (max-width: 800px) {
+  .footer__content {
+    padding: 2rem;
+  }
 }
