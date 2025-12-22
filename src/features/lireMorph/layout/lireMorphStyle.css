@@ -20,20 +20,20 @@
   min-height: 80vh;
 }
 
-.morphSelect {
+.radicalSelect {
   background-color: var(--color-tertiary);
   color: var(--color-white);
 }
 
-.morphSelect:hover {
+.radicalSelect:hover {
   background-color: var(--color-secondary);
 }
 
-.morphSelect option:disabled {
+.radicalSelect option:disabled {
   color: var(--color-text-tertiary);
 }
 
-.morphSelect:hover option:disabled {
+.radicalSelect:hover option:disabled {
   color: var(--color-text-secondary);
 }
 
@@ -47,12 +47,6 @@
 .checkboxGroup {
   display: flex;
   align-items: center;
-}
-
-.checkboxGroup.disabled {
-  opacity: 0.5;
-  pointer-events: none;
-  cursor: not-allowed;
 }
 
 .checkboxLabel {
@@ -75,18 +69,6 @@
   background-color: var(--color-primary-light);
 }
 
-.modeLabel {
-  background-color: var(--color-secondary-light);
-  color: var(--color-text-secondary);
-  text-transform: uppercase;
-  justify-content: center;
-}
-
-.modeLabel.selected {
-  background-color: var(--color-secondary);
-  color: var(--color-white);
-}
-
 .affixCheckbox {
   width: 18px;
   height: 18px;
@@ -102,14 +84,6 @@
   accent-color: var(--color-primary-hover);
 }
 
-.modeCheckbox {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-  width: 0;
-  height: 0;
-}
-
 .checkboxText {
   user-select: none;
 }
@@ -119,7 +93,7 @@
   border-radius: 8px;
 }
 
-.mainMorph {
+.radical {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -131,7 +105,7 @@
   user-select: none;
 }
 
-.morph {
+.affix {
   position: absolute;
   font-size: 1.4rem;
   text-transform: uppercase;
@@ -141,18 +115,20 @@
   user-select: none;
 }
 
-.suffix,
-.radical,
-.prefix {
+.affix.prefix {
+  background-color: var(--color-tertiary-hover);
+}
+
+.affix.suffix {
   background-color: var(--color-primary-hover);
 }
 
-.morph.dragging {
+.affix.dragging {
   font-size: 2rem;
   cursor: grabbing;
 }
 
-.morph.fitLeft {
+.affix.fitLeft {
   font-size: 2rem;
   background-color: var(--color-highlight);
   cursor: grab;
@@ -160,7 +136,7 @@
   border-radius: 8px 0px 0px 8px;
 }
 
-.morph.fitRight {
+.affix.fitRight {
   font-size: 2rem;
   background-color: var(--color-highlight);
   cursor: grab;
@@ -168,30 +144,34 @@
   border-radius: 0px 8px 8px 0px;
 }
 
-.modeContainer {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
-  flex-wrap: wrap;
+.affix.prefix.fitLeft,
+.affix.prefix.fitRight {
+  background-color: var(--color-highlight);
+  color: var(--color-white);
+}
+
+.affix.suffix.fitLeft,
+.affix.suffix.fitRight {
+  background-color: var(--color-highlight);
+  color: var(--color-white);
 }
 
 @media (min-width: 900px) {
   .suffixLabel:hover {
     background-color: var(--color-primary-hover);
-    color: var(--color-white);
+    color: #ffffff;
   }
 
   .prefixLabel:hover {
     background-color: var(--color-tertiary-hover);
-    color: var(--color-white);
+    color: #ffffff;
   }
 }
 
 @media (max-width: 720px) {
-  .morphSelect,
+  .radicalSelect,
   .checkboxGroup,
-  .checkboxLabel,
-  .affixFiltersContainer {
+  .checkboxLabel {
     width: 100%;
   }
 }

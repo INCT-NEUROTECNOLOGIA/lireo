@@ -1,58 +1,56 @@
-import { Morph } from "../types/morph.type";
+import { Affix } from "../types/Affix.type";
 import LireoMorphAffix from "./LireoMorphAffix";
+
 
 interface LireoMorphWordGameProps {
   containerRef: React.RefObject<HTMLDivElement | null>;
-  mainMorphRef: React.RefObject<HTMLSpanElement | null>;
-  targetMorphRef: React.RefObject<HTMLSpanElement | null>;
-  selectedMainMorph: string;
-  morphs: Morph[];
+  radicalRef: React.RefObject<HTMLSpanElement | null>;
+  targetAffixRef: React.RefObject<HTMLSpanElement | null>;
+  selectedRadical: string;
+  affixes: Affix[];
   dragState: React.RefObject<{
     currentIndex: number | null;
     isDragging: boolean;
     isFittedLeft: boolean;
     isFittedRight: boolean;
     offset: {
-      x: number;
-      y: number;
+        x: number;
+        y: number;
     };
   }>;
-  fittedMorph: { [key: number]: "left" | "right" | null };
-  grabMorph: (
-    e: React.MouseEvent<HTMLSpanElement, MouseEvent>,
-    index: number
-  ) => void;
+  fittedAffixes: {[key: number]: 'left' | 'right' | null};
+  grabAffix: (e: React.MouseEvent<HTMLSpanElement, MouseEvent>, index: number) => void;
 }
 
 const LireoMorphWordGame = ({
   containerRef,
-  mainMorphRef,
-  targetMorphRef,
-  selectedMainMorph,
-  morphs,
+  radicalRef,
+  targetAffixRef,
+  selectedRadical,
+  affixes,
   dragState,
-  fittedMorph,
-  grabMorph,
+  fittedAffixes,
+  grabAffix,
 }: LireoMorphWordGameProps) => {
-  return (
-    <div className="wordsContainer" ref={containerRef}>
-      <span className="mainMorph" ref={mainMorphRef}>
-        {selectedMainMorph}
-      </span>
+    return (
+        <div className="wordsContainer" ref={containerRef}>
+          <span className="radical" ref={radicalRef}>
+            {selectedRadical}
+          </span>
 
-      {morphs.map((morph, index) => (
-        <LireoMorphAffix
-          key={index}
-          index={index}
-          morph={morph}
-          dragState={dragState}
-          fittedMorph={fittedMorph}
-          grabMorph={grabMorph}
-          targetMorphRef={targetMorphRef}
-        />
-      ))}
-    </div>
-  );
+          {affixes.map((affix, index) => (
+            <LireoMorphAffix
+              key={index}
+              index={index}
+              affix={affix}
+              dragState={dragState}
+              fittedAffixes={fittedAffixes}
+              grabAffix={grabAffix}
+              targetAffixRef={targetAffixRef}
+            />
+          ))}
+        </div>
+    );
 };
 
 export default LireoMorphWordGame;

@@ -1,32 +1,25 @@
 import "../layout/lireMorphStyle.css";
 import useLireMorph from "../hooks/useLireMorph";
 import LireoMorthInstructions from "./LireoMorthInstructions";
-import LireoMorphSelector from "./LireoMorphSelector";
+import LireoMorphRadicalSelector from "./LireoMorphRadicalSelector";
 import LireoMorphWordGame from "./LireoMorphWordGame";
 import LireoMorphAffixFilters from "./LireoMorphAffixFilters";
-import LireoMorphMode from "./LireoMorphMode";
+
 
 const LireMorph = () => {
   const {
+    selectedRadical,
+    affixes,
     summaryClose,
-    morphs,
-    morphema,
-    selectedMorphIndex,
-    selectedMainMorph,
-    chosenMode,
-    isPrefixesDisable,
-    isSuffixesDisable,
     dragState,
-    mainMorphRef,
+    radicalRef,
     containerRef,
-    targetMorphRef,
-    fittedMorph,
+    targetAffixRef,
     showPrefixes,
     showSuffixes,
-    isMorphemicWord,
-    selectMode,
-    selectMainMorph,
-    grabMorph,
+    fittedAffixes,
+    selectRadical,
+    grabAffix,
     togglePrefixes,
     toggleSuffixes,
   } = useLireMorph();
@@ -35,36 +28,25 @@ const LireMorph = () => {
     <>
       <LireoMorthInstructions summaryClose={summaryClose} />
       <div className="lireMorphContainer">
-        <LireoMorphMode chosenMode={chosenMode} selectedMode={selectMode} />
         <div className="selectorAndFiltersContainer">
-          <LireoMorphSelector
-            selectedMorphIndex={selectedMorphIndex}
-            morphema={morphema}
-            selectMainMorph={selectMainMorph}
-            chosenMode={chosenMode}
-            isMorphemicWord={isMorphemicWord}
+          <LireoMorphRadicalSelector selectRadical={selectRadical} />
+          <LireoMorphAffixFilters
+            showPrefixes={showPrefixes}
+            showSuffixes={showSuffixes}
+            togglePrefixes={togglePrefixes}
+            toggleSuffixes={toggleSuffixes}
           />
-          {chosenMode === "radical" && (
-            <LireoMorphAffixFilters
-              showPrefixes={showPrefixes}
-              showSuffixes={showSuffixes}
-              isPrefixesDisable={isPrefixesDisable}
-              isSuffixesDisable={isSuffixesDisable}
-              togglePrefixes={togglePrefixes}
-              toggleSuffixes={toggleSuffixes}
-            />
-          )}
         </div>
 
         <LireoMorphWordGame
           containerRef={containerRef}
-          mainMorphRef={mainMorphRef}
-          targetMorphRef={targetMorphRef}
-          selectedMainMorph={selectedMainMorph}
-          morphs={morphs}
+          radicalRef={radicalRef}
+          targetAffixRef={targetAffixRef}
+          selectedRadical={selectedRadical}
+          affixes={affixes}
           dragState={dragState}
-          fittedMorph={fittedMorph}
-          grabMorph={grabMorph}
+          fittedAffixes={fittedAffixes}
+          grabAffix={grabAffix}
         />
       </div>
     </>
