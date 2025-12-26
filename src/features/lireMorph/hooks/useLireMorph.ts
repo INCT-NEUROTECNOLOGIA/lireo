@@ -1,34 +1,22 @@
-import React, {
-  useState,
-  useRef,
-  useMemo,
-  useEffect,
-  useCallback,
-} from 'react';
+import React, { useRef, useMemo, useEffect, useCallback } from 'react';
 import { lireMorphText } from '../texts/lireMorphText';
 import { radicals } from '../texts/radicals';
 import { PrefixesEnum } from '../types/prefix.enum';
 import { SuffixEnum } from '../types/suffix.enum';
 import { Affix } from '../types/Affix.type';
 import { Position } from '../types/position.type';
+import useLireMorphData from './useLireMorphData';
 
 const useLireMorph = () => {
-  const [summaryClose, setSummaryClose] = useState<boolean>(false);
-  const [selectedRadicalIndex, setSelectedRadicalIndex] = useState<
-    number | null
-  >(null);
-  const [affixes, setAffixes] = useState<Affix[]>([]);
-  const [showPrefixes, setShowPrefixes] = useState<boolean>(true);
-  const [showSuffixes, setShowSuffixes] = useState<boolean>(true);
+  const data = useLireMorphData();
+
   const isInitialLoad = useRef<boolean>(true);
   const radicalRef = useRef<HTMLSpanElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const containerRect = useRef<DOMRect | null>(null);
   const targetAffixRef = useRef<HTMLSpanElement | null>(null);
   const targetAffixRect = useRef<DOMRect | null>(null);
-  const [fittedAffixes, setFittedAffixes] = useState<{
-    [key: number]: 'left' | 'right' | null;
-  }>({});
+
   const dragState = useRef({
     currentIndex: null as number | null,
     isDragging: false,
@@ -37,107 +25,53 @@ const useLireMorph = () => {
     offset: { x: 0, y: 0 },
   });
 
-  const ROWS = 4;
-  const COLS = 4;
-  const FLUTTER = 5;
-  const PADDING = 10;
   const THRESHOLD = 15;
   const DISTANCE_FIT = 15;
-
-  const cellsGrid = useMemo(() => {
-    const cells: Position[] = [];
-    for (let row = 0; row < ROWS; row++) {
-      for (let col = 0; col < COLS; col++) {
-        const cellX =
-          (100 / COLS) * (col + 0.5) + (Math.random() * 2 - 1) * FLUTTER;
-        const cellY =
-          (100 / ROWS) * (row + 0.5) + (Math.random() * 2 - 1) * FLUTTER;
-        cells.push({ x: cellX, y: cellY });
-      }
-    }
-    return cells;
-  }, []);
-
-  const shuffleCells = (cells: Position[]) => {
-    const shuffled = [...cells];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
-    return shuffled;
-  };
-
-  const _getVisibleAffixes = (
-    prefixes: PrefixesEnum[],
-    suffixes: SuffixEnum[],
-  ): (PrefixesEnum | SuffixEnum)[] => {
-    let targetAffixes: (PrefixesEnum | SuffixEnum)[] = [];
-    if (showPrefixes) {
-      targetAffixes = [...targetAffixes, ...prefixes];
-    }
-    if (showSuffixes) {
-      targetAffixes = [...targetAffixes, ...suffixes];
-    }
-    return targetAffixes;
-  };
-
-  const _filterAffixesThatWillBeVisible = (
-    affixes: Affix[],
-    targetAffixes: (PrefixesEnum | SuffixEnum)[],
-  ): Affix[] => {
-    return affixes.filter((affix) => targetAffixes.includes(affix.text));
-  };
-
-  const _findAffixesThatNeedToBeAdded = (
-    existingAffixes: Affix[],
-    targetAffixes: (PrefixesEnum | SuffixEnum)[],
-  ): (PrefixesEnum | SuffixEnum)[] => {
-    return targetAffixes.filter(
-      (text) => !existingAffixes.some((affix) => affix.text === text),
-    );
-  };
+  const PADDING = 10;
 
   const _cleaningFittedAffixes = useCallback(() => {
-    setFittedAffixes((prev) => {
+    data.setFittedAffixes((prev) => {
       const newFittedAffixes = { ...prev };
       Object.keys(newFittedAffixes).forEach((key) => {
         const index = parseInt(key);
-        if (index >= affixes.length) {
+
+        if (index >= data.affixes.length) {
           delete newFittedAffixes[index];
         }
       });
 
       return newFittedAffixes;
     });
-  }, [affixes.length]);
+  }, [data.affixes.length, data.setFittedAffixes]);
 
   const updateAffixesBasedOnFilters = useCallback(
     (prefixes: PrefixesEnum[], suffixes: SuffixEnum[]): void => {
-      setAffixes((prevAffixes) => {
-        const targetAffixes = _getVisibleAffixes(prefixes, suffixes);
-
-        const existingAffixes = _filterAffixesThatWillBeVisible(
+      data.setAffixes((prevAffixes) => {
+        const targetAffixes = data._getVisibleAffixes(prefixes, suffixes);
+        const existingAffixes = data._filterAffixesThatWillBeVisible(
           prevAffixes,
           targetAffixes,
         );
-
-        const newAffixTexts = _findAffixesThatNeedToBeAdded(
+        const newAffixTexts = data._findAffixesThatNeedToBeAdded(
           existingAffixes,
           targetAffixes,
         );
 
         const usedPositions = existingAffixes.map((affix) => affix.position);
-        const availablePositions = shuffleCells(cellsGrid).filter(
-          (pos) =>
-            !usedPositions.some(
-              (used) =>
-                Math.abs(used.x - pos.x) < 5 && Math.abs(used.y - pos.y) < 5,
-            ),
-        );
+        const availablePositions = data
+          .shuffleCells(data.cellsGrid)
+          .filter(
+            (pos) =>
+              !usedPositions.some(
+                (used) =>
+                  Math.abs(used.x - pos.x) < 5 && Math.abs(used.y - pos.y) < 5,
+              ),
+          );
 
         const newAffixes = newAffixTexts.map((text, i) => ({
           text,
-          position: availablePositions[i] || shuffleCells(cellsGrid)[i],
+          position:
+            availablePositions[i] || data.shuffleCells(data.cellsGrid)[i],
         }));
 
         return [...existingAffixes, ...newAffixes];
@@ -145,69 +79,42 @@ const useLireMorph = () => {
 
       _cleaningFittedAffixes();
     },
-    [showPrefixes, showSuffixes, cellsGrid, affixes.length],
+    [
+      data.showPrefixes,
+      data.showSuffixes,
+      data.cellsGrid,
+      data.affixes.length,
+      _cleaningFittedAffixes,
+    ],
   );
 
   const selectRadical = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const index = parseInt(event.target.value);
-    setSelectedRadicalIndex(index);
-    setSummaryClose(true);
-
-    _resetAllDragState();
+    data.setSelectedRadicalIndex(index);
+    data.setFittedAffixes({});
+    data.setSummaryClose(true);
   };
 
-  const togglePrefixes = () => {
-    setShowPrefixes((prev) => !prev);
-  };
-
-  const toggleSuffixes = () => {
-    setShowSuffixes((prev) => !prev);
-  };
+  const togglePrefixes = () => data.setShowPrefixes((prev) => !prev);
+  const toggleSuffixes = () => data.setShowSuffixes((prev) => !prev);
 
   const selectedRadical = useMemo(() => {
-    if (selectedRadicalIndex === null) return lireMorphText.example.radical;
-    return radicals[selectedRadicalIndex].radical;
-  }, [selectedRadicalIndex]);
+    if (data.selectedRadicalIndex === null)
+      return lireMorphText.example.radical;
+    return radicals[data.selectedRadicalIndex].radical;
+  }, [data.selectedRadicalIndex]);
 
   const grabAffix = (e: React.MouseEvent, index: number) => {
     e.preventDefault();
-
-    _resetDragStateToIsDragging(index);
-
-    _setTheTargetAffixWithTheMouseInfo(e);
-
-    const newPosition = _getTheNewAffixPosition(e);
-    if (!newPosition) return;
-
-    dragState.current.offset = newPosition;
-
-    document.addEventListener('mousemove', moveAffix);
-    document.addEventListener('mouseup', dropAffix);
-  };
-
-  const _resetDragStateToIsDragging = (index: number) => {
     dragState.current.currentIndex = index;
     dragState.current.isDragging = true;
     dragState.current.isFittedLeft = false;
     dragState.current.isFittedRight = false;
-  };
 
-  const _resetAllDragState = () => {
-    dragState.current.currentIndex = null;
-    dragState.current.isDragging = false;
-    dragState.current.isFittedLeft = false;
-    dragState.current.isFittedRight = false;
-  };
-
-  const _setTheTargetAffixWithTheMouseInfo = (e: React.MouseEvent) => {
     targetAffixRef.current = e.target as HTMLSpanElement;
     targetAffixRect.current = targetAffixRef.current.getBoundingClientRect();
-  };
 
-  const _getTheNewAffixPosition = (e: React.MouseEvent) => {
-    if (!targetAffixRef.current || !targetAffixRect.current) return;
-
-    const newPosition: Position = {
+    dragState.current.offset = {
       x:
         e.clientX -
         targetAffixRect.current.left -
@@ -218,61 +125,44 @@ const useLireMorph = () => {
         targetAffixRect.current.height / 2,
     };
 
-    return newPosition;
+    document.addEventListener('mousemove', moveAffix);
+    document.addEventListener('mouseup', dropAffix);
   };
 
   const moveAffix = (e: MouseEvent) => {
     if (!dragState.current.isDragging || !containerRef.current) return;
-
     containerRect.current = containerRef.current.getBoundingClientRect();
 
-    const newPosition = _newPosition(e, containerRect);
+    const leftPercent = Math.min(
+      Math.max(
+        ((e.clientX - containerRect.current.left - dragState.current.offset.x) /
+          containerRect.current.width) *
+          100,
+        PADDING,
+      ),
+      100 - PADDING,
+    );
+    const topPercent = Math.min(
+      Math.max(
+        ((e.clientY - containerRect.current.top - dragState.current.offset.y) /
+          containerRect.current.height) *
+          100,
+        PADDING,
+      ),
+      100 - PADDING,
+    );
 
-    setAffixes((prev) => {
+    data.setAffixes((prev) => {
       const indexToUpdate = dragState.current.currentIndex ?? -1;
-
-      if (indexToUpdate < 0 || indexToUpdate >= prev.length) {
-        return prev;
-      }
-
+      if (indexToUpdate < 0 || indexToUpdate >= prev.length) return prev;
       const newAffixes = [...prev];
-
-      const updatedAffix = {
+      newAffixes[indexToUpdate] = {
         ...newAffixes[indexToUpdate],
-        position: newPosition,
+        position: { x: leftPercent, y: topPercent },
       };
-
-      newAffixes[indexToUpdate] = updatedAffix;
-
       return newAffixes;
     });
   };
-
-  const _newPosition = (
-    e: MouseEvent,
-    containerRect: React.RefObject<DOMRect | null>,
-  ): Position => {
-    const leftPercent = _clamp(
-      ((e.clientX - containerRect.current!.left - dragState.current.offset.x) /
-        containerRect.current!.width) *
-        100,
-      PADDING,
-      100 - PADDING,
-    );
-
-    const topPercent = _clamp(
-      ((e.clientY - containerRect.current!.top - dragState.current.offset.y) /
-        containerRect.current!.height) *
-        100,
-      PADDING,
-      100 - PADDING,
-    );
-
-    return { x: leftPercent, y: topPercent };
-  };
-
-  const _clamp = (v: number, min: number, max: number) =>
-    Math.min(Math.max(v, min), max);
 
   const dropAffix = () => {
     fitWithRadical();
@@ -281,30 +171,16 @@ const useLireMorph = () => {
     document.removeEventListener('mouseup', dropAffix);
   };
 
-  const _verifyIfTheLeftOrRightIsOccupied = () => {
-    const currentIndex = dragState.current.currentIndex;
-    if (currentIndex === null)
-      return { isLeftOccupied: false, isRightOccupied: false };
-    const isLeftOccupied = Object.entries(fittedAffixes).some(
-      ([idx, side]) => parseInt(idx) !== currentIndex && side === 'left',
-    );
-    const isRightOccupied = Object.entries(fittedAffixes).some(
-      ([idx, side]) => parseInt(idx) !== currentIndex && side === 'right',
-    );
-    return {
-      isLeftOccupied,
-      isRightOccupied,
-    };
-  };
-
   const fitWithRadical = () => {
-    if (dragState.current.currentIndex === null) return;
-    if (!containerRef.current || !radicalRef.current || !targetAffixRef.current)
+    if (
+      dragState.current.currentIndex === null ||
+      !containerRef.current ||
+      !radicalRef.current ||
+      !targetAffixRef.current
+    )
       return;
-
     containerRect.current = containerRef.current.getBoundingClientRect();
     targetAffixRect.current = targetAffixRef.current.getBoundingClientRect();
-
     const radicalRect = radicalRef.current.getBoundingClientRect();
 
     const distanceLeft = Math.abs(
@@ -328,11 +204,16 @@ const useLireMorph = () => {
         100;
     }
 
-    const { isLeftOccupied, isRightOccupied } =
-      _verifyIfTheLeftOrRightIsOccupied();
+    const isLeftOccupied = Object.entries(data.fittedAffixes).some(
+      ([idx, side]) =>
+        parseInt(idx) !== dragState.current.currentIndex && side === 'left',
+    );
+    const isRightOccupied = Object.entries(data.fittedAffixes).some(
+      ([idx, side]) =>
+        parseInt(idx) !== dragState.current.currentIndex && side === 'right',
+    );
 
     if (distanceLeft < THRESHOLD && !isLeftOccupied) {
-      dragState.current.isFittedLeft = true;
       fittedSide = 'left';
       fitPosition.x =
         ((radicalRect.left -
@@ -342,7 +223,6 @@ const useLireMorph = () => {
           containerRect.current.width) *
         100;
     } else if (distanceRight < THRESHOLD && !isRightOccupied) {
-      dragState.current.isFittedRight = true;
       fittedSide = 'right';
       fitPosition.x =
         ((radicalRect.right -
@@ -353,28 +233,21 @@ const useLireMorph = () => {
         100;
     }
 
-    if (fitPosition.x != 0 && fitPosition.y != 0 && fittedSide) {
-      setFittedAffixes((prev) => ({
+    if (fitPosition.x !== 0 && fitPosition.y !== 0 && fittedSide) {
+      data.setFittedAffixes((prev) => ({
         ...prev,
         [dragState.current.currentIndex!]: fittedSide,
       }));
-
-      setAffixes((prev: Affix[]) =>
+      data.setAffixes((prev: Affix[]) =>
         prev.map((a, i) =>
           i === dragState.current.currentIndex
-            ? {
-                ...a,
-                position: fitPosition,
-              }
+            ? { ...a, position: fitPosition }
             : a,
         ),
       );
     } else {
-      dragState.current.isFittedLeft = false;
-      dragState.current.isFittedRight = false;
-
-      if (fittedAffixes[dragState.current.currentIndex!]) {
-        setFittedAffixes((prev) => {
+      if (data.fittedAffixes[dragState.current.currentIndex!]) {
+        data.setFittedAffixes((prev) => {
           const newFittedAffixes = { ...prev };
           delete newFittedAffixes[dragState.current.currentIndex!];
           return newFittedAffixes;
@@ -387,56 +260,57 @@ const useLireMorph = () => {
   const previousShowPrefixes = useRef<boolean>(true);
   const previousShowSuffixes = useRef<boolean>(true);
 
-  const _updateAffixesBasedOnFilters = useCallback(() => {
-    if (selectedRadicalIndex === null) {
-      updateAffixesBasedOnFilters(
-        lireMorphText.example.prefixes,
-        lireMorphText.example.suffixes,
-      );
-    } else {
-      updateAffixesBasedOnFilters(
-        radicals[selectedRadicalIndex].prefixes,
-        radicals[selectedRadicalIndex].suffixes,
-      );
-    }
-  }, [selectedRadicalIndex, updateAffixesBasedOnFilters]);
-
   useEffect(() => {
+    const _update = () => {
+      if (data.selectedRadicalIndex === null) {
+        updateAffixesBasedOnFilters(
+          lireMorphText.example.prefixes,
+          lireMorphText.example.suffixes,
+        );
+      } else {
+        updateAffixesBasedOnFilters(
+          radicals[data.selectedRadicalIndex].prefixes,
+          radicals[data.selectedRadicalIndex].suffixes,
+        );
+      }
+    };
+
     const radicalChanged =
-      previousRadicalIndex.current !== selectedRadicalIndex;
+      previousRadicalIndex.current !== data.selectedRadicalIndex;
     const filtersChanged =
-      previousShowPrefixes.current !== showPrefixes ||
-      previousShowSuffixes.current !== showSuffixes;
+      previousShowPrefixes.current !== data.showPrefixes ||
+      previousShowSuffixes.current !== data.showSuffixes;
 
     if (isInitialLoad.current || radicalChanged) {
-      setFittedAffixes({});
-      _updateAffixesBasedOnFilters();
+      data.setFittedAffixes({});
+      _update();
       isInitialLoad.current = false;
     } else if (filtersChanged) {
-      _updateAffixesBasedOnFilters();
+      _update();
     }
 
-    previousRadicalIndex.current = selectedRadicalIndex;
-    previousShowPrefixes.current = showPrefixes;
-    previousShowSuffixes.current = showSuffixes;
+    previousRadicalIndex.current = data.selectedRadicalIndex;
+    previousShowPrefixes.current = data.showPrefixes;
+    previousShowSuffixes.current = data.showSuffixes;
   }, [
-    selectedRadicalIndex,
-    showPrefixes,
-    showSuffixes,
+    data.selectedRadicalIndex,
+    data.showPrefixes,
+    data.showSuffixes,
     updateAffixesBasedOnFilters,
+    data.setFittedAffixes,
   ]);
 
   return {
     selectedRadical,
-    affixes,
-    summaryClose,
+    affixes: data.affixes,
+    summaryClose: data.summaryClose,
+    showPrefixes: data.showPrefixes,
+    showSuffixes: data.showSuffixes,
+    fittedAffixes: data.fittedAffixes,
     dragState,
     radicalRef,
     containerRef,
     targetAffixRef,
-    showPrefixes,
-    showSuffixes,
-    fittedAffixes,
     selectRadical,
     grabAffix,
     togglePrefixes,
