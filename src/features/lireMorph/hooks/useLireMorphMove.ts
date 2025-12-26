@@ -1,6 +1,6 @@
-import { useRef, useState } from "react";
-import { Position } from "../types/position.type";
-import { Morph } from "../types/morph.type";
+import { useRef, useState } from 'react';
+import { Position } from '../types/position.type';
+import { Morph } from '../types/morph.type';
 
 interface useLireMorphMoveProps {
   setMorphs: React.Dispatch<React.SetStateAction<Morph[]>>;
@@ -11,7 +11,7 @@ const DISTANCE_FIT = 15;
 
 const useLireMorphMove = ({ setMorphs }: useLireMorphMoveProps) => {
   const [fittedMorph, setFittedMorph] = useState<{
-    [key: number]: "left" | "right" | null;
+    [key: number]: 'left' | 'right' | null;
   }>({});
   const containerRect = useRef<DOMRect | null>(null);
   const targetMorphRect = useRef<DOMRect | null>(null);
@@ -38,8 +38,8 @@ const useLireMorphMove = ({ setMorphs }: useLireMorphMoveProps) => {
 
     dragState.current.offset = newPosition;
 
-    document.addEventListener("mousemove", moveMorph);
-    document.addEventListener("mouseup", dropMorph);
+    document.addEventListener('mousemove', moveMorph);
+    document.addEventListener('mouseup', dropMorph);
   };
 
   const _resetDragStateToIsDragging = (index: number) => {
@@ -47,6 +47,15 @@ const useLireMorphMove = ({ setMorphs }: useLireMorphMoveProps) => {
     dragState.current.isDragging = true;
     dragState.current.isFittedLeft = false;
     dragState.current.isFittedRight = false;
+  };
+
+  const resetAllDragState = () => {
+    dragState.current.currentIndex = null;
+    dragState.current.isDragging = false;
+    dragState.current.isFittedLeft = false;
+    dragState.current.isFittedRight = false;
+    dragState.current.offset = { x: 0, y: 0 };
+    setFittedMorph({});
   };
 
   const _setTheTargetMorphWithTheMouseInfo = (e: React.MouseEvent) => {
@@ -100,14 +109,14 @@ const useLireMorphMove = ({ setMorphs }: useLireMorphMoveProps) => {
 
   const _newPosition = (
     e: MouseEvent,
-    containerRect: React.RefObject<DOMRect | null>
+    containerRect: React.RefObject<DOMRect | null>,
   ): Position => {
     const leftPercent = _clamp(
       ((e.clientX - containerRect.current!.left - dragState.current.offset.x) /
         containerRect.current!.width) *
         100,
       PADDING,
-      100 - PADDING
+      100 - PADDING,
     );
 
     const topPercent = _clamp(
@@ -115,7 +124,7 @@ const useLireMorphMove = ({ setMorphs }: useLireMorphMoveProps) => {
         containerRect.current!.height) *
         100,
       PADDING,
-      100 - PADDING
+      100 - PADDING,
     );
 
     return { x: leftPercent, y: topPercent };
@@ -127,8 +136,8 @@ const useLireMorphMove = ({ setMorphs }: useLireMorphMoveProps) => {
   const dropMorph = () => {
     fitWithRadical();
     dragState.current.isDragging = false;
-    document.removeEventListener("mousemove", moveMorph);
-    document.removeEventListener("mouseup", dropMorph);
+    document.removeEventListener('mousemove', moveMorph);
+    document.removeEventListener('mouseup', dropMorph);
   };
 
   const _verifyIfTheLeftOrRightIsOccupied = () => {
@@ -136,10 +145,10 @@ const useLireMorphMove = ({ setMorphs }: useLireMorphMoveProps) => {
     if (currentIndex === null)
       return { isLeftOccupied: false, isRightOccupied: false };
     const isLeftOccupied = Object.entries(fittedMorph).some(
-      ([idx, side]) => parseInt(idx) !== currentIndex && side === "left"
+      ([idx, side]) => parseInt(idx) !== currentIndex && side === 'left',
     );
     const isRightOccupied = Object.entries(fittedMorph).some(
-      ([idx, side]) => parseInt(idx) !== currentIndex && side === "right"
+      ([idx, side]) => parseInt(idx) !== currentIndex && side === 'right',
     );
     return {
       isLeftOccupied,
@@ -162,16 +171,16 @@ const useLireMorphMove = ({ setMorphs }: useLireMorphMoveProps) => {
     const radicalRect = mainMorphRef.current.getBoundingClientRect();
 
     const distanceLeft = Math.abs(
-      targetMorphRect.current.right - radicalRect.left
+      targetMorphRect.current.right - radicalRect.left,
     );
     const distanceRight = Math.abs(
-      targetMorphRect.current.left - radicalRect.right
+      targetMorphRect.current.left - radicalRect.right,
     );
     const distanceTop = targetMorphRect.current.bottom - radicalRect.top;
     const distanceBottom = targetMorphRect.current.top - radicalRect.bottom;
 
     let fitPosition: Position = { x: 0, y: 0 };
-    let fittedSide: "left" | "right" | null = null;
+    let fittedSide: 'left' | 'right' | null = null;
 
     if (distanceBottom < THRESHOLD || distanceTop < THRESHOLD) {
       fitPosition.y =
@@ -187,7 +196,7 @@ const useLireMorphMove = ({ setMorphs }: useLireMorphMoveProps) => {
 
     if (distanceLeft < THRESHOLD && !isLeftOccupied) {
       dragState.current.isFittedLeft = true;
-      fittedSide = "left";
+      fittedSide = 'left';
       fitPosition.x =
         ((radicalRect.left -
           targetMorphRect.current.width / 2 -
@@ -197,7 +206,7 @@ const useLireMorphMove = ({ setMorphs }: useLireMorphMoveProps) => {
         100;
     } else if (distanceRight < THRESHOLD && !isRightOccupied) {
       dragState.current.isFittedRight = true;
-      fittedSide = "right";
+      fittedSide = 'right';
       fitPosition.x =
         ((radicalRect.right -
           containerRect.current.left +
@@ -220,8 +229,8 @@ const useLireMorphMove = ({ setMorphs }: useLireMorphMoveProps) => {
                 ...a,
                 position: fitPosition,
               }
-            : a
-        )
+            : a,
+        ),
       );
     } else {
       dragState.current.isFittedLeft = false;
@@ -245,6 +254,7 @@ const useLireMorphMove = ({ setMorphs }: useLireMorphMoveProps) => {
     fittedMorph,
     grabMorph,
     setFittedMorph,
+    resetAllDragState,
   };
 };
 

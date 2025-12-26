@@ -1,4 +1,4 @@
-import { lireMorphText } from "../texts/lireMorphText";
+import { lireMorphText } from '../texts/lireMorphText';
 
 interface LireoMorphModeProps {
   chosenMode: string | null;
@@ -13,7 +13,7 @@ const LireoMorphMode = ({ chosenMode, selectedMode }: LireoMorphModeProps) => {
           <label
             key={index}
             className={`checkboxLabel modeLabel ${
-              chosenMode === mode ? "selected" : ""
+              chosenMode === mode ? 'selected' : ''
             }`}
           >
             <input
