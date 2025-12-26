@@ -139,6 +139,7 @@
   transition: font-size 0.3s ease-in-out;
   transform: translate(-50%, -50%);
   user-select: none;
+  touch-action: none;
 }
 
 .suffix,

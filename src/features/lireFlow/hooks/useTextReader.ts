@@ -144,7 +144,7 @@ export const useTextReader = () => {
     }
   };
 
-  const resetSelectFile = (event: React.MouseEvent<HTMLInputElement>) => {
+  const resetSelectFile = (event: React.PointerEvent<HTMLInputElement>) => {
     event.currentTarget.value = '';
   };
 

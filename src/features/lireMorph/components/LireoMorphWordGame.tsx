@@ -1,5 +1,5 @@
-import { Morph } from "../types/morph.type";
-import LireoMorphAffix from "./LireoMorphAffix";
+import { Morph } from '../types/morph.type';
+import LireoMorphAffix from './LireoMorphAffix';
 
 interface LireoMorphWordGameProps {
   containerRef: React.RefObject<HTMLDivElement | null>;
@@ -17,10 +17,10 @@ interface LireoMorphWordGameProps {
       y: number;
     };
   }>;
-  fittedMorph: { [key: number]: "left" | "right" | null };
+  fittedMorph: { [key: number]: 'left' | 'right' | null };
   grabMorph: (
-    e: React.MouseEvent<HTMLSpanElement, MouseEvent>,
-    index: number
+    e: React.PointerEvent<HTMLSpanElement, PointerEvent>,
+    index: number,
   ) => void;
 }
 

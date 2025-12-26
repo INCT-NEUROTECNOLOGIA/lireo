@@ -18,6 +18,7 @@ const useLireMorphMove = ({ setMorphs }: useLireMorphMoveProps) => {
   const mainMorphRef = useRef<HTMLSpanElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const targetMorphRef = useRef<HTMLSpanElement | null>(null);
+  const lastPointerEventRef = useRef<PointerEvent | null>(null);
   const dragState = useRef({
     currentIndex: null as number | null,
     isDragging: false,
@@ -26,8 +27,10 @@ const useLireMorphMove = ({ setMorphs }: useLireMorphMoveProps) => {
     offset: { x: 0, y: 0 },
   });
 
-  const grabMorph = (e: React.MouseEvent, index: number) => {
+  const grabMorph = (e: React.PointerEvent, index: number) => {
     e.preventDefault();
+
+    (e.target as HTMLElement).setPointerCapture(e.pointerId);
 
     _resetDragStateToIsDragging(index);
 
@@ -38,8 +41,8 @@ const useLireMorphMove = ({ setMorphs }: useLireMorphMoveProps) => {
 
     dragState.current.offset = newPosition;
 
-    document.addEventListener('mousemove', moveMorph);
-    document.addEventListener('mouseup', dropMorph);
+    document.addEventListener('pointermove', moveMorph);
+    document.addEventListener('pointerup', dropMorph);
   };
 
   const _resetDragStateToIsDragging = (index: number) => {
@@ -58,12 +61,12 @@ const useLireMorphMove = ({ setMorphs }: useLireMorphMoveProps) => {
     setFittedMorph({});
   };
 
-  const _setTheTargetMorphWithTheMouseInfo = (e: React.MouseEvent) => {
+  const _setTheTargetMorphWithTheMouseInfo = (e: React.PointerEvent) => {
     targetMorphRef.current = e.target as HTMLSpanElement;
     targetMorphRect.current = targetMorphRef.current.getBoundingClientRect();
   };
 
-  const _getTheNewMorphPosition = (e: React.MouseEvent) => {
+  const _getTheNewMorphPosition = (e: React.PointerEvent) => {
     if (!targetMorphRef.current || !targetMorphRect.current) return;
 
     const newPosition: Position = {
@@ -80,12 +83,16 @@ const useLireMorphMove = ({ setMorphs }: useLireMorphMoveProps) => {
     return newPosition;
   };
 
-  const moveMorph = (e: MouseEvent) => {
+  const moveMorph = (e: PointerEvent) => {
     if (!dragState.current.isDragging || !containerRef.current) return;
+    lastPointerEventRef.current = e;
 
     containerRect.current = containerRef.current.getBoundingClientRect();
 
-    const newPosition = _newPosition(e, containerRect);
+    const newPosition = _newPosition(
+      lastPointerEventRef.current!,
+      containerRect,
+    );
 
     setMorphs((prev) => {
       const indexToUpdate = dragState.current.currentIndex ?? -1;
@@ -108,7 +115,7 @@ const useLireMorphMove = ({ setMorphs }: useLireMorphMoveProps) => {
   };
 
   const _newPosition = (
-    e: MouseEvent,
+    e: PointerEvent,
     containerRect: React.RefObject<DOMRect | null>,
   ): Position => {
     const leftPercent = _clamp(
@@ -136,8 +143,8 @@ const useLireMorphMove = ({ setMorphs }: useLireMorphMoveProps) => {
   const dropMorph = () => {
     fitWithRadical();
     dragState.current.isDragging = false;
-    document.removeEventListener('mousemove', moveMorph);
-    document.removeEventListener('mouseup', dropMorph);
+    document.removeEventListener('pointermove', moveMorph);
+    document.removeEventListener('pointerup', dropMorph);
   };
 
   const _verifyIfTheLeftOrRightIsOccupied = () => {

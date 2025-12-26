@@ -1,5 +1,5 @@
-import useLireoMorphAffix from "../hooks/useLireoMorphAffix";
-import { Morph } from "../types/morph.type";
+import useLireoMorphAffix from '../hooks/useLireoMorphAffix';
+import { Morph } from '../types/morph.type';
 
 interface LireoMorphAffixProps {
   index: number;
@@ -14,10 +14,10 @@ interface LireoMorphAffixProps {
       y: number;
     };
   }>;
-  fittedMorph: { [key: number]: "left" | "right" | null };
+  fittedMorph: { [key: number]: 'left' | 'right' | null };
   grabMorph: (
-    e: React.MouseEvent<HTMLSpanElement, MouseEvent>,
-    index: number
+    e: React.PointerEvent<HTMLSpanElement, PointerEvent>,
+    index: number,
   ) => void;
   targetMorphRef: React.RefObject<HTMLSpanElement | null>;
 }
@@ -40,7 +40,7 @@ const LireoMorphAffix = ({
   return (
     <span
       key={index}
-      className={"morph" + getMorphType() + classType()}
+      className={'morph' + getMorphType() + classType()}
       style={{
         left: leftPosition,
         top: topPosition,
