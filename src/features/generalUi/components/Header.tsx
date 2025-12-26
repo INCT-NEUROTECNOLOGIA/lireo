@@ -17,13 +17,11 @@ const Header: React.FC = () => {
   return (
     <div className="header__container">
       <header>
-        <div className="header__logoContainer">
-          <img
-            className="header__logoContainer__logo"
-            src={getPublicAssetUrl(headerText.lireo.img)}
-            alt={headerText.lireo.alt}
-          />
-        </div>
+        <img
+          className="header__logoContainer__logo"
+          src={getPublicAssetUrl(headerText.lireo.img)}
+          alt={headerText.lireo.alt}
+        />
         <nav>
           <div className="menu__desktop">
             {headerText.menuLinks.map(
