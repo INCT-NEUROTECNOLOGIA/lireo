@@ -1,9 +1,19 @@
-import "../../../../utils/layout/userGuideStyle.css";
-import { userGuideText } from "../text/TextUserGuide";
-import SectionUserGuide from "../../../../utils/components/SectionUserGuide";
-import FadeIn from "../../../../utils/components/FadeIn";
+import '../layout/userGuideStyle.css';
+import SectionUserGuide from './SectionUserGuide';
+import FadeIn from './FadeIn';
+import { SectionUserGuideProps } from './SectionInterfaces';
 
-const UserGuide = () => {
+interface UserGuideText {
+  title: string;
+  text: string;
+  sections: SectionUserGuideProps[];
+}
+
+interface UserGuideProps {
+  userGuideText: UserGuideText;
+}
+
+const UserGuide = ({ userGuideText }: UserGuideProps) => {
   return (
     <div className="userGuide__container">
       <div className="pageSummary">

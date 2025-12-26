@@ -1,9 +1,9 @@
-import React from "react";
-import MemberCard from "./MemberCard";
-import TeamCarousel from "./MemberCarousel";
+import React from 'react';
+import MemberCard from './MemberCard';
+import TeamCarousel from './MemberCarousel';
 
 export interface Member {
-  type: "teamMember" | "collaborator";
+  type: 'teamMember' | 'collaborator';
   name?: string;
   role?: string;
   position?: string;

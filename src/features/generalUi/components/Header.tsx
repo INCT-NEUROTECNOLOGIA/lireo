@@ -1,7 +1,8 @@
-import "../layout/header.css";
-import { getPublicAssetUrl } from "../../../utils/pathUtils";
-import { headerText } from "../texts/headerText";
-import useHeader from "../hooks/useHeader";
+import '../layout/header.css';
+import { getPublicAssetUrl } from '../../../utils/pathUtils';
+import { headerText } from '../texts/headerText';
+import useHeader from '../hooks/useHeader';
+import React from 'react';
 
 const Header: React.FC = () => {
   const {
@@ -16,13 +17,11 @@ const Header: React.FC = () => {
   return (
     <div className="header__container">
       <header>
-        <div className="header__logoContainer">
-          <img
-            className="header__logoContainer__logo"
-            src={getPublicAssetUrl(headerText.lireo.img)}
-            alt={headerText.lireo.alt}
-          />
-        </div>
+        <img
+          className="header__logoContainer__logo"
+          src={getPublicAssetUrl(headerText.lireo.img)}
+          alt={headerText.lireo.alt}
+        />
         <nav>
           <div className="menu__desktop">
             {headerText.menuLinks.map(
@@ -38,15 +37,15 @@ const Header: React.FC = () => {
                     <i className={link.icon}></i>
                     {link.name}
                   </a>
-                ))
+                )),
             )}
           </div>
           <button className="menu__toggle__mobile" onClick={handleMenuMobile}>
             <i
               className={
                 menuMobileOpen || activitesList || userGuidesList
-                  ? "bi bi-x-lg"
-                  : "bi bi-list"
+                  ? 'bi bi-x-lg'
+                  : 'bi bi-list'
               }
             ></i>
           </button>
@@ -54,7 +53,7 @@ const Header: React.FC = () => {
       </header>
       <div
         className={
-          "menu__toggle__mobile__content" + (menuMobileOpen ? " active" : "")
+          'menu__toggle__mobile__content' + (menuMobileOpen ? ' active' : '')
         }
       >
         {headerText.menuLinks.map(
@@ -70,13 +69,13 @@ const Header: React.FC = () => {
                 <i className={link.icon}></i>
                 {link.name}
               </a>
-            ))
+            )),
         )}
       </div>
       <div
         className={
-          "menu__toggle__activitiesList" +
-          (activitesList || userGuidesList ? " active" : "")
+          'menu__toggle__activitiesList' +
+          (activitesList || userGuidesList ? ' active' : '')
         }
       >
         {linkList.map((item, index) => (

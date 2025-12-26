@@ -1,8 +1,8 @@
-import "../layout/lireGrowStyle.css";
-import { lireGrowText } from "../texts/lireGrowText.ts";
-import useLireGrow from "../hooks/useLireGrow.ts";
-import { getPublicAssetUrl } from "../../../utils/pathUtils.ts";
-import { ROUTE_PATHS } from "../../../config/routes.ts";
+import '../layout/lireGrowStyle.css';
+import { lireGrowText } from '../texts/lireGrowText.ts';
+import useLireGrow from '../hooks/useLireGrow.ts';
+import { getPublicAssetUrl } from '../../../utils/pathUtils.ts';
+import { ROUTE_PATHS } from '../../../config/routes.ts';
 
 const LireGrow = () => {
   const {
@@ -23,7 +23,7 @@ const LireGrow = () => {
   } = useLireGrow();
   return (
     <>
-      <div className={"taskSummary" + (summaryClose ? " hidden" : "")}>
+      <div className={'taskSummary' + (summaryClose ? ' hidden' : '')}>
         <h1>{lireGrowText.summary.title}</h1>
         <ul>
           {lireGrowText.summary.texts.map((text, index) => (
@@ -94,7 +94,7 @@ const LireGrow = () => {
         <div className="phraseContainer" style={{ fontSize: `${fontSize}px` }}>
           {phrase.slice(0, currentIndex).map((_, index) => (
             <span key={index} ref={currentPartRef}>
-              {phrase.slice(0, index + 1).join(" ")}
+              {phrase.slice(0, index + 1).join(' ')}
             </span>
           ))}
         </div>
@@ -131,7 +131,7 @@ const LireGrow = () => {
             {correctAnswer !== null && (
               <span
                 className={`resultText ${
-                  correctAnswer ? "correct" : "incorrect"
+                  correctAnswer ? 'correct' : 'incorrect'
                 }`}
               >
                 {correctAnswer ? lireGrowText.correct : lireGrowText.incorrect}

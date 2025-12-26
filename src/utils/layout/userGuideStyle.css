@@ -71,6 +71,7 @@
 }
 
 .loadText,
+.objective,
 .tips {
   background-color: var(--color-accent);
   border-radius: 15px;
@@ -88,7 +89,7 @@
   margin: 0.9rem 0;
 }
 
-.readingLevels .bi-chevron-right {
+.bi-chevron-right {
   color: var(--color-secondary);
 }
 

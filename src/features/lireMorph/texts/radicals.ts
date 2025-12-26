@@ -1,10 +1,10 @@
-import { MorphemicWord } from "../types/morphemicWord.type";
-import { PrefixEnum } from "../types/prefix.enum";
-import { SuffixEnum } from "../types/suffix.enum";
+import { MorphemicWord } from '../types/morphemicWord.type';
+import { PrefixEnum } from '../types/prefix.enum';
+import { SuffixEnum } from '../types/suffix.enum';
 
 export const radicals = <MorphemicWord[]>[
   {
-    radical: "flor",
+    radical: 'flor',
     prefixes: [],
     suffixes: [
       SuffixEnum.IDO,
@@ -14,7 +14,7 @@ export const radicals = <MorphemicWord[]>[
     ],
   },
   {
-    radical: "escr",
+    radical: 'escr',
     prefixes: [],
     suffixes: [
       SuffixEnum.EVER,
@@ -24,57 +24,57 @@ export const radicals = <MorphemicWord[]>[
     ],
   },
   {
-    radical: "pensa",
+    radical: 'pensa',
     prefixes: [],
     suffixes: [SuffixEnum.MENTO, SuffixEnum.DOR],
   },
   {
-    radical: "audi",
+    radical: 'audi',
     prefixes: [],
     suffixes: [SuffixEnum.CAO, SuffixEnum.TORIO, SuffixEnum.TIVEL],
   },
   {
-    radical: "limp",
+    radical: 'limp',
     prefixes: [],
     suffixes: [SuffixEnum.EZA, SuffixEnum.O],
   },
   {
-    radical: "cort",
+    radical: 'cort',
     prefixes: [],
     suffixes: [SuffixEnum.E, SuffixEnum.ANTE],
   },
   {
-    radical: "constru",
+    radical: 'constru',
     prefixes: [],
     suffixes: [SuffixEnum.TOR, SuffixEnum.CAO],
   },
   {
-    radical: "trabalh",
+    radical: 'trabalh',
     prefixes: [],
     suffixes: [SuffixEnum.A, SuffixEnum.ADOR],
   },
   {
-    radical: "viv",
-    prefixes: [PrefixEnum.PRE, PrefixEnum.RE],
+    radical: 'viv',
+    prefixes: [PrefixEnum.RE],
     suffixes: [SuffixEnum.ER, SuffixEnum.A],
   },
   {
-    radical: "cant",
+    radical: 'cant',
     prefixes: [],
     suffixes: [SuffixEnum.ORA, SuffixEnum.ORIA],
   },
   {
-    radical: "pedr",
+    radical: 'pedr',
     prefixes: [],
     suffixes: [SuffixEnum.EIRO, SuffixEnum.EGULHO, SuffixEnum.ARIA],
   },
   {
-    radical: "cafe",
+    radical: 'cafe',
     prefixes: [],
     suffixes: [SuffixEnum.TERIA, SuffixEnum.TEIRA, SuffixEnum.ZAL],
   },
   {
-    radical: "ferr",
+    radical: 'ferr',
     prefixes: [],
     suffixes: [
       SuffixEnum.EIRO,
@@ -84,22 +84,22 @@ export const radicals = <MorphemicWord[]>[
     ],
   },
   {
-    radical: "livr",
+    radical: 'livr',
     prefixes: [],
     suffixes: [SuffixEnum.ARIA, SuffixEnum.EIRO],
   },
   {
-    radical: "mar",
+    radical: 'mar',
     prefixes: [],
     suffixes: [SuffixEnum.INHO, SuffixEnum.ITIMO],
   },
   {
-    radical: "fort",
+    radical: 'fort',
     prefixes: [],
     suffixes: [SuffixEnum.IFICAR, SuffixEnum.ALEZA, SuffixEnum.ISSIMO],
   },
   {
-    radical: "dent",
+    radical: 'dent',
     prefixes: [],
     suffixes: [SuffixEnum.ISTA, SuffixEnum.AL],
   },

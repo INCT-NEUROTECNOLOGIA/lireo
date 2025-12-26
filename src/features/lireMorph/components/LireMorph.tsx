@@ -1,10 +1,10 @@
-import "../layout/lireMorphStyle.css";
-import useLireMorph from "../hooks/useLireMorph";
-import LireoMorthInstructions from "./LireoMorthInstructions";
-import LireoMorphSelector from "./LireoMorphSelector";
-import LireoMorphWordGame from "./LireoMorphWordGame";
-import LireoMorphAffixFilters from "./LireoMorphAffixFilters";
-import LireoMorphMode from "./LireoMorphMode";
+import '../layout/lireMorphStyle.css';
+import useLireMorph from '../hooks/useLireMorph';
+import LireoMorthInstructions from './LireoMorthInstructions';
+import LireoMorphSelector from './LireoMorphSelector';
+import LireoMorphWordGame from './LireoMorphWordGame';
+import LireoMorphAffixFilters from './LireoMorphAffixFilters';
+import LireoMorphMode from './LireoMorphMode';
 
 const LireMorph = () => {
   const {
@@ -44,7 +44,7 @@ const LireMorph = () => {
             chosenMode={chosenMode}
             isMorphemicWord={isMorphemicWord}
           />
-          {chosenMode === "radical" && (
+          {chosenMode === 'radical' && (
             <LireoMorphAffixFilters
               showPrefixes={showPrefixes}
               showSuffixes={showSuffixes}

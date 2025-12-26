@@ -1,7 +1,7 @@
-import React from "react";
-import "../layout/aboutUs.css";
-import { getPublicAssetUrl } from "../../../utils/pathUtils";
-import { Member } from "./Section";
+import React from 'react';
+import '../layout/aboutUs.css';
+import { getPublicAssetUrl } from '../../../utils/pathUtils';
+import { Member } from './Section';
 
 export interface MemberCardProps {
   member?: Member;
@@ -10,7 +10,7 @@ export interface MemberCardProps {
 const MemberCard: React.FC<MemberCardProps> = ({ member }) => {
   return (
     <>
-      {member?.type === "teamMember" && (
+      {member?.type === 'teamMember' && (
         <div className="aboutUsContainer__member">
           <img
             src={getPublicAssetUrl(member.photo)}
@@ -18,7 +18,7 @@ const MemberCard: React.FC<MemberCardProps> = ({ member }) => {
             className="aboutUsContainer__teamMemberPhoto"
             onError={(e) => {
               (e.target as HTMLImageElement).src = getPublicAssetUrl(
-                "/images/placeholder.jpg"
+                '/images/placeholder.jpg',
               );
             }}
           />
@@ -34,7 +34,7 @@ const MemberCard: React.FC<MemberCardProps> = ({ member }) => {
         </div>
       )}
 
-      {member?.type === "collaborator" && (
+      {member?.type === 'collaborator' && (
         <div className="aboutUsContainer__member">
           <img
             src={getPublicAssetUrl(member.photo)}
@@ -42,7 +42,7 @@ const MemberCard: React.FC<MemberCardProps> = ({ member }) => {
             className="aboutUsContainer__collaboratorPhoto"
             onError={(e) => {
               (e.target as HTMLImageElement).src = getPublicAssetUrl(
-                "/images/placeholder.jpg"
+                '/images/placeholder.jpg',
               );
             }}
           />

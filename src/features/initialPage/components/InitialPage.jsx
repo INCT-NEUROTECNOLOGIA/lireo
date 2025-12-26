@@ -1,8 +1,8 @@
-import "../layout/initialPageStyle.css";
-import { InitialPageText } from "../texts/initialPageText.ts";
-import { getPublicAssetUrl } from "../../../utils/pathUtils";
-import { ROUTE_PATHS } from "../../../config/routes";
-import FadeIn from "../../../utils/components/FadeIn";
+import '../layout/initialPageStyle.css';
+import { InitialPageText } from '../texts/initialPageText.ts';
+import { getPublicAssetUrl } from '../../../utils/pathUtils';
+import { ROUTE_PATHS } from '../../../config/routes';
+import FadeIn from '../../../utils/components/FadeIn';
 
 const InitialPage = () => {
   return (
@@ -20,7 +20,7 @@ const InitialPage = () => {
           </button>
         </div>
         <FadeIn>
-          <img src={getPublicAssetUrl("/images/icone-lireo.png")} />
+          <img src={getPublicAssetUrl('/images/icone-lireo.png')} />
         </FadeIn>
       </div>
 
@@ -39,23 +39,13 @@ const InitialPage = () => {
         </FadeIn>
       </div>
 
-      <div className="initialPage_callSection">
-        <h1>{InitialPageText.callSection.title}</h1>
-        <button className="button initialPage_callSection_button">
-          <a href="#ACTIVITIES_SECTION">{InitialPageText.callSection.button}</a>
-        </button>
-      </div>
-
       <div className="section initialPage_forWhomSection">
-        <div>
-          <h1>{InitialPageText.forWhomSection.title}</h1>
+        <h1>{InitialPageText.forWhomSection.title}</h1>
+        <div className="initialPage_forWhomSection_textsContainer">
           {InitialPageText.forWhomSection.texts.map((text, index) => (
             <p key={index}>{text}</p>
           ))}
         </div>
-        <FadeIn>
-          <img src={getPublicAssetUrl("/images/icone-lireo.png")} />
-        </FadeIn>
       </div>
 
       <div

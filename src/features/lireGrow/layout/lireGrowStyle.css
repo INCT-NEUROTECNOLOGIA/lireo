@@ -163,7 +163,8 @@
   appearance: none;
   height: 6px;
   border-radius: 5px;
-  background: linear-gradient(
+  background:
+    linear-gradient(
         to right,
         var(--color-secondary-hover),
         var(--color-primary-hover)
