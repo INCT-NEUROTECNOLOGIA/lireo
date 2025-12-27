@@ -177,6 +177,17 @@
 }
 
 @media (max-width: 800px) {
+  .morph {
+    font-size: 1rem;
+  }
+
+  .mainMorph,
+  .morph.fitRight,
+  .morph.fitLeft,
+  .morph.dragging {
+    font-size: 1.4rem;
+  }
+
   .lireMorphContainer {
     padding: 5vh 2rem;
   }
