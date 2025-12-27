@@ -3,7 +3,7 @@
   background-color: var(--color-white);
   display: flex;
   flex-direction: column;
-  padding: 5vh 8vh;
+  padding: 5vh 4.5rem;
 }
 
 .selectorAndFiltersContainer {
@@ -176,19 +176,11 @@
   flex-wrap: wrap;
 }
 
-@media (min-width: 900px) {
-  .suffixLabel:hover {
-    background-color: var(--color-primary-hover);
-    color: var(--color-white);
+@media (max-width: 800px) {
+  .lireMorphContainer {
+    padding: 5vh 2rem;
   }
 
-  .prefixLabel:hover {
-    background-color: var(--color-tertiary-hover);
-    color: var(--color-white);
-  }
-}
-
-@media (max-width: 720px) {
   .morphSelect,
   .checkboxGroup,
   .checkboxLabel,
