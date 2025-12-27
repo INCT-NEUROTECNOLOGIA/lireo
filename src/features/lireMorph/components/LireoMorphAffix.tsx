@@ -15,10 +15,7 @@ interface LireoMorphAffixProps {
     };
   }>;
   fittedMorph: { [key: number]: 'left' | 'right' | null };
-  grabMorph: (
-    e: React.PointerEvent<HTMLSpanElement, PointerEvent>,
-    index: number,
-  ) => void;
+  grabMorph: (e: React.PointerEvent<HTMLSpanElement>, index: number) => void;
   targetMorphRef: React.RefObject<HTMLSpanElement | null>;
 }
 
@@ -45,7 +42,7 @@ const LireoMorphAffix = ({
         left: leftPosition,
         top: topPosition,
       }}
-      onMouseDown={(e) => grabMorph(e, index)}
+      onPointerDown={(e) => grabMorph(e, index)}
       ref={isDragging ? targetMorphRef : null}
     >
       {morph.text}
