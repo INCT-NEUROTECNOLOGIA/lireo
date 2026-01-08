@@ -3,7 +3,7 @@
   background-color: var(--color-white);
   display: flex;
   flex-direction: column;
-  padding: 5vh 8vh;
+  padding: 5vh 4.5rem;
 }
 
 .selectorAndFiltersContainer {
@@ -139,6 +139,7 @@
   transition: font-size 0.3s ease-in-out;
   transform: translate(-50%, -50%);
   user-select: none;
+  touch-action: none;
 }
 
 .suffix,
@@ -175,19 +176,22 @@
   flex-wrap: wrap;
 }
 
-@media (min-width: 900px) {
-  .suffixLabel:hover {
-    background-color: var(--color-primary-hover);
-    color: var(--color-white);
+@media (max-width: 800px) {
+  .morph {
+    font-size: 1rem;
   }
 
-  .prefixLabel:hover {
-    background-color: var(--color-tertiary-hover);
-    color: var(--color-white);
+  .mainMorph,
+  .morph.fitRight,
+  .morph.fitLeft,
+  .morph.dragging {
+    font-size: 1.4rem;
   }
-}
 
-@media (max-width: 720px) {
+  .lireMorphContainer {
+    padding: 5vh 2rem;
+  }
+
   .morphSelect,
   .checkboxGroup,
   .checkboxLabel,

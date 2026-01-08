@@ -79,7 +79,7 @@ li::marker {
 }
 
 .taskSummary {
-  padding: 2rem;
+  padding: 2rem 4rem;
 }
 
 .pageSummary {
@@ -159,25 +159,24 @@ select option {
   padding: 0.6rem;
 }
 
-@media (max-width: 980px) {
-  .taskSummary,
-  .pageSummary {
-    padding: 4rem 1rem;
-  }
-}
-
-@media (max-width: 720px) {
+@media (max-width: 800px) {
   .taskSummary {
-    padding: 2rem 1rem;
+    padding: 2rem;
   }
 
   .taskSummary h1,
   .pageSummary h1 {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
 
   .taskSummary p,
   .pageSummary p {
     font-size: 1rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .taskSummary {
+    padding: 2rem 1rem;
   }
 }

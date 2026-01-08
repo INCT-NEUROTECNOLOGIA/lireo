@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 5vh 8vh;
+  padding: 5vh 4.5rem;
 }
 
 .textReaderContainer__fileUploader.hidden {
@@ -108,23 +108,13 @@
   color: var(--color-white);
 }
 
-@media (max-width: 900px) {
-  .textReaderContainer__fileUploader__label {
-    width: auto;
-  }
-
-  .textReaderContainer__fileUploader {
-    width: 90%;
-  }
-}
-
-@media (max-width: 720px) {
+@media (max-width: 800px) {
   .textReaderContainer__fileUploader__label {
     margin-top: 0.6rem;
   }
 
   .textReaderContainer {
-    padding: 1.2rem;
+    padding: 1.2rem 2rem;
   }
 
   .textReaderContainer__fileUploader__inputSelectGroup {
