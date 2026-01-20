@@ -4,6 +4,7 @@ import useLireFix from './hooks/useLireFix.ts';
 import { ROUTE_PATHS } from '../../config/routes.ts';
 
 export default function LireFix() {
+	// Retrieve hook state and functions for managing phrases, selection, and verification
 	const {
 		phraseId,
 		setPhraseId,
@@ -48,6 +49,8 @@ export default function LireFix() {
 	}, []);
 
 	function sanitize(word: string) {
+		// Normalize word: remove accents, special characters, and convert to lowercase
+		// This allows accurate comparison between words regardless of formatting
 		return word
 			.normalize('NFD')
 			.replace(/[\u0300-\u036f]/g, '')
@@ -56,11 +59,13 @@ export default function LireFix() {
 	}
 
 	const handleSelectWord = (word: string) => {
+		// Check if the selected word is the incorrect one
 		if (sanitize(word) === sanitize(wrong)) {
 			setFeedback({ type: 'success', text: 'Muito bem! Você identificou a palavra incorreta.' });
 			setShowAlternatives(true);
 			setCorrectAnswerClicked(true);
 		} else {
+			// Track the last incorrect word clicked for visual feedback (light blue highlight)
 			const sanitized = sanitize(word);
 			setLastIncorrectWordClicked(sanitized);
 			if (correctAnswerClicked) {
