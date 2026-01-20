@@ -7,4 +7,6 @@ export const ROUTE_PATHS = {
   LIRE_FLOW: '/lireo/lireFlow',
   LIRE_GROW: '/lireo/lireGrow',
   LIRE_MORPH: '/lireo/lireMorph',
+  LIRE_FIX: '/lireo/lireFix',
+  LIRE_CORRECT: '/lireo/lireCorrect',
 };

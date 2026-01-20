@@ -10,6 +10,7 @@ import { userGuideTextLireMorph } from './features/lireMorph/userGuide/text/Text
 import AboutUs from './features/AboutUs/components/AboutUs.tsx';
 import LireGrow from './features/lireGrow/components/LireGrow.tsx';
 import LireMorph from './features/lireMorph/components/LireMorph.tsx';
+import LireFix from './features/lireFix/LireFix.tsx';
 import './features/generalUi/layout/pageStyle.css';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/lireFlow" element={<TextReader />} />
         <Route path="/lireGrow" element={<LireGrow />} />
         <Route path="/lireMorph" element={<LireMorph />} />
+        <Route path="/lireFix" element={<LireFix />} />
         <Route
           path="/lireFlow/guia-do-usuario"
           element={<UserGuide userGuideText={userGuideTextLireFlow} />}
