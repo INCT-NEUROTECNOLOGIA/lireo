@@ -78,6 +78,33 @@ export const projectCollaborators: Member[] = [
     affiliation: 'Departamento de Pediatria/UFMG',
     photo: '/images/DéboraMarques_TeamMemberPicture.jpg',
   },
+  {
+  type:        'teamMember',
+  name:        'Rosangela Marostega',
+  role:        'Colaboradora',
+  position:    'Fonoaudióloga',
+  education:   'Mestre em Linguística Aplicada (PUCRS) e Especialista em Neuropsicologia e Linguagem',
+  affiliation: 'Graduada em Fonoaudiologia/UFSM',
+  photo:       '/images/RosangelaMarostega_TeamMemberPicture.jpeg',
+},
+{
+  type:        'teamMember',
+  name:        'Silvana Brescovici',
+  role:        'Colaboradora',
+  position:    'Fonoaudióloga',
+  education:   'Mestre em Ciências Médicas (UFRGS) e Especialista em Educação Especial e Motricidade Orofacial',
+  affiliation: 'Graduada em Fonoaudiologia/UFSM',
+  photo:       '/images/SilvanaBrescovici_TeamMemberPicture.jpeg',
+},
+{
+  type:        'teamMember',
+  name:        'Ana Bassôa',
+  role:        'Colaboradora',
+  position:    'Fonoaudióloga',
+  education:   'Mestre em Ciências da Saúde/Neurociências e Especialista em Neuropsicologia (PUCRS)',
+  affiliation: 'Graduada em Fonoaudiologia/UFRGS',
+  photo:       '/images/AnaBassoa_TeamMemberPicture.jpeg',
+},
 ];
 
 export const projectExecution: Member[] = [
