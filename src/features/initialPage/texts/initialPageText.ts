@@ -70,6 +70,13 @@ export const InitialPageText = {
         route: "LIRE_MORPH",
         icon: "bi bi-puzzle",
       },
+      {
+        title: 'LireFix',
+        description:
+          'Atividade para identificar e corrigir uma palavra errada presente em uma frase, com explicação do erro.',
+        route: 'LIRE_FIX',
+        icon: 'bi bi-check2-square',
+      },
     ],
   },
 };

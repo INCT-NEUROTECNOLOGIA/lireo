@@ -14,7 +14,7 @@ const InitialPage = () => {
             <p key={index}>{text}</p>
           ))}
           <button className="button initialPage_mainSection_button">
-            <a href="#ACTIVITIES_SECTION">
+            <a href={ROUTE_PATHS.LIRE_FIX}>
               {InitialPageText.mainSection.button}
             </a>
           </button>

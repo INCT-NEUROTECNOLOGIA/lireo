@@ -31,6 +31,11 @@ export const headerText = {
       href: ROUTE_PATHS.LIRE_MORPH,
       icon: 'bi bi-puzzle',
     },
+    {
+      name: 'LireFix',
+      href: ROUTE_PATHS.LIRE_FIX,
+      icon: 'bi bi-check2-square',
+    },
   ],
   userGuides: 'Guias do Usuário',
   userGuidesList: [
