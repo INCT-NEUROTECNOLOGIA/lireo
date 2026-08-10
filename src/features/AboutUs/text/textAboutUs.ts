@@ -35,6 +35,15 @@ export const projectCreators: Member[] = [
 export const projectCollaborators: Member[] = [
   {
     type: 'teamMember',
+    name: 'Pedro Mendes Santana',
+    role: 'Colaborador',
+    position: 'Bolsista de Iniciação Científica',
+    education: 'Técnico em Desenvolvimento de Sistemas',
+    affiliation: ' COLTEC/UFMG',
+    photo: '/images/PedroSantana_TeamMemberPicture.jpeg',
+  },
+  {
+    type: 'teamMember',
     name: 'Isadora Ramos Pereira',
     role: 'Colaboradora',
     position: 'Bolsista de Iniciação Científica',
